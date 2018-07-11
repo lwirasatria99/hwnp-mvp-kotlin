@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">WMS Mobile</string>
+    <string name="map_api">AIzaSyBELmC1DfToTVsvVpR2ohoLLP7OzfCf7V0</string>
+    <string name="alert_checkout">Are you sure you want to checkout ?</string>
+    <string name="email_test">andrakurnia59@gmail.com</string>
+    <string name="title_home">home</string>
+
+    <string name="alert_delete">Are you sure you want to delete ?</string>
+    <string name="nip">mem_nip</string>
+    <string name="mobile">mem_mobile</string>
+    <string name="phone">mem_phone</string>
+    <string name="address">mem_address</string>
+    <string name="image">mem_image</string>
+    <string name="position">position</string>
+
+</resources>

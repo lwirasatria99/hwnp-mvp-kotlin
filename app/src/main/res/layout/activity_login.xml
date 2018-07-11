@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_blue"
+    android:theme="@style/AppThemeFont"
+    tools:context=".LoginActivity">
+
+    <!-- Logo -->
+    <LinearLayout
+        android:id="@+id/containerLogo"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!--<TextView-->
+            <!--android:id="@+id/blue"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:fontFamily="@font/ubuntu_bold"-->
+            <!--android:text="BLUEPAY"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="60sp"-->
+            <!--tools:ignore="HardcodedText" />-->
+
+        <ImageView
+            android:src="@drawable/rms_mobile"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <!-- Form -->
+    <LinearLayout
+        android:id="@+id/formLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/containerLogo"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:background="@drawable/login_form_white"
+        android:elevation="3dp"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        tools:targetApi="lollipop">
+
+        <!-- Username -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/login_icemail_24dp"
+                android:contentDescription="icPassword"
+                tools:ignore="HardcodedText" />
+
+            <EditText
+                android:id="@+id/etUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_light"
+                android:hint="Email"
+                android:text="@string/email_test"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:paddingEnd="5dp"
+                android:paddingStart="30dp"
+                android:textColorHint="@color/login_blue"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText"
+                tools:targetApi="lollipop" />
+
+        </RelativeLayout>
+
+        <!-- Password -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/login_icpassword_24dp"
+                android:contentDescription="icPassword"
+                tools:ignore="HardcodedText" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/etPasswordLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/login_blue"
+                app:hintEnabled="false"
+                app:passwordToggleEnabled="true">
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/ubuntu_light"
+                    android:hint="Password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:paddingEnd="5dp"
+                    android:paddingStart="30dp"
+                    android:text="abc?123"
+                    android:textColorHint="@color/login_blue"
+                    android:textSize="20sp"
+                    tools:ignore="HardcodedText"
+                    tools:targetApi="lollipop" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/buttonLogin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/login_button_bluesky"
+            android:elevation="3dp"
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="Login"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/main_copyright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:gravity="center_horizontal|bottom"
+        android:text="WMS by Elabram Systems"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        tools:ignore="HardcodedText" />
+
+</RelativeLayout>
+
+

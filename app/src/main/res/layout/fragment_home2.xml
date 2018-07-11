@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_blueblack"
+    android:theme="@style/AppThemeFont">
+
+    <!-- Header -->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:theme="@style/ActionBarThemeProfil">
+
+        <FrameLayout
+            android:id="@+id/frameHeader"
+            android:layout_width="match_parent"
+            android:layout_height="170dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp">
+
+                <ImageView
+                    android:layout_width="115dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/rms_mobile"
+                    tools:ignore="ContentDescription" />
+
+                <ImageView
+                    android:id="@+id/ivIndosat"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="end"
+                    android:background="@drawable/a"
+                    tools:ignore="ContentDescription" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:gravity="center_horizontal|bottom"
+                android:orientation="vertical">
+
+                <!--Circle Image -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/view2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:innerRadius="0dp"
+                    android:shape="ring"
+                    android:thicknessRatio="1.9"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="2dp">
+
+                    <ImageView
+                        android:id="@+id/ivProfil"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/man"
+                        tools:ignore="ContentDescription" />
+
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/ubuntu_light"
+                    android:text="Wira Satria"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/tvAuthority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu_light"
+                    android:text="Mobile Developer"
+                    android:textColor="@color/grey"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginEnd="15dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:orientation="vertical"-->
+            <!--android:paddingTop="10dp">-->
+
+            <!--</LinearLayout>-->
+
+        </FrameLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!-- Content -->
+    <LinearLayout
+        android:id="@+id/layoutForm"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appbarLayout"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/square_round"
+        android:orientation="vertical">
+
+        <!--Group icon 1 -->
+        <!-- Deactivated-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:ignore="UselessLeaf">
+
+            <!--&lt;!&ndash; Overtime &ndash;&gt;-->
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1">-->
+
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/buttonOvertime"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical"-->
+            <!--tools:ignore="UseCompoundDrawables,UselessParent">-->
+
+            <!--<ImageView-->
+            <!--android:id="@+id/icOvertime"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:background="@drawable/ic_overtime"-->
+            <!--android:contentDescription="@string/Icon" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/icOvertime"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:fontFamily="@font/ubuntu_bold"-->
+            <!--android:text="Overtime"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:textSize="@dimen/font_menu"-->
+            <!--tools:ignore="HardcodedText" />-->
+            <!--</RelativeLayout>-->
+
+            <!--</RelativeLayout>-->
+
+            <!--&lt;!&ndash; Timesheet &ndash;&gt;-->
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1">-->
+
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/buttonTimesheet"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical"-->
+            <!--tools:ignore="UseCompoundDrawables,UselessParent">-->
+
+            <!--<ImageView-->
+            <!--android:id="@+id/icTimesheet"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:background="@drawable/ic_timesheet"-->
+            <!--android:contentDescription="@string/Icon" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/icTimesheet"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:fontFamily="@font/ubuntu_bold"-->
+            <!--android:text="Timesheet"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:textSize="@dimen/font_menu"-->
+            <!--tools:ignore="HardcodedText" />-->
+            <!--</RelativeLayout>-->
+
+            <!--</RelativeLayout>-->
+
+            <!--&lt;!&ndash; Travel Request &ndash;&gt;-->
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1">-->
+
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/buttonTravel"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:orientation="vertical"-->
+            <!--tools:ignore="UseCompoundDrawables,UselessParent">-->
+
+            <!--<ImageView-->
+            <!--android:id="@+id/icTravel"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:background="@drawable/ic_travel"-->
+            <!--android:contentDescription="@string/Icon" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="70dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/icTravel"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:fontFamily="@font/ubuntu_bold"-->
+            <!--android:gravity="center"-->
+            <!--android:text="Travel Request"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:textSize="@dimen/font_menu"-->
+            <!--tools:ignore="HardcodedText" />-->
+            <!--</RelativeLayout>-->
+
+            <!--</RelativeLayout>-->
+
+        </LinearLayout>
+
+        <!--Group icon 2-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <!--&lt;!&ndash; Claim &ndash;&gt;-->
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1">-->
+
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/buttonClaim"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical"-->
+            <!--tools:ignore="UseCompoundDrawables,UselessParent">-->
+
+            <!--<ImageView-->
+            <!--android:id="@+id/icClaim"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:background="@drawable/ic_claim"-->
+            <!--android:contentDescription="@string/Icon" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/icClaim"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:fontFamily="@font/ubuntu_bold"-->
+            <!--android:text="Claim"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:textSize="@dimen/font_menu"-->
+            <!--tools:ignore="HardcodedText" />-->
+            <!--</RelativeLayout>-->
+
+            <!--</LinearLayout>-->
+
+            <!-- Monthly Report -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:id="@+id/buttonMonthlyReport"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    tools:ignore="UseCompoundDrawables,UselessParent">
+
+                    <ImageView
+                        android:id="@+id/icMR"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_monthly_report"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/icMR"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:gravity="center"
+                        android:text="Monthly Record"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        tools:ignore="HardcodedText" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <!-- Mobile Attendance -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:visibility="visible"
+                tools:ignore="UselessLeaf">
+
+                <RelativeLayout
+                    android:id="@+id/buttonCheckin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    tools:ignore="UseCompoundDrawables,UselessParent">
+
+                    <ImageView
+                        android:id="@+id/icCheckin"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_monthly_report"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/icCheckin"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:gravity="center"
+                        android:text="Mobile Attendance"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        tools:ignore="HardcodedText" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

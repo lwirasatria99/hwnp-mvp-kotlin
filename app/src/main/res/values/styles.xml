@@ -1,0 +1,47 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/bg_blueblack</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Progress Dialog -->
+    <style name="AppThemeLoading" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/bg_blueblack</item>
+        <item name="android:textViewStyle">@style/FontTheme</item>
+    </style>
+
+    <!-- Font -->
+    <style name="AppThemeFont" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textViewStyle">@style/FontTheme</item>
+        <item name="colorAccent">@color/login_blue</item>
+    </style>
+
+    <style name="FontTheme" parent="android:Widget.TextView">
+        <item name="android:fontFamily"
+            tools:targetApi="jelly_bean">@font/ubuntu_light</item>
+    </style>
+
+    <!-- Toolbar -->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorPrimary">@color/bg_blueblack</item>
+        <!--<item name="actionModeStyle">@style/styleActionMode</item>-->
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Button -->
+    <style name="ButtonTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorButtonNormal">@color/green_grab</item>
+    </style>
+
+    <!-- ActionBar And ActionMode Styling-->
+    <style name="ActionBarThemeProfil" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="login_blue">#0d94f8</color>
+    <color name="red">#f44336</color>
+
+    <!--<color name="login_grey4">#757575</color>-->
+    <color name="white">#FFFFFF</color>
+    <color name="green_grab">#00b13f</color>
+    <color name="black">#000</color>
+    <color name="bg_blueblack">#0d1426</color>
+
+    <color name="pressed_color">#4d90fe</color>
+    <color name="grey2">#BDBDBD</color>
+    <color name="grey3">#9E9E9E</color>
+    <color name="grey4">#757575</color>
+    <color name="grey">#E0E0E0</color>
+
+</resources>
