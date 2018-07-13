@@ -3,6 +3,8 @@ package com.elabram.lm.wmsmobile.utilities;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
@@ -43,6 +45,16 @@ public class AppInfo {
                     return false;
                 }
             }
+        }
+        return true;
+    }
+
+    public static boolean isOnline(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert cm != null;
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo == null || !netInfo.isConnected() ||!netInfo.isAvailable()) {
+            return false;
         }
         return true;
     }

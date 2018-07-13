@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,6 +64,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.isOnline;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.token;
 
 public class CheckinActivity extends AppCompatActivity implements OnMapReadyCallback,
@@ -97,6 +99,15 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
 
     @BindView(R.id.tvLastLocation)
     TextView tvLastLocation;
+
+    @BindView(R.id.relativeEnabled)
+    RelativeLayout rel_online;
+
+    @BindView(R.id.relativeDisabled)
+    RelativeLayout rel_offline;
+
+    @BindView(R.id.buttonRefresh)
+    Button buttonRefresh;
 
     @BindDrawable(R.drawable.bg_confirm_white)
     Drawable bg_confirm;
@@ -149,8 +160,8 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         getSharedTaskId();
         buildGoogleApiClient();
 
-        showProgress();
-        retrofitCheckinStatus();
+        cekInternet();
+        buttonRefresh.setOnClickListener(view -> cekInternet());
 
         GPSTracker gpsTracker = new GPSTracker(this);
         myLat = gpsTracker.getLatitude();
@@ -159,7 +170,6 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
 
         fabMyLocation.setOnClickListener(view -> myLocation());
 
-        retrofitSite();
         mLocationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
@@ -167,6 +177,19 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                 locationChanged(locationResult);
             }
         };
+    }
+
+    private void cekInternet() {
+        if (AppInfo.isOnline(this)) {
+            rel_online.setVisibility(View.VISIBLE);
+            showProgress();
+            retrofitSite();
+            retrofitCheckinStatus();
+            rel_offline.setVisibility(View.GONE);
+        } else {
+            rel_online.setVisibility(View.GONE);
+            rel_offline.setVisibility(View.VISIBLE);
+        }
     }
 
     private void getSharedTaskId() {
@@ -217,9 +240,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                 Double d_long = Double.valueOf(office.getOc_long());
 
                 // Find the distance
-                Location.distanceBetween(location.getLatitude(), location.getLongitude(),
-                        d_lat, d_long,
-                        resultApi);
+                Location.distanceBetween(location.getLatitude(), location.getLongitude(), d_lat, d_long, resultApi);
 
                 // Convert to String & Double
                 String s_distanceToOffice = String.valueOf(resultApi[0]);
@@ -246,7 +267,13 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     private void processNoMock() {
         buttonCheckin.setOnClickListener(view -> {
             Log.e(TAG, "locationChanged: Click Checkin ");
-            retrofitCheckin();
+            if (isOnline(this)) {
+                retrofitCheckin();
+            }
+            else {
+                Snackbar snackbar = Snackbar.make(rootView, "Check Your Internet Connection", Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
         });
     }
 
@@ -347,13 +374,13 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
 
                             if (!location_first.isEmpty())
                                 tvFirstLocation.setText("(" + location_first + ")");
-                            else
-                                tvFirstLocation.setText("(-)");
+                            //else
+                            //    tvFirstLocation.setText("(-)");
 
                             if (!location_last.isEmpty())
-                                tvLastLocation.setText("("+location_last+")");
-                            else
-                                tvLastLocation.setText("(-)");
+                                tvLastLocation.setText("(" + location_last + ")");
+                            //else
+                            //    tvLastLocation.setText("(-)");
 
                             break;
                     }
@@ -367,7 +394,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 Log.e(TAG, "onFailure: CheckinStatus " + t.getCause());
-                Toast.makeText(CheckinActivity.this, "Please check your connection / try again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CheckinActivity.this, "Something error on the server side, please try again", Toast.LENGTH_SHORT).show();
                 dismissProgress();
             }
         });
@@ -392,6 +419,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 dismissProgress();
+                Toast.makeText(CheckinActivity.this, "Please try again", Toast.LENGTH_SHORT).show();
                 Log.e(TAG, "onFailure: Checkin " + t.getCause());
             }
         });
@@ -404,7 +432,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 try {
                     //noinspection ConstantConditions
-                    String content = new String (response.body().bytes());
+                    String content = new String(response.body().bytes());
                     Log.e(TAG, "onResponse: Retrofit Site List " + content);
                     JSONObject jsonObject = new JSONObject(content);
 

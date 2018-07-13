@@ -125,7 +125,6 @@ public class MonthlyAdapter extends BaseAdapter {
         holder.day.setText(daySubs);
         // end
 
-
         @SuppressLint("SimpleDateFormat") SimpleDateFormat readClock = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         @SuppressLint("SimpleDateFormat") SimpleDateFormat writeClock = new SimpleDateFormat("hh:mm");
         String sourceFirstClock = monthly.getTimeIn();

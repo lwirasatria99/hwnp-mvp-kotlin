@@ -57,7 +57,7 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
     private static final String TAG = MonthlyRecordActivity.class.getSimpleName();
 
     @BindView(R.id.linearMonth)
-    LinearLayout linearMonth;
+    RelativeLayout linearMonth;
 
     @BindView(R.id.tvDatePeriode)
     TextView tvDatePeriode;

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/rootView"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MonthlyRecordActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -33,10 +35,11 @@
     </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeActivated"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/linearMonth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,7 +59,14 @@
                 android:textSize="17sp"
                 tools:ignore="HardcodedText" />
 
-        </LinearLayout>
+            <ImageView
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+                tools:ignore="ContentDescription" />
+
+        </RelativeLayout>
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swiperefresh"
