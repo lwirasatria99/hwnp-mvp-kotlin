@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,10 +23,12 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.elabram.lm.wmsmobile.adapter.MonthlyAdapter;
 import com.elabram.lm.wmsmobile.model.Monthly;
 import com.elabram.lm.wmsmobile.rest.ApiClient;
+import com.elabram.lm.wmsmobile.utilities.AppInfo;
 import com.shawnlin.numberpicker.NumberPicker;
 
 import org.json.JSONArray;
@@ -49,6 +52,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.PREFS_LOGIN;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.isOnline;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_id;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.token;
 
@@ -82,6 +86,15 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.relativeEnabled)
+    RelativeLayout rel_online;
+
+    @BindView(R.id.relativeDisabled)
+    RelativeLayout rel_offline;
+
+    @BindView(R.id.buttonRefresh)
+    ImageView buttonRefresh;
 
     private static final int MAX_YEAR = 2099;
     private static final String[] Months = new String[]{"January", "February",
@@ -123,10 +136,23 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
         relativeLoadMore.setVisibility(View.GONE);
 
         setInitialDate();
-        showProgress();
-        retrofitListMonthly();
+
+        cekInternet();
+        buttonRefresh.setOnClickListener(view -> cekInternet());
 
         linearMonth.setOnClickListener(view -> showDateDialog(getDatePeriode()));
+    }
+
+    private void cekInternet() {
+        if (AppInfo.isOnline(this)) {
+            rel_online.setVisibility(View.VISIBLE);
+            showProgress();
+            retrofitListMonthly();
+            rel_offline.setVisibility(View.GONE);
+        } else {
+            rel_online.setVisibility(View.GONE);
+            rel_offline.setVisibility(View.VISIBLE);
+        }
     }
 
     private void getSharedUserDetail() {
@@ -353,7 +379,11 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
         realLastDay = yearPicker.getValue() + "-" + formattedRealNumber + "-" + lastDay;
         Log.e(TAG, "findDataMonthly: LastDay" + realLastDay);
 
-        retrofitListMonthly();
+        if (isOnline(this)) {
+            retrofitListMonthly();
+        } else {
+            Toast.makeText(this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+        }
 
         alertDialog.dismiss();
     }

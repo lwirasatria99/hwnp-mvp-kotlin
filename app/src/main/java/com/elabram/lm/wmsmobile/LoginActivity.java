@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -14,25 +15,26 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.elabram.lm.wmsmobile.rest.ApiClient;
 import com.elabram.lm.wmsmobile.utilities.AppInfo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.PREFS_LOGGED;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.PREFS_LOGIN;
-import static com.elabram.lm.wmsmobile.utilities.AppInfo.PRE_URL;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.isOnline;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -48,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
     private Activity mActivity = LoginActivity.this;
     private String TAG = LoginActivity.class.getSimpleName();
     private ProgressDialog progressDialog;
-    private AppInfo info = new AppInfo();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login() {
         if (validate()) {
-            volleyLogin();
+            if (isOnline(this))
+                retrofitLogin();
+            else
+                Toast.makeText(mActivity, "Check your internet connection", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -86,14 +90,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         SharedPreferences preferences = getSharedPreferences(PREFS_LOGIN, 0);
         boolean loggin = preferences.getBoolean(PREFS_LOGGED, false);
         Log.e(TAG, "onResume: Loggin " + loggin);
-        if (loggin)
-        {
+        if (loggin) {
             showMainMenu();
         }
 //        else
@@ -104,8 +106,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void showMainMenu()
-    {
+    private void showMainMenu() {
         dismissDialog();
         startActivity(new Intent(mActivity, MainActivity.class));
         this.finish();
@@ -123,95 +124,88 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void volleyLogin() {
+    private void retrofitLogin() {
         showDialog();
-
-        String API_LOGIN = PRE_URL + "/login";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, API_LOGIN, response -> {
-            Log.e(TAG, "onResponse: VolleyLogin " + response);
-            dismissDialog();
-
-            SharedPreferences sPreferences = getSharedPreferences(PREFS_LOGIN, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sPreferences.edit();
-            try {
-                JSONObject jsonObject = new JSONObject(response);
-                String message = jsonObject.getString("message");
-
-                if (message.equalsIgnoreCase("success")) {
-
-                    // data
-                    JSONObject jsonData = jsonObject.getJSONObject("data");
-                    String token = jsonData.getString("token");
-                    String user_id = jsonData.getString("user_id");
-                    String user_name = jsonData.getString("user_name");
-                    String user_email = jsonData.getString("user_email");
-                    String user_type = jsonData.getString("user_type");
-
-                    // user_data
-                    JSONObject jsonUserData = jsonData.getJSONObject("user_data");
-                    String userdata_name = jsonUserData.getString("name");
-                    String mem_nip = jsonUserData.getString(getString(R.string.nip));
-                    String mem_id = jsonUserData.getString("mem_id");
-                    String mem_mobile = jsonUserData.getString(getString(R.string.mobile));
-                    String mem_phone = jsonUserData.getString(getString(R.string.phone));
-                    String mem_address = jsonUserData.getString(getString(R.string.address));
-                    String mem_image = jsonUserData.getString("mem_image");
-                    String position = jsonUserData.getString(getString(R.string.position));
-
-                    editor.putBoolean(AppInfo.PREFS_LOGGED, true);
-                    editor.putString("email", getTextUser());
-                    editor.putString("password", getTextPass());
-                    editor.putString("user_id", user_id);
-                    editor.putString("user_name", user_name);
-                    editor.putString("user_email", user_email);
-                    editor.putString("user_type", user_type);
-                    editor.putString("token", token);
-
-                    editor.putString("name", userdata_name);
-                    editor.putString("mem_id", mem_id);
-                    editor.putString(getString(R.string.nip), mem_nip);
-                    editor.putString(getString(R.string.mobile), mem_mobile);
-                    editor.putString(getString(R.string.phone), mem_phone);
-                    editor.putString("mem_image", mem_image);
-                    editor.putString(getString(R.string.address), mem_address);
-                    editor.putString(getString(R.string.position), position);
-
-                    editor.apply();
-
-                    showMainMenu();
-                } else {
-                    Snackbar snackbar = Snackbar.make(containerMain, message, Snackbar.LENGTH_LONG);
-                    snackbar.show();
+        Call<ResponseBody> call = new ApiClient().getApiService().login(getTextUser(), getTextPass());
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                dismissDialog();
+                try {
+                    //noinspection ConstantConditions
+                    String responseContent = new String(response.body().bytes());
+                    Log.e(TAG, "onResponse: "+responseContent);
+                    parseJSON(responseContent);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }, error -> {
-            info.errorResponse(error, mActivity);
-            dismissDialog();
-        })
-
-        {
-
-            @Override
-            public String getBodyContentType() {
-                return "application/x-www-form-urlencoded; charset=UTF-8";
             }
 
             @Override
-            protected Map<String, String> getParams()
-            {
-                HashMap<String, String> params = new HashMap<>();
-                params.put("mem_email", getTextUser());
-                params.put("mem_password", getTextPass());
-                return params;
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                Log.e(TAG, "onFailure: " + t.getCause());
+                dismissDialog();
+            }
+        });
+    }
+
+    private void parseJSON(String content) {
+        SharedPreferences sPreferences = getSharedPreferences(PREFS_LOGIN, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sPreferences.edit();
+        try {
+            JSONObject jsonObject = new JSONObject(content);
+            String message = jsonObject.getString("message");
+
+            if (message.equalsIgnoreCase("success")) {
+
+                // data
+                JSONObject jsonData = jsonObject.getJSONObject("data");
+                String token = jsonData.getString("token");
+                String user_id = jsonData.getString("user_id");
+                String user_name = jsonData.getString("user_name");
+                String user_email = jsonData.getString("user_email");
+                String user_type = jsonData.getString("user_type");
+
+                // user_data
+                JSONObject jsonUserData = jsonData.getJSONObject("user_data");
+                String userdata_name = jsonUserData.getString("name");
+                String mem_nip = jsonUserData.getString(getString(R.string.nip));
+                String mem_id = jsonUserData.getString("mem_id");
+                String mem_mobile = jsonUserData.getString(getString(R.string.mobile));
+                String mem_phone = jsonUserData.getString(getString(R.string.phone));
+                String mem_address = jsonUserData.getString(getString(R.string.address));
+                String mem_image = jsonUserData.getString("mem_image");
+                String position = jsonUserData.getString(getString(R.string.position));
+
+                editor.putBoolean(AppInfo.PREFS_LOGGED, true);
+                editor.putString("email", getTextUser());
+                editor.putString("password", getTextPass());
+                editor.putString("user_id", user_id);
+                editor.putString("user_name", user_name);
+                editor.putString("user_email", user_email);
+                editor.putString("user_type", user_type);
+                editor.putString("token", token);
+
+                editor.putString("name", userdata_name);
+                editor.putString("mem_id", mem_id);
+                editor.putString(getString(R.string.nip), mem_nip);
+                editor.putString(getString(R.string.mobile), mem_mobile);
+                editor.putString(getString(R.string.phone), mem_phone);
+                editor.putString("mem_image", mem_image);
+                editor.putString(getString(R.string.address), mem_address);
+                editor.putString(getString(R.string.position), position);
+
+                editor.apply();
+
+                showMainMenu();
+            } else {
+                Snackbar snackbar = Snackbar.make(containerMain, message, Snackbar.LENGTH_LONG);
+                snackbar.show();
             }
 
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(mActivity);
-        requestQueue.add(stringRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private String getTextUser() {

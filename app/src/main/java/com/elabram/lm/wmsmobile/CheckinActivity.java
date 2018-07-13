@@ -22,6 +22,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -107,7 +108,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     RelativeLayout rel_offline;
 
     @BindView(R.id.buttonRefresh)
-    Button buttonRefresh;
+    ImageView buttonRefresh;
 
     @BindDrawable(R.drawable.bg_confirm_white)
     Drawable bg_confirm;
@@ -271,7 +272,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                 retrofitCheckin();
             }
             else {
-                Snackbar snackbar = Snackbar.make(rootView, "Check Your Internet Connection", Snackbar.LENGTH_LONG);
+                Snackbar snackbar = Snackbar.make(rootView, "Please check your internet connection", Snackbar.LENGTH_LONG);
                 snackbar.show();
             }
         });
@@ -394,7 +395,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 Log.e(TAG, "onFailure: CheckinStatus " + t.getCause());
-                Toast.makeText(CheckinActivity.this, "Something error on the server side, please try again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CheckinActivity.this, "Please check your internet & try again", Toast.LENGTH_SHORT).show();
                 dismissProgress();
             }
         });

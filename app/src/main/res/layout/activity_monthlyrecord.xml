@@ -34,8 +34,10 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <include layout="@layout/screen_offline_general" />
+
     <RelativeLayout
-        android:id="@+id/relativeActivated"
+        android:id="@+id/relativeEnabled"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

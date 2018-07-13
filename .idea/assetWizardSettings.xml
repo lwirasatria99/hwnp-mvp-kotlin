@@ -61,13 +61,26 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                      <entry key="image">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="paddingPercent" value="50" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                     </map>
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundColor" value="ff0c1c" />
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="backgroundColor" value="4584f7" />
                                       <entry key="iconShape" value="CIRCLE" />
-                                      <entry key="outputName" value="ic_closed" />
+                                      <entry key="imageAsset" value="C:\Users\lalu.mahendra\Downloads\Mockup RMS Mobile\Icon\refresh.png" />
+                                      <entry key="outputName" value="ic_refresh" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -113,8 +126,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_chevron_right_black_24dp" />
-                            <entry key="sourceFile" value="C:\Users\lalu.mahendra\Documents\Mockup RMS\Icon\Last Record.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_offline_attendace" />
+                            <entry key="sourceFile" value="C:\Users\lalu.mahendra\Downloads\Mockup RMS Mobile\Source Mobile Attendance\Source\Image.svg" />
                           </map>
                         </option>
                       </PersistentState>

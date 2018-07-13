@@ -7,6 +7,13 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 public interface ApiService {
+
+    @FormUrlEncoded
+    @POST("login")
+    Call<ResponseBody> login(@Field("mem_email") String email,
+                             @Field("mem_password") String password);
+
+
     @FormUrlEncoded
     @POST("getProfile")
     Call<ResponseBody> loadProfileParams(@Field("token") String token);
