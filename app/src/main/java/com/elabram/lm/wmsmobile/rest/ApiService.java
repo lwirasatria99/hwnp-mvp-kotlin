@@ -24,4 +24,10 @@ public interface ApiService {
     @POST("siteList")
     Call<ResponseBody> siteList(@Field("token") String token);
 
+    @FormUrlEncoded
+    @POST("attendance-list")
+    Call<ResponseBody> monthlyList(@Field("token") String token,
+                                   @Field("att_date[0]") String attDate0,
+                                   @Field("att_date[1]") String attDate1,
+                                   @Field("mem_id_req") String mem_id_req);
 }

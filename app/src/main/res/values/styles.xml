@@ -44,4 +44,16 @@
         <item name="elevation">0dp</item>
     </style>
 
+    <style name="ActionThemeDialog" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="ProggressBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/bg_blueblack</item>
+        <item name="colorAccent">@color/bg_blueblack</item>
+    </style>
+
 </resources>

@@ -28,6 +28,7 @@
         <activity android:name=".ChooseTaskActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity" />
+        <activity android:name=".MonthlyRecordActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -253,7 +253,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     private void processTheMock() {
         Log.e(TAG, "locationChanged: " + "Yes Mock");
         Snackbar snackbar = Snackbar.make(rootView,
-                "We detected the use of fake GPS application. As a consequence, " +
+                "We detected the use of fake GPS application. As logo_indosat consequence, " +
                         "we will report this illegal action to HR to be processed accordingly.",
                 Snackbar.LENGTH_LONG
         );
@@ -325,7 +325,6 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                             snackbar.show();
                             break;
                         case "200":
-
                             JSONObject jsonObject1 = jsonObject.getJSONObject("data");
                             String realtime_date = jsonObject1.getString("is_date");
                             String time_first = jsonObject1.getString("time_first");

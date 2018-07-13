@@ -16,8 +16,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.elabram.lm.wmsmobile.CheckinActivity;
+import com.elabram.lm.wmsmobile.MonthlyRecordActivity;
 import com.elabram.lm.wmsmobile.R;
 import com.squareup.picasso.Picasso;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.PREFS_LOGIN;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_image;
@@ -33,6 +37,10 @@ public class MainHomeFragment extends Fragment {
     private String fullname;
     private String fullemail;
     private String user_image;
+
+    @BindView(R.id.relativeMonthly)
+    RelativeLayout relativeMonthly;
+
 
     public MainHomeFragment() {
     }
@@ -61,6 +69,7 @@ public class MainHomeFragment extends Fragment {
 
         getSharedUserDetail();
         View view = inflater.inflate(R.layout.fragment_home2, container, false);
+        ButterKnife.bind(this, view);
 
         TextView tvUsername = view.findViewById(R.id.tvName);
         TextView tvUseremail = view.findViewById(R.id.tvAuthority);
@@ -81,7 +90,6 @@ public class MainHomeFragment extends Fragment {
 //        RelativeLayout buttonTimesheet = view.findViewById(R.id.buttonTimesheet);
 //        RelativeLayout buttonTravel = view.findViewById(R.id.buttonTravel);
 //        RelativeLayout buttonClaim = view.findViewById(R.id.buttonClaim);
-//        RelativeLayout buttonMonthlyReport = view.findViewById(R.id.buttonMonthlyReport);
         RelativeLayout buttonCheckin = view.findViewById(R.id.buttonCheckin);
 
 //        if (!role.equals("2")) {
@@ -117,12 +125,7 @@ public class MainHomeFragment extends Fragment {
 //            }
 //        });
 //
-//        buttonMonthlyReport.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                clickMonthlyReport();
-//            }
-//        });
+        relativeMonthly.setOnClickListener(view1 -> startActivity(new Intent(mActivity, MonthlyRecordActivity.class)));
 
         buttonCheckin.setOnClickListener(view1 -> startActivity(new Intent(mActivity, CheckinActivity.class)));
 

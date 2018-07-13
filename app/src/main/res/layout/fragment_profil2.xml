@@ -42,7 +42,7 @@
                     android:layout_height="40dp"
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="end"
-                    android:background="@drawable/a"
+                    android:background="@drawable/logo_indosat"
                     tools:ignore="ContentDescription" />
 
 

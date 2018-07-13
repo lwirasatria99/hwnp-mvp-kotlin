@@ -49,7 +49,7 @@ public class MainAboutFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_about2, container, false);
 
         String wmsDescription = "" +
-                "<p>WMS Mobile is brought to you by Elabram Systems, a company providing outsourcing and recruitment solutions, covering all level of expertise in Engineering and Telecommunication industry across Asia Pacific.</p>" +
+                "<p>WMS Mobile is brought to you by Elabram Systems, logo_indosat company providing outsourcing and recruitment solutions, covering all level of expertise in Engineering and Telecommunication industry across Asia Pacific.</p>" +
                 "<p>WMS Mobile is an integrated employee self-service solution that helps employees stay connected to their company’s information at any time, from anywhere.<p/>" +
                 "<p>All information and features are the same as in WMS website but we give you the efficiency for checking, inputting and approving Timesheet, Overtime, Travel Request and Claim whenever and wherever you are.</p>";
 

@@ -25,6 +25,7 @@ public class AppInfo {
     public static String PRE_URL = "http://elabramdev.com/wms-api-lumen/api";
 
     public static String token;
+    public static String mem_id;
     public static String mem_nip;
     public static String mem_mobile;
     public static String mem_phone;

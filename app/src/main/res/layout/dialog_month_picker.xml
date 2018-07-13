@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutNumberPicker"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/square_cornerfull_white"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/picker_month"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            app:np_dividerColor="@android:color/transparent"
+            app:np_selectedTextSize="25sp"
+            app:np_textColor="@color/grey3"
+            app:np_textSize="15sp" />
+
+        <RelativeLayout
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/picker_month"
+            android:background="@drawable/square_corner1_leftbottomblack">
+
+            <ImageView
+                android:id="@+id/imageCross"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@mipmap/ic_closed"
+                tools:ignore="ContentDescription" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/picker_year"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            app:np_dividerColor="@android:color/transparent"
+            app:np_selectedTextSize="25sp"
+            app:np_textColor="@color/grey3"
+            app:np_textSize="15sp" />
+
+        <RelativeLayout
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/picker_year"
+            android:background="@drawable/square_corner1_rightbottomblack">
+
+            <ImageView
+                android:id="@+id/imageCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@mipmap/ic_checked"
+                tools:ignore="ContentDescription" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
+

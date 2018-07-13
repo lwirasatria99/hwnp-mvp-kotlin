@@ -2,4 +2,5 @@
 <resources>
     <dimen name="login_drawablepadding">5dp</dimen>
     <dimen name="long_text_size">90dp</dimen>
+    <dimen name="clock_size">15sp</dimen>
 </resources>

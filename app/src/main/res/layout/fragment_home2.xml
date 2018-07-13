@@ -41,9 +41,8 @@
                     android:layout_height="40dp"
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="end"
-                    android:background="@drawable/a"
+                    android:background="@drawable/logo_indosat"
                     tools:ignore="ContentDescription" />
-
 
             </RelativeLayout>
 
@@ -303,14 +302,15 @@
                 android:gravity="center">
 
                 <RelativeLayout
-                    android:id="@+id/buttonMonthlyReport"
+                    android:id="@+id/relativeMonthly"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     tools:ignore="UseCompoundDrawables,UselessParent">
 
                     <ImageView
-                        android:id="@+id/icMR"
+                        android:clickable="false"
+                        android:id="@+id/ivMonthlyRecord"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
@@ -318,9 +318,10 @@
                         tools:ignore="ContentDescription" />
 
                     <TextView
+                        android:clickable="false"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/icMR"
+                        android:layout_below="@+id/ivMonthlyRecord"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/ubuntu_bold"
@@ -354,7 +355,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
-                        android:background="@drawable/ic_monthly_report"
+                        android:background="@drawable/ic_monthly_attendance"
                         tools:ignore="ContentDescription" />
 
                     <TextView

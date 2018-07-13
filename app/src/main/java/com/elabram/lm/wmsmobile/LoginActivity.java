@@ -139,23 +139,24 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (message.equalsIgnoreCase("success")) {
 
+                    // data
                     JSONObject jsonData = jsonObject.getJSONObject("data");
-
                     String token = jsonData.getString("token");
                     String user_id = jsonData.getString("user_id");
                     String user_name = jsonData.getString("user_name");
                     String user_email = jsonData.getString("user_email");
                     String user_type = jsonData.getString("user_type");
 
+                    // user_data
                     JSONObject jsonUserData = jsonData.getJSONObject("user_data");
                     String userdata_name = jsonUserData.getString("name");
                     String mem_nip = jsonUserData.getString(getString(R.string.nip));
+                    String mem_id = jsonUserData.getString("mem_id");
                     String mem_mobile = jsonUserData.getString(getString(R.string.mobile));
                     String mem_phone = jsonUserData.getString(getString(R.string.phone));
                     String mem_address = jsonUserData.getString(getString(R.string.address));
                     String mem_image = jsonUserData.getString("mem_image");
                     String position = jsonUserData.getString(getString(R.string.position));
-
 
                     editor.putBoolean(AppInfo.PREFS_LOGGED, true);
                     editor.putString("email", getTextUser());
@@ -167,6 +168,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("token", token);
 
                     editor.putString("name", userdata_name);
+                    editor.putString("mem_id", mem_id);
                     editor.putString(getString(R.string.nip), mem_nip);
                     editor.putString(getString(R.string.mobile), mem_mobile);
                     editor.putString(getString(R.string.phone), mem_phone);
