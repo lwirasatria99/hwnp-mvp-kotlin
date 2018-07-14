@@ -16,20 +16,10 @@
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="121c0cb1-dc2d-4a9b-b9a4-7fb08cd92b4d" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/ic_refresh-web.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/attendance.webp" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_offline_general.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/screen_offline_attendance.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/screen_offline_general.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_refresh.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_refresh.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_refresh.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_refresh.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_refresh.png" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" />
@@ -38,14 +28,25 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MainActivity.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MonthlyRecordActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MonthlyRecordActivity.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/adapter/MonthlyAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/adapter/MonthlyAdapter.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainAboutFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainAboutFragment.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainHomeFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainHomeFragment.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainProfileFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainProfileFragment.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/screen_offline.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_monthlyrecord.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_monthlyrecord.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_about2.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_about2.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home2.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home2.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_profil2.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_profil2.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -68,83 +69,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MonthlyRecordActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MonthlyRecordActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="263" column="58" lean-forward="false" selection-start-line="263" selection-start-column="57" selection-end-line="263" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_checkin.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-              <folding>
-                <element signature="e#433#1357#0" expanded="false" />
-                <element signature="e#1630#5910#0" expanded="false" />
-                <element signature="e#2405#2428#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="screen_offline_attendance.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/screen_offline_attendance.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="screen_offline_general.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/screen_offline_general.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CheckinActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CheckinActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="397" column="109" lean-forward="false" selection-start-line="397" selection-start-column="109" selection-end-line="397" selection-end-column="109" />
+            <state relative-caret-position="169">
+              <caret line="429" column="70" lean-forward="false" selection-start-line="429" selection-start-column="70" selection-end-line="429" selection-end-column="70" />
               <folding>
-                <element signature="method#locationChanged#0;class#CheckinActivity#0" expanded="false" />
                 <element signature="method#processNoMock#0;class#CheckinActivity#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_monthlyrecord.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_monthlyrecord.xml">
+      <file leaf-file-name="ApiService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="19" column="62" lean-forward="false" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_checkin.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin.xml">
           <provider editor-type-id="android-designer2">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+            <state relative-caret-position="196">
+              <caret line="175" column="44" lean-forward="true" selection-start-line="175" selection-start-column="44" selection-end-line="175" selection-end-column="44" />
               <folding>
-                <element signature="e#452#1373#0" expanded="false" />
-                <element signature="e#1379#4539#0" expanded="false" />
+                <element signature="e#433#1357#0" expanded="false" />
+                <element signature="e#1630#5910#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -170,8 +127,28 @@
       <find>monthlyli</find>
       <find>retro</find>
       <find>retrofitL</find>
-      <find>retr</find>
+      <find>setText</find>
+      <find>HH:</find>
+      <find>Share</find>
+      <find>Picasso</find>
+      <find>Picass</find>
+      <find>imei</find>
+      <find>&quot;token&quot;</find>
+      <find>200</find>
+      <find>getDe</find>
+      <find>Tap</find>
+      <find>Pi</find>
+      <find>distance</find>
+      <find>MainHome</find>
       <find>retrofit</find>
+      <find>indosat</find>
+      <find>ivLogo</find>
+      <find>ivLo</find>
+      <find>retr</find>
+      <find>indosa</find>
+      <find>siteList</find>
+      <find>log.e</find>
+      <find>siteLis</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -2263,23 +2240,30 @@
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/square_corner1_leftbottomblack.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_month_picker.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainHomeFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_map.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_home2.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/adapter/MonthlyAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/row_monthlyrecord.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MonthlyRecordActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/AppInfo.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_monthlyrecord.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/screen_offline.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/screen_offline_general.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/screen_offline_attendance.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/screen_offline_general.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MonthlyRecordActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/adapter/MonthlyAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_monthlyrecord.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_home2.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainHomeFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_about2.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_profil2.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainAboutFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainProfileFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java" />
       </list>
     </option>
   </component>
@@ -2337,9 +2321,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -2356,26 +2341,19 @@
               <item name="wms-android" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="wms-android" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
               <item name="mipmap" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../bluepay-mobile" />
-    <property name="SearchEverywhereHistoryKey" value="screen&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/screen_offline_general.xml&#10;CheckinA&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java&#10;Mon&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/MonthlyRecordActivity.java&#10;Chec&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java&#10;ApiSer&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java&#10;Login&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java&#10;AppI&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/utilities/AppInfo.java&#10;Main&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/MainActivity.java&#10;act&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/activity_monthlyrecord.xml&#10;AppIn&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/utilities/AppInfo.java&#10;MainA&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.MainActivity&#10;activity_c&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/activity_checkin.xml&#10;activi&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/activity_monthlyrecord.xml&#10;Ada&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/adapter/MonthlyAdapter.java&#10;row_&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/row_monthlyrecord.xml&#10;A&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/adapter/MonthlyAdapter.java&#10;dime&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/values/dimens.xml&#10;string&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/values/strings.xml&#10;row&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/row_monthlyrecord.xml&#10;Che&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java&#10;styl&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/values/styles.xml&#10;sty&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/values/styles.xml&#10;buil&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/build.gradle&#10;bu&#9;ACTION&#9;ActivateBuildToolWindow" />
+    <property name="SearchEverywhereHistoryKey" value="CheckinA&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java&#10;fragmen&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/fragment_profil2.xml&#10;fragment_p&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/fragment_profil2.xml&#10;fragment_profi&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/fragment_profil2.xml&#10;MainPro&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainProfileFragment.java&#10;MainAb&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainAboutFragment.java&#10;MainA&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/MainActivity.java&#10;Che&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java&#10;MainHo&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainHomeFragment.java&#10;Chec&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java&#10;ApiSe&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java&#10;Login&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java&#10;Pr&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainProfileFragment.java&#10;fragment_hom&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/fragment_home2.xml&#10;MainHom&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainHomeFragment.java&#10;Api&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java&#10;activity&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/activity_monthlyrecord.xml&#10;Main&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainHomeFragment.java&#10;MainP&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.fragment.MainProfileFragment&#10;MainH&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainHomeFragment.java&#10;Ada&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/adapter/MonthlyAdapter.java&#10;About&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.fragment.MainAboutFragment&#10;bu&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/build.gradle&#10;screen&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/screen_offline_general.xml&#10;Mon&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/MonthlyRecordActivity.java&#10;ApiSer&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java&#10;AppI&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/utilities/AppInfo.java&#10;act&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/activity_monthlyrecord.xml&#10;AppIn&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/utilities/AppInfo.java&#10;activity_c&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/activity_checkin.xml&#10;activi&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/activity_monthlyrecord.xml&#10;row_&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/row_monthlyrecord.xml&#10;A&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/adapter/MonthlyAdapter.java&#10;dime&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/values/dimens.xml&#10;string&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/values/strings.xml&#10;row&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/layout/row_monthlyrecord.xml&#10;styl&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/values/styles.xml&#10;sty&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/src/main/res/values/styles.xml&#10;buil&#9;FILE&#9;file://D:/Project_Android/DataBinding/wms-android/app/build.gradle" />
     <property name="device.picker.selection" value="125066717d83" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="android.profiler.active" value="true" />
@@ -2577,14 +2555,14 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8634812" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.8634812" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38956127" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35627836" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5324232" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2617,6 +2595,34 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainHomeFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1776">
+          <caret line="149" column="13" lean-forward="false" selection-start-line="149" selection-start-column="13" selection-end-line="149" selection-end-column="13" />
+          <folding>
+            <element signature="method#retrofitListClient#0;class#MainHomeFragment#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainAboutFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1408">
+          <caret line="124" column="56" lean-forward="false" selection-start-line="124" selection-start-column="56" selection-end-line="124" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainProfileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3232">
+          <caret line="250" column="53" lean-forward="false" selection-start-line="250" selection-start-column="53" selection-end-line="250" selection-end-column="53" />
+          <folding>
+            <element signature="method#retrofitListClient#0;class#MainProfileFragment#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MonthlyRecordActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2629,7 +2635,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#processNoMock#0;class#CheckinActivity#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2638,50 +2646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-          <folding>
-            <element signature="e#469#470#0" expanded="false" />
-            <element signature="e#502#503#0" expanded="false" />
-            <element signature="e#554#555#0" expanded="false" />
-            <element signature="e#598#599#0" expanded="false" />
-            <element signature="e#632#633#0" expanded="false" />
-            <element signature="e#662#663#0" expanded="false" />
-            <element signature="e#708#709#0" expanded="false" />
-            <element signature="e#746#747#0" expanded="false" />
-            <element signature="e#779#780#0" expanded="false" />
-            <element signature="e#808#809#0" expanded="false" />
-            <element signature="e#852#853#0" expanded="false" />
-            <element signature="e#888#889#0" expanded="false" />
-            <element signature="e#921#922#0" expanded="false" />
-            <element signature="e#950#951#0" expanded="false" />
-            <element signature="e#994#995#0" expanded="false" />
-            <element signature="e#1030#1031#0" expanded="false" />
-            <element signature="e#1064#1065#0" expanded="false" />
-            <element signature="e#1094#1095#0" expanded="false" />
-            <element signature="e#1140#1141#0" expanded="false" />
-            <element signature="e#1178#1179#0" expanded="false" />
-            <element signature="e#1216#1217#0" expanded="false" />
-            <element signature="e#1250#1251#0" expanded="false" />
-            <element signature="e#1304#1305#0" expanded="false" />
-            <element signature="e#1350#1351#0" expanded="false" />
-            <element signature="e#1386#1387#0" expanded="false" />
-            <element signature="e#1418#1419#0" expanded="false" />
-            <element signature="e#1468#1469#0" expanded="false" />
-            <element signature="e#1510#1511#0" expanded="false" />
-            <element signature="e#1548#1549#0" expanded="false" />
-            <element signature="e#1582#1583#0" expanded="false" />
-            <element signature="e#1636#1637#0" expanded="false" />
-            <element signature="e#1682#1683#0" expanded="false" />
-            <element signature="e#1722#1723#0" expanded="false" />
-            <element signature="e#1758#1759#0" expanded="false" />
-            <element signature="e#1816#1817#0" expanded="false" />
-            <element signature="e#1866#1867#0" expanded="false" />
-            <element signature="e#1905#1906#0" expanded="false" />
-            <element signature="e#1940#1941#0" expanded="false" />
-            <element signature="e#1996#1997#0" expanded="false" />
-            <element signature="e#2044#2045#0" expanded="false" />
-            <element signature="e#2087#2088#0" expanded="false" />
-            <element signature="e#2126#2127#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2689,7 +2653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="8" column="38" lean-forward="false" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -2700,19 +2663,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/row_task.xml">
@@ -2749,7 +2703,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="166" column="18" lean-forward="false" selection-start-line="166" selection-start-column="18" selection-end-line="166" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2758,45 +2711,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainHomeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="70" column="54" lean-forward="true" selection-start-line="70" selection-start-column="54" selection-end-line="70" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="43" column="62" lean-forward="false" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="7" column="53" lean-forward="true" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/adapter/MonthlyAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="125" column="14" lean-forward="false" selection-start-line="125" selection-start-column="14" selection-end-line="125" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -2812,68 +2730,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="34" column="47" lean-forward="false" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
-          <folding>
-            <element signature="e#723#741#0" expanded="false" />
-            <element signature="e#1804#1821#0" expanded="false" />
-            <element signature="e#1928#1967#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="143" column="17" lean-forward="false" selection-start-line="143" selection-start-column="17" selection-end-line="143" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="method#parseJSON#0;class#LoginActivity#0" expanded="false" />
-            <element signature="e#5779#5802#0" expanded="false" />
-            <element signature="e#5930#5956#0" expanded="false" />
-            <element signature="e#6017#6042#0" expanded="false" />
-            <element signature="e#6105#6132#0" expanded="false" />
-            <element signature="e#6264#6292#0" expanded="false" />
-            <element signature="e#6901#6924#0" expanded="false" />
-            <element signature="e#6969#6995#0" expanded="false" />
-            <element signature="e#7043#7068#0" expanded="false" />
-            <element signature="e#7173#7200#0" expanded="false" />
-            <element signature="e#7249#7277#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6">
-          <caret line="12" column="54" lean-forward="false" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/AppInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="57" column="9" lean-forward="false" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-688">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_map.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
@@ -2885,50 +2741,57 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/screen_offline_general.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-          <folding>
-            <element signature="e#433#1357#0" expanded="false" />
-            <element signature="e#1630#5910#0" expanded="false" />
-            <element signature="e#2405#2428#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/screen_offline_attendance.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+        <state relative-caret-position="255">
+          <caret line="54" column="42" lean-forward="false" selection-start-line="54" selection-start-column="42" selection-end-line="54" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/screen_offline_general.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="52" column="43" lean-forward="false" selection-start-line="52" selection-start-column="43" selection-end-line="52" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MonthlyRecordActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="69" column="28" lean-forward="true" selection-start-line="69" selection-start-column="28" selection-end-line="69" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/adapter/MonthlyAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="131" column="28" lean-forward="true" selection-start-line="131" selection-start-column="28" selection-end-line="131" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_monthlyrecord.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+        <state relative-caret-position="112">
+          <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
           <folding>
-            <element signature="e#452#1373#0" expanded="false" />
-            <element signature="e#1379#4539#0" expanded="false" />
+            <element signature="e#452#1376#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2936,23 +2799,194 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MonthlyRecordActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" column="72" lean-forward="false" selection-start-line="10" selection-start-column="72" selection-end-line="10" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.10.0/e99b7b608968f16b07104b93e62cb90701174d0/okhttp-3.10.0-sources.jar!/okhttp3/ResponseBody.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="101" column="22" lean-forward="false" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-27/android.jar!/android/telecom/Call.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="6" column="19" lean-forward="false" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/AppInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
-          <caret line="263" column="58" lean-forward="false" selection-start-line="263" selection-start-column="57" selection-end-line="263" selection-end-column="58" />
+          <caret line="38" column="25" lean-forward="false" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="43" lean-forward="false" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="39" column="42" lean-forward="false" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+          <folding>
+            <element signature="e#2276#3217#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="127" column="58" lean-forward="false" selection-start-line="127" selection-start-column="58" selection-end-line="127" selection-end-column="58" />
+          <folding>
+            <element signature="e#2960#2983#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+          <folding>
+            <element signature="e#8161#8184#0" expanded="false" />
+            <element signature="e#8312#8338#0" expanded="false" />
+            <element signature="e#8399#8424#0" expanded="false" />
+            <element signature="e#8487#8514#0" expanded="false" />
+            <element signature="e#8646#8674#0" expanded="false" />
+            <element signature="e#9275#9298#0" expanded="false" />
+            <element signature="e#9343#9369#0" expanded="false" />
+            <element signature="e#9417#9442#0" expanded="false" />
+            <element signature="e#9547#9574#0" expanded="false" />
+            <element signature="e#9623#9651#0" expanded="false" />
+            <element signature="method#validate#0;class#LoginActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="119" column="64" lean-forward="false" selection-start-line="119" selection-start-column="64" selection-end-line="119" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_profil2.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="43" column="48" lean-forward="false" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_about2.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="37" column="50" lean-forward="false" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainHomeFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1776">
+          <caret line="149" column="13" lean-forward="false" selection-start-line="149" selection-start-column="13" selection-end-line="149" selection-end-column="13" />
+          <folding>
+            <element signature="method#retrofitListClient#0;class#MainHomeFragment#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainProfileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="238" column="0" lean-forward="true" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
+          <folding>
+            <element signature="method#retrofitListClient#0;class#MainProfileFragment#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainAboutFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="124" column="56" lean-forward="false" selection-start-line="124" selection-start-column="56" selection-end-line="124" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="397" column="109" lean-forward="false" selection-start-line="397" selection-start-column="109" selection-end-line="397" selection-end-column="109" />
+        <state relative-caret-position="169">
+          <caret line="429" column="70" lean-forward="false" selection-start-line="429" selection-start-column="70" selection-end-line="429" selection-end-column="70" />
           <folding>
-            <element signature="method#locationChanged#0;class#CheckinActivity#0" expanded="false" />
             <element signature="method#processNoMock#0;class#CheckinActivity#0" expanded="false" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="19" column="62" lean-forward="false" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="175" column="44" lean-forward="true" selection-start-line="175" selection-start-column="44" selection-end-line="175" selection-end-column="44" />
+          <folding>
+            <element signature="e#433#1357#0" expanded="false" />
+            <element signature="e#1630#5910#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
   </component>

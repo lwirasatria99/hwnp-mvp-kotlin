@@ -43,12 +43,12 @@
         <include layout="@layout/content_map" />
 
         <LinearLayout
-            android:elevation="3dp"
-            android:background="@drawable/square_cornerfull_white"
-            android:layout_margin="10dp"
             android:id="@+id/dataLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/square_cornerfull_white"
+            android:elevation="3dp"
             android:orientation="vertical"
             tools:targetApi="lollipop">
 
@@ -151,10 +151,10 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabMyLocation"
-            android:layout_below="@+id/dataLayout"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
+            android:layout_below="@+id/dataLayout"
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/white"
@@ -168,21 +168,20 @@
             tools:targetApi="lollipop" />
 
         <Button
-            android:elevation="3dp"
-            android:layout_alignParentBottom="true"
             android:id="@+id/buttonCheckin"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/confirm_button_green"
+            android:elevation="3dp"
             android:fontFamily="@font/ubuntu_light"
-            android:text="Tap Me"
+            android:text="Record"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:visibility="visible"
             tools:ignore="HardcodedText"
             tools:targetApi="lollipop" />
 

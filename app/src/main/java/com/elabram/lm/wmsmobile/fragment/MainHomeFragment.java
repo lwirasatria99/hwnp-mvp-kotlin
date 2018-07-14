@@ -7,7 +7,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +20,25 @@ import android.widget.TextView;
 import com.elabram.lm.wmsmobile.CheckinActivity;
 import com.elabram.lm.wmsmobile.MonthlyRecordActivity;
 import com.elabram.lm.wmsmobile.R;
+import com.elabram.lm.wmsmobile.rest.ApiClient;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.PREFS_LOGIN;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_image;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.token;
 
 /**
  * Class : Home Fragment
@@ -33,14 +47,20 @@ import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_image;
 
 public class MainHomeFragment extends Fragment {
 
+    private static final String TAG = MainHomeFragment.class.getSimpleName();
     private Activity mActivity;
+
     private String fullname;
     private String fullemail;
     private String user_image;
 
     @BindView(R.id.relativeMonthly)
     RelativeLayout relativeMonthly;
+    @BindView(R.id.rootView)
+    RelativeLayout rootView;
 
+    @BindView(R.id.ivLogoClient)
+    ImageView ivLogoClient;
 
     public MainHomeFragment() {
     }
@@ -61,13 +81,13 @@ public class MainHomeFragment extends Fragment {
         fullname = preferences.getString("name", "");
         fullemail = preferences.getString("user_email", "");
         mem_image = preferences.getString("mem_image", "");
+        token = preferences.getString("token", "");
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        getSharedUserDetail();
         View view = inflater.inflate(R.layout.fragment_home2, container, false);
         ButterKnife.bind(this, view);
 
@@ -75,7 +95,18 @@ public class MainHomeFragment extends Fragment {
         TextView tvUseremail = view.findViewById(R.id.tvAuthority);
         ImageView ivUserpic = view.findViewById(R.id.ivProfil);
 
-        if (mem_image.isEmpty()) {
+        getSharedUserDetail();
+        retrofitListClient();
+//        SharedPreferences preferences = mActivity.getSharedPreferences("LOGO", 0);
+//        String urlImage = preferences.getString("url", "");
+//        if (!urlImage.equals("https://elabram.com/hris/")) {
+//            Picasso.with(mActivity)
+//                    .load(urlImage)
+//                    .fit()
+//                    .into(ivLogoClient);
+//        }
+
+        if (mem_image.equals("https://elabram.com/hris/files/employee/")) {
             ivUserpic.setImageResource(R.drawable.man);
         } else {
             Picasso.with(mActivity)
@@ -130,6 +161,49 @@ public class MainHomeFragment extends Fragment {
         buttonCheckin.setOnClickListener(view1 -> startActivity(new Intent(mActivity, CheckinActivity.class)));
 
         return view;
+    }
+
+    private void retrofitListClient() {
+        Call<ResponseBody> call = new ApiClient().getApiService().listLogo(token);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    String mResponse = new String(response.body().bytes());
+                    Log.e(TAG, "onResponse: " + mResponse);
+                    JSONObject jsonObject = new JSONObject(mResponse);
+
+                    String response_code = jsonObject.getString("response_code");
+                    switch (response_code) {
+                        case "401":
+                            String message = jsonObject.getString("message");
+                            Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                            break;
+                        case "200":
+                            JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                            String urlImage = jsonObject1.getString("cus_logo");
+                            Log.e(TAG, "onResponse: urlImage " + urlImage);
+                            if (!urlImage.equals("https://elabram.com/hris/")) {
+                                Picasso.with(mActivity)
+                                        .load(urlImage)
+                                        .fit()
+                                        .into(ivLogoClient);
+                            }
+
+
+                            break;
+                    }
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e(TAG, "onFailure: " + t.getCause());
+            }
+        });
     }
 
 //    private void clickOvertime() {

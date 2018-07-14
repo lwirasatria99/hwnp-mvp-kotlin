@@ -8,14 +8,12 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -66,8 +64,8 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
     @BindView(R.id.tvDatePeriode)
     TextView tvDatePeriode;
 
-    @BindView(R.id.swiperefresh)
-    SwipeRefreshLayout swipeRefresh;
+//    @BindView(R.id.swiperefresh)
+//    SwipeRefreshLayout swipeRefresh;
 
     @BindView(R.id.listview)
     ListView listView;

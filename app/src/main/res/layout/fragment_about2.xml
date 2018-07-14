@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/rootView"
     android:layout_height="match_parent"
     android:background="@color/bg_blueblack">
 
@@ -34,12 +35,11 @@
                     android:background="@drawable/rms_mobile" />
 
                 <ImageView
-                    android:id="@+id/ivIndosat"
+                    android:id="@+id/ivLogoClient"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="end"
-                    android:background="@drawable/logo_indosat"
                     tools:ignore="ContentDescription" />
 
 

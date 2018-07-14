@@ -42,13 +42,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.PREFS_LOGIN;
-import static com.elabram.lm.wmsmobile.utilities.AppInfo.token;
-import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_nip;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_address;
-import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_mobile;
-import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_phone;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_image;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_mobile;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_nip;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_phone;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.position;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.token;
 
 
 /**
@@ -71,11 +71,14 @@ public class MainProfileFragment extends Fragment {
     TextView tvPosition;
     @BindView(R.id.tvAuthority)
     TextView tvAuthority;
+
+    @BindView(R.id.ivLogoClient)
+    ImageView ivLogoClient;
     @BindView(R.id.ivProfil)
     ImageView ivProfile;
+
     @BindView(R.id.buttonLogout)
     RelativeLayout buttonLogout;
-
     @BindView(R.id.rootView)
     RelativeLayout rootView;
 
@@ -83,7 +86,7 @@ public class MainProfileFragment extends Fragment {
     private AlertDialog dialogLogout;
 
     private static final String TAG = MainProfileFragment.class.getSimpleName();
-    private String user_image;
+
     private String user_fullname;
     private String user_position;
     private String user_email;
@@ -120,6 +123,15 @@ public class MainProfileFragment extends Fragment {
 
         getSharedUserDetail();
         setDetailsForm();
+        retrofitListClient();
+//        SharedPreferences preferences = mActivity.getSharedPreferences("LOGO", 0);
+//        String urlImage = preferences.getString("url", "");
+//        if (!urlImage.equals("https://elabram.com/hris/")) {
+//            Picasso.with(mActivity)
+//                    .load(urlImage)
+//                    .fit()
+//                    .into(ivLogoClient);
+//        }
         buttonLogout.setOnClickListener(view1 -> dialogOpenLogout());
     }
 
@@ -133,57 +145,6 @@ public class MainProfileFragment extends Fragment {
         if (progressDialog != null) {
             progressDialog.dismiss();
         }
-    }
-
-    private void retrofitProfile() {
-        showDialog();
-
-        Call<ResponseBody> profileCall = new ApiClient().getApiService().loadProfileParams(token);
-        profileCall.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                dismissDialog();
-                try {
-                    //noinspection ConstantConditions
-                    String responseContent = new String(response.body().bytes());
-                    JSONObject jsonObject = new JSONObject(responseContent);
-
-                    String message = jsonObject.getString("message");
-                    String response_code = jsonObject.getString("response_code");
-
-                    if (response_code.equals("200")) {
-                        Log.e(TAG, "onResponse: " + message);
-                        JSONObject jsonObject1 = jsonObject.getJSONObject("data");
-
-                        user_image = jsonObject1.getString("user_image");
-                        user_fullname = jsonObject1.getString("user_fullname");
-                        user_position = jsonObject1.getString("user_position");
-                        user_email = jsonObject1.getString("user_email");
-                        user_phone = jsonObject1.getString("user_phone");
-                        user_mobile = jsonObject1.getString("user_mobile");
-                        user_address = jsonObject1.getString("user_address");
-                        Log.e(TAG, "onResponse: Username " + user_fullname);
-
-                    } else {
-                        Log.e(TAG, "onResponse: " + message);
-                        Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
-                        snackbar.show();
-                    }
-
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                Log.e(TAG, "onFailure: " + t.getMessage());
-                dismissDialog();
-            }
-        });
     }
 
     private void dialogOpenLogout() {
@@ -241,11 +202,11 @@ public class MainProfileFragment extends Fragment {
         tvTelephone.setText(mem_phone);
 
         // Profile Picture
-        if (user_image == null) {
+        if (mem_image.equals("https://elabram.com/hris/files/employee/")) {
             ivProfile.setImageResource(R.drawable.man);
         } else {
             Picasso.with(mActivity)
-                    .load(user_image)
+                    .load(mem_image)
                     .fit()
                     .into(ivProfile);
         }
@@ -287,6 +248,51 @@ public class MainProfileFragment extends Fragment {
         position = preferences.getString("position", "");
         user_fullname = preferences.getString("name", "");
         user_email = preferences.getString("email", "");
+        Log.e(TAG, "getSharedUserDetail: ProfilImage "+mem_image);
+    }
+
+
+    private void retrofitListClient() {
+        Call<ResponseBody> call = new ApiClient().getApiService().listLogo(token);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    String mResponse = new String(response.body().bytes());
+//                    Log.e(TAG, "onResponse: " + mResponse);
+                    JSONObject jsonObject = new JSONObject(mResponse);
+
+                    String response_code = jsonObject.getString("response_code");
+                    switch (response_code) {
+                        case "401":
+                            String message = jsonObject.getString("message");
+                            Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                            break;
+                        case "200":
+                            JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                            String urlImage = jsonObject1.getString("cus_logo");
+                            Log.e(TAG, "onResponse: urlImage " + urlImage);
+                            if (!urlImage.equals("https://elabram.com/hris/")) {
+                                Picasso.with(mActivity)
+                                        .load(urlImage)
+                                        .fit()
+                                        .into(ivLogoClient);
+                            }
+
+
+                            break;
+                    }
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e(TAG, "onFailure: " + t.getCause());
+            }
+        });
     }
 
 }

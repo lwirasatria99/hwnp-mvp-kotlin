@@ -11,12 +11,13 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("login")
     Call<ResponseBody> login(@Field("mem_email") String email,
-                             @Field("mem_password") String password);
-
+                             @Field("mem_password") String password,
+                             @Field("isDevice") String isDevice,
+                             @Field("is_imei") String isImei);
 
     @FormUrlEncoded
-    @POST("getProfile")
-    Call<ResponseBody> loadProfileParams(@Field("token") String token);
+    @POST("listCustomer")
+    Call<ResponseBody> listLogo(@Field("token") String token);
 
     @FormUrlEncoded
     @POST("attDetail")

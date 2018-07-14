@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rootView"
     android:background="@color/bg_blueblack"
     android:theme="@style/AppThemeFont">
 
@@ -36,12 +37,11 @@
                     tools:ignore="ContentDescription" />
 
                 <ImageView
-                    android:id="@+id/ivIndosat"
+                    android:id="@+id/ivLogoClient"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="end"
-                    android:background="@drawable/logo_indosat"
                     tools:ignore="ContentDescription" />
 
             </RelativeLayout>
@@ -319,14 +319,14 @@
 
                     <TextView
                         android:clickable="false"
-                        android:layout_width="70dp"
+                        android:layout_width="92dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ivMonthlyRecord"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/ubuntu_bold"
                         android:gravity="center"
-                        android:text="Monthly Record"
+                        android:text="Attendance Record"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         tools:ignore="HardcodedText" />

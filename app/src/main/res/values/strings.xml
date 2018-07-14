@@ -2,9 +2,14 @@
     <string name="app_name">WMS Mobile</string>
     <string name="map_api">AIzaSyBELmC1DfToTVsvVpR2ohoLLP7OzfCf7V0</string>
     <string name="alert_checkout">Are you sure you want to checkout ?</string>
-    <string name="email_test">andrakurnia59@gmail.com</string>
-    <string name="title_home">home</string>
 
+    <string name="email_indosat">bstiawan62@gmail.com</string>
+    <string name="password_indosat">abc?123</string>
+
+    <string name="email_bluepay">andrakurnia59@gmail.com</string>
+    <string name="pass_bluepay">abc?123</string>
+
+    <string name="title_home">home</string>
     <string name="alert_delete">Are you sure you want to delete ?</string>
     <string name="nip">mem_nip</string>
     <string name="mobile">mem_mobile</string>
