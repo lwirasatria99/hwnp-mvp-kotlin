@@ -160,6 +160,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         getSharedUserDetail();
         getSharedTaskId();
         buildGoogleApiClient();
+        buttonCheckin.setVisibility(View.GONE);
 
         cekInternet();
         buttonRefresh.setOnClickListener(view -> cekInternet());

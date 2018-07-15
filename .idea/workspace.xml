@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="121c0cb1-dc2d-4a9b-b9a4-7fb08cd92b4d" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/lalu_mahendra.xml" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" />
@@ -28,25 +29,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MainActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MonthlyRecordActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MonthlyRecordActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/adapter/MonthlyAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/adapter/MonthlyAdapter.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainAboutFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainAboutFragment.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainHomeFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainHomeFragment.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainProfileFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainProfileFragment.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_monthlyrecord.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_monthlyrecord.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_about2.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_about2.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home2.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home2.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_profil2.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_profil2.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -72,21 +57,12 @@
       <file leaf-file-name="CheckinActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="429" column="70" lean-forward="false" selection-start-line="429" selection-start-column="70" selection-end-line="429" selection-end-column="70" />
+            <state relative-caret-position="285">
+              <caret line="162" column="45" lean-forward="false" selection-start-line="162" selection-start-column="45" selection-end-line="162" selection-end-column="45" />
               <folding>
                 <element signature="method#processNoMock#0;class#CheckinActivity#0" expanded="false" />
+                <element signature="method#retrofitSite#0;class#CheckinActivity#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApiService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="19" column="62" lean-forward="false" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -97,11 +73,12 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="175" column="44" lean-forward="true" selection-start-line="175" selection-start-column="44" selection-end-line="175" selection-end-column="44" />
+            <state relative-caret-position="244">
+              <caret line="178" column="35" lean-forward="false" selection-start-line="178" selection-start-column="35" selection-end-line="178" selection-end-column="35" />
               <folding>
                 <element signature="e#433#1357#0" expanded="false" />
                 <element signature="e#1630#5910#0" expanded="false" />
+                <element signature="e#2405#2428#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2255,7 +2232,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainHomeFragment.java" />
@@ -2264,6 +2240,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainAboutFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/fragment/MainProfileFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java" />
       </list>
     </option>
   </component>
@@ -2549,6 +2526,14 @@
       <option name="presentableId" value="Default" />
       <updated>1531293488459</updated>
     </task>
+    <task id="LOCAL-00001" summary="1. Attendance Record, Time format from 12 hours to 24 hours in&#10;2. About, &quot;logo_indosat&quot; -&gt; &quot;a&quot;, set logo client dynamic&#10;3. Home, set logo client dynamic&#10;4. Profile, set logo client dynamic&#10;5. Login, imei &amp; connection checking&#10;6. Attendance Record, swipeRefresh gone">
+      <created>1531552423854</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1531552423854</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2589,6 +2574,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1. Attendance Record, Time format from 12 hours to 24 hours in&#10;2. About, &quot;logo_indosat&quot; -&gt; &quot;a&quot;, set logo client dynamic&#10;3. Home, set logo client dynamic&#10;4. Profile, set logo client dynamic&#10;5. Login, imei &amp; connection checking&#10;6. Attendance Record, swipeRefresh gone" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. Attendance Record, Time format from 12 hours to 24 hours in&#10;2. About, &quot;logo_indosat&quot; -&gt; &quot;a&quot;, set logo client dynamic&#10;3. Home, set logo client dynamic&#10;4. Profile, set logo client dynamic&#10;5. Login, imei &amp; connection checking&#10;6. Attendance Record, swipeRefresh gone" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2637,6 +2626,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="method#processNoMock#0;class#CheckinActivity#0" expanded="false" />
+            <element signature="method#retrofitSite#0;class#CheckinActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2646,6 +2636,50 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+          <folding>
+            <element signature="e#469#470#0" expanded="false" />
+            <element signature="e#502#503#0" expanded="false" />
+            <element signature="e#554#555#0" expanded="false" />
+            <element signature="e#598#599#0" expanded="false" />
+            <element signature="e#632#633#0" expanded="false" />
+            <element signature="e#662#663#0" expanded="false" />
+            <element signature="e#708#709#0" expanded="false" />
+            <element signature="e#746#747#0" expanded="false" />
+            <element signature="e#779#780#0" expanded="false" />
+            <element signature="e#808#809#0" expanded="false" />
+            <element signature="e#852#853#0" expanded="false" />
+            <element signature="e#888#889#0" expanded="false" />
+            <element signature="e#921#922#0" expanded="false" />
+            <element signature="e#950#951#0" expanded="false" />
+            <element signature="e#994#995#0" expanded="false" />
+            <element signature="e#1030#1031#0" expanded="false" />
+            <element signature="e#1064#1065#0" expanded="false" />
+            <element signature="e#1094#1095#0" expanded="false" />
+            <element signature="e#1140#1141#0" expanded="false" />
+            <element signature="e#1178#1179#0" expanded="false" />
+            <element signature="e#1216#1217#0" expanded="false" />
+            <element signature="e#1250#1251#0" expanded="false" />
+            <element signature="e#1304#1305#0" expanded="false" />
+            <element signature="e#1350#1351#0" expanded="false" />
+            <element signature="e#1386#1387#0" expanded="false" />
+            <element signature="e#1418#1419#0" expanded="false" />
+            <element signature="e#1468#1469#0" expanded="false" />
+            <element signature="e#1510#1511#0" expanded="false" />
+            <element signature="e#1548#1549#0" expanded="false" />
+            <element signature="e#1582#1583#0" expanded="false" />
+            <element signature="e#1636#1637#0" expanded="false" />
+            <element signature="e#1682#1683#0" expanded="false" />
+            <element signature="e#1722#1723#0" expanded="false" />
+            <element signature="e#1758#1759#0" expanded="false" />
+            <element signature="e#1816#1817#0" expanded="false" />
+            <element signature="e#1866#1867#0" expanded="false" />
+            <element signature="e#1905#1906#0" expanded="false" />
+            <element signature="e#1940#1941#0" expanded="false" />
+            <element signature="e#1996#1997#0" expanded="false" />
+            <element signature="e#2044#2045#0" expanded="false" />
+            <element signature="e#2087#2088#0" expanded="false" />
+            <element signature="e#2126#2127#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2653,6 +2687,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="8" column="38" lean-forward="false" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -2663,6 +2698,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -2783,6 +2819,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="438">
           <caret line="131" column="28" lean-forward="true" selection-start-line="131" selection-start-column="28" selection-end-line="131" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2957,16 +2994,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="429" column="70" lean-forward="false" selection-start-line="429" selection-start-column="70" selection-end-line="429" selection-end-column="70" />
-          <folding>
-            <element signature="method#processNoMock#0;class#CheckinActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -2975,13 +3002,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="162" column="45" lean-forward="false" selection-start-line="162" selection-start-column="45" selection-end-line="162" selection-end-column="45" />
+          <folding>
+            <element signature="method#processNoMock#0;class#CheckinActivity#0" expanded="false" />
+            <element signature="method#retrofitSite#0;class#CheckinActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="175" column="44" lean-forward="true" selection-start-line="175" selection-start-column="44" selection-end-line="175" selection-end-column="44" />
+        <state relative-caret-position="244">
+          <caret line="178" column="35" lean-forward="false" selection-start-line="178" selection-start-column="35" selection-end-line="178" selection-end-column="35" />
           <folding>
             <element signature="e#433#1357#0" expanded="false" />
             <element signature="e#1630#5910#0" expanded="false" />
+            <element signature="e#2405#2428#0" expanded="true" />
           </folding>
         </state>
       </provider>
