@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
 
-        imei = getDeviceId().trim();
+        imei = getDeviceId();
         Log.e(TAG, "onCreate: IMEI " + imei);
 
         buttonLogin.setOnClickListener(view -> login());
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         //noinspection ConstantConditions
-        return telephonyManager.getDeviceId();
+        return telephonyManager.getDeviceId().trim();
     }
 
     private void login() {
@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (imei != null) {
                     retrofitLogin();
                 } else {
-                    imei = getDeviceId().trim();
+                    imei = getDeviceId();
                     retrofitLogin();
                 }
             } else {
