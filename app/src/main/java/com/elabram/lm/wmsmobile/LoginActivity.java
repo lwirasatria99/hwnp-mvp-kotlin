@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
 
-        imei = "1238741UDADF";
+        imei = getDeviceId().trim();
         Log.e(TAG, "onCreate: IMEI " + imei);
 
         buttonLogin.setOnClickListener(view -> login());

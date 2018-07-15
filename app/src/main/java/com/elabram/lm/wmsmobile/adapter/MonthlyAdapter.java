@@ -171,7 +171,7 @@ public class MonthlyAdapter extends BaseAdapter {
         // TotalHour
         String sourceHour = monthly.getTotalWorkingHour();
         if (!sourceLastClock.isEmpty()) {
-            String replaceTime = sourceHour.replace(" hour ", ".")
+            String replaceTime = sourceHour.replace(" hour ", ":")
                     .replace(" minute", "");
             holder.total_hours.setText(replaceTime);
         } else {

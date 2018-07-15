@@ -364,13 +364,16 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
 
                             tvDate.setText(realtime_date);
 
+                            String replaceFirst = time_first.replace(".", ":");
+                            String replaceLast = time_last.replace(".", ":");
+
                             if (!time_first.isEmpty())
-                                tvStart.setText(time_first);
+                                tvStart.setText(replaceFirst);
                             else
                                 tvStart.setText("-");
 
                             if (!time_last.isEmpty())
-                                tvEnd.setText(time_last);
+                                tvEnd.setText(replaceLast);
                             else
                                 tvEnd.setText("-");
 
