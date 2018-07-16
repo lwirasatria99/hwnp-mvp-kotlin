@@ -247,7 +247,7 @@ public class MainProfileFragment extends Fragment {
         position = preferences.getString("position", "");
         user_fullname = preferences.getString("name", "");
         user_email = preferences.getString("email", "");
-        Log.e(TAG, "getSharedUserDetail: ProfilImage "+mem_image);
+        Log.e(TAG, "getSharedUserDetail: ProfilImage " + mem_image);
     }
 
 
@@ -256,35 +256,37 @@ public class MainProfileFragment extends Fragment {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                try {
-                    //noinspection ConstantConditions
-                    String mResponse = new String(response.body().bytes());
-//                    Log.e(TAG, "onResponse: " + mResponse);
-                    JSONObject jsonObject = new JSONObject(mResponse);
+                if (response.body() != null) {
+                    try {
+                        //noinspection ConstantConditions
+                        String mResponse = new String(response.body().bytes());
+                        //Log.e(TAG, "onResponse: " + mResponse);
+                        JSONObject jsonObject = new JSONObject(mResponse);
 
-                    String response_code = jsonObject.getString("response_code");
-                    switch (response_code) {
-                        case "401":
-                            String message = jsonObject.getString("message");
-                            Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
-                            snackbar.show();
-                            break;
-                        case "200":
-                            JSONObject jsonObject1 = jsonObject.getJSONObject("data");
-                            String urlImage = jsonObject1.getString("cus_logo");
-                            Log.e(TAG, "onResponse: urlImage " + urlImage);
-                            if (!urlImage.equals("https://elabram.com/hris/")) {
-                                Picasso.with(mActivity)
-                                        .load(urlImage)
-                                        .fit()
-                                        .into(ivLogoClient);
-                            }
+                        String response_code = jsonObject.getString("response_code");
+                        switch (response_code) {
+                            case "401":
+                                String message = jsonObject.getString("message");
+                                Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                                break;
+                            case "200":
+                                JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                String urlImage = jsonObject1.getString("cus_logo");
+                                Log.e(TAG, "onResponse: urlImage " + urlImage);
+                                if (!urlImage.equals("https://elabram.com/hris/")) {
+                                    Picasso.with(mActivity)
+                                            .load(urlImage)
+                                            .fit()
+                                            .into(ivLogoClient);
+                                }
 
 
-                            break;
+                                break;
+                        }
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (IOException | JSONException e) {
-                    e.printStackTrace();
                 }
             }
 

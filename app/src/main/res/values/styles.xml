@@ -20,6 +20,13 @@
         <item name="colorAccent">@color/login_blue</item>
     </style>
 
+    <!-- Font -->
+    <style name="AppThemeWhite" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="FontTheme" parent="android:Widget.TextView">
         <item name="android:fontFamily"
             tools:targetApi="jelly_bean">@font/ubuntu_light</item>

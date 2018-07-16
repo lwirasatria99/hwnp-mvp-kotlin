@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.elabram.lm.wmsmobile.R;
 import com.elabram.lm.wmsmobile.rest.ApiClient;
 import com.squareup.picasso.Picasso;
@@ -87,7 +88,7 @@ public class MainAboutFragment extends Fragment {
 
         TextView tvVersion = view.findViewById(R.id.tvVersion);
         getVersionInfo();
-        tvVersion.setText("Version "+versionName);
+        tvVersion.setText("Version " + versionName);
 
 //        SharedPreferences preferences = mActivity.getSharedPreferences("LOGO", 0);
 //        String urlImage = preferences.getString("url", "");
@@ -107,40 +108,43 @@ public class MainAboutFragment extends Fragment {
         Call<ResponseBody> call = new ApiClient().getApiService().listLogo(token);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    String mResponse = new String(response.body().bytes());
-//                    Log.e(TAG, "onResponse: " + mResponse);
-                    JSONObject jsonObject = new JSONObject(mResponse);
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
 
-                    String response_code = jsonObject.getString("response_code");
-                    switch (response_code) {
-                        case "401":
-                            String message = jsonObject.getString("message");
-                            Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
-                            snackbar.show();
-                            break;
-                        case "200":
-                            JSONObject jsonObject1 = jsonObject.getJSONObject("data");
-                            String urlImage = jsonObject1.getString("cus_logo");
-                            Log.e(TAG, "onResponse: urlImage " + urlImage);
-                            if (!urlImage.equals("https://elabram.com/hris/")) {
-                                Picasso.with(mActivity)
-                                        .load(urlImage)
-                                        .fit()
-                                        .into(ivLogoClient);
-                            }
+                if (response.body() != null) {
+                    try {
+                        //noinspection ConstantConditions
+                        String mResponse = new String(response.body().bytes());
+                        //Log.e(TAG, "onResponse: " + mResponse);
+                        JSONObject jsonObject = new JSONObject(mResponse);
 
-
-                            break;
+                        String response_code = jsonObject.getString("response_code");
+                        switch (response_code) {
+                            case "401":
+                                String message = jsonObject.getString("message");
+                                Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                                break;
+                            case "200":
+                                JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                String urlImage = jsonObject1.getString("cus_logo");
+                                Log.e(TAG, "onResponse: urlImage " + urlImage);
+                                if (!urlImage.equals("https://elabram.com/hris/")) {
+                                    Picasso.with(mActivity)
+                                            .load(urlImage)
+                                            .fit()
+                                            .into(ivLogoClient);
+                                }
+                                break;
+                        }
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (IOException | JSONException e) {
-                    e.printStackTrace();
                 }
+
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 Log.e(TAG, "onFailure: " + t.getCause());
             }
         });

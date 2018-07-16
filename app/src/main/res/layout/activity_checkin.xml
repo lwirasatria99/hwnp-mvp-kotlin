@@ -33,7 +33,8 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/screen_offline_attendance" />
+    <include
+        layout="@layout/screen_offline_attendance" />
 
     <RelativeLayout
         android:id="@+id/relativeEnabled"
@@ -103,7 +104,7 @@
                     android:id="@+id/tvFirstLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="5dp"
                     android:fontFamily="@font/ubuntu_bold"
                     android:text=""
                     android:textColor="@color/black"

@@ -189,15 +189,17 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 hideProgress();
-                try {
-                    //noinspection ConstantConditions
-                    String content = new String(response.body().bytes());
-                    Log.e(TAG, "onResponse: Monthly List " + content);
-                    parseJSON(content);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if (response.body() != null) {
+                    try {
+                        //noinspection ConstantConditions
+                        String content = new String(response.body().bytes());
+                        Log.e(TAG, "onResponse: Monthly List " + content);
+                        parseJSON(content);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 

@@ -11,10 +11,13 @@
     <color name="white">#FFFFFF</color>
     <color name="green_grab">#00b13f</color>
     <color name="black">#000</color>
+
     <color name="bg_blueblack">#0d1426</color>
+    <color name="blue">#005a92</color>
 
     <color name="pressed_color">#4d90fe</color>
     <color name="grey2">#BDBDBD</color>
+    <color name="form_login">#f2f7f9</color>
     <color name="grey3">#9E9E9E</color>
     <color name="grey4">#757575</color>
     <color name="grey">#E0E0E0</color>

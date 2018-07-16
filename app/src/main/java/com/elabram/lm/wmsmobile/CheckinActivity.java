@@ -308,8 +308,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     }
 
     private void myLocation() {
-        mapFragment.getMapAsync(googleMap ->
-        {
+        mapFragment.getMapAsync(googleMap -> {
             map = googleMap;
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -344,58 +343,60 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 dismissProgress();
-                try {
-                    //noinspection ConstantConditions
-                    String contentResponse = new String(response.body().bytes());
-                    Log.e(TAG, "onResponse: Checkin Status " + contentResponse);
-                    JSONObject jsonObject = new JSONObject(contentResponse);
-                    String response_code = jsonObject.getString("response_code");
-                    switch (response_code) {
-                        case "401":
-                            String message = jsonObject.getString("message");
-                            Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
-                            snackbar.show();
-                            break;
-                        case "200":
-                            JSONObject jsonObject1 = jsonObject.getJSONObject("data");
-                            String realtime_date = jsonObject1.getString("is_date");
-                            String time_first = jsonObject1.getString("time_first");
-                            String location_first = jsonObject1.getString("location_first");
+                if (response.body() != null) {
+                    try {
+                        //noinspection ConstantConditions
+                        String contentResponse = new String(response.body().bytes());
+                        Log.e(TAG, "onResponse: Checkin Status " + contentResponse);
+                        JSONObject jsonObject = new JSONObject(contentResponse);
+                        String response_code = jsonObject.getString("response_code");
+                        switch (response_code) {
+                            case "401":
+                                String message = jsonObject.getString("message");
+                                Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                                break;
+                            case "200":
+                                JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                String realtime_date = jsonObject1.getString("is_date");
+                                String time_first = jsonObject1.getString("time_first");
+                                String location_first = jsonObject1.getString("location_first");
 
-                            String time_last = jsonObject1.getString("time_last");
-                            String location_last = jsonObject1.getString("location_last");
+                                String time_last = jsonObject1.getString("time_last");
+                                String location_last = jsonObject1.getString("location_last");
 
-                            tvDate.setText(realtime_date);
+                                tvDate.setText(realtime_date);
 
-                            String replaceFirst = time_first.replace(".", ":");
-                            String replaceLast = time_last.replace(".", ":");
+                                String replaceFirst = time_first.replace(".", ":");
+                                String replaceLast = time_last.replace(".", ":");
 
-                            if (!time_first.isEmpty())
-                                tvStart.setText(replaceFirst);
-                            else
-                                tvStart.setText("-");
+                                if (!time_first.isEmpty())
+                                    tvStart.setText(replaceFirst);
+                                else
+                                    tvStart.setText("-");
 
-                            if (!time_last.isEmpty())
-                                tvEnd.setText(replaceLast);
-                            else
-                                tvEnd.setText("-");
+                                if (!time_last.isEmpty())
+                                    tvEnd.setText(replaceLast);
+                                else
+                                    tvEnd.setText("-");
 
-                            if (!location_first.isEmpty())
-                                tvFirstLocation.setText("@ " + location_first);
-                            //else
-                            //    tvFirstLocation.setText("(-)");
+                                if (!location_first.isEmpty())
+                                    tvFirstLocation.setText("@ " + location_first);
+                                //else
+                                //    tvFirstLocation.setText("(-)");
 
-                            if (!location_last.isEmpty())
-                                tvLastLocation.setText("@ " + location_last);
-                            //else
-                            //    tvLastLocation.setText("(-)");
+                                if (!location_last.isEmpty())
+                                    tvLastLocation.setText("@ " + location_last);
+                                //else
+                                //    tvLastLocation.setText("(-)");
 
-                            break;
+                                break;
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
             }
 
@@ -414,13 +415,15 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                retrofitCheckinStatus();
-                try {
-                    //noinspection ConstantConditions
-                    String contentResponse = new String(response.body().bytes());
-                    Log.e(TAG, "onResponse: Checkin " + contentResponse);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (response.body() != null) {
+                    retrofitCheckinStatus();
+                    try {
+                        //noinspection ConstantConditions
+                        String contentResponse = new String(response.body().bytes());
+                        Log.e(TAG, "onResponse: Checkin " + contentResponse);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
@@ -438,32 +441,34 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                try {
-                    //noinspection ConstantConditions
-                    String content = new String(response.body().bytes());
-                    Log.e(TAG, "onResponse: Retrofit Site List " + content);
-                    JSONObject jsonObject = new JSONObject(content);
+                if (response.body() != null) {
+                    try {
+                        //noinspection ConstantConditions
+                        String content = new String(response.body().bytes());
+                        Log.e(TAG, "onResponse: Retrofit Site List " + content);
+                        JSONObject jsonObject = new JSONObject(content);
 
-                    JSONArray jsonArray = jsonObject.getJSONArray("data");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                        String lat = jsonObject1.getString("lat");
-                        String lng = jsonObject1.getString("long");
-                        //noinspection unused
-                        String city = jsonObject1.getString("city");
-                        String site_name = jsonObject1.getString("site_name");
+                        JSONArray jsonArray = jsonObject.getJSONArray("data");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                            String lat = jsonObject1.getString("lat");
+                            String lng = jsonObject1.getString("long");
+                            //noinspection unused
+                            String city = jsonObject1.getString("city");
+                            String site_name = jsonObject1.getString("site_name");
 
-                        Office office = new Office();
-                        office.setOc_lat(lat);
-                        office.setOc_long(lng);
-                        office.setOc_site(site_name);
-                        offices.add(office);
+                            Office office = new Office();
+                            office.setOc_lat(lat);
+                            office.setOc_long(lng);
+                            office.setOc_site(site_name);
+                            offices.add(office);
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
             }
 
