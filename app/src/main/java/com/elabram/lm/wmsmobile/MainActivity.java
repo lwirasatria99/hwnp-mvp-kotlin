@@ -1,5 +1,6 @@
 package com.elabram.lm.wmsmobile;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.RelativeLayout;
 
+import com.crashlytics.android.Crashlytics;
 import com.elabram.lm.wmsmobile.fragment.MainAboutFragment;
 import com.elabram.lm.wmsmobile.fragment.MainHomeFragment;
 import com.elabram.lm.wmsmobile.fragment.MainProfileFragment;
@@ -31,6 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.token;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.user_email;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        getSharedUser();
+        Crashlytics.log(TAG + " " + user_email);
 
         // Check Internet Connection
 //        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -67,6 +72,12 @@ public class MainActivity extends AppCompatActivity {
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_home);
+    }
+
+    private void getSharedUser() {
+        SharedPreferences preferences = getSharedPreferences(AppInfo.PREFS_LOGIN, Context.MODE_PRIVATE);
+        user_email = preferences.getString("user_email", "");
+
     }
 
     BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

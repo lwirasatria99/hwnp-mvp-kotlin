@@ -28,6 +28,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.elabram.lm.wmsmobile.model.Office;
 import com.elabram.lm.wmsmobile.rest.ApiClient;
 import com.elabram.lm.wmsmobile.utilities.AppInfo;
@@ -60,6 +61,7 @@ import java.util.ArrayList;
 import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -138,6 +140,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkin);
         ButterKnife.bind(this);
+        Fabric.with(this, new Crashlytics());
 
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
@@ -378,12 +381,12 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                                 tvEnd.setText("-");
 
                             if (!location_first.isEmpty())
-                                tvFirstLocation.setText("(" + location_first + ")");
+                                tvFirstLocation.setText("@ " + location_first);
                             //else
                             //    tvFirstLocation.setText("(-)");
 
                             if (!location_last.isEmpty())
-                                tvLastLocation.setText("(" + location_last + ")");
+                                tvLastLocation.setText("@ " + location_last);
                             //else
                             //    tvLastLocation.setText("(-)");
 

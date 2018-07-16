@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.elabram.lm.wmsmobile.rest.ApiClient;
 import com.elabram.lm.wmsmobile.utilities.AppInfo;
 
@@ -30,6 +31,7 @@ import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        Fabric.with(this, new Crashlytics());
 
         checkingPermission();
 
@@ -83,18 +86,15 @@ public class LoginActivity extends AppCompatActivity {
 
             // Permission is not granted
             // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.READ_PHONE_STATE)) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_PHONE_STATE)) {
                 // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
-                //Toast.makeText(appCompatActivity, "Please allow if you wanna login for security", Toast.LENGTH_SHORT).show();
-                Log.e(TAG, "getDeviceId: " + "Permission Deactivated");
+                Toast.makeText(this, "Please allow the all permission to generate your account for login", Toast.LENGTH_SHORT).show();
+                //Log.e(TAG, "getDeviceId: " + "Permission Deactivated");
             } else {
                 // No explanation needed; request the permission
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.READ_PHONE_STATE},
-                        333);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 333);
 
                 // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
                 // app-defined int constant. The callback method gets the
@@ -111,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
     private void login() {
         if (validate()) {
             if (isOnline(this)) {
+                checkingPermission();
                 if (imei != null) {
                     retrofitLogin();
                 } else {
@@ -128,8 +129,8 @@ public class LoginActivity extends AppCompatActivity {
         String[] PERMISSIONS = {
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.CAMERA,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_PHONE_STATE
         };
 
         if (!AppInfo.hasPermissions(mActivity, PERMISSIONS)) {
@@ -140,6 +141,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        checkingPermission();
         SharedPreferences preferences = getSharedPreferences(PREFS_LOGIN, 0);
         boolean loggin = preferences.getBoolean(PREFS_LOGGED, false);
         Log.e(TAG, "onResume: Loggin " + loggin);
@@ -180,10 +182,12 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 dismissDialog();
                 try {
-                    //noinspection ConstantConditions
-                    String responseContent = new String(response.body().bytes());
-                    Log.e(TAG, "onResponse: " + responseContent);
-                    parseJSON(responseContent);
+                    if (response.body() != null) {
+                        //noinspection ConstantConditions
+                        String responseContent = response.body().string();
+                        Log.e(TAG, "onResponse: " + responseContent);
+                        parseJSON(responseContent);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

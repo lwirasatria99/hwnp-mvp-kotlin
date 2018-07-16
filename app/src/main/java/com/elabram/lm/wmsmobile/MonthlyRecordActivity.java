@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -23,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.elabram.lm.wmsmobile.adapter.MonthlyAdapter;
 import com.elabram.lm.wmsmobile.model.Monthly;
 import com.elabram.lm.wmsmobile.rest.ApiClient;
@@ -44,6 +46,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,6 +56,7 @@ import static com.elabram.lm.wmsmobile.utilities.AppInfo.PREFS_LOGIN;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.isOnline;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_id;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.token;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.user_email;
 
 public class MonthlyRecordActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -115,6 +119,8 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monthlyrecord);
         ButterKnife.bind(this);
+        Fabric.with(this, new Crashlytics());
+        Crashlytics.log(TAG + " "+user_email);
 
         // Toolbar
         setSupportActionBar(toolbar);
@@ -157,6 +163,7 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
         SharedPreferences preferences = getSharedPreferences(PREFS_LOGIN, Context.MODE_PRIVATE);
         token = preferences.getString("token", "");
         mem_id = preferences.getString("mem_id", "");
+        user_email = preferences.getString("user_email", "");
     }
 
     private void retrofitListMonthly() {
@@ -180,9 +187,10 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 hideProgress();
                 try {
+                    //noinspection ConstantConditions
                     String content = new String(response.body().bytes());
                     Log.e(TAG, "onResponse: Monthly List " + content);
                     parseJSON(content);
@@ -194,7 +202,7 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 hideProgress();
                 Log.e(TAG, "onFailure: " + t.getCause());
             }
@@ -332,9 +340,7 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
         final AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
-        imageCheck.setOnClickListener(view -> {
-            findDataMonthly(monthPicker, yearPicker, alertDialog);
-        });
+        imageCheck.setOnClickListener(view -> findDataMonthly(monthPicker, yearPicker, alertDialog));
 
         imageCross.setOnClickListener(view -> alertDialog.dismiss());
 

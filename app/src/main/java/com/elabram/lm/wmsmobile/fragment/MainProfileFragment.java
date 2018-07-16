@@ -2,7 +2,7 @@ package com.elabram.lm.wmsmobile.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ProgressDialog;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.elabram.lm.wmsmobile.LoginActivity;
 import com.elabram.lm.wmsmobile.R;
 import com.elabram.lm.wmsmobile.rest.ApiClient;
@@ -36,6 +37,7 @@ import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -88,12 +90,8 @@ public class MainProfileFragment extends Fragment {
     private static final String TAG = MainProfileFragment.class.getSimpleName();
 
     private String user_fullname;
-    private String user_position;
     private String user_email;
-    private String user_phone;
-    private String user_mobile;
-    private String user_address;
-    private ProgressDialog progressDialog;
+    //private ProgressDialog progressDialog;
 
 
     public MainProfileFragment() {
@@ -109,10 +107,11 @@ public class MainProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profil2, container, false);
         ButterKnife.bind(this, view);
+        Fabric.with(mActivity, new Crashlytics());
 
-        progressDialog = new ProgressDialog(mActivity, R.style.AppThemeLoading);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Please Wait...");
+//        progressDialog = new ProgressDialog(mActivity, R.style.AppThemeLoading);
+//        progressDialog.setIndeterminate(true);
+//        progressDialog.setMessage("Please Wait...");
 
         return view;
     }
@@ -135,17 +134,17 @@ public class MainProfileFragment extends Fragment {
         buttonLogout.setOnClickListener(view1 -> dialogOpenLogout());
     }
 
-    private void showDialog() {
-        if (progressDialog != null) {
-            progressDialog.show();
-        }
-    }
+//    private void showDialog() {
+//        if (progressDialog != null) {
+//            progressDialog.show();
+//        }
+//    }
 
-    private void dismissDialog() {
-        if (progressDialog != null) {
-            progressDialog.dismiss();
-        }
-    }
+//    private void dismissDialog() {
+//        if (progressDialog != null) {
+//            progressDialog.dismiss();
+//        }
+//    }
 
     private void dialogOpenLogout() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
@@ -256,8 +255,9 @@ public class MainProfileFragment extends Fragment {
         Call<ResponseBody> call = new ApiClient().getApiService().listLogo(token);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 try {
+                    //noinspection ConstantConditions
                     String mResponse = new String(response.body().bytes());
 //                    Log.e(TAG, "onResponse: " + mResponse);
                     JSONObject jsonObject = new JSONObject(mResponse);
@@ -289,7 +289,7 @@ public class MainProfileFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 Log.e(TAG, "onFailure: " + t.getCause());
             }
         });
