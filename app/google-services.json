@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "26945995084",
+    "firebase_url": "https://wms-android-cbb73.firebaseio.com",
+    "project_id": "wms-android-cbb73",
+    "storage_bucket": "wms-android-cbb73.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26945995084:android:92c880d3384feed9",
+        "android_client_info": {
+          "package_name": "com.elabram.lm.wmsmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "26945995084-seu9qf0diu1sp9h2ki6qeaeb8nhh7hev.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elabram.lm.wmsmobile",
+            "certificate_hash": "3012ae78f338d06d7677fec1151e929e06c54f3f"
+          }
+        },
+        {
+          "client_id": "26945995084-8ja3k5qs2frpa88ufij6j091hg5qkble.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkaOXuHj5u1pAOs_5mykhUPiTfa8A76jo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "26945995084-8ja3k5qs2frpa88ufij6j091hg5qkble.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
