@@ -198,7 +198,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                Log.e(TAG, "onFailure: " + t.getCause());
+                Log.e(TAG, "onFailure: " + t.getMessage());
                 if (imei != null) {
                     showSnackError("Check your network / please try again");
                 } else {

@@ -24,7 +24,8 @@ import com.android.volley.VolleyError;
 
 public class AppInfo {
 
-    public static String PRE_URL = "http://elabramdev.com/wms-api-lumen/api";
+    //public static String PRE_URL = "http://elabramdev.com/wms-api-lumen/api";
+    public static String PRE_URL = "http://178.128.97.164/wms-api-lumen/api/";
 
     public static String token;
     public static String mem_id;
@@ -54,6 +55,7 @@ public class AppInfo {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         assert cm != null;
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        //noinspection RedundantIfStatement
         if (netInfo == null || !netInfo.isConnected() ||!netInfo.isAvailable()) {
             return false;
         }
