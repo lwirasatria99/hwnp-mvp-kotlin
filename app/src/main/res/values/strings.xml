@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">WMS Mobile</string>
-    <string name="map_api">AIzaSyBELmC1DfToTVsvVpR2ohoLLP7OzfCf7V0</string>
+    <!--<string name="map_api">AIzaSyBELmC1DfToTVsvVpR2ohoLLP7OzfCf7V0</string>-->
+    <string name="map_api">AIzaSyDOR_rnS2AvDi2LRiAqQFqpExZJnQtnYrI</string>
+    <!--<string name="map_api">AIzaSyDvfN2E32E5jb1I9lAs8VGFMFuCeBMJ3TY</string>-->
     <string name="alert_checkout">Are you sure you want to checkout ?</string>
 
     <string name="email_indosat">bstiawan62@gmail.com</string>
@@ -17,5 +19,8 @@
     <string name="address">mem_address</string>
     <string name="image">mem_image</string>
     <string name="position">position</string>
+    <string name="dummy_time">09.99</string>
+    <string name="dummy_location">Elabram Systems</string>
+    <string name="dummy_timezone">77.77 WITA</string>
 
 </resources>

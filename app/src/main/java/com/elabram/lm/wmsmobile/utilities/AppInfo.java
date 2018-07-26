@@ -34,6 +34,7 @@ public class AppInfo {
     public static String mem_phone;
     public static String mem_address;
     public static String position;
+    public static String user_fullname;
     public static String user_email;
     public static String mem_image;
 

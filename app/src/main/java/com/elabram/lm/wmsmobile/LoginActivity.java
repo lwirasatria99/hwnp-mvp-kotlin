@@ -7,18 +7,26 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
@@ -60,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private String TAG = LoginActivity.class.getSimpleName();
     private String imei;
+    private AlertDialog adVersion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +78,8 @@ public class LoginActivity extends AppCompatActivity {
         Fabric.with(this, new Crashlytics());
 
         checkingPermission();
+
+        retrofitCheckVersion();
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
@@ -80,6 +91,68 @@ public class LoginActivity extends AppCompatActivity {
         Log.e(TAG, "onCreate: IMEI " + imei);
 
         buttonLogin.setOnClickListener(view -> login());
+    }
+
+    private String getVersionInfo() {
+        //int versionCode = -1;
+        String versionName = null;
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            versionName = packageInfo.versionName;
+            //Log.e(TAG, "getVersionInfo: "+versionName );
+            //versionCode = packageInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return versionName;
+    }
+
+    private void dismissAlert() {
+        if (adVersion != null && adVersion.isShowing()) {
+            adVersion.dismiss();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dismissAlert();
+    }
+
+    private void dialogCheckVersion() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.dialog_version, null);
+
+        TextView tvUpdate = view.findViewById(R.id.tvUpdate);
+        TextView tvNoThanks = view.findViewById(R.id.tvNoThanks);
+
+        builder.setView(view);
+        adVersion = builder.create();
+        //noinspection ConstantConditions
+        adVersion.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        adVersion.setCancelable(false);
+        adVersion.show();
+
+        // Go To Playstore
+        tvUpdate.setOnClickListener(view1 -> {
+            final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
+        });
+
+        // Exit the apps
+        tvNoThanks.setOnClickListener(view1 -> {
+            if (Build.VERSION.SDK_INT >= 21) {
+                finishAndRemoveTask();
+            } else {
+                finishAffinity();
+            }
+        });
+
     }
 
     @SuppressLint("HardwareIds")
@@ -175,6 +248,49 @@ public class LoginActivity extends AppCompatActivity {
         if (progressDialog != null) {
             progressDialog.dismiss();
         }
+    }
+
+    private void retrofitCheckVersion() {
+        Call<ResponseBody> call = new ApiClient().getApiService().checkVersion();
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                try {
+                    if (response.body() != null) {
+                        //noinspection ConstantConditions
+                        String mResponse = new String(response.body().bytes());
+                        Log.e(TAG, "onResponse: CheckVersion " + mResponse);
+                        JSONObject jsonObject = new JSONObject(mResponse);
+
+                        String response_code = jsonObject.getString("response_code");
+                        switch (response_code) {
+                            case "401":
+                                String message = jsonObject.getString("message");
+                                Snackbar snackbar = Snackbar.make(containerMain, message, Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                                break;
+                            case "200":
+                                JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                String s_version = jsonObject1.getString("version");
+
+                                if (!s_version.equals(getVersionInfo())) {
+                                    dialogCheckVersion();
+                                }
+                                break;
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                Log.e(TAG, "onFailure: Version " + t.getMessage());
+            }
+        });
     }
 
     private void retrofitLogin() {

@@ -202,7 +202,7 @@ public class MainProfileFragment extends Fragment {
 
         // Profile Picture
         if (mem_image.equals("https://elabram.com/hris/files/employee/")) {
-            ivProfile.setImageResource(R.drawable.man);
+            ivProfile.setImageResource(R.drawable.profile_default_picture);
         } else {
             Picasso.with(mActivity)
                     .load(mem_image)
@@ -260,7 +260,6 @@ public class MainProfileFragment extends Fragment {
                     try {
                         //noinspection ConstantConditions
                         String mResponse = new String(response.body().bytes());
-                        //Log.e(TAG, "onResponse: " + mResponse);
                         JSONObject jsonObject = new JSONObject(mResponse);
 
                         String response_code = jsonObject.getString("response_code");
@@ -280,8 +279,6 @@ public class MainProfileFragment extends Fragment {
                                             .fit()
                                             .into(ivLogoClient);
                                 }
-
-
                                 break;
                         }
                     } catch (IOException | JSONException e) {

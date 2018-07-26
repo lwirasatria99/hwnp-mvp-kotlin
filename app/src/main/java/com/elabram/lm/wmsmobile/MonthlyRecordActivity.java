@@ -11,7 +11,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,14 +61,17 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
 
     private static final String TAG = MonthlyRecordActivity.class.getSimpleName();
 
-    @BindView(R.id.linearMonth)
-    RelativeLayout linearMonth;
+//    @BindView(R.id.linearMonth)
+//    RelativeLayout linearMonth;
 
     @BindView(R.id.tvDatePeriode)
     TextView tvDatePeriode;
 
-//    @BindView(R.id.swiperefresh)
-//    SwipeRefreshLayout swipeRefresh;
+    @BindView(R.id.relative_change)
+    RelativeLayout relative_change;
+
+    @BindView(R.id.iv_back)
+    ImageView iv_back;
 
     @BindView(R.id.listview)
     ListView listView;
@@ -86,8 +88,8 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
     @BindView(R.id.rootView)
     LinearLayout rootView;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+//    @BindView(R.id.toolbar)
+//    Toolbar toolbar;
 
     @BindView(R.id.relativeEnabled)
     RelativeLayout rel_online;
@@ -117,18 +119,17 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_monthlyrecord);
+        setContentView(R.layout.activity_monthlyrecord2);
         ButterKnife.bind(this);
-        Fabric.with(this, new Crashlytics());
         Crashlytics.log(TAG + " "+user_email);
 
         // Toolbar
-        setSupportActionBar(toolbar);
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(view -> onBackPressed());
+//        setSupportActionBar(toolbar);
+//        assert getSupportActionBar() != null;
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        getSupportActionBar().setHomeButtonEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        toolbar.setNavigationOnClickListener(view -> onBackPressed());
         // End
 
         getSharedUserDetail();
@@ -142,9 +143,12 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
         setInitialDate();
 
         cekInternet();
+
         buttonRefresh.setOnClickListener(view -> cekInternet());
 
-        linearMonth.setOnClickListener(view -> showDateDialog(getDatePeriode()));
+        relative_change.setOnClickListener(view -> showDateDialog(getDatePeriode()));
+
+        iv_back.setOnClickListener(view -> finish());
     }
 
     private void cekInternet() {
@@ -217,8 +221,7 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
         switch (response_code) {
             case "401":
                 String message = jsonObject.getString("message");
-                Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
-                snackbar.show();
+                Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
                 break;
             case "200":
                 JSONArray jsonArray = jsonObject.getJSONArray("data");
@@ -227,19 +230,25 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
                 }
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                    //Log.e(TAG, "parseJSON: JSON 200 "+jsonObject1);
 
                     String att_id_token = jsonObject1.getString("att_id_token");
                     String att_date = jsonObject1.getString("att_date");
                     String att_day = jsonObject1.getString("att_day");
                     String time_in = jsonObject1.getString("time_in");
                     String time_out = jsonObject1.getString("time_out");
-                    String project_name = jsonObject1.getString("project_name");
-                    String description = jsonObject1.getString("description");
+                    //String project_name = jsonObject1.getString("project_name");
+                    //String description = jsonObject1.getString("description");
                     String location_first = jsonObject1.getString("location_first");
                     String location_last = jsonObject1.getString("location_last");
                     String total_working_hour = jsonObject1.getString("total_working_hour");
 
+                    String timezone1 = jsonObject1.getString("timezone_first");
+                    String timezone2 = jsonObject1.getString("timezone_last");
+
                     Monthly monthly = new Monthly();
+                    monthly.setTimezone1(timezone1);
+                    monthly.setTimezone2(timezone2);
                     monthly.setAttDate(att_date);
                     monthly.setAttDay(att_day);
                     monthly.setTimeIn(time_in);
@@ -247,6 +256,7 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
                     monthly.setLocationFirst(location_first);
                     monthly.setLocationLast(location_last);
                     monthly.setTotalWorkingHour(total_working_hour);
+
                     monthlies.add(monthly);
                     listView.setAdapter(adapter);
                 }

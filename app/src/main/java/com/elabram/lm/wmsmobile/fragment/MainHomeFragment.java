@@ -23,7 +23,6 @@ import com.elabram.lm.wmsmobile.R;
 import com.elabram.lm.wmsmobile.rest.ApiClient;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -107,7 +106,7 @@ public class MainHomeFragment extends Fragment {
 //        }
 
         if (mem_image.equals("https://elabram.com/hris/files/employee/")) {
-            ivUserpic.setImageResource(R.drawable.man);
+            ivUserpic.setImageResource(R.drawable.profile_default_picture);
         } else {
             Picasso.with(mActivity)
                     .load(mem_image)

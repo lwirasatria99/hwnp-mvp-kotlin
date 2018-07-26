@@ -18,7 +18,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -76,6 +75,9 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     @BindView(R.id.buttonCheckin)
     Button buttonCheckin;
 
+    @BindView(R.id.fabRefresh)
+    FloatingActionButton fabRefresh;
+
     @BindView(R.id.rootView)
     LinearLayout rootView;
 
@@ -85,8 +87,8 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     @BindView(R.id.dataLayout)
     LinearLayout dataLayout;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+//    @BindView(R.id.toolbar)
+//    Toolbar toolbar;
 
     @BindView(R.id.date)
     TextView tvDate;
@@ -112,6 +114,9 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     @BindView(R.id.buttonRefresh)
     ImageView buttonRefresh;
 
+    @BindView(R.id.iv_back)
+    ImageView iv_back;
+
     @BindDrawable(R.drawable.bg_confirm_white)
     Drawable bg_confirm;
 
@@ -122,31 +127,45 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationCallback mLocationCallback;
     private GoogleMap map;
+    private SupportMapFragment mapFragment;
+
     private double myLat;
     private double myLong;
     private LatLng myLatLong;
-    private SupportMapFragment mapFragment;
 
-    private String task_id;
-    private String location_name;
-    private String lat_, long_;
+
+    //private String task_id;
+    //private String location_name;
+    //private String lat_, long_;
+
     private ArrayList<Office> offices;
     float[] resultApi = new float[1];
     private String site_name;
     private ProgressDialog progressDialog;
 
+    // used
+    private String cache_timeZone_name;
+    private String s_timeStamp;
+    private String gmt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_checkin);
+        setContentView(R.layout.activity_checkin2);
         ButterKnife.bind(this);
         Fabric.with(this, new Crashlytics());
 
-        setSupportActionBar(toolbar);
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        iv_back.setOnClickListener(view -> finish());
+
+//        setSupportActionBar(toolbar);
+//        assert getSupportActionBar() != null;
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        getSupportActionBar().setHomeButtonEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        toolbar.setNavigationOnClickListener(view -> onBackPressed());
+
+        Long tsLong = System.currentTimeMillis() / 1000;
+        s_timeStamp = tsLong.toString();
 
         offices = new ArrayList<>();
 
@@ -154,19 +173,19 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Please wait...");
 
-        toolbar.setNavigationOnClickListener(view -> onBackPressed());
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentMap);
         mapFragment.getMapAsync(this);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         getSharedUserDetail();
-        getSharedTaskId();
+        //getSharedTaskId();
         buildGoogleApiClient();
         buttonCheckin.setVisibility(View.GONE);
 
-        cekInternet();
-        buttonRefresh.setOnClickListener(view -> cekInternet());
+        loadSiteAndStatus();
+
+        buttonRefresh.setOnClickListener(view -> loadSiteAndStatus());
 
         GPSTracker gpsTracker = new GPSTracker(this);
         myLat = gpsTracker.getLatitude();
@@ -179,12 +198,65 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
+
+                setMarker(locationResult);
+
                 locationChanged(locationResult);
             }
         };
+
+        fabRefresh.setOnClickListener(view -> refreshActivity());
     }
 
-    private void cekInternet() {
+    private void refreshActivity() {
+        finish();
+        startActivity(getIntent());
+    }
+
+    private void setMarker(LocationResult locationResult) {
+        map.clear();
+
+        Double latNow = locationResult.getLastLocation().getLatitude();
+        Double longNow = locationResult.getLastLocation().getLongitude();
+
+        for (int k = 0; k < offices.size(); k++) {
+            Office office = offices.get(k);
+            Double d_lat = Double.valueOf(office.getOc_lat());
+            Double d_long = Double.valueOf(office.getOc_long());
+            Double d_radius = Double.valueOf(office.getOc_radius());
+
+            // Check the distance "MyLocation" to "OfficeLocation"
+            Location.distanceBetween(latNow, longNow, d_lat, d_long, resultApi);
+
+            // Convert to String & Double
+            String s_distanceToOffice = String.valueOf(resultApi[0]);
+            Double d_distanceToOffice = Double.parseDouble(s_distanceToOffice);
+
+            if (d_distanceToOffice < d_radius) {
+                Log.e(TAG, "locationChanged: Distance Marker " + s_distanceToOffice);
+
+                LatLng latLngTask = new LatLng(d_lat, d_long);
+                map.addMarker(new MarkerOptions()
+                        .position(latLngTask)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                        .title("Task ID: ")
+                        .snippet("Description: "));
+
+                int stroke_c = 0xffff0000;
+                int transp = 0x44ff0000;
+                map.addCircle(new CircleOptions()
+                        .center(latLngTask)
+                        .radius(d_radius)
+                        .fillColor(transp)
+                        .strokeWidth(2)
+                        .strokeColor(stroke_c)
+                );
+                stopLocationUpdates();
+            }
+        }
+    }
+
+    private void loadSiteAndStatus() {
         if (AppInfo.isOnline(this)) {
             rel_online.setVisibility(View.VISIBLE);
             showProgress();
@@ -197,85 +269,151 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         }
     }
 
-    private void getSharedTaskId() {
-        SharedPreferences preferences = getSharedPreferences("listclick", 0);
-        task_id = preferences.getString("task_id", "");
-        location_name = preferences.getString("location_name", "");
-        //date_ = preferences.getString("date_", "");
-        lat_ = preferences.getString("lat_", "");
-        long_ = preferences.getString("long_", "");
-    }
+    //private void getSharedTaskId() {
+    //SharedPreferences preferences = getSharedPreferences("listclick", 0);
+    //task_id = preferences.getString("task_id", "");
+    //location_name = preferences.getString("location_name", "");
+    //date_ = preferences.getString("date_", "");
+    //lat_ = preferences.getString("lat_", "");
+    //long_ = preferences.getString("long_", "");
+    //}
 
     @Override
     protected void onPause() {
         super.onPause();
         if (mFusedLocationClient != null) {
-            mFusedLocationClient.removeLocationUpdates(mLocationCallback);
+            stopLocationUpdates();
+            map.clear();
         }
     }
 
-    public void requestLocationUpdates() {
+    private void stopLocationUpdates() {
+        mFusedLocationClient.removeLocationUpdates(mLocationCallback);
+    }
+
+    private void requestLocationUpdates() {
         // 120000 = 2 minute
         LocationRequest mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(1000); // two minute interval
         mLocationRequest.setFastestInterval(1000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
         if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
         }
     }
 
     private void locationChanged(LocationResult locationResult) {
-        SharedPreferences preferences = getSharedPreferences("json_status", 0);
-        //noinspection unused
-        String status_checkin = preferences.getString("status", "");
-        double distance_limit = 250.00;
 
         for (@SuppressWarnings("unused") Location location : locationResult.getLocations()) {
 
+            // Initialize
+            Double lat = location.getLatitude();
+            Double lng = location.getLongitude();
+
             // Mock Checking
             boolean isMock = location.isFromMockProvider();
-            //Log.e(TAG, "locationChanged: isMock " + isMock);
 
             for (int k = 0; k < offices.size(); k++) {
                 Office office = offices.get(k);
                 Double d_lat = Double.valueOf(office.getOc_lat());
                 Double d_long = Double.valueOf(office.getOc_long());
+                Double d_radius = Double.valueOf(office.getOc_radius());
 
-                // Find the distance
-                Location.distanceBetween(location.getLatitude(), location.getLongitude(), d_lat, d_long, resultApi);
+                // Check the distance "MyLocation" to "OfficeLocation"
+                Location.distanceBetween(lat, lng, d_lat, d_long, resultApi);
 
                 // Convert to String & Double
                 String s_distanceToOffice = String.valueOf(resultApi[0]);
                 Double d_distanceToOffice = Double.parseDouble(s_distanceToOffice);
-                Log.e(TAG, "locationChanged: Distance " + s_distanceToOffice);
 
-                if (d_distanceToOffice < distance_limit) {
+                if (d_distanceToOffice < d_radius) {
                     site_name = office.getOc_site();
                     buttonCheckin.setVisibility(View.VISIBLE);
                     if (isMock) {
                         processTheMock();
                     } else {
-                        processNoMock();
+                        processNoMock(lat, lng);
                     }
                     break;
                 } else {
                     buttonCheckin.setVisibility(View.GONE);
                 }
             }
-
         }
     }
 
-    private void processNoMock() {
-        buttonCheckin.setOnClickListener(view -> {
-            Log.e(TAG, "locationChanged: Click Checkin ");
-            if (isOnline(this)) {
-                retrofitCheckin();
+    private String checkTimeZone() {
+        String timeZone = "";
+
+        if (cache_timeZone_name.equals("Western Indonesia Time"))
+            timeZone = "WIB";
+
+        if (cache_timeZone_name.equals("Central Indonesia Time"))
+            timeZone = "WITA";
+
+        if (cache_timeZone_name.equals("Eastern Indonesia Time"))
+            timeZone = "WIT";
+
+        return timeZone;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mFusedLocationClient != null) {
+            stopLocationUpdates();
+            map.clear();
+        }
+    }
+
+    private void retrofitTimezone(double lat, double lng) {
+        String coordinate = lat + "," + lng;
+        String apiKey = getString(R.string.map_api);
+
+        Log.e(TAG, "retrofitTimezone: Latlng " + coordinate);
+        Log.e(TAG, "retrofitTimezone: s_timestamp " + s_timeStamp);
+        Log.e(TAG, "retrofitTimezone: apiKey " + apiKey);
+
+        Call<ResponseBody> call = new ApiClient().getApiService().cekTimeZone(coordinate, s_timeStamp, apiKey);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                if (response.body() != null) {
+                    try {
+                        //noinspection ConstantConditions
+                        String responseContent = new String(response.body().bytes());
+                        Log.e(TAG, "onResponse: Timezone " + responseContent);
+
+                        JSONObject jsonObject = new JSONObject(responseContent);
+                        cache_timeZone_name = jsonObject.getString("timeZoneName");
+
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Log.e(TAG, "onResponse: Timezone else " + response.errorBody());
+                }
             }
-            else {
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                Log.e(TAG, "onFailure: Timezone " + t.getMessage());
+            }
+        });
+    }
+
+    private void processNoMock(Double lat, Double lng) {
+        buttonCheckin.setOnClickListener(view -> {
+            if (isOnline(this)) {
+                gmt = checkTimeZone();
+                if (!gmt.isEmpty()) {
+                    retrofitCheckin();
+                } else {
+                    retrofitTimezone(lat, lng);
+                    Snackbar.make(rootView, "Please try again", Snackbar.LENGTH_LONG).show();
+                }
+            } else {
                 Snackbar snackbar = Snackbar.make(rootView, "Please check your internet connection", Snackbar.LENGTH_LONG);
                 snackbar.show();
             }
@@ -315,11 +453,11 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                 if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                         == PackageManager.PERMISSION_GRANTED) {
                     map.moveCamera(CameraUpdateFactory.newLatLng(myLatLong));
-                    map.animateCamera(CameraUpdateFactory.zoomTo(15));
+                    map.animateCamera(CameraUpdateFactory.zoomTo(17));
                 }
             } else {
                 map.moveCamera(CameraUpdateFactory.newLatLng(myLatLong));
-                map.animateCamera(CameraUpdateFactory.zoomTo(15));
+                map.animateCamera(CameraUpdateFactory.zoomTo(17));
             }
         });
     }
@@ -381,12 +519,12 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                                     tvEnd.setText("-");
 
                                 if (!location_first.isEmpty())
-                                    tvFirstLocation.setText("@ " + location_first);
+                                    tvFirstLocation.setText(location_first);
                                 //else
                                 //    tvFirstLocation.setText("(-)");
 
                                 if (!location_last.isEmpty())
-                                    tvLastLocation.setText("@ " + location_last);
+                                    tvLastLocation.setText(location_last);
                                 //else
                                 //    tvLastLocation.setText("(-)");
 
@@ -409,9 +547,12 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         });
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void retrofitCheckin() {
+        Log.e(TAG, "retrofitCheckin: SITE " + site_name);
+        Log.e(TAG, "retrofitCheckin: GMT " + gmt);
         showProgress();
-        Call<ResponseBody> call = new ApiClient().getApiService().checkin(token, site_name);
+        Call<ResponseBody> call = new ApiClient().getApiService().checkin(token, site_name, gmt);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
@@ -453,6 +594,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                             String lat = jsonObject1.getString("lat");
                             String lng = jsonObject1.getString("long");
+                            String radius = jsonObject1.getString("radius");
                             //noinspection unused
                             String city = jsonObject1.getString("city");
                             String site_name = jsonObject1.getString("site_name");
@@ -461,6 +603,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                             office.setOc_lat(lat);
                             office.setOc_long(lng);
                             office.setOc_site(site_name);
+                            office.setOc_radius(radius);
                             offices.add(office);
                         }
 
@@ -492,7 +635,9 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     @Override
     protected void onResume() {
         super.onResume();
-        //this.onCreate(null);
+        retrofitTimezone(myLat, myLong);
+        Log.e(TAG, "onResume: timezone " + cache_timeZone_name);
+
         if (mGoogleApiClient != null && mFusedLocationClient != null) {
             requestLocationUpdates();
         } else {
@@ -536,32 +681,35 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         /* First Camera Position */
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(new LatLng(myLat, myLong))
-                .zoom(12) // default 15
+                .zoom(17) // default 15
                 .build();
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
+        retrofitTimezone(myLat, myLong);
+        //Log.e(TAG, "onMapReady: " + cache_timeZone_name);
 
-        if (!lat_.isEmpty() && !long_.isEmpty()) {
-            final Double dlat = Double.parseDouble(lat_);
-            final Double dlng = Double.parseDouble(long_);
-            LatLng latLngTask = new LatLng(dlat, dlng);
-
-            map.addMarker(new MarkerOptions()
-                    .position(latLngTask)
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
-                    .title("Task ID: " + task_id)
-                    .snippet("Description: " + location_name));
-
-            int stroke_c = 0xffff0000;
-            int transp = 0x44ff0000;
-            map.addCircle(new CircleOptions()
-                    .center(latLngTask)
-                    .radius(100)
-                    .fillColor(transp)
-                    .strokeWidth(2)
-                    .strokeColor(stroke_c)
-            );
-        }
+//        if (!lat_.isEmpty() && !long_.isEmpty()) {
+//            final Double dlat = Double.parseDouble(lat_);
+//            final Double dlng = Double.parseDouble(long_);
+        //-6.194340, 106.815867
+//            LatLng latLngTask = new LatLng(-6.194340, 106.815867);
+//
+//            map.addMarker(new MarkerOptions()
+//                    .position(latLngTask)
+//                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
+//                    .title("Task ID: ")
+//                    .snippet("Description: "));
+//
+//            int stroke_c = 0xffff0000;
+//            int transp = 0x44ff0000;
+//            map.addCircle(new CircleOptions()
+//                    .center(latLngTask)
+//                    .radius(50)
+//                    .fillColor(transp)
+//                    .strokeWidth(2)
+//                    .strokeColor(stroke_c)
+//            );
+//        }
     }
 
 }

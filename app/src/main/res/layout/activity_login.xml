@@ -30,7 +30,7 @@
             <!--tools:ignore="HardcodedText" />-->
 
         <ImageView
-            android:src="@drawable/rms_mobile"
+            android:src="@drawable/logo_rms"
             android:layout_width="wrap_content"
             android:layout_height="80dp"
             tools:ignore="ContentDescription" />

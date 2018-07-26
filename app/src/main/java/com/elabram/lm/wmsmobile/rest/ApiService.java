@@ -3,8 +3,11 @@ package com.elabram.lm.wmsmobile.rest;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -23,10 +26,16 @@ public interface ApiService {
     @POST("attDetail")
     Call<ResponseBody> loadStatusCheckin(@Field("token") String token);
 
+    @GET("https://maps.googleapis.com/maps/api/timezone/json")
+    Call<ResponseBody> cekTimeZone(@Query("location") String coordinat,
+                                   @Query("timestamp") String timestamp,
+                                   @Query("key") String keyApi);
+
     @FormUrlEncoded
     @POST("attCheckin")
     Call<ResponseBody> checkin(@Field("token") String token,
-                               @Field("location") String site_name);
+                               @Field("location") String location,
+                               @Field("timezone") String timezone);
 
     @FormUrlEncoded
     @POST("siteList")
@@ -38,4 +47,7 @@ public interface ApiService {
                                    @Field("att_date[0]") String attDate0,
                                    @Field("att_date[1]") String attDate1,
                                    @Field("mem_id_req") String mem_id_req);
+
+    @POST("get-version")
+    Call<ResponseBody> checkVersion();
 }

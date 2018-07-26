@@ -13,8 +13,26 @@ public class Monthly {
     private String locationFirst;
     private String locationLast;
     private String totalWorkingHour;
+    private String timezone1;
+    private String timezone2;
 
     public Monthly() {
+    }
+
+    public String getTimezone1() {
+        return timezone1;
+    }
+
+    public void setTimezone1(String timezone1) {
+        this.timezone1 = timezone1;
+    }
+
+    public String getTimezone2() {
+        return timezone2;
+    }
+
+    public void setTimezone2(String timezone2) {
+        this.timezone2 = timezone2;
     }
 
     public String getAttIdToken() {

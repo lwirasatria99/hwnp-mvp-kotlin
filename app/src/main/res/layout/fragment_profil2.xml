@@ -33,7 +33,7 @@
                     android:layout_width="115dp"
                     android:layout_height="30dp"
                     android:layout_marginEnd="10dp"
-                    android:background="@drawable/rms_mobile"
+                    android:background="@drawable/logo_rms"
                     tools:ignore="ContentDescription" />
 
                 <ImageView
@@ -71,7 +71,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/man"
+                        app:srcCompat="@drawable/profile_default_picture"
                         tools:ignore="ContentDescription" />
 
                 </android.support.v7.widget.CardView>

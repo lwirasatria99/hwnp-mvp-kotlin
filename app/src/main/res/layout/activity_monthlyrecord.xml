@@ -34,7 +34,9 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/screen_offline_general" />
+    <include
+        android:visibility="gone"
+        layout="@layout/screen_offline_general" />
 
     <RelativeLayout
         android:id="@+id/relativeEnabled"

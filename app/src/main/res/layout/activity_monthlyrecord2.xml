@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_attendace"
+    android:orientation="vertical"
+    tools:context=".MonthlyRecordActivity">
+
+    <!-- Header -->
+    <RelativeLayout
+        android:elevation="@dimen/size_toolbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        tools:targetApi="lollipop">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:background="@mipmap/ic_arrow_left"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="18dp"
+            android:layout_toEndOf="@id/iv_back"
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="Attendance Record"
+            android:textAllCaps="true"
+            android:textColor="@color/blue"
+            android:textSize="19sp"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+    <include
+        android:visibility="gone"
+        layout="@layout/screen_offline_general" />
+
+    <RelativeLayout
+        android:id="@+id/relativeEnabled"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/linearMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:layout_marginTop="18dp"
+            android:background="@color/white"
+            android:elevation="7dp"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            tools:targetApi="lollipop">
+
+            <ImageView
+                android:id="@+id/iv_att_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_attendance_calendar"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tvDatePeriode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_att_calendar"
+                android:text="null"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                tools:ignore="HardcodedText" />
+
+            <RelativeLayout
+                android:id="@+id/relative_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/square_cornerfull_blue"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="3dp"
+                    android:text="Change"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    tools:ignore="HardcodedText" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toEndOf="@id/a"
+                    app:srcCompat="@drawable/ic_chevron_right_white"
+                    tools:ignore="ContentDescription" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <!--<android.support.v4.widget.SwipeRefreshLayout-->
+        <!--android:id="@+id/swiperefresh"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@+id/linearMonth">-->
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/linearMonth"
+            android:divider="@null" />
+
+        <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:theme="@style/ProggressBar" />
+
+        <TextView
+            android:id="@+id/tvNoData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="- No Data -"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:visibility="visible"
+            tools:ignore="HardcodedText" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLoadMore"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/grey"
+            android:gravity="center">
+
+            <ProgressBar
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:theme="@style/ProggressBar" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

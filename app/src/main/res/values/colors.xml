@@ -4,8 +4,12 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="purple">#660092</color>
+
     <color name="login_blue">#0d94f8</color>
     <color name="red">#f44336</color>
+    <color name="orange">#F26F31</color>
+    <color name="red_profile">#ED1C24</color>
 
     <!--<color name="login_grey4">#757575</color>-->
     <color name="white">#FFFFFF</color>
@@ -17,9 +21,12 @@
 
     <color name="pressed_color">#4d90fe</color>
     <color name="grey2">#BDBDBD</color>
+    <color name="grey_profile">#F2F7F9</color>
     <color name="form_login">#f2f7f9</color>
     <color name="grey3">#9E9E9E</color>
     <color name="grey4">#757575</color>
     <color name="grey">#E0E0E0</color>
+    <color name="grey_attendace">#E5EEF4</color>
+    <color name="grey_main">#F2F2F2</color>
 
 </resources>

@@ -114,7 +114,6 @@ public class MonthlyAdapter extends BaseAdapter {
         }
         String formatted_date = writeTo.format(date);
         if (!formatted_date.isEmpty()) {
-            //Log.e(TAG, "getView: formattedDate "+formatted_date );
             holder.date.setText(formatted_date);
         }
         // End
@@ -127,7 +126,10 @@ public class MonthlyAdapter extends BaseAdapter {
 
         @SuppressLint("SimpleDateFormat") SimpleDateFormat readClock = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         @SuppressLint("SimpleDateFormat") SimpleDateFormat writeClock = new SimpleDateFormat("HH:mm");
+
+        // First Time & Timezone
         String sourceFirstClock = monthly.getTimeIn();
+        String timezone1 = monthly.getTimezone1();
         if (!sourceFirstClock.isEmpty()) {
             Date dateClock = null;
             try {
@@ -136,12 +138,15 @@ public class MonthlyAdapter extends BaseAdapter {
                 e.printStackTrace();
             }
             String formattedFirstClock = writeClock.format(dateClock);
-            holder.first_clock.setText(formattedFirstClock);
+            String time_zone1 = formattedFirstClock + " "+timezone1;
+            holder.first_clock.setText(time_zone1);
         } else {
             holder.first_clock.setText("-");
         }
 
+        // End Time & Timezone
         String sourceLastClock = monthly.getTimeOut();
+        String timezone2 = monthly.getTimezone2();
         if (!sourceLastClock.isEmpty()) {
             Date dateClock = null;
             try {
@@ -150,7 +155,8 @@ public class MonthlyAdapter extends BaseAdapter {
                 e.printStackTrace();
             }
             String formattedLastClock = writeClock.format(dateClock);
-            holder.last_clock.setText(formattedLastClock);
+            String time_zone2 = formattedLastClock + " "+timezone2;
+            holder.last_clock.setText(time_zone2);
         } else {
             holder.last_clock.setText("-");
         }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
+    android:background="@color/grey_attendace"
     android:theme="@style/AppThemeFont">
 
     <LinearLayout
@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:background="@drawable/square_cornerfull_white"
         android:orientation="horizontal"
         android:paddingBottom="10dp"
@@ -77,7 +77,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="3dp"
                     android:layout_marginTop="2dp"
-                    app:srcCompat="@drawable/ic_first_record"
+                    app:srcCompat="@drawable/ic_monthly_green_cirlce"
                     tools:ignore="ContentDescription" />
 
             </LinearLayout>
@@ -87,16 +87,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ubuntu_bold"
-                android:text="77.77"
+                android:text="@string/dummy_timezone"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/font_monthly_time"
                 tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/first_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:text="Thamrin Doang"
                 android:textColor="@color/black"
                 android:textSize="12sp"
@@ -130,7 +129,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="3dp"
                     android:layout_marginTop="2dp"
-                    app:srcCompat="@drawable/ic_last_record"
+                    app:srcCompat="@drawable/ic_monthly_red_circle"
                     tools:ignore="ContentDescription" />
 
             </LinearLayout>
@@ -140,16 +139,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ubuntu_bold"
-                android:text="77.77"
+                android:text="@string/dummy_timezone"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/font_monthly_time"
                 tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/last_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:text="Grand Doang"
                 android:textColor="@color/black"
                 android:textSize="12sp"
@@ -186,7 +184,7 @@
                 android:fontFamily="@font/ubuntu_bold"
                 android:text="77.00"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/font_monthly_time"
                 tools:ignore="HardcodedText" />
 
         </LinearLayout>

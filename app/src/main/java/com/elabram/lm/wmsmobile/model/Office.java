@@ -5,8 +5,17 @@ public class Office
     private String oc_site;
     private String oc_lat;
     private String oc_long;
+    private String oc_radius;
 
     public Office() {
+    }
+
+    public String getOc_radius() {
+        return oc_radius;
+    }
+
+    public void setOc_radius(String oc_radius) {
+        this.oc_radius = oc_radius;
     }
 
     public String getOc_site() {

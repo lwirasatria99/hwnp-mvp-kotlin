@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:background="@color/grey_attendace"
+    android:theme="@style/AppThemeFont"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!-- Toolbar -->
+    <RelativeLayout
+        android:elevation="@dimen/size_toolbar_shadow"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        tools:targetApi="lollipop">
+
+        <ImageView
+            android:layout_marginStart="10dp"
+            android:id="@+id/logo_elabram"
+            android:layout_width="100dp"
+            android:layout_height="27dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/logo_rms"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/iv_logo_client"
+            android:layout_width="55dp"
+            android:layout_height="27dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/logo_elabram"
+            tools:ignore="ContentDescription" />
+
+        <!--Circle Image -->
+        <android.support.v7.widget.CardView
+            android:id="@+id/view2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:innerRadius="0dp"
+            android:shape="ring"
+            android:thicknessRatio="1.9"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="2dp">
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                tools:ignore="ContentDescription" />
+
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+    <!-- Menu 1-->
+    <FrameLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Attendance Record -->
+        <RelativeLayout
+            android:id="@+id/relative_attendance_record"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/square_cornerfull_list">
+
+            <TextView
+                android:focusable="false"
+                android:fontFamily="@font/ubuntu_bold"
+                android:textColor="@color/blue"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="Attendance Record"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:focusable="false"
+                android:layout_marginEnd="10dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/ic_arrow_right"
+                tools:ignore="ContentDescription"
+                tools:targetApi="lollipop" />
+
+        </RelativeLayout>
+
+        <ImageView
+            app:srcCompat="@drawable/ic_attendance_record"
+            android:focusable="false"
+            android:layout_marginStart="50dp"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            tools:ignore="ContentDescription"
+            tools:targetApi="lollipop" />
+
+    </FrameLayout>
+
+    <!-- Menu 2-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Mobile Attendance -->
+        <RelativeLayout
+            android:id="@+id/relative_mobile_attendance"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/square_cornerfull_list">
+
+            <TextView
+                android:focusable="false"
+                android:fontFamily="@font/ubuntu_bold"
+                android:textColor="@color/blue"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="Mobile Attendance"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:focusable="false"
+                android:layout_marginEnd="10dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/ic_arrow_right"
+                tools:ignore="ContentDescription"
+                tools:targetApi="lollipop" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:focusable="false"
+            android:layout_marginStart="50dp"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            app:srcCompat="@drawable/ic_mobile_attendance"
+            tools:ignore="ContentDescription" />
+
+    </RelativeLayout>
+
+</LinearLayout>

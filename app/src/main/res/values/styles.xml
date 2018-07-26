@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/bg_blueblack</item>
+        <item name="colorPrimaryDark">@color/blue</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
@@ -18,6 +18,7 @@
     <style name="AppThemeFont" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textViewStyle">@style/FontTheme</item>
         <item name="colorAccent">@color/login_blue</item>
+        <item name="cardViewStyle">@style/CardView</item>
     </style>
 
     <!-- Font -->
@@ -36,6 +37,10 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorPrimary">@color/bg_blueblack</item>
         <!--<item name="actionModeStyle">@style/styleActionMode</item>-->
+    </style>
+
+    <style name="AppBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorPrimary">@color/blue</item>
     </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
