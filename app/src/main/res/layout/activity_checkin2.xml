@@ -6,37 +6,89 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:theme="@style/AppThemeFont"
     tools:context="com.elabram.lm.wmsmobile.CheckinActivity">
+
+    <!-- Toolbar -->
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="?attr/actionBarSize"-->
+    <!--android:background="@color/white"-->
+    <!--android:elevation="7dp"-->
+    <!--tools:targetApi="lollipop">-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/iv_back"-->
+    <!--android:layout_width="35dp"-->
+    <!--android:layout_height="35dp"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_marginStart="15dp"-->
+    <!--android:background="@mipmap/ic_arrow_left"-->
+    <!--tools:ignore="ContentDescription" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_marginStart="18dp"-->
+    <!--android:layout_toEndOf="@id/iv_back"-->
+    <!--android:fontFamily="@font/ubuntu_bold"-->
+    <!--android:text="Mobile Attendance"-->
+    <!--android:textAllCaps="true"-->
+    <!--android:textColor="@color/blue"-->
+    <!--android:textSize="19sp"-->
+    <!--tools:ignore="HardcodedText" />-->
+
+    <!--</RelativeLayout>-->
 
     <!-- Toolbar -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
-        android:elevation="7dp"
+        android:elevation="@dimen/size_toolbar_shadow"
         tools:targetApi="lollipop">
 
         <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:id="@+id/logo_elabram"
+            android:layout_width="100dp"
+            android:layout_height="27dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="15dp"
-            android:background="@mipmap/ic_arrow_left"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/logo_rms"
             tools:ignore="ContentDescription" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/iv_logo_client"
+            android:layout_width="55dp"
+            android:layout_height="27dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="18dp"
-            android:layout_toEndOf="@id/iv_back"
-            android:fontFamily="@font/ubuntu_bold"
-            android:text="Mobile Attendance"
-            android:textAllCaps="true"
-            android:textColor="@color/blue"
-            android:textSize="19sp"
-            tools:ignore="HardcodedText" />
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/logo_elabram"
+            tools:ignore="ContentDescription" />
+
+        <!--Circle Image -->
+        <android.support.v7.widget.CardView
+            android:id="@+id/view2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:innerRadius="0dp"
+            android:shape="ring"
+            android:thicknessRatio="1.9"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="2dp">
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                tools:ignore="ContentDescription" />
+
+        </android.support.v7.widget.CardView>
 
     </RelativeLayout>
 
@@ -49,8 +101,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Full Map -->
         <include layout="@layout/content_map" />
 
+        <!-- Data -->
         <LinearLayout
             android:id="@+id/dataLayout"
             android:layout_width="match_parent"
@@ -71,7 +125,6 @@
                     android:layout_marginEnd="15dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
-                    android:layout_weight="1"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -86,7 +139,7 @@
                         android:id="@+id/linear_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
+                        android:layout_marginStart="15dp"
                         android:layout_toEndOf="@+id/ic_calendar"
                         android:orientation="vertical">
 
@@ -119,31 +172,31 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+                <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:layout_marginEnd="15dp"-->
+                <!--android:layout_marginStart="15dp"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="horizontal">-->
 
-                    <!--<LinearLayout-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:background="@drawable/confirm_button_green"-->
-                        <!--android:layout_width="120dp"-->
-                        <!--android:layout_height="30dp"-->
-                        <!--android:gravity="center">-->
+                <!--<LinearLayout-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:background="@drawable/confirm_button_green"-->
+                <!--android:layout_width="120dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:gravity="center">-->
 
-                        <!--<TextView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:textColor="@color/white"-->
-                            <!--android:text="Refresh"/>-->
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:text="Refresh"/>-->
 
-                    <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
 
-                </RelativeLayout>
+                <!--</RelativeLayout>-->
 
             </LinearLayout>
 
@@ -167,7 +220,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
@@ -181,7 +233,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
+                        android:layout_marginStart="15dp"
                         android:orientation="vertical">
 
                         <RelativeLayout
@@ -237,7 +289,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
@@ -251,7 +302,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
+                        android:layout_marginStart="15dp"
                         android:orientation="vertical">
 
                         <RelativeLayout
@@ -305,14 +356,70 @@
 
         </LinearLayout>
 
+        <!--<LinearLayout-->
+        <!--android:id="@+id/linear_attendance_record"-->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_height="56dp"-->
+        <!--android:layout_below="@+id/dataLayout"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_marginEnd="5dp"-->
+        <!--android:layout_marginStart="10dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="@drawable/square_cornerfull_orange"-->
+        <!--android:elevation="3dp"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:paddingBottom="7dp"-->
+        <!--android:paddingEnd="12dp"-->
+        <!--android:paddingStart="12dp"-->
+        <!--android:paddingTop="7dp">-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="15dp"-->
+        <!--android:layout_height="15dp"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:background="@drawable/ic_attendance_calendar_white"-->
+        <!--android:focusable="false"-->
+        <!--tools:ignore="ContentDescription" />-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_marginStart="4dp"-->
+        <!--android:focusable="false"-->
+        <!--android:text="Attendance Record"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textStyle="bold"-->
+        <!--tools:ignore="HardcodedText,SmallSp" />-->
+
+        <!--</LinearLayout>-->
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabAttendance"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/fabRefresh"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/orange"
+            android:focusable="true"
+            app:borderWidth="0dp"
+            app:elevation="6dp"
+            app:fabSize="normal"
+            app:pressedTranslationZ="12dp"
+            app:rippleColor="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_attendance_calendar_white"
+            tools:targetApi="lollipop" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabRefresh"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_above="@+id/fabMyLocation"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/dataLayout"
-            android:layout_marginEnd="70dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/login_blue"
             android:focusable="true"
@@ -328,8 +435,9 @@
             android:id="@+id/fabMyLocation"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_above="@+id/buttonTemp"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/dataLayout"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/white"
@@ -341,6 +449,31 @@
             app:rippleColor="@color/colorPrimary"
             app:srcCompat="@drawable/ic_mobile_attendance_target"
             tools:targetApi="lollipop" />
+
+        <!-- Button Temp -->
+        <Button
+            android:id="@+id/buttonTemp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/confirm_button_green"
+            android:text="Test"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            tools:ignore="HardcodedText"
+            tools:targetApi="lollipop" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPosition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp" />
 
         <Button
             android:id="@+id/buttonCheckin"
@@ -357,8 +490,30 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:visibility="gone"
             tools:ignore="HardcodedText"
             tools:targetApi="lollipop" />
+
+        <Button
+            android:id="@+id/buttonOutRadius"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/confirm_button_red"
+            android:elevation="3dp"
+            android:fontFamily="@font/ubuntu_light"
+            android:text="Out of Radius"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:ignore="HardcodedText"
+            tools:targetApi="lollipop" />
+
 
     </RelativeLayout>
 

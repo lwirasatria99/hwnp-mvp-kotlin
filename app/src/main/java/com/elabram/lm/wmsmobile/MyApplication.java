@@ -3,6 +3,10 @@ package com.elabram.lm.wmsmobile;
 import android.app.Application;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
+
+import io.fabric.sdk.android.Fabric;
+
 public class MyApplication extends Application {
 
     private static final String TAG = MyApplication.class.getSimpleName();
@@ -10,6 +14,6 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.e(TAG, "onCreate: Welcome");
+        Fabric.with(this, new Crashlytics());
     }
 }

@@ -88,9 +88,9 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Authenticating...");
 
         imei = getDeviceId();
-        Log.e(TAG, "onCreate: IMEI " + imei);
 
         buttonLogin.setOnClickListener(view -> login());
+
     }
 
     private String getVersionInfo() {
@@ -132,7 +132,9 @@ public class LoginActivity extends AppCompatActivity {
         //noinspection ConstantConditions
         adVersion.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         adVersion.setCancelable(false);
-        adVersion.show();
+
+        if (!isFinishing())
+            adVersion.show();
 
         // Go To Playstore
         tvUpdate.setOnClickListener(view1 -> {
@@ -147,8 +149,10 @@ public class LoginActivity extends AppCompatActivity {
         // Exit the apps
         tvNoThanks.setOnClickListener(view1 -> {
             if (Build.VERSION.SDK_INT >= 21) {
+                dismissAlert();
                 finishAndRemoveTask();
             } else {
+                dismissAlert();
                 finishAffinity();
             }
         });
@@ -234,7 +238,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showMainMenu() {
         dismissDialog();
-        startActivity(new Intent(mActivity, MainActivity.class));
+        startActivity(new Intent(mActivity, CheckinActivity.class));
         this.finish();
     }
 
@@ -279,9 +283,7 @@ public class LoginActivity extends AppCompatActivity {
                                 break;
                         }
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
+                } catch (IOException | JSONException e) {
                     e.printStackTrace();
                 }
             }

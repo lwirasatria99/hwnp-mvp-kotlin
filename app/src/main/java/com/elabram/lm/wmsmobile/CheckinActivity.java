@@ -1,12 +1,19 @@
 package com.elabram.lm.wmsmobile;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.InsetDrawable;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
@@ -16,12 +23,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +40,7 @@ import com.elabram.lm.wmsmobile.model.Office;
 import com.elabram.lm.wmsmobile.rest.ApiClient;
 import com.elabram.lm.wmsmobile.utilities.AppInfo;
 import com.elabram.lm.wmsmobile.utilities.GPSTracker;
+import com.elabram.lm.wmsmobile.utilities.WordUtils;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -48,6 +58,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,8 +76,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.PREFS_LOGIN;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.isOnline;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_address;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_image;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_mobile;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_nip;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_phone;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.position;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.token;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.user_email;
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.user_fullname;
 
 public class CheckinActivity extends AppCompatActivity implements OnMapReadyCallback,
         LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -83,11 +103,11 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     @BindView(R.id.fabMyLocation)
     FloatingActionButton fabMyLocation;
 
+    @BindView(R.id.fabAttendance)
+    FloatingActionButton fabAttendance;
+
     @BindView(R.id.dataLayout)
     LinearLayout dataLayout;
-
-//    @BindView(R.id.toolbar)
-//    Toolbar toolbar;
 
     @BindView(R.id.date)
     TextView tvDate;
@@ -113,11 +133,14 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     @BindView(R.id.buttonRefresh)
     ImageView buttonRefresh;
 
-    @BindView(R.id.iv_back)
-    ImageView iv_back;
-
     @BindDrawable(R.drawable.bg_confirm_white)
     Drawable bg_confirm;
+
+    @BindView(R.id.buttonOutRadius)
+    Button buttonOutOfRadius;
+
+    @BindView(R.id.progressBarPosition)
+    ProgressBar progressBarPosition;
 
     private String TAG = CheckinActivity.class.getSimpleName();
 
@@ -147,21 +170,27 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     private String s_timeStamp;
     private String gmt;
 
+    @BindView(R.id.iv_logo_client)
+    ImageView iv_logo_client;
+
+    @BindView(R.id.iv_profile)
+    ImageView iv_profile_main;
+
+    private AlertDialog dialogProfile;
+    private AlertDialog dialogLogout;
+    private AlertDialog adVersion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkin2);
+
         ButterKnife.bind(this);
-        Fabric.with(this, new Crashlytics());
+        Crashlytics.log(TAG + " " + user_email);
 
-        iv_back.setOnClickListener(view -> finish());
-
-//        setSupportActionBar(toolbar);
-//        assert getSupportActionBar() != null;
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        getSupportActionBar().setHomeButtonEnabled(true);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        toolbar.setNavigationOnClickListener(view -> onBackPressed());
+        getSharedUserDetail();
+        initiateProfilePicture();
+        retrofitReadClient();
 
         Long tsLong = System.currentTimeMillis() / 1000;
         s_timeStamp = tsLong.toString();
@@ -177,11 +206,12 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        getSharedUserDetail();
         buildGoogleApiClient();
         buttonCheckin.setVisibility(View.GONE);
+        progressBarPosition.setVisibility(View.VISIBLE);
 
         loadSiteAndStatus();
+        retrofitCheckVersion();
 
         GPSTracker gpsTracker = new GPSTracker(this);
         myLat = gpsTracker.getLatitude();
@@ -192,16 +222,159 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
-
                 setMarker(locationResult);
-
                 locationChanged(locationResult);
             }
         };
 
-        refreshConnectionClick();
         myLocationClick();
         refreshPageClick();
+        attendanceRecordClick();
+
+        refreshConnectionClick();
+        profileClick();
+
+    }
+
+    private void profileClick() {
+        iv_profile_main.setOnClickListener(view -> dialogProfile());
+    }
+
+    private void dialogProfile() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.dialog_profile, null);
+
+        TextView tv_name = view.findViewById(R.id.tv_name);
+        TextView tv_id = view.findViewById(R.id.tv_id);
+        TextView tv_position = view.findViewById(R.id.tv_position);
+        TextView tv_email = view.findViewById(R.id.tv_email);
+        TextView tv_mobile = view.findViewById(R.id.tv_mobile);
+        TextView tv_phone = view.findViewById(R.id.tv_phone);
+        ImageView iv_profile = view.findViewById(R.id.iv_profile);
+        ImageView fab_about = view.findViewById(R.id.fab_about);
+
+        LinearLayout linear_logout = view.findViewById(R.id.linear_logout);
+        LinearLayout linear_change = view.findViewById(R.id.linear_change_password);
+        LinearLayout linear_feedback = view.findViewById(R.id.linear_feedback);
+
+        builder.setView(view);
+        dialogProfile = builder.create();
+        ColorDrawable back = new ColorDrawable(Color.TRANSPARENT);
+        InsetDrawable inset = new InsetDrawable(back, 20);
+        //noinspection ConstantConditions
+        dialogProfile.getWindow().setBackgroundDrawable(inset);
+        dialogProfile.show();
+
+        setDetailsForm(tv_name, tv_id, tv_position, tv_email, tv_mobile, tv_phone, iv_profile);
+
+        fab_about.setOnClickListener(view1 -> startActivity(new Intent(this, AboutActivity.class)));
+
+        linear_logout.setOnClickListener(view1 -> dialogLogout());
+
+        linear_change.setOnClickListener(view1 -> startActivity(new Intent(this, ChangePasswordActivity.class)));
+
+        linear_feedback.setOnClickListener(view1 -> startActivity(new Intent(this, FeedbackActivity.class)));
+    }
+
+    private void dialogLogout() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.dialog_delete, null);
+
+        TextView buttonNo = view.findViewById(R.id.No);
+        TextView buttonYes = view.findViewById(R.id.Yes);
+        TextView tvMessage = view.findViewById(R.id.tvMessage);
+
+        builder.setView(view);
+        dialogLogout = builder.create();
+        //noinspection ConstantConditions
+        dialogLogout.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogLogout.show();
+
+        String s_logout = "Are you sure you want to logout ?";
+        tvMessage.setText(s_logout);
+
+        buttonNo.setOnClickListener(view1 -> dialogLogout.cancel());
+
+        buttonYes.setOnClickListener(view12 -> logout());
+    }
+
+    private void logout() {
+        // Clear SharedPreferences
+        SharedPreferences settings = getSharedPreferences(PREFS_LOGIN, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.clear();
+        editor.apply();
+
+        // Clear Activity And Fragment
+        dialogProfile.dismiss();
+        dialogLogout.dismiss();
+        //assert getFragmentManager() != null;
+        //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    private void setDetailsForm(TextView tv_name, TextView tv_id, TextView tv_position,
+                                TextView tv_email, TextView tv_mobile, TextView tv_phone, ImageView iv_profile) {
+
+        tv_name.setText(WordUtils.capitalize(user_fullname));
+        tv_id.setText(mem_nip);
+        tv_position.setText(position);
+        tv_email.setText(user_email);
+        tv_mobile.setText(mem_mobile);
+        tv_phone.setText(mem_phone);
+
+        // Profile Picture
+        if (mem_image.equals("https://elabram.com/hris/files/employee/") || mem_image.isEmpty()) {
+            iv_profile.setImageResource(R.drawable.profile_default_picture);
+        } else {
+            Picasso.with(this)
+                    .load(mem_image)
+                    .fit()
+                    .into(iv_profile);
+        }
+
+        // ID
+        if (mem_nip.length() == 0) {
+            tv_id.setText("-");
+        }
+
+        // Position
+        if (position.length() == 0) {
+            tv_position.setText("-");
+        }
+
+        // Email
+        if (user_email.length() == 0) {
+            tv_email.setText("-");
+        }
+
+        // Mobile
+        if (mem_mobile.length() == 0) {
+            tv_mobile.setText("-");
+        }
+
+        // Telephone
+        if (mem_phone.length() == 0) {
+            tv_phone.setText("-");
+        }
+    }
+
+
+    private void initiateProfilePicture() {
+        if (mem_image.equals("https://elabram.com/hris/files/employee/") || mem_image.isEmpty()) {
+            iv_profile_main.setImageResource(R.drawable.profile_default_picture);
+        } else {
+            Picasso.with(this)
+                    .load(mem_image)
+                    .fit()
+                    .into(iv_profile_main);
+        }
+    }
+
+    private void attendanceRecordClick() {
+        fabAttendance.setOnClickListener(view -> startActivity(new Intent(this, MonthlyRecordActivity.class)));
     }
 
     private void refreshConnectionClick() {
@@ -213,12 +386,10 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     }
 
     private void refreshPageClick() {
-        fabRefresh.setOnClickListener(view -> refreshActivity());
-    }
-
-    private void refreshActivity() {
-        finish();
-        startActivity(getIntent());
+        fabRefresh.setOnClickListener(view -> {
+            finish();
+            startActivity(getIntent());
+        });
     }
 
     private void setMarker(LocationResult locationResult) {
@@ -226,6 +397,13 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
 
         Double latNow = locationResult.getLastLocation().getLatitude();
         Double longNow = locationResult.getLastLocation().getLongitude();
+
+        /* First Camera Position */
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(new LatLng(latNow, longNow))
+                .zoom(17)
+                .build();
+        map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         for (int k = 0; k < offices.size(); k++) {
             Office office = offices.get(k);
@@ -276,22 +454,15 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         }
     }
 
-    //private void getSharedTaskId() {
-    //SharedPreferences preferences = getSharedPreferences("listclick", 0);
-    //task_id = preferences.getString("task_id", "");
-    //location_name = preferences.getString("location_name", "");
-    //date_ = preferences.getString("date_", "");
-    //lat_ = preferences.getString("lat_", "");
-    //long_ = preferences.getString("long_", "");
-    //}
-
     @Override
     protected void onPause() {
         super.onPause();
         if (mFusedLocationClient != null) {
             stopLocationUpdates();
-            map.clear();
         }
+
+        if (map != null)
+            map.clear();
     }
 
     private void stopLocationUpdates() {
@@ -333,10 +504,13 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                 // Convert to String & Double
                 String s_distanceToOffice = String.valueOf(resultApi[0]);
                 Double d_distanceToOffice = Double.parseDouble(s_distanceToOffice);
+                //Log.e(TAG, "locationChanged: Distance " + s_distanceToOffice);
 
                 if (d_distanceToOffice < d_radius) {
                     site_name = office.getOc_site();
+                    progressBarPosition.setVisibility(View.GONE);
                     buttonCheckin.setVisibility(View.VISIBLE);
+                    buttonOutOfRadius.setVisibility(View.GONE);
                     if (isMock) {
                         processTheMock();
                     } else {
@@ -344,7 +518,9 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                     }
                     break;
                 } else {
+                    progressBarPosition.setVisibility(View.GONE);
                     buttonCheckin.setVisibility(View.GONE);
+                    buttonOutOfRadius.setVisibility(View.VISIBLE);
                 }
             }
         }
@@ -373,15 +549,12 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
             stopLocationUpdates();
             map.clear();
         }
+        dismissAlert();
     }
 
     private void retrofitTimezone(double lat, double lng) {
         String coordinate = lat + "," + lng;
         String apiKey = getString(R.string.map_api);
-
-//        Log.e(TAG, "retrofitTimezone: Latlng " + coordinate);
-//        Log.e(TAG, "retrofitTimezone: s_timestamp " + s_timeStamp);
-//        Log.e(TAG, "retrofitTimezone: apiKey " + apiKey);
 
         Call<ResponseBody> call = new ApiClient().getApiService().cekTimeZone(coordinate, s_timeStamp, apiKey);
         call.enqueue(new Callback<ResponseBody>() {
@@ -482,6 +655,106 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         }
     }
 
+    private void retrofitReadClient() {
+        Call<ResponseBody> call = new ApiClient().getApiService().listLogo(token);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                if (response.body() != null) {
+                    try {
+                        //noinspection ConstantConditions
+                        String mResponse = new String(response.body().bytes());
+                        JSONObject jsonObject = new JSONObject(mResponse);
+
+                        String response_code = jsonObject.getString("response_code");
+                        switch (response_code) {
+                            case "401":
+                                String message = jsonObject.getString("message");
+                                Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                                break;
+                            case "200":
+                                JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                String urlImage = jsonObject1.getString("cus_logo");
+
+                                if (!urlImage.equals("https://elabram.com/hris/")) {
+                                    Picasso.with(CheckinActivity.this)
+                                            .load(urlImage)
+                                            .fit()
+                                            .into(iv_logo_client);
+                                }
+                                break;
+                        }
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                Log.e(TAG, "onFailure: " + t.getCause());
+            }
+        });
+    }
+
+
+    private void retrofitCheckVersion() {
+        Call<ResponseBody> call = new ApiClient().getApiService().checkVersion();
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                try {
+                    if (response.body() != null) {
+                        //noinspection ConstantConditions
+                        String mResponse = new String(response.body().bytes());
+                        Log.e(TAG, "onResponse: CheckVersion " + mResponse);
+                        JSONObject jsonObject = new JSONObject(mResponse);
+
+                        String response_code = jsonObject.getString("response_code");
+                        switch (response_code) {
+                            case "401":
+                                String message = jsonObject.getString("message");
+                                Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                                break;
+                            case "200":
+                                JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                String s_version = jsonObject1.getString("version");
+
+                                if (!s_version.equals(getVersionInfo())) {
+                                    dialogCheckVersion();
+                                }
+                                break;
+                        }
+                    }
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                Log.e(TAG, "onFailure: Version " + t.getMessage());
+            }
+        });
+    }
+
+    private String getVersionInfo() {
+        //int versionCode = -1;
+        String versionName = null;
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            versionName = packageInfo.versionName;
+            //Log.e(TAG, "getVersionInfo: "+versionName );
+            //versionCode = packageInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return versionName;
+    }
+
     private void retrofitCheckinStatus() {
         Call<ResponseBody> call = new ApiClient().getApiService().loadStatusCheckin(token);
         call.enqueue(new Callback<ResponseBody>() {
@@ -493,7 +766,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                     try {
                         //noinspection ConstantConditions
                         String contentResponse = new String(response.body().bytes());
-                        Log.e(TAG, "onResponse: Checkin Status " + contentResponse);
+
                         JSONObject jsonObject = new JSONObject(contentResponse);
                         String response_code = jsonObject.getString("response_code");
                         switch (response_code) {
@@ -546,7 +819,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                Log.e(TAG, "onFailure: CheckinStatus " + t.getCause());
+
                 Toast.makeText(CheckinActivity.this, "Please check your internet & try again", Toast.LENGTH_SHORT).show();
                 dismissProgress();
             }
@@ -555,8 +828,6 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
 
     @SuppressWarnings("ConstantConditions")
     private void retrofitCheckin() {
-        Log.e(TAG, "retrofitCheckin: SITE " + site_name);
-        Log.e(TAG, "retrofitCheckin: GMT " + gmt);
         showProgress();
         Call<ResponseBody> call = new ApiClient().getApiService().checkin(token, site_name, gmt);
         call.enqueue(new Callback<ResponseBody>() {
@@ -578,7 +849,6 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 dismissProgress();
                 Toast.makeText(CheckinActivity.this, "Please try again", Toast.LENGTH_SHORT).show();
-                Log.e(TAG, "onFailure: Checkin " + t.getCause());
             }
         });
     }
@@ -626,9 +896,64 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         });
     }
 
+    private void dialogCheckVersion() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.dialog_version, null);
+
+        TextView tvUpdate = view.findViewById(R.id.tvUpdate);
+        TextView tvNoThanks = view.findViewById(R.id.tvNoThanks);
+
+        builder.setView(view);
+        adVersion = builder.create();
+        //noinspection ConstantConditions
+        adVersion.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        adVersion.setCancelable(false);
+
+        if (!isFinishing())
+            adVersion.show();
+
+        // Go To Playstore
+        tvUpdate.setOnClickListener(view1 -> {
+            final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
+        });
+
+        // Exit the apps
+        tvNoThanks.setOnClickListener(view1 -> {
+            if (Build.VERSION.SDK_INT >= 21) {
+                dismissAlert();
+                finishAndRemoveTask();
+            } else {
+                dismissAlert();
+                finishAffinity();
+            }
+        });
+
+    }
+
+    private void dismissAlert() {
+        if (adVersion != null && adVersion.isShowing()) {
+            adVersion.dismiss();
+        }
+    }
+
     private void getSharedUserDetail() {
         SharedPreferences preferences = getSharedPreferences(AppInfo.PREFS_LOGIN, Context.MODE_PRIVATE);
         token = preferences.getString("token", "");
+        mem_image = preferences.getString("mem_image", "");
+
+        mem_nip = preferences.getString("mem_nip", "");
+        mem_mobile = preferences.getString("mem_mobile", "");
+        mem_phone = preferences.getString("mem_phone", "");
+
+        mem_address = preferences.getString("mem_address", "");
+        position = preferences.getString("position", "");
+        user_fullname = preferences.getString("name", "");
+        user_email = preferences.getString("email", "");
     }
 
     @Override
@@ -682,12 +1007,12 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         map.getUiSettings().setMyLocationButtonEnabled(false);
         map.setMyLocationEnabled(true);
 
-        /* First Camera Position */
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(new LatLng(myLat, myLong))
-                .zoom(17)
-                .build();
-        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+//        /* First Camera Position */
+//        CameraPosition cameraPosition = new CameraPosition.Builder()
+//                .target(new LatLng(myLat, myLong))
+//                .zoom(17)
+//                .build();
+//        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         retrofitTimezone(myLat, myLong);
         //Log.e(TAG, "onMapReady: " + cache_timeZone_name);

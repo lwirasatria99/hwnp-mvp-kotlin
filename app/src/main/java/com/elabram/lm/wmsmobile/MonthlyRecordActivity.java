@@ -45,7 +45,6 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.fabric.sdk.android.Fabric;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -121,7 +120,7 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monthlyrecord2);
         ButterKnife.bind(this);
-        Crashlytics.log(TAG + " "+user_email);
+        Crashlytics.log(TAG + " " + user_email);
 
         // Toolbar
 //        setSupportActionBar(toolbar);
@@ -134,8 +133,10 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
 
         getSharedUserDetail();
         monthlies = new ArrayList<>();
+
         adapter = new MonthlyAdapter(this, monthlies);
         listView.setAdapter(adapter);
+
 
         tvNoData.setVisibility(View.GONE);
         relativeLoadMore.setVisibility(View.GONE);
@@ -184,10 +185,10 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
         }
 
         Call<ResponseBody> call = new ApiClient().getApiService().monthlyList(token, firstDay, realLastDay, mem_id);
-        Log.e(TAG, "retrofitListMonthly: first " + firstDay);
-        Log.e(TAG, "retrofitListMonthly: last " + realLastDay);
-        Log.e(TAG, "retrofitListMonthly: mem_id " + mem_id);
-        Log.e(TAG, "retrofitListMonthly: token " + token);
+//        Log.e(TAG, "retrofitListMonthly: first " + firstDay);
+//        Log.e(TAG, "retrofitListMonthly: last " + realLastDay);
+//        Log.e(TAG, "retrofitListMonthly: mem_id " + mem_id);
+//        Log.e(TAG, "retrofitListMonthly: token " + token);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -199,9 +200,7 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
                         String content = new String(response.body().bytes());
                         Log.e(TAG, "onResponse: Monthly List " + content);
                         parseJSON(content);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (JSONException e) {
+                    } catch (IOException | JSONException e) {
                         e.printStackTrace();
                     }
                 }

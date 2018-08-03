@@ -195,9 +195,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                         }
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
+                } catch (IOException | JSONException e) {
                     e.printStackTrace();
                 }
             }
