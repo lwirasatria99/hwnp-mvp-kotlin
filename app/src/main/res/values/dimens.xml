@@ -6,7 +6,7 @@
     <dimen name="space_icon_totext">10dp</dimen>
     <dimen name="ic_profile_size">18dp</dimen>
     <dimen name="size_profile_top">15dp</dimen>
-    <dimen name="size_font_attendance">10sp</dimen>
+    <dimen name="size_font_attendance">12sp</dimen>
     <dimen name="size_toolbar_shadow">7dp</dimen>
     <dimen name="font_monthly_time">16sp</dimen>
     <dimen name="space_15">15dp</dimen>
