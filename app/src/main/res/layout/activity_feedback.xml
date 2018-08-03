@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/rootView"
+    tools:context=".FeedbackActivity">
+
+    <!-- Toolbar -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:elevation="@dimen/size_toolbar_shadow"
+        tools:targetApi="lollipop">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:background="@mipmap/ic_arrow_left"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="18dp"
+            android:layout_toEndOf="@id/iv_back"
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="Feedback"
+            android:textAllCaps="true"
+            android:textColor="@color/blue"
+            android:textSize="19sp"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_15"
+        android:layout_marginStart="@dimen/space_15"
+        android:layout_marginTop="@dimen/space_15"
+        android:text="Subject"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/et_subject"
+        android:text=""
+        android:padding="5dp"
+        android:elevation="3dp"
+        android:layout_marginEnd="@dimen/space_15"
+        android:layout_marginStart="@dimen/space_15"
+        android:background="@drawable/square_cornerfull_white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:targetApi="lollipop"
+        android:inputType="text"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_15"
+        android:layout_marginStart="@dimen/space_15"
+        android:layout_marginTop="@dimen/space_15"
+        android:text="Type your feedback"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/etFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/square_cornerfull_white"
+        android:elevation="3dp"
+        android:gravity="top|start"
+        android:inputType="textMultiLine"
+        android:lines="5"
+        android:text=""
+        android:padding="5dp"
+        tools:ignore="LabelFor"
+        tools:targetApi="lollipop" />
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="11dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/blue"
+        android:padding="10dp"
+        android:text="Submit"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        tools:ignore="HardcodedText"
+        tools:targetApi="lollipop" />
+
+</LinearLayout>

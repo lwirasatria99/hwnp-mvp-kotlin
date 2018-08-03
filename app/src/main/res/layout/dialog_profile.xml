@@ -68,34 +68,81 @@
     </FrameLayout>
 
     <LinearLayout
-        android:id="@+id/linear_change_password"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/square_cornerfull_blue"
-        android:elevation="3dp"
-        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
         android:orientation="horizontal"
-        tools:targetApi="lollipop">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:focusable="false"
-            app:srcCompat="@drawable/ic_profile_lock"
-            tools:ignore="ContentDescription" />
+        <LinearLayout
+            android:layout_marginStart="3dp"
+            android:id="@+id/linear_change_password"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/square_cornerfull_blue"
+            android:elevation="3dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            tools:targetApi="lollipop">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:focusable="false"
-            android:fontFamily="@font/ubuntu_bold"
-            android:text="CHANGE PASSWORD"
-            android:textColor="@color/white"
-            tools:ignore="HardcodedText" />
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:focusable="false"
+                app:srcCompat="@drawable/ic_profile_lock"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:focusable="false"
+                android:textSize="12sp"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="CHANGE PASSWORD"
+                android:textColor="@color/white"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginEnd="3dp"
+            android:layout_marginStart="3dp"
+            android:id="@+id/linear_feedback"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/square_cornerfull_blue"
+            android:elevation="3dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            tools:targetApi="lollipop">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:focusable="false"
+                app:srcCompat="@drawable/ic_profile_phone_white"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:focusable="false"
+                android:textSize="12sp"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="Feedback"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

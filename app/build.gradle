@@ -8,10 +8,10 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.elabram.lm.wmsmobile"
-        minSdkVersion 18
+        minSdkVersion 21
         targetSdkVersion 27
-        versionCode 3
-        versionName '1.2'
+        versionCode 5
+        versionName '1.2.2'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -48,6 +48,10 @@ dependencies {
     // retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    //rx-java
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.17'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     // month-picker
     implementation 'com.shawnlin:number-picker:2.4.4'
     testImplementation 'junit:junit:4.12'

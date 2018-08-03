@@ -34,3 +34,7 @@
 -keepattributes Signature
 # Retain declared checked exceptions for use by a Proxy instance.
 -keepattributes Exceptions
+
+# Firebase Crashlytic
+-keep class com.crashlytics.** { *; }
+-keepattributes *Annotation*,SourceFile,LineNumberTable

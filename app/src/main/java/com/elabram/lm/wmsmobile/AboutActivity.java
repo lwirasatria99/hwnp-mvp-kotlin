@@ -80,32 +80,35 @@ public class AboutActivity extends AppCompatActivity {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                try {
-                    //noinspection ConstantConditions
-                    String mResponse = new String(response.body().bytes());
-                    JSONObject jsonObject = new JSONObject(mResponse);
+                if (response.body() != null) {
+                    try {
+                        //noinspection ConstantConditions
+                        String mResponse = new String(response.body().bytes());
+                        JSONObject jsonObject = new JSONObject(mResponse);
 
-                    String response_code = jsonObject.getString("response_code");
-                    switch (response_code) {
-                        case "401":
-                            String message = jsonObject.getString("message");
-                            Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
-                            snackbar.show();
-                            break;
-                        case "200":
-                            JSONObject jsonObject1 = jsonObject.getJSONObject("data");
-                            String urlImage = jsonObject1.getString("cus_logo");
-                            if (!urlImage.equals("https://elabram.com/hris/")) {
-                                Picasso.with(AboutActivity.this)
-                                        .load(urlImage)
-                                        .fit()
-                                        .into(iv_logo_client);
-                            }
-                            break;
+                        String response_code = jsonObject.getString("response_code");
+                        switch (response_code) {
+                            case "401":
+                                String message = jsonObject.getString("message");
+                                Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                                break;
+                            case "200":
+                                JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                String urlImage = jsonObject1.getString("cus_logo");
+                                if (!urlImage.equals("https://elabram.com/hris/")) {
+                                    Picasso.with(AboutActivity.this)
+                                            .load(urlImage)
+                                            .fit()
+                                            .into(iv_logo_client);
+                                }
+                                break;
+                        }
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (IOException | JSONException e) {
-                    e.printStackTrace();
                 }
+
             }
 
             @Override

@@ -108,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
                     .into(iv_profile_main);
         }
 
+        openDialogProfile();
+    }
+
+    private void openDialogProfile() {
         iv_profile_main.setOnClickListener(view -> dialogProfile());
     }
 
@@ -126,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayout linear_logout = view.findViewById(R.id.linear_logout);
         LinearLayout linear_change = view.findViewById(R.id.linear_change_password);
+        LinearLayout linear_feedback = view.findViewById(R.id.linear_feedback);
 
         builder.setView(view);
         dialogProfile = builder.create();
@@ -142,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
         linear_logout.setOnClickListener(view1 -> dialogLogout());
 
         linear_change.setOnClickListener(view1 -> startActivity(new Intent(this, ChangePasswordActivity.class)));
+
+        linear_feedback.setOnClickListener(view1 -> startActivity(new Intent(this, FeedbackActivity.class)));
     }
 
     private String getVersionInfo() {
@@ -377,33 +384,35 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                try {
-                    //noinspection ConstantConditions
-                    String mResponse = new String(response.body().bytes());
-                    Log.e(TAG, "onResponse: " + mResponse);
-                    JSONObject jsonObject = new JSONObject(mResponse);
+                if (response.body() != null) {
+                    try {
+                        //noinspection ConstantConditions
+                        String mResponse = new String(response.body().bytes());
+                        Log.e(TAG, "onResponse: " + mResponse);
+                        JSONObject jsonObject = new JSONObject(mResponse);
 
-                    String response_code = jsonObject.getString("response_code");
-                    switch (response_code) {
-                        case "401":
-                            String message = jsonObject.getString("message");
-                            Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
-                            snackbar.show();
-                            break;
-                        case "200":
-                            JSONObject jsonObject1 = jsonObject.getJSONObject("data");
-                            String urlImage = jsonObject1.getString("cus_logo");
-                            Log.e(TAG, "onResponse: urlImage " + urlImage);
-                            if (!urlImage.equals("https://elabram.com/hris/")) {
-                                Picasso.with(MainActivity.this)
-                                        .load(urlImage)
-                                        .fit()
-                                        .into(iv_logo_client);
-                            }
-                            break;
+                        String response_code = jsonObject.getString("response_code");
+                        switch (response_code) {
+                            case "401":
+                                String message = jsonObject.getString("message");
+                                Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                                break;
+                            case "200":
+                                JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                String urlImage = jsonObject1.getString("cus_logo");
+                                Log.e(TAG, "onResponse: urlImage " + urlImage);
+                                if (!urlImage.equals("https://elabram.com/hris/")) {
+                                    Picasso.with(MainActivity.this)
+                                            .load(urlImage)
+                                            .fit()
+                                            .into(iv_logo_client);
+                                }
+                                break;
+                        }
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (IOException | JSONException e) {
-                    e.printStackTrace();
                 }
             }
 

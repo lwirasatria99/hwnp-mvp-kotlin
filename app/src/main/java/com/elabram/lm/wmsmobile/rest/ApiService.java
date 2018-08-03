@@ -1,5 +1,8 @@
 package com.elabram.lm.wmsmobile.rest;
 
+import java.util.HashMap;
+
+import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -50,4 +53,12 @@ public interface ApiService {
 
     @POST("get-version")
     Call<ResponseBody> checkVersion();
+
+    @FormUrlEncoded
+    @POST("changepassword")
+    Call<ResponseBody> changePassword(@FieldMap HashMap<String, String> paramsChange);
+
+    @FormUrlEncoded
+    @POST("support-add")
+    Observable<ResponseBody> feedback(@FieldMap HashMap<String, String> paramsFeedback);
 }

@@ -1,7 +1,6 @@
 package com.elabram.lm.wmsmobile;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -179,20 +178,15 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         getSharedUserDetail();
-        //getSharedTaskId();
         buildGoogleApiClient();
         buttonCheckin.setVisibility(View.GONE);
 
         loadSiteAndStatus();
 
-        buttonRefresh.setOnClickListener(view -> loadSiteAndStatus());
-
         GPSTracker gpsTracker = new GPSTracker(this);
         myLat = gpsTracker.getLatitude();
         myLong = gpsTracker.getLongitude();
         myLatLong = new LatLng(myLat, myLong);
-
-        fabMyLocation.setOnClickListener(view -> myLocation());
 
         mLocationCallback = new LocationCallback() {
             @Override
@@ -205,6 +199,20 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
             }
         };
 
+        refreshConnectionClick();
+        myLocationClick();
+        refreshPageClick();
+    }
+
+    private void refreshConnectionClick() {
+        buttonRefresh.setOnClickListener(view -> loadSiteAndStatus());
+    }
+
+    private void myLocationClick() {
+        fabMyLocation.setOnClickListener(view -> myLocation());
+    }
+
+    private void refreshPageClick() {
         fabRefresh.setOnClickListener(view -> refreshActivity());
     }
 
@@ -232,15 +240,14 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
             String s_distanceToOffice = String.valueOf(resultApi[0]);
             Double d_distanceToOffice = Double.parseDouble(s_distanceToOffice);
 
-            if (d_distanceToOffice < d_radius) {
+            if (d_distanceToOffice < 200) {
                 Log.e(TAG, "locationChanged: Distance Marker " + s_distanceToOffice);
 
                 LatLng latLngTask = new LatLng(d_lat, d_long);
                 map.addMarker(new MarkerOptions()
                         .position(latLngTask)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-                        .title("Task ID: ")
-                        .snippet("Description: "));
+                );
 
                 int stroke_c = 0xffff0000;
                 int transp = 0x44ff0000;
@@ -345,15 +352,16 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
 
     private String checkTimeZone() {
         String timeZone = "";
+        if (cache_timeZone_name != null) {
+            if (cache_timeZone_name.equals("Western Indonesia Time"))
+                timeZone = "WIB";
 
-        if (cache_timeZone_name.equals("Western Indonesia Time"))
-            timeZone = "WIB";
+            if (cache_timeZone_name.equals("Central Indonesia Time"))
+                timeZone = "WITA";
 
-        if (cache_timeZone_name.equals("Central Indonesia Time"))
-            timeZone = "WITA";
-
-        if (cache_timeZone_name.equals("Eastern Indonesia Time"))
-            timeZone = "WIT";
+            if (cache_timeZone_name.equals("Eastern Indonesia Time"))
+                timeZone = "WIT";
+        }
 
         return timeZone;
     }
@@ -371,9 +379,9 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         String coordinate = lat + "," + lng;
         String apiKey = getString(R.string.map_api);
 
-        Log.e(TAG, "retrofitTimezone: Latlng " + coordinate);
-        Log.e(TAG, "retrofitTimezone: s_timestamp " + s_timeStamp);
-        Log.e(TAG, "retrofitTimezone: apiKey " + apiKey);
+//        Log.e(TAG, "retrofitTimezone: Latlng " + coordinate);
+//        Log.e(TAG, "retrofitTimezone: s_timestamp " + s_timeStamp);
+//        Log.e(TAG, "retrofitTimezone: apiKey " + apiKey);
 
         Call<ResponseBody> call = new ApiClient().getApiService().cekTimeZone(coordinate, s_timeStamp, apiKey);
         call.enqueue(new Callback<ResponseBody>() {
@@ -477,7 +485,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     private void retrofitCheckinStatus() {
         Call<ResponseBody> call = new ApiClient().getApiService().loadStatusCheckin(token);
         call.enqueue(new Callback<ResponseBody>() {
-            @SuppressLint("SetTextI18n")
+
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 dismissProgress();
@@ -530,9 +538,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
 
                                 break;
                         }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (JSONException e) {
+                    } catch (IOException | JSONException e) {
                         e.printStackTrace();
                     }
                 }
@@ -607,9 +613,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                             offices.add(office);
                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
+                    } catch (JSONException | IOException e) {
                         e.printStackTrace();
                     }
                 }
@@ -681,7 +685,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         /* First Camera Position */
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(new LatLng(myLat, myLong))
-                .zoom(17) // default 15
+                .zoom(17)
                 .build();
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 

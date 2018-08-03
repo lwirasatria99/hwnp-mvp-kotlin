@@ -39,6 +39,7 @@
         <activity android:name=".AboutActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".FeedbackActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

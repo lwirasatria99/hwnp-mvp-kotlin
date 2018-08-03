@@ -22,5 +22,6 @@
     <string name="dummy_time">09.99</string>
     <string name="dummy_location">Elabram Systems</string>
     <string name="dummy_timezone">77.77 WITA</string>
+    <string name="check_connection">Please check your connection / try again</string>
 
 </resources>

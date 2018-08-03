@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void dialogCheckVersion() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
         @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.dialog_version, null);
 
         TextView tvUpdate = view.findViewById(R.id.tvUpdate);
