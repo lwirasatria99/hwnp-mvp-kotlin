@@ -11,4 +11,6 @@
     <dimen name="font_monthly_time">16sp</dimen>
     <dimen name="space_15">15dp</dimen>
     <dimen name="size_10">10dp</dimen>
+    <dimen name="size_yesno_monthly">15dp</dimen>
+    <dimen name="font_modal">18sp</dimen>
 </resources>

@@ -254,7 +254,7 @@ public class PerformanceChartActivity extends AppCompatActivity implements OnCha
             mChart.getData().notifyDataChanged();
             mChart.notifyDataSetChanged();
         } else {
-            barDataSet = new BarDataSet(yVals1, "Statistics Attendance");
+            barDataSet = new BarDataSet(yVals1, "");
             barDataSet.setDrawIcons(false);
             barDataSet.setColors(getColors());
             barDataSet.setStackLabels(new String[]{"Late", "On Time"});
@@ -281,8 +281,8 @@ public class PerformanceChartActivity extends AppCompatActivity implements OnCha
 
         @SuppressLint("InflateParams") final View dialogView = inflater.inflate(R.layout.dialog_year_picker, null);
         final NumberPicker yearPicker = dialogView.findViewById(R.id.picker_year);
-        final ImageView imageCheck = dialogView.findViewById(R.id.imageCheck);
-        //final ImageView imageCross = dialogView.findViewById(R.id.imageCross);
+        final RelativeLayout relativeCancel = dialogView.findViewById(R.id.relative_cancel);
+        final RelativeLayout relativeConfirm = dialogView.findViewById(R.id.relative_confirm);
 
         Typeface type = Typeface.createFromAsset(getAssets(), "fonts/Ubuntu-B.ttf");
         yearPicker.setTypeface(type);
@@ -299,8 +299,9 @@ public class PerformanceChartActivity extends AppCompatActivity implements OnCha
         final AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
-        imageCheck.setOnClickListener(view -> setYear(yearPicker, alertDialog));
+        relativeConfirm.setOnClickListener(view -> setYear(yearPicker, alertDialog));
 
+        relativeCancel.setOnClickListener(view -> alertDialog.cancel());
     }
 
     private void setYear(NumberPicker yearPicker, AlertDialog alertDialog) {

@@ -94,7 +94,7 @@
                 android:layout_marginStart="4dp"
                 android:focusable="false"
                 android:fontFamily="@font/ubuntu_bold"
-                android:text="ABOUT US"
+                android:text="ABOUT"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 tools:ignore="HardcodedText" />
@@ -135,7 +135,7 @@
                 android:layout_marginStart="4dp"
                 android:focusable="false"
                 android:fontFamily="@font/ubuntu_bold"
-                android:text="Feedback"
+                android:text="Support"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="12sp"
@@ -448,6 +448,14 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:background="@color/grey_profile" />
+
         <!-- Logout-->
         <LinearLayout
             android:id="@+id/linear_logout"
@@ -455,7 +463,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/square_cornerfull_red"
             android:elevation="3dp"
             android:gravity="center"

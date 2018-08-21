@@ -113,7 +113,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     @BindView(R.id.buttonCheckin)
-    Button buttonCheckin;
+    Button buttonRecord;
 
     @BindView(R.id.rootView)
     LinearLayout rootView;
@@ -200,6 +200,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
 
     private String message_greetings;
     private Drawable img_attendance;
+    private long delayShow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -226,7 +227,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         buildGoogleApiClient();
-        buttonCheckin.setVisibility(View.GONE);
+        buttonRecord.setVisibility(View.GONE);
         progressBarPosition.setVisibility(View.VISIBLE);
 
         loadSiteAndStatus();
@@ -249,7 +250,6 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         refreshConnectionClick();
 
         setGreetingsFirstTime();
-        retrofitShowGreeting();
 
 //        else if (isBirthday(dateNow())) {
 //            s_type_attendance = "birthday";
@@ -259,41 +259,39 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     }
 
     private void setGreetingsFirstTime() {
+        delayShow = 3000;
         if (isMorning(dateNow())) {
             s_type_attendance = "morning";
             img_attendance = getResources().getDrawable(R.drawable.greetings_morning);
-        }
-        else if (isDay(dateNow())) {
+        } else if (isDay(dateNow())) {
             s_type_attendance = "day";
             img_attendance = getResources().getDrawable(R.drawable.greetings_afternoon);
-        }
-        else if (isAfternoon(dateNow())) {
+        } else if (isAfternoon(dateNow())) {
             s_type_attendance = "afternoon";
             img_attendance = getResources().getDrawable(R.drawable.greetings_afternoon);
-        }
-        else if (isEvening(dateNow())) {
+        } else if (isEvening(dateNow())) {
+            s_type_attendance = "night";
+            img_attendance = getResources().getDrawable(R.drawable.greetings_night);
+        } else if (isEvening1(dateNow())) {
             s_type_attendance = "night";
             img_attendance = getResources().getDrawable(R.drawable.greetings_night);
         }
-        else if (isEvening1(dateNow())) {
-            s_type_attendance = "night";
-            img_attendance = getResources().getDrawable(R.drawable.greetings_night);
-        }
+        retrofitShowGreeting();
     }
 
     private void setGreetingsRecord() {
+        delayShow = 5000;
         if (isEarly(dateNow())) {
             s_type_attendance = "early";
-            img_attendance = getResources().getDrawable(R.drawable.wms_early);
-        }
-        else if (isOntime(dateNow())) {
+            img_attendance = getResources().getDrawable(R.drawable.record_early);
+        } else if (isOntime(dateNow())) {
             s_type_attendance = "ontime";
-            img_attendance = getResources().getDrawable(R.drawable.wms_ontime);
-        }
-        else if (isLate1(dateNow())) {
+            img_attendance = getResources().getDrawable(R.drawable.record_ontime);
+        } else if (isLate1(dateNow())) {
             s_type_attendance = "late";
-            img_attendance = getResources().getDrawable(R.drawable.wms_late);
+            img_attendance = getResources().getDrawable(R.drawable.record_late);
         }
+        retrofitShowGreeting();
     }
 
     private void showGreetings() {
@@ -310,7 +308,8 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         ivGreeting.setImageDrawable(img_attendance);
         tvGreetings.setText(message_greetings);
 
-        new Handler().postDelayed(() -> adGreetings.dismiss(), 3000);
+        Log.e(TAG, "showGreetings: Delay " + delayShow);
+        new Handler().postDelayed(() -> adGreetings.dismiss(), delayShow);
     }
 
     private void dialogProfile() {
@@ -575,7 +574,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                 if (d_distanceToOffice < d_radius) {
                     site_name = office.getOc_site();
                     progressBarPosition.setVisibility(View.GONE);
-                    buttonCheckin.setVisibility(View.VISIBLE);
+                    buttonRecord.setVisibility(View.VISIBLE);
                     buttonOutOfRadius.setVisibility(View.GONE);
                     if (isMock) {
                         processTheMock();
@@ -585,7 +584,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                     break;
                 } else {
                     progressBarPosition.setVisibility(View.GONE);
-                    buttonCheckin.setVisibility(View.GONE);
+                    buttonRecord.setVisibility(View.GONE);
                     buttonOutOfRadius.setVisibility(View.VISIBLE);
                 }
             }
@@ -654,7 +653,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     }
 
     private void processNoMock(Double lat, Double lng) {
-        buttonCheckin.setOnClickListener(view -> {
+        buttonRecord.setOnClickListener(view -> {
             if (isOnline(this)) {
                 gmt = checkTimeZone();
                 if (!gmt.isEmpty()) {
@@ -673,14 +672,14 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     private void processTheMock() {
         Log.e(TAG, "locationChanged: " + "Yes Mock");
 
-        Crashlytics.log(user_fullname + " "+ "FAKE GPS");
+        Crashlytics.log(user_fullname + " " + "FAKE GPS");
         Snackbar snackbar = Snackbar.make(rootView,
                 "We detected the use of fake GPS application. As logo_indosat consequence, " +
                         "we will report this illegal action to HR to be processed accordingly.",
                 Snackbar.LENGTH_INDEFINITE
         );
         snackbar.show();
-        buttonCheckin.setEnabled(false);
+        buttonRecord.setEnabled(false);
 
         retrofitReportFakeGPS();
     }
@@ -698,7 +697,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                     @Override
                     public void onNext(ResponseBody responseBody) {
                         try {
-                            Log.e(TAG, "onNext Fake GPS: "+responseBody.string());
+                            Log.e(TAG, "onNext Fake GPS: " + responseBody.string());
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -706,7 +705,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e(TAG, "onError Fake GPS: "+e.getCause());
+                        Log.e(TAG, "onError Fake GPS: " + e.getCause());
                     }
 
                     @Override
@@ -846,7 +845,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                                         for (int i = 0; i < jsonArray.length(); i++) {
                                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                                             message_greetings = jsonObject1.getString("message");
-                                            Log.e(TAG, "onNext: message_greetings %"+message_greetings);
+                                            Log.e(TAG, "onNext: message_greetings %" + message_greetings);
                                         }
 
                                         break;
@@ -876,7 +875,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
         HashMap<String, String> params = new HashMap<>();
         params.put("token", token);
         params.put("type", s_type_attendance);
-        Log.e(TAG, "getParamsGreeting: "+params);
+        Log.e(TAG, "getParamsGreeting: " + params);
         return params;
     }
 
@@ -947,7 +946,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                     try {
                         //noinspection ConstantConditions
                         String contentResponse = new String(response.body().bytes());
-                        Log.e(TAG, "onResponse: Status Checkin %"+contentResponse);
+                        Log.e(TAG, "onResponse Status Checkin: " + contentResponse);
                         JSONObject jsonObject = new JSONObject(contentResponse);
                         String response_code = jsonObject.getString("response_code");
                         switch (response_code) {
@@ -990,9 +989,50 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                                 //else
                                 //    tvLastLocation.setText("(-)");
 
+                                break;
+                        }
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                Toast.makeText(CheckinActivity.this, "Please check your internet & try again", Toast.LENGTH_SHORT).show();
+                dismissProgress();
+                Crashlytics.log(user_fullname + " " + t.getCause());
+            }
+        });
+    }
+
+    private void retrofitCheckinStatusAfterClick() {
+        Call<ResponseBody> call = new ApiClient().getApiService().loadStatusCheckin(token);
+        call.enqueue(new Callback<ResponseBody>() {
+
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                dismissProgress();
+                if (response.body() != null) {
+                    try {
+                        //noinspection ConstantConditions
+                        String contentResponse = new String(response.body().bytes());
+                        Log.e(TAG, "onResponse Status Checkin after click: " + contentResponse);
+                        JSONObject jsonObject = new JSONObject(contentResponse);
+                        String response_code = jsonObject.getString("response_code");
+                        switch (response_code) {
+                            case "401":
+                                String message = jsonObject.getString("message");
+                                Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                                break;
+                            case "200":
+                                JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                String time_first = jsonObject1.getString("time_first");
+                                String time_last = jsonObject1.getString("time_last");
+
                                 if (!time_first.isEmpty() && !time_last.isEmpty() && time_first.equals(time_last)) {
                                     setGreetingsRecord();
-                                    retrofitShowGreeting();
                                 }
 
                                 break;
@@ -1007,7 +1047,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 Toast.makeText(CheckinActivity.this, "Please check your internet & try again", Toast.LENGTH_SHORT).show();
                 dismissProgress();
-                Crashlytics.log(user_fullname + " "+t.getCause());
+                Crashlytics.log(user_fullname + " " + t.getCause());
             }
         });
     }
@@ -1034,7 +1074,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                     public void onError(Throwable e) {
                         dismissProgress();
                         Toast.makeText(CheckinActivity.this, "Please try again", Toast.LENGTH_SHORT).show();
-                        Crashlytics.log(user_fullname + " "+e.getCause());
+                        Crashlytics.log(user_fullname + " " + e.getCause());
                     }
 
                     @Override
@@ -1050,12 +1090,15 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
             JSONObject jsonObject = new JSONObject(mResponse);
             String s_response_code = jsonObject.getString("response_code");
             String s_message = jsonObject.getString("message");
+
             if (s_response_code.equals("200")) {
+                retrofitCheckinStatusAfterClick();
                 retrofitCheckinStatus();
             } else {
                 Toast.makeText(this, s_message, Toast.LENGTH_SHORT).show();
             }
-        } catch (IOException |JSONException e) {
+
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
     }
@@ -1223,7 +1266,8 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     }
 
 
-    @OnClick({R.id.iv_profile, R.id.fabAttendance, R.id.fabRefresh, R.id.fabMyLocation, R.id.relative_date})
+    @OnClick({R.id.iv_profile, R.id.fabAttendance, R.id.fabRefresh, R.id.fabMyLocation, R.id.relative_date,
+            R.id.linear_first_record, R.id.linear_last_record})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_profile:
@@ -1240,6 +1284,12 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
                 myLocation();
                 break;
             case R.id.relative_date:
+                startActivity(new Intent(this, AttendanceRecordActivity.class));
+                break;
+            case R.id.linear_first_record:
+                startActivity(new Intent(this, AttendanceRecordActivity.class));
+                break;
+            case R.id.linear_last_record:
                 startActivity(new Intent(this, AttendanceRecordActivity.class));
                 break;
         }

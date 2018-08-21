@@ -88,6 +88,7 @@
             android:orientation="vertical"
             tools:targetApi="lollipop">
 
+            <!-- Date -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -194,6 +195,7 @@
 
                 <!-- First Record -->
                 <LinearLayout
+                    android:id="@+id/linear_first_record"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -263,6 +265,7 @@
 
                 <!-- Last Record -->
                 <LinearLayout
+                    android:id="@+id/linear_last_record"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -368,14 +371,14 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/login_blue"
+            android:backgroundTint="@color/green_grab"
             android:focusable="true"
             app:borderWidth="0dp"
             app:elevation="6dp"
             app:fabSize="normal"
             app:pressedTranslationZ="12dp"
             app:rippleColor="@color/colorPrimary"
-            app:srcCompat="@drawable/ic_refresh_green"
+            app:srcCompat="@drawable/ic_refresh_white_24dp"
             tools:targetApi="lollipop" />
 
         <android.support.design.widget.FloatingActionButton

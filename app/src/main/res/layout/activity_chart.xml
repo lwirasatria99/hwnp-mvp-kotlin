@@ -33,7 +33,7 @@
             android:layout_toEndOf="@id/iv_back"
             android:layout_toRightOf="@id/iv_back"
             android:fontFamily="@font/ubuntu_bold"
-            android:text="Graphic Performance"
+            android:text="Punctuality"
             android:textAllCaps="true"
             android:textColor="@color/blue"
             android:textSize="19sp"
@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ubuntu_bold"
-                android:text=""
+                android:text="2018"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 tools:ignore="HardcodedText" />
@@ -82,9 +82,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start|center_vertical"
+            android:fontFamily="@font/ubuntu_bold"
             android:text="Number of days"
             android:textColor="@color/black"
-            android:fontFamily="@font/ubuntu_bold"
             tools:ignore="HardcodedText" />
 
         <com.github.mikephil.charting.charts.BarChart

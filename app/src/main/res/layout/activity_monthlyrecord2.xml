@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/grey_attendace"
     android:orientation="vertical"
+    android:theme="@style/AppThemeFont"
     tools:context=".AttendanceRecordActivity">
 
     <!-- Header -->
@@ -109,7 +110,7 @@
                     android:layout_marginBottom="3dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="3dp"
-                    android:text="Performance"
+                    android:text="Punctuality"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     tools:ignore="HardcodedText"

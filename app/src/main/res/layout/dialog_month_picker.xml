@@ -6,9 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:background="@drawable/square_cornerfull_white"
+    android:background="@drawable/square_cornerfull_white_more_corner"
     android:gravity="center"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:theme="@style/AppThemeFont">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -24,21 +25,34 @@
             app:np_textColor="@color/grey3"
             app:np_textSize="15sp" />
 
+        <!-- Cancel -->
         <RelativeLayout
+            android:id="@+id/relative_cancel"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/picker_month"
-            android:background="@drawable/square_corner1_leftbottomblack">
+            android:background="@drawable/square_corner_leftbottom_grey">
 
-            <ImageView
-                android:id="@+id/imageCross"
+            <!--<ImageView-->
+            <!--android:id="@+id/imageCross"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:background="@mipmap/ic_closed"-->
+            <!--tools:ignore="ContentDescription" />-->
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:background="@mipmap/ic_closed"
-                tools:ignore="ContentDescription" />
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="@dimen/size_yesno_monthly"
+                android:layout_marginTop="@dimen/size_yesno_monthly"
+                android:clickable="false"
+                android:text="Cancel"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_modal"
+                tools:ignore="HardcodedText" />
 
         </RelativeLayout>
 
@@ -57,21 +71,25 @@
             app:np_textColor="@color/grey3"
             app:np_textSize="15sp" />
 
+        <!-- Choose -->
         <RelativeLayout
+            android:id="@+id/relative_choose"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/picker_year"
-            android:background="@drawable/square_corner1_rightbottomblack">
+            android:background="@drawable/square_corner_rightbottom_green">
 
-            <ImageView
-                android:id="@+id/imageCheck"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:background="@mipmap/ic_checked"
-                tools:ignore="ContentDescription" />
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="@dimen/size_yesno_monthly"
+                android:layout_marginTop="@dimen/size_yesno_monthly"
+                android:clickable="false"
+                android:text="Choose"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_modal"
+                tools:ignore="HardcodedText" />
 
         </RelativeLayout>
 

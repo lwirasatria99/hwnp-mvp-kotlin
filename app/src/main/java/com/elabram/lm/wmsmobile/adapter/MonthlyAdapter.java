@@ -3,10 +3,12 @@ package com.elabram.lm.wmsmobile.adapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.elabram.lm.wmsmobile.R;
@@ -32,6 +34,9 @@ public class MonthlyAdapter extends BaseAdapter {
     private LayoutInflater inflater;
 
     static class ViewHolder {
+        @BindView(R.id.dataLayout)
+        LinearLayout data_layout;
+
         @BindView(R.id.date)
         TextView date;
 
@@ -96,6 +101,13 @@ public class MonthlyAdapter extends BaseAdapter {
         }
 
         Monthly monthly = monthlies.get(i);
+
+        String s_day = monthly.getAttDay();
+        if (s_day.equals("Sunday") || s_day.equals("Saturday")) {
+            holder.data_layout.setBackgroundResource(R.drawable.square_cornerfull_padding_pink);
+        } else {
+            holder.data_layout.setBackgroundResource(R.drawable.square_cornerfull_padding_white);
+        }
 
         /*
           Parsing

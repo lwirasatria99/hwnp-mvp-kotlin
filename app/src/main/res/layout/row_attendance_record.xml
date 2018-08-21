@@ -14,7 +14,7 @@
         android:layout_marginTop="@dimen/size_10"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:background="@drawable/square_cornerfull_white"
+        android:background="@drawable/square_cornerfull_padding_white"
         android:orientation="horizontal"
         android:paddingBottom="10dp"
         android:paddingEnd="10dp"

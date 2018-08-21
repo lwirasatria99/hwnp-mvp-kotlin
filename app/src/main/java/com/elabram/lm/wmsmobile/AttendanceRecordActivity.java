@@ -24,7 +24,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
 import com.elabram.lm.wmsmobile.adapter.MonthlyAdapter;
 import com.elabram.lm.wmsmobile.model.Monthly;
 import com.elabram.lm.wmsmobile.rest.ApiClient;
@@ -122,16 +121,6 @@ public class AttendanceRecordActivity extends AppCompatActivity implements DateP
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monthlyrecord2);
         ButterKnife.bind(this);
-        Crashlytics.log(TAG + " " + user_email);
-
-        // Toolbar
-//        setSupportActionBar(toolbar);
-//        assert getSupportActionBar() != null;
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        getSupportActionBar().setHomeButtonEnabled(true);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        toolbar.setNavigationOnClickListener(view -> onBackPressed());
-        // End
 
         getSharedUserDetail();
         monthlies = new ArrayList<>();
@@ -151,6 +140,7 @@ public class AttendanceRecordActivity extends AppCompatActivity implements DateP
         relative_change.setOnClickListener(view -> startActivity(new Intent(this, PerformanceChartActivity.class)));
 
         iv_back.setOnClickListener(view -> finish());
+
         initView();
 
         relativeDate.setOnClickListener(view -> showDateDialog(getDatePeriode()));
@@ -228,6 +218,8 @@ public class AttendanceRecordActivity extends AppCompatActivity implements DateP
                 JSONArray jsonArray = jsonObject.getJSONArray("data");
                 if (jsonArray.length() == 0) {
                     tvNoData.setVisibility(View.VISIBLE);
+                } else {
+                    tvNoData.setVisibility(View.GONE);
                 }
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
@@ -318,8 +310,10 @@ public class AttendanceRecordActivity extends AppCompatActivity implements DateP
         @SuppressLint("InflateParams") final View dialogView = inflater.inflate(R.layout.dialog_month_picker, null);
         final NumberPicker monthPicker = dialogView.findViewById(R.id.picker_month);
         final NumberPicker yearPicker = dialogView.findViewById(R.id.picker_year);
-        final ImageView imageCheck = dialogView.findViewById(R.id.imageCheck);
-        final ImageView imageCross = dialogView.findViewById(R.id.imageCross);
+        final RelativeLayout relativeCancel = dialogView.findViewById(R.id.relative_cancel);
+        final RelativeLayout relativeChoose = dialogView.findViewById(R.id.relative_choose);
+//        final ImageView imageCheck = dialogView.findViewById(R.id.imageCheck);
+//        final ImageView imageCross = dialogView.findViewById(R.id.imageCross);
 
         Calendar cal = Calendar.getInstance();
 
@@ -355,11 +349,11 @@ public class AttendanceRecordActivity extends AppCompatActivity implements DateP
         final AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
-        imageCheck.setOnClickListener(view ->
+        relativeChoose.setOnClickListener(view ->
             setMonthYear(monthPicker, yearPicker, alertDialog)
         );
 
-        imageCross.setOnClickListener(view -> alertDialog.dismiss());
+        relativeCancel.setOnClickListener(view -> alertDialog.dismiss());
 
     }
 
