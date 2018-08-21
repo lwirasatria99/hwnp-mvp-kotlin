@@ -7,13 +7,13 @@
     android:layout_height="match_parent"
     android:background="@color/grey_attendace"
     android:orientation="vertical"
-    tools:context=".MonthlyRecordActivity">
+    tools:context=".AttendanceRecordActivity">
 
     <!-- Header -->
     <RelativeLayout
         android:elevation="@dimen/size_toolbar_shadow"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
         android:background="@color/white"
         tools:targetApi="lollipop">
 
@@ -22,9 +22,10 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
             android:background="@mipmap/ic_arrow_left"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription"
+            android:layout_marginStart="15dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,7 +38,9 @@
             android:textAllCaps="true"
             android:textColor="@color/blue"
             android:textSize="19sp"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText"
+            android:layout_marginLeft="18dp"
+            android:layout_toRightOf="@id/iv_back" />
 
     </RelativeLayout>
 
@@ -54,7 +57,6 @@
             android:id="@+id/linearMonth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
             android:layout_marginTop="18dp"
             android:background="@color/white"
             android:elevation="7dp"
@@ -62,31 +64,42 @@
             android:padding="15dp"
             tools:targetApi="lollipop">
 
-            <ImageView
-                android:id="@+id/iv_att_calendar"
+            <RelativeLayout
+                android:id="@+id/relative_date"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_attendance_calendar"
-                tools:ignore="ContentDescription" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tvDatePeriode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@+id/iv_att_calendar"
-                android:text="null"
-                android:textColor="@color/black"
-                android:textSize="17sp"
-                tools:ignore="HardcodedText" />
+                <ImageView
+                    android:id="@+id/iv_att_calendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_attendance_calendar"
+                    tools:ignore="ContentDescription" />
 
+                <TextView
+                    android:id="@+id/tvDatePeriode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/iv_att_calendar"
+                    android:text="null"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    tools:ignore="HardcodedText"
+                    android:layout_toRightOf="@+id/iv_att_calendar"
+                    android:layout_marginLeft="10dp" />
+
+            </RelativeLayout>
+
+            <!-- Button performance-->
             <RelativeLayout
                 android:id="@+id/relative_change"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/square_cornerfull_blue"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true">
 
                 <TextView
                     android:id="@+id/a"
@@ -96,10 +109,11 @@
                     android:layout_marginBottom="3dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="3dp"
-                    android:text="Change"
+                    android:text="Performance"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    android:layout_marginLeft="15dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -108,7 +122,9 @@
                     android:layout_marginEnd="10dp"
                     android:layout_toEndOf="@id/a"
                     app:srcCompat="@drawable/ic_chevron_right_white"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription"
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@id/a" />
 
             </RelativeLayout>
 
@@ -147,7 +163,8 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:visibility="visible"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText"
+            tools:targetApi="jelly_bean" />
 
         <RelativeLayout
             android:id="@+id/relativeLoadMore"
@@ -162,7 +179,8 @@
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
-                android:theme="@style/ProggressBar" />
+                android:theme="@style/ProggressBar"
+                android:layout_marginLeft="5dp" />
 
         </RelativeLayout>
 

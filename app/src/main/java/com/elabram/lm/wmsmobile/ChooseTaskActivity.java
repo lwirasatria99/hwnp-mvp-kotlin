@@ -14,7 +14,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
@@ -37,11 +36,6 @@ import butterknife.ButterKnife;
 
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.token;
 
-/**
- *
- * Created by lalu.mahendra on 17-May-18.
- */
-
 public class ChooseTaskActivity extends AppCompatActivity {
 
     @BindView(R.id.listview)
@@ -55,6 +49,8 @@ public class ChooseTaskActivity extends AppCompatActivity {
 
     private TaskAdapter adapter;
     private List<Task> taskList;
+
+    private String s_nodata = "-No Data-";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -113,7 +109,7 @@ public class ChooseTaskActivity extends AppCompatActivity {
                 if (message.equals("success")) {
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
                     if (jsonArray.length() <= 0) {
-                        tvNoData.setText("-No Data-");
+                        tvNoData.setText(s_nodata);
                         listView.setEmptyView(tvNoData);
                     }
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -166,7 +162,7 @@ public class ChooseTaskActivity extends AppCompatActivity {
             }
 
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 HashMap<String, String> params = new HashMap<>();
 
                 params.put("token", token);

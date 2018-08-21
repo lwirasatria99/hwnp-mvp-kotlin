@@ -2,7 +2,6 @@ package com.elabram.lm.wmsmobile.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -38,10 +37,12 @@ import java.io.IOException;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.fabric.sdk.android.Fabric;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.PREFS_LOGIN;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_address;
@@ -91,6 +92,7 @@ public class MainProfileFragment extends Fragment {
 
     private String user_fullname;
     private String user_email;
+    private Disposable disposable;
     //private ProgressDialog progressDialog;
 
 
@@ -122,7 +124,7 @@ public class MainProfileFragment extends Fragment {
 
         getSharedUserDetail();
         setDetailsForm();
-        retrofitListClient();
+        retrofitReadClient();
 //        SharedPreferences preferences = mActivity.getSharedPreferences("LOGO", 0);
 //        String urlImage = preferences.getString("url", "");
 //        if (!urlImage.equals("https://elabram.com/hris/")) {
@@ -250,48 +252,64 @@ public class MainProfileFragment extends Fragment {
         Log.e(TAG, "getSharedUserDetail: ProfilImage " + mem_image);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (disposable != null)
+            disposable.dispose();
+    }
 
-    private void retrofitListClient() {
-        Call<ResponseBody> call = new ApiClient().getApiService().listLogo(token);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                if (response.body() != null) {
-                    try {
-                        //noinspection ConstantConditions
-                        String mResponse = new String(response.body().bytes());
-                        JSONObject jsonObject = new JSONObject(mResponse);
-
-                        String response_code = jsonObject.getString("response_code");
-                        switch (response_code) {
-                            case "401":
-                                String message = jsonObject.getString("message");
-                                Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
-                                snackbar.show();
-                                break;
-                            case "200":
-                                JSONObject jsonObject1 = jsonObject.getJSONObject("data");
-                                String urlImage = jsonObject1.getString("cus_logo");
-                                Log.e(TAG, "onResponse: urlImage " + urlImage);
-                                if (!urlImage.equals("https://elabram.com/hris/")) {
-                                    Picasso.with(mActivity)
-                                            .load(urlImage)
-                                            .fit()
-                                            .into(ivLogoClient);
-                                }
-                                break;
-                        }
-                    } catch (IOException | JSONException e) {
-                        e.printStackTrace();
+    private void retrofitReadClient() {
+        Observable<ResponseBody> call = new ApiClient().getApiService().listLogo(token);
+        call.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBody>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable = d;
                     }
-                }
-            }
 
-            @Override
-            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                Log.e(TAG, "onFailure: " + t.getCause());
-            }
-        });
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        if (responseBody != null) {
+                            try {
+                                String mResponse = responseBody.string();
+                                JSONObject jsonObject = new JSONObject(mResponse);
+
+                                String response_code = jsonObject.getString("response_code");
+                                switch (response_code) {
+                                    case "401":
+                                        String message = jsonObject.getString("message");
+                                        Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
+                                        break;
+                                    case "200":
+                                        JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                        String urlImage = jsonObject1.getString("cus_logo");
+
+                                        if (!urlImage.equals("https://elabram.com/hris/")) {
+                                            Picasso.with(mActivity)
+                                                    .load(urlImage)
+                                                    .fit()
+                                                    .into(ivLogoClient);
+                                        }
+                                        break;
+                                }
+                            } catch (IOException | JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAG, "onError: " + e.getCause());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
 }

@@ -9,6 +9,7 @@
     android:theme="@style/AppThemeFont"
     tools:context=".MainActivity">
 
+    <!-- Profile Picture-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -27,62 +28,51 @@
             app:cardCornerRadius="30dp"
             app:cardElevation="2dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/profile_default_picture"
-                android:scaleType="centerCrop"
+                app:civ_border_color="@color/black"
+                app:civ_border_width="1dp"
+                app:srcCompat="@drawable/profile_default_picture"
                 tools:ignore="ContentDescription" />
 
         </android.support.v7.widget.CardView>
 
-        <ImageView
-            android:id="@+id/fab_about"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-            app:srcCompat="@mipmap/ic_aboutapps"
-            tools:ignore="ContentDescription" />
-
-        <!--<android.support.design.widget.FloatingActionButton-->
+        <!--<ImageView-->
         <!--android:id="@+id/fab_about"-->
         <!--android:layout_width="25dp"-->
         <!--android:layout_height="25dp"-->
         <!--android:layout_gravity="end"-->
         <!--android:layout_marginEnd="20dp"-->
+        <!--android:layout_marginRight="20dp"-->
         <!--android:layout_marginTop="20dp"-->
-        <!--android:backgroundTint="@color/purple"-->
-        <!--android:focusable="true"-->
-        <!--app:borderWidth="0dp"-->
-        <!--app:elevation="6dp"-->
-        <!--app:fabSize="normal"-->
-        <!--app:pressedTranslationZ="12dp"-->
-        <!--app:rippleColor="@color/colorPrimary"-->
-        <!--app:srcCompat="@drawable/ic_aboutapps"-->
-        <!--tools:targetApi="lollipop" />-->
+        <!--app:srcCompat="@mipmap/ic_aboutapps"-->
+        <!--tools:ignore="ContentDescription" />-->
 
     </FrameLayout>
 
+    <!-- About us, Feedback-->
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
 
+        <!-- About -->
         <LinearLayout
-            android:layout_marginStart="3dp"
-            android:id="@+id/linear_change_password"
-            android:layout_width="160dp"
+            android:id="@+id/linear_about"
+            android:layout_width="130dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_marginBottom="5dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="3dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/square_cornerfull_blue"
+            android:background="@drawable/square_cornerfull_purple"
             android:elevation="3dp"
             android:gravity="center"
             android:orientation="horizontal"
@@ -91,33 +81,39 @@
             <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginRight="3dp"
                 android:focusable="false"
-                app:srcCompat="@drawable/ic_profile_lock"
+                app:srcCompat="@drawable/ic_aboutapps"
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
                 android:focusable="false"
-                android:textSize="12sp"
                 android:fontFamily="@font/ubuntu_bold"
-                android:text="CHANGE PASSWORD"
+                android:text="ABOUT US"
                 android:textColor="@color/white"
+                android:textSize="12sp"
                 tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
+        <!-- Feedback-->
         <LinearLayout
-            android:layout_marginEnd="3dp"
-            android:layout_marginStart="3dp"
             android:id="@+id/linear_feedback"
-            android:layout_width="160dp"
+            android:layout_width="130dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_marginBottom="5dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/square_cornerfull_blue"
+            android:background="@drawable/square_cornerfull_green"
             android:elevation="3dp"
             android:gravity="center"
             android:orientation="horizontal"
@@ -126,20 +122,23 @@
             <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginRight="5dp"
                 android:focusable="false"
-                app:srcCompat="@drawable/ic_profile_phone_white"
+                android:src="@drawable/wms_feedback"
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
                 android:focusable="false"
-                android:textSize="12sp"
                 android:fontFamily="@font/ubuntu_bold"
                 android:text="Feedback"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
+                android:textSize="12sp"
                 tools:ignore="HardcodedText" />
 
         </LinearLayout>
@@ -153,11 +152,14 @@
         android:layout_marginStart="15dp"
         android:background="@color/grey_profile" />
 
+    <!-- Data, Change Password, Logout-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingEnd="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="15dp"
         android:paddingStart="20dp">
 
         <!--Name-->
@@ -177,6 +179,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_icon_totext"
                 android:layout_marginStart="@dimen/space_icon_totext"
                 android:orientation="vertical">
 
@@ -186,7 +189,8 @@
                     android:fontFamily="@font/ubuntu_bold"
                     android:text="Name"
                     android:textColor="@color/black"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    tools:targetApi="jelly_bean" />
 
                 <TextView
                     android:id="@+id/tv_name"
@@ -217,6 +221,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_icon_totext"
                 android:layout_marginStart="@dimen/space_icon_totext"
                 android:orientation="vertical">
 
@@ -226,7 +231,8 @@
                     android:fontFamily="@font/ubuntu_bold"
                     android:text="ID"
                     android:textColor="@color/black"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    tools:targetApi="jelly_bean" />
 
                 <TextView
                     android:id="@+id/tv_id"
@@ -257,6 +263,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_icon_totext"
                 android:layout_marginStart="@dimen/space_icon_totext"
                 android:orientation="vertical">
 
@@ -266,7 +273,8 @@
                     android:fontFamily="@font/ubuntu_bold"
                     android:text="Position"
                     android:textColor="@color/black"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    tools:targetApi="jelly_bean" />
 
                 <TextView
                     android:id="@+id/tv_position"
@@ -297,6 +305,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_icon_totext"
                 android:layout_marginStart="@dimen/space_icon_totext"
                 android:orientation="vertical">
 
@@ -306,7 +315,8 @@
                     android:fontFamily="@font/ubuntu_bold"
                     android:text="Email"
                     android:textColor="@color/black"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    tools:targetApi="jelly_bean" />
 
                 <TextView
                     android:id="@+id/tv_email"
@@ -337,6 +347,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_icon_totext"
                 android:layout_marginStart="@dimen/space_icon_totext"
                 android:orientation="vertical">
 
@@ -346,7 +357,8 @@
                     android:fontFamily="@font/ubuntu_bold"
                     android:text="Mobile"
                     android:textColor="@color/black"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    tools:targetApi="jelly_bean" />
 
                 <TextView
                     android:id="@+id/tv_mobile"
@@ -377,6 +389,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_icon_totext"
                 android:layout_marginStart="@dimen/space_icon_totext"
                 android:orientation="vertical">
 
@@ -386,7 +399,8 @@
                     android:fontFamily="@font/ubuntu_bold"
                     android:text="Phone"
                     android:textColor="@color/black"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    tools:targetApi="jelly_bean" />
 
                 <TextView
                     android:id="@+id/tv_phone"
@@ -400,13 +414,48 @@
 
         </LinearLayout>
 
+        <!-- Change Password -->
+        <LinearLayout
+            android:id="@+id/linear_change_password"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/square_cornerfull_blue"
+            android:elevation="3dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            tools:targetApi="lollipop">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:focusable="false"
+                app:srcCompat="@drawable/ic_profile_lock"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:focusable="false"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="CHANGE PASSWORD"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <!-- Logout-->
         <LinearLayout
             android:id="@+id/linear_logout"
             android:layout_width="140dp"
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/square_cornerfull_red"
             android:elevation="3dp"
             android:gravity="center"
@@ -424,6 +473,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
                 android:layout_marginStart="3dp"
                 android:focusable="false"
                 android:fontFamily="@font/ubuntu_bold"

@@ -135,7 +135,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="15dp"
-        android:background="@drawable/confirm_button_red"
         android:elevation="3dp"
         android:text="Cancel"
         android:textColor="@color/white"

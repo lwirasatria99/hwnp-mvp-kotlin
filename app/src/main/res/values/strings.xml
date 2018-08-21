@@ -23,5 +23,7 @@
     <string name="dummy_location">Elabram Systems</string>
     <string name="dummy_timezone">77.77 WITA</string>
     <string name="check_connection">Please check your connection / try again</string>
+    <string name="good_morning">"-&#160;Good Morning&#160;-"</string>
+    <string name="dummy_greetings">das dksadksakdsa dksadkasdska kdsakdaskd</string>
 
 </resources>

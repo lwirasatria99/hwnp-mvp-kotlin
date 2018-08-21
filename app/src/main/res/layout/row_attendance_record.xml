@@ -11,7 +11,7 @@
         android:id="@+id/dataLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="@dimen/size_10"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:background="@drawable/square_cornerfull_white"
@@ -50,14 +50,16 @@
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_marginStart="3dp"
-            android:background="@color/grey" />
+            android:background="@color/grey"
+            android:layout_marginLeft="3dp" />
 
         <!-- First Record -->
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,7 +80,8 @@
                     android:layout_marginStart="3dp"
                     android:layout_marginTop="2dp"
                     app:srcCompat="@drawable/ic_monthly_green_cirlce"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription"
+                    android:layout_marginLeft="3dp" />
 
             </LinearLayout>
 
@@ -109,7 +112,8 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginLeft="3dp">
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -130,7 +134,8 @@
                     android:layout_marginStart="3dp"
                     android:layout_marginTop="2dp"
                     app:srcCompat="@drawable/ic_monthly_red_circle"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription"
+                    android:layout_marginLeft="3dp" />
 
             </LinearLayout>
 
@@ -160,14 +165,16 @@
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_marginStart="3dp"
-            android:background="@color/grey" />
+            android:background="@color/grey"
+            android:layout_marginLeft="3dp" />
 
         <!-- Total Hours -->
         <LinearLayout
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp">
 
             <TextView
                 android:layout_width="wrap_content"

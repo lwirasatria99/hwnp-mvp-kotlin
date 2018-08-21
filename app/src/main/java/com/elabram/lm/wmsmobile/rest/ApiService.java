@@ -21,9 +21,13 @@ public interface ApiService {
                              @Field("isDevice") String isDevice,
                              @Field("is_imei") String isImei);
 
+//    @FormUrlEncoded
+//    @POST("listCustomer")
+//    Call<ResponseBody> listLogo(@Field("token") String token);
+
     @FormUrlEncoded
     @POST("listCustomer")
-    Call<ResponseBody> listLogo(@Field("token") String token);
+    Observable<ResponseBody> listLogo(@Field("token") String token);
 
     @FormUrlEncoded
     @POST("attDetail")
@@ -34,11 +38,17 @@ public interface ApiService {
                                    @Query("timestamp") String timestamp,
                                    @Query("key") String keyApi);
 
+//    @FormUrlEncoded
+//    @POST("attCheckin")
+//    Call<ResponseBody> checkin(@Field("token") String token,
+//                               @Field("location") String location,
+//                               @Field("timezone") String timezone);
+
     @FormUrlEncoded
     @POST("attCheckin")
-    Call<ResponseBody> checkin(@Field("token") String token,
-                               @Field("location") String location,
-                               @Field("timezone") String timezone);
+    Observable<ResponseBody> checkin(@Field("token") String token,
+                                     @Field("location") String location,
+                                     @Field("timezone") String timezone);
 
     @FormUrlEncoded
     @POST("siteList")
@@ -61,4 +71,17 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("support-add")
     Observable<ResponseBody> feedback(@FieldMap HashMap<String, String> paramsFeedback);
+
+    @FormUrlEncoded
+    @POST("greeting-list")
+    Observable<ResponseBody> listGreeting(@FieldMap HashMap<String, String> paramsGreeting);
+
+    @FormUrlEncoded
+    @POST("chartAtt")
+    Observable<ResponseBody> readChart(@FieldMap HashMap<String, String> paramsChart);
+
+
+    @FormUrlEncoded
+    @POST("gps-violation")
+    Observable<ResponseBody> fakeGPS(@FieldMap HashMap<String, String> paramsFakeGPS);
 }

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -141,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
             final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-            } catch (android.content.ActivityNotFoundException anfe) {
+            } catch (ActivityNotFoundException anfe) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
             }
         });
@@ -153,7 +154,11 @@ public class LoginActivity extends AppCompatActivity {
                 finishAndRemoveTask();
             } else {
                 dismissAlert();
-                finishAffinity();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    finishAffinity();
+                } else {
+                    ActivityCompat.finishAffinity(this);
+                }
             }
         });
 
@@ -224,7 +229,7 @@ public class LoginActivity extends AppCompatActivity {
         checkingPermission();
         SharedPreferences preferences = getSharedPreferences(PREFS_LOGIN, 0);
         boolean loggin = preferences.getBoolean(PREFS_LOGGED, false);
-        Log.e(TAG, "onResume: Loggin " + loggin);
+        //Log.e(TAG, "onResume: Loggin " + loggin);
         if (loggin) {
             showMainMenu();
         }
@@ -263,7 +268,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (response.body() != null) {
                         //noinspection ConstantConditions
                         String mResponse = new String(response.body().bytes());
-                        Log.e(TAG, "onResponse: CheckVersion " + mResponse);
+                        //Log.e(TAG, "onResponse: CheckVersion " + mResponse);
                         JSONObject jsonObject = new JSONObject(mResponse);
 
                         String response_code = jsonObject.getString("response_code");

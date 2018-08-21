@@ -16,6 +16,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_el_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".CheckinActivity"
@@ -34,12 +35,17 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".MonthlyRecordActivity"
+        <activity android:name=".AttendanceRecordActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".AboutActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ChangePasswordActivity" />
-        <activity android:name=".FeedbackActivity" />
+        <activity android:name=".ChangePasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".FeedbackActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PerformanceChartActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SplashFirstActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -3,7 +3,6 @@ package com.elabram.lm.wmsmobile.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -20,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.crashlytics.android.Crashlytics;
 import com.elabram.lm.wmsmobile.R;
 import com.elabram.lm.wmsmobile.rest.ApiClient;
 import com.squareup.picasso.Picasso;
@@ -32,17 +30,14 @@ import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.token;
-
-/**
- * Class :
- * Created by lalu.mahendra on 09-Mar-18.
- */
 
 public class MainAboutFragment extends Fragment {
 
@@ -51,12 +46,20 @@ public class MainAboutFragment extends Fragment {
     private String versionName;
 
     @BindView(R.id.ivLogoClient)
-    ImageView ivLogoClient;
+    ImageView iv_logo_client;
 
     @BindView(R.id.rootView)
     RelativeLayout rootView;
+    private Disposable disposable;
 
     public MainAboutFragment() {
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (disposable != null)
+            disposable.dispose();
     }
 
     @Override
@@ -98,56 +101,63 @@ public class MainAboutFragment extends Fragment {
 //                    .fit()
 //                    .into(ivLogoClient);
 //        }
-        retrofitListClient();
+        retrofitReadClient();
 
         return view;
     }
 
 
-    private void retrofitListClient() {
-        Call<ResponseBody> call = new ApiClient().getApiService().listLogo(token);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-
-                if (response.body() != null) {
-                    try {
-                        //noinspection ConstantConditions
-                        String mResponse = new String(response.body().bytes());
-                        //Log.e(TAG, "onResponse: " + mResponse);
-                        JSONObject jsonObject = new JSONObject(mResponse);
-
-                        String response_code = jsonObject.getString("response_code");
-                        switch (response_code) {
-                            case "401":
-                                String message = jsonObject.getString("message");
-                                Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
-                                snackbar.show();
-                                break;
-                            case "200":
-                                JSONObject jsonObject1 = jsonObject.getJSONObject("data");
-                                String urlImage = jsonObject1.getString("cus_logo");
-                                Log.e(TAG, "onResponse: urlImage " + urlImage);
-                                if (!urlImage.equals("https://elabram.com/hris/")) {
-                                    Picasso.with(mActivity)
-                                            .load(urlImage)
-                                            .fit()
-                                            .into(ivLogoClient);
-                                }
-                                break;
-                        }
-                    } catch (IOException | JSONException e) {
-                        e.printStackTrace();
+    private void retrofitReadClient() {
+        Observable<ResponseBody> call = new ApiClient().getApiService().listLogo(token);
+        call.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBody>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable = d;
                     }
-                }
 
-            }
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        if (responseBody != null) {
+                            try {
+                                String mResponse = responseBody.string();
+                                JSONObject jsonObject = new JSONObject(mResponse);
 
-            @Override
-            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                Log.e(TAG, "onFailure: " + t.getCause());
-            }
-        });
+                                String response_code = jsonObject.getString("response_code");
+                                switch (response_code) {
+                                    case "401":
+                                        String message = jsonObject.getString("message");
+                                        Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
+                                        break;
+                                    case "200":
+                                        JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                        String urlImage = jsonObject1.getString("cus_logo");
+
+                                        if (!urlImage.equals("https://elabram.com/hris/")) {
+                                            Picasso.with(mActivity)
+                                                    .load(urlImage)
+                                                    .fit()
+                                                    .into(iv_logo_client);
+                                        }
+                                        break;
+                                }
+                            } catch (IOException | JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAG, "onError: " + e.getCause());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     private void getVersionInfo() {

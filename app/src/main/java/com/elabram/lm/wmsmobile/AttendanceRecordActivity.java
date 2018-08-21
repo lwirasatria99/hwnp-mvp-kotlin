@@ -3,6 +3,7 @@ package com.elabram.lm.wmsmobile;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -56,9 +57,9 @@ import static com.elabram.lm.wmsmobile.utilities.AppInfo.mem_id;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.token;
 import static com.elabram.lm.wmsmobile.utilities.AppInfo.user_email;
 
-public class MonthlyRecordActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class AttendanceRecordActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    private static final String TAG = MonthlyRecordActivity.class.getSimpleName();
+    private static final String TAG = AttendanceRecordActivity.class.getSimpleName();
 
 //    @BindView(R.id.linearMonth)
 //    RelativeLayout linearMonth;
@@ -114,6 +115,7 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
     private String formattedRealNumber;
     private String get_date_now;
     private String get_date_last;
+    private RelativeLayout relativeDate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -137,7 +139,6 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
         adapter = new MonthlyAdapter(this, monthlies);
         listView.setAdapter(adapter);
 
-
         tvNoData.setVisibility(View.GONE);
         relativeLoadMore.setVisibility(View.GONE);
 
@@ -147,9 +148,12 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
 
         buttonRefresh.setOnClickListener(view -> cekInternet());
 
-        relative_change.setOnClickListener(view -> showDateDialog(getDatePeriode()));
+        relative_change.setOnClickListener(view -> startActivity(new Intent(this, PerformanceChartActivity.class)));
 
         iv_back.setOnClickListener(view -> finish());
+        initView();
+
+        relativeDate.setOnClickListener(view -> showDateDialog(getDatePeriode()));
     }
 
     private void cekInternet() {
@@ -184,11 +188,9 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
             realLastDay = get_date_last;
         }
 
+        showProgress();
+
         Call<ResponseBody> call = new ApiClient().getApiService().monthlyList(token, firstDay, realLastDay, mem_id);
-//        Log.e(TAG, "retrofitListMonthly: first " + firstDay);
-//        Log.e(TAG, "retrofitListMonthly: last " + realLastDay);
-//        Log.e(TAG, "retrofitListMonthly: mem_id " + mem_id);
-//        Log.e(TAG, "retrofitListMonthly: token " + token);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -198,7 +200,7 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
                     try {
                         //noinspection ConstantConditions
                         String content = new String(response.body().bytes());
-                        Log.e(TAG, "onResponse: Monthly List " + content);
+                        //Log.e(TAG, "onResponse: Monthly List " + content);
                         parseJSON(content);
                     } catch (IOException | JSONException e) {
                         e.printStackTrace();
@@ -209,7 +211,7 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 hideProgress();
-                Log.e(TAG, "onFailure: " + t.getCause());
+                Log.e(TAG, "onFailure: "+t.getCause());
             }
         });
     }
@@ -292,11 +294,13 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
     }
 
     public void showProgress() {
-        progressBar.setVisibility(View.VISIBLE);
+        if (progressBar != null)
+            progressBar.setVisibility(View.VISIBLE);
     }
 
     public void hideProgress() {
-        progressBar.setVisibility(View.GONE);
+        if (progressBar != null)
+            progressBar.setVisibility(View.GONE);
     }
 
     public String getDatePeriode() {
@@ -334,7 +338,7 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
                 break;
             }
         }
-//        monthPicker.setValue();
+        //monthPicker.setValue();
 
         monthPicker.setFormatter(value -> {
             // TODO Auto-generated method stub
@@ -351,17 +355,19 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
         final AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
-        imageCheck.setOnClickListener(view -> findDataMonthly(monthPicker, yearPicker, alertDialog));
+        imageCheck.setOnClickListener(view ->
+            setMonthYear(monthPicker, yearPicker, alertDialog)
+        );
 
         imageCross.setOnClickListener(view -> alertDialog.dismiss());
 
     }
 
-    private void findDataMonthly(NumberPicker monthPicker, NumberPicker yearPicker, AlertDialog alertDialog) {
+    private void setMonthYear(NumberPicker monthPicker, NumberPicker yearPicker, AlertDialog alertDialog) {
         onDateSet(null, yearPicker.getValue(), monthPicker.getValue(), 0);
-        Log.e(TAG, "onClick Date Take: " + date_take);
+        //Log.e(TAG, "onClick Date Take: " + date_take);
         int realMonthNumber = monthPicker.getValue() + 1;
-        Log.e(TAG, "findDataMonthly: Month " + realMonthNumber);
+        //Log.e(TAG, "setMonthYear: Month " + realMonthNumber);
 
         // Date Convert
         SimpleDateFormat inputFormat = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
@@ -373,7 +379,7 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
             e.printStackTrace();
         }
         firstDay = outputFormat.format(dateFormat);
-        Log.e(TAG, "findDataMonthly: source date " + firstDay);
+        //Log.e(TAG, "setMonthYear: source date " + firstDay);
         // End
 
         // Get The Last Day
@@ -392,7 +398,7 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
             formattedRealNumber = "0" + realMonthNumber;
         }
         realLastDay = yearPicker.getValue() + "-" + formattedRealNumber + "-" + lastDay;
-        Log.e(TAG, "findDataMonthly: LastDay" + realLastDay);
+        //Log.e(TAG, "setMonthYear: LastDay" + realLastDay);
 
         if (isOnline(this)) {
             retrofitListMonthly();
@@ -427,5 +433,9 @@ public class MonthlyRecordActivity extends AppCompatActivity implements DatePick
             tvDatePeriode.setText(date_take);
         }
 
+    }
+
+    private void initView() {
+        relativeDate = findViewById(R.id.relative_date);
     }
 }

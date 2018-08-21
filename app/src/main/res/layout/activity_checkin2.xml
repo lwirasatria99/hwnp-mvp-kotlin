@@ -10,41 +10,9 @@
     tools:context="com.elabram.lm.wmsmobile.CheckinActivity">
 
     <!-- Toolbar -->
-    <!--<RelativeLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="?attr/actionBarSize"-->
-    <!--android:background="@color/white"-->
-    <!--android:elevation="7dp"-->
-    <!--tools:targetApi="lollipop">-->
-
-    <!--<ImageView-->
-    <!--android:id="@+id/iv_back"-->
-    <!--android:layout_width="35dp"-->
-    <!--android:layout_height="35dp"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:layout_marginStart="15dp"-->
-    <!--android:background="@mipmap/ic_arrow_left"-->
-    <!--tools:ignore="ContentDescription" />-->
-
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:layout_marginStart="18dp"-->
-    <!--android:layout_toEndOf="@id/iv_back"-->
-    <!--android:fontFamily="@font/ubuntu_bold"-->
-    <!--android:text="Mobile Attendance"-->
-    <!--android:textAllCaps="true"-->
-    <!--android:textColor="@color/blue"-->
-    <!--android:textSize="19sp"-->
-    <!--tools:ignore="HardcodedText" />-->
-
-    <!--</RelativeLayout>-->
-
-    <!-- Toolbar -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
         android:background="@color/white"
         android:elevation="@dimen/size_toolbar_shadow"
         tools:targetApi="lollipop">
@@ -54,6 +22,7 @@
             android:layout_width="100dp"
             android:layout_height="27dp"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:background="@drawable/logo_rms"
             tools:ignore="ContentDescription" />
@@ -63,8 +32,10 @@
             android:layout_width="55dp"
             android:layout_height="27dp"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/logo_elabram"
+            android:layout_toRightOf="@+id/logo_elabram"
             tools:ignore="ContentDescription" />
 
         <!--Circle Image -->
@@ -73,29 +44,32 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:innerRadius="0dp"
             android:shape="ring"
             android:thicknessRatio="1.9"
             app:cardCornerRadius="15dp"
             app:cardElevation="2dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
                 tools:ignore="ContentDescription" />
 
         </android.support.v7.widget.CardView>
 
     </RelativeLayout>
 
+    <!-- Screen when offline -->
     <include
         layout="@layout/screen_offline_attendance"
         android:visibility="gone" />
 
+    <!-- Content -->
     <RelativeLayout
         android:id="@+id/relativeEnabled"
         android:layout_width="match_parent"
@@ -120,7 +94,8 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/relative_date"
+                    android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginStart="15dp"
@@ -132,15 +107,17 @@
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/ic_attendance_calendar"
+                        app:srcCompat="@drawable/ic_attendance_calendar"
                         tools:ignore="ContentDescription" />
 
                     <LinearLayout
                         android:id="@+id/linear_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginStart="15dp"
                         android:layout_toEndOf="@+id/ic_calendar"
+                        android:layout_toRightOf="@+id/ic_calendar"
                         android:orientation="vertical">
 
                         <TextView
@@ -155,7 +132,7 @@
                             android:id="@+id/date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Test"
+                            android:text=""
                             android:textColor="@color/black"
                             tools:ignore="HardcodedText" />
 
@@ -219,6 +196,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
@@ -227,12 +205,13 @@
                     <ImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
-                        android:background="@drawable/ic_mobile_attendance_marker"
+                        app:srcCompat="@drawable/ic_mobile_attendance_marker"
                         tools:ignore="ContentDescription" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginStart="15dp"
                         android:orientation="vertical">
 
@@ -254,9 +233,10 @@
                                 android:layout_width="13dp"
                                 android:layout_height="13dp"
                                 android:layout_centerVertical="true"
+                                android:layout_marginLeft="5dp"
                                 android:layout_marginStart="5dp"
                                 android:layout_toEndOf="@id/a"
-                                android:background="@drawable/ic_monthly_green_cirlce"
+                                android:layout_toRightOf="@id/a"
                                 tools:ignore="ContentDescription" />
 
                         </RelativeLayout>
@@ -286,6 +266,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
@@ -294,12 +275,13 @@
                     <ImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
-                        android:background="@drawable/ic_mobile_attendance_marker"
+                        app:srcCompat="@drawable/ic_mobile_attendance_marker"
                         tools:ignore="ContentDescription" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginStart="15dp"
                         android:orientation="vertical">
 
@@ -320,10 +302,11 @@
                                 android:layout_width="13dp"
                                 android:layout_height="13dp"
                                 android:layout_centerVertical="true"
+                                android:layout_marginLeft="5dp"
                                 android:layout_marginStart="5dp"
                                 android:layout_marginTop="5dp"
                                 android:layout_toEndOf="@+id/b"
-                                android:background="@drawable/ic_monthly_red_circle"
+                                android:layout_toRightOf="@+id/b"
                                 tools:ignore="ContentDescription" />
 
                         </RelativeLayout>
@@ -354,52 +337,16 @@
 
         </LinearLayout>
 
-        <!--<LinearLayout-->
-        <!--android:id="@+id/linear_attendance_record"-->
-        <!--android:layout_width="200dp"-->
-        <!--android:layout_height="56dp"-->
-        <!--android:layout_below="@+id/dataLayout"-->
-        <!--android:layout_gravity="center_vertical"-->
-        <!--android:layout_marginEnd="5dp"-->
-        <!--android:layout_marginStart="10dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:background="@drawable/square_cornerfull_orange"-->
-        <!--android:elevation="3dp"-->
-        <!--android:gravity="center_horizontal"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:paddingBottom="7dp"-->
-        <!--android:paddingEnd="12dp"-->
-        <!--android:paddingStart="12dp"-->
-        <!--android:paddingTop="7dp">-->
-
-        <!--<ImageView-->
-        <!--android:layout_width="15dp"-->
-        <!--android:layout_height="15dp"-->
-        <!--android:layout_gravity="center_vertical"-->
-        <!--android:background="@drawable/ic_attendance_calendar_white"-->
-        <!--android:focusable="false"-->
-        <!--tools:ignore="ContentDescription" />-->
-
-        <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_vertical"-->
-        <!--android:layout_marginStart="4dp"-->
-        <!--android:focusable="false"-->
-        <!--android:text="Attendance Record"-->
-        <!--android:textColor="@color/white"-->
-        <!--android:textStyle="bold"-->
-        <!--tools:ignore="HardcodedText,SmallSp" />-->
-
-        <!--</LinearLayout>-->
-
+        <!-- FAB attendance, refresh, location -->
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabAttendance"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_above="@+id/fabRefresh"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/orange"
             android:focusable="true"
@@ -417,7 +364,9 @@
             android:layout_height="50dp"
             android:layout_above="@+id/fabMyLocation"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/login_blue"
             android:focusable="true"
@@ -435,8 +384,10 @@
             android:layout_height="50dp"
             android:layout_above="@+id/buttonTemp"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/white"
             android:focusable="true"
@@ -448,7 +399,7 @@
             app:srcCompat="@drawable/ic_mobile_attendance_target"
             tools:targetApi="lollipop" />
 
-        <!-- Button Temp -->
+        <!-- Button Temp Used for space floating button -->
         <Button
             android:id="@+id/buttonTemp"
             android:layout_width="match_parent"
@@ -465,13 +416,15 @@
             tools:ignore="HardcodedText"
             tools:targetApi="lollipop" />
 
+        <!-- Progress, Record, Out of radius-->
         <ProgressBar
             android:id="@+id/progressBarPosition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="15dp" />
+            android:layout_marginBottom="15dp"
+            android:visibility="visible" />
 
         <Button
             android:id="@+id/buttonCheckin"
@@ -500,18 +453,17 @@
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/confirm_button_red"
+            android:background="@drawable/confirm_button_grey"
             android:elevation="3dp"
             android:fontFamily="@font/ubuntu_light"
             android:text="Out of Radius"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="gone"
             tools:ignore="HardcodedText"
             tools:targetApi="lollipop" />
-
 
     </RelativeLayout>
 

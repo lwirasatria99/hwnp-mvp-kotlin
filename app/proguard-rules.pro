@@ -38,3 +38,11 @@
 # Firebase Crashlytic
 -keep class com.crashlytics.** { *; }
 -keepattributes *Annotation*,SourceFile,LineNumberTable
+
+# Remove Logger
+-assumenosideeffects class android.util.Log {
+    public static *** d(...);
+    public static *** v(...);
+    public static *** e(...);
+    public static *** i(...);
+}

@@ -90,7 +90,7 @@ public class MonthlyAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         } else {
             assert inflater != null;
-            view = inflater.inflate(R.layout.row_monthlyrecord, viewGroup, false);
+            view = inflater.inflate(R.layout.row_attendance_record, viewGroup, false);
             holder = new ViewHolder(view);
             view.setTag(holder);
         }
