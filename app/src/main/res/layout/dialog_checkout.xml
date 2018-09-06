@@ -29,7 +29,8 @@
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                tools:ignore="HardcodedText" />
+                tools:ignore="HardcodedText"
+                android:layout_marginLeft="15dp" />
 
             <ImageView
                 android:id="@+id/imageLogout"
@@ -40,7 +41,9 @@
                 android:layout_marginTop="20dp"
                 android:contentDescription="icon"
                 app:srcCompat="@drawable/ic_logout"
-                tools:ignore="HardcodedText" />
+                tools:ignore="HardcodedText"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp" />
 
         </RelativeLayout>
 
@@ -53,7 +56,8 @@
             android:layout_marginTop="10dp"
             android:text="@string/alert_checkout"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_marginLeft="15dp" />
 
     </LinearLayout>
 
@@ -76,7 +80,8 @@
             android:text="NO"
             android:textColor="@color/login_blue"
             android:textSize="16sp"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText"
+            android:layout_marginRight="60dp" />
 
         <TextView
             android:id="@+id/Yes"

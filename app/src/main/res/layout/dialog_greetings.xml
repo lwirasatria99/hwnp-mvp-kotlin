@@ -6,8 +6,8 @@
     android:theme="@style/AppThemeFont">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_centerInParent="true">
 
         <ImageView
@@ -15,17 +15,23 @@
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_centerHorizontal="true"
+            android:background="@drawable/greetings_early"
             tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tvGreetings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ivGreeting"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/ubuntu_bold"
             android:gravity="center"
             android:text=""
-            android:textColor="@color/white"
-            android:textSize="28sp" />
+            android:textAllCaps="true"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            tools:targetApi="jelly_bean" />
 
     </RelativeLayout>
 

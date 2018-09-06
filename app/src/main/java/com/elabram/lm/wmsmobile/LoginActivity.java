@@ -243,7 +243,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showMainMenu() {
         dismissDialog();
-        startActivity(new Intent(mActivity, CheckinActivity.class));
+        startActivity(new Intent(mActivity, CheckinV1Activity.class));
         this.finish();
     }
 

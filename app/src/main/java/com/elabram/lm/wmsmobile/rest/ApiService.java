@@ -3,13 +3,17 @@ package com.elabram.lm.wmsmobile.rest;
 import java.util.HashMap;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -46,9 +50,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("attCheckin")
-    Observable<ResponseBody> checkin(@Field("token") String token,
-                                     @Field("location") String location,
-                                     @Field("timezone") String timezone);
+    Observable<ResponseBody> checkin(@FieldMap HashMap<String, String> paramsCheckin);
 
     @FormUrlEncoded
     @POST("siteList")
@@ -84,4 +86,28 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("gps-violation")
     Observable<ResponseBody> fakeGPS(@FieldMap HashMap<String, String> paramsFakeGPS);
+
+    @GET("server-time")
+    Observable<ResponseBody> realtime();
+
+    @FormUrlEncoded
+    @POST("insert-livetracking")
+    Observable<ResponseBody> liveTracking(@FieldMap HashMap<String, String> paramsLiveTracking);
+
+//    @Multipart
+//    @FormUrlEncoded
+//    @POST("member-change-photo")
+//    Observable<ResponseBody> addProfile(@FieldMap HashMap<String, String> params, Par);
+
+    @Multipart
+    @POST("member-change-photo")
+    Observable<ResponseBody> addProfile(@Part("token") RequestBody token, @Part MultipartBody.Part file);
+
+    @FormUrlEncoded
+    @POST("getProfile")
+    Observable<ResponseBody> readProfile(@Field("token") String token);
+
+    @FormUrlEncoded
+    @POST("contract-check")
+    Observable<ResponseBody> readContract(@Field("token") String token);
 }

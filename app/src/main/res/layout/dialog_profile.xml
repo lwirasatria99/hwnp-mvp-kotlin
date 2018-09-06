@@ -1,496 +1,511 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/square_cornerfull_white_profile"
-    android:orientation="vertical"
-    android:theme="@style/AppThemeFont"
-    tools:context=".MainActivity">
+    android:layout_height="wrap_content">
 
-    <!-- Profile Picture-->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <!--Circle Image -->
-        <android.support.v7.widget.CardView
-            android:id="@+id/view2"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:innerRadius="0dp"
-            android:shape="ring"
-            android:thicknessRatio="1.9"
-            app:cardCornerRadius="30dp"
-            app:cardElevation="2dp">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_profile"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:civ_border_color="@color/black"
-                app:civ_border_width="1dp"
-                app:srcCompat="@drawable/profile_default_picture"
-                tools:ignore="ContentDescription" />
-
-        </android.support.v7.widget.CardView>
-
-        <!--<ImageView-->
-        <!--android:id="@+id/fab_about"-->
-        <!--android:layout_width="25dp"-->
-        <!--android:layout_height="25dp"-->
-        <!--android:layout_gravity="end"-->
-        <!--android:layout_marginEnd="20dp"-->
-        <!--android:layout_marginRight="20dp"-->
-        <!--android:layout_marginTop="20dp"-->
-        <!--app:srcCompat="@mipmap/ic_aboutapps"-->
-        <!--tools:ignore="ContentDescription" />-->
-
-    </FrameLayout>
-
-    <!-- About us, Feedback-->
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <!-- About -->
-        <LinearLayout
-            android:id="@+id/linear_about"
-            android:layout_width="130dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="5dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/square_cornerfull_purple"
-            android:elevation="3dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            tools:targetApi="lollipop">
-
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginEnd="3dp"
-                android:layout_marginRight="3dp"
-                android:focusable="false"
-                app:srcCompat="@drawable/ic_aboutapps"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_marginStart="4dp"
-                android:focusable="false"
-                android:fontFamily="@font/ubuntu_bold"
-                android:text="ABOUT"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                tools:ignore="HardcodedText" />
-
-        </LinearLayout>
-
-        <!-- Feedback-->
-        <LinearLayout
-            android:id="@+id/linear_feedback"
-            android:layout_width="130dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="5dp"
-            android:layout_marginEnd="3dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/square_cornerfull_green"
-            android:elevation="3dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            tools:targetApi="lollipop">
-
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginEnd="3dp"
-                android:layout_marginRight="5dp"
-                android:focusable="false"
-                android:src="@drawable/wms_feedback"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_marginStart="4dp"
-                android:focusable="false"
-                android:fontFamily="@font/ubuntu_bold"
-                android:text="Support"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                tools:ignore="HardcodedText" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
-        android:background="@color/grey_profile" />
-
-    <!-- Data, Change Password, Logout-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:background="@drawable/square_cornerfull_white_profile"
         android:orientation="vertical"
-        android:paddingEnd="15dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="15dp"
-        android:paddingStart="20dp">
+        android:theme="@style/AppThemeFont"
+        tools:context=".MainActivity">
 
-        <!--Name-->
+        <!-- Profile Picture-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--Circle Image -->
+            <android.support.v7.widget.CardView
+                android:id="@+id/view2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:innerRadius="0dp"
+                app:cardElevation="0dp"
+                app:cardPreventCornerOverlap="false"
+                android:shape="rectangle">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:civ_border_color="@color/black"
+                    app:civ_border_width="1dp"
+                    app:srcCompat="@drawable/profile_default_picture"
+                    tools:ignore="ContentDescription" />
+
+                <ImageView
+                    android:id="@+id/ivChangePicture"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="bottom|end"
+                    android:src="@mipmap/ic_photo_camera_orange"
+                    tools:ignore="ContentDescription" />
+
+            </android.support.v7.widget.CardView>
+
+            <!--<ImageView-->
+            <!--android:id="@+id/fab_about"-->
+            <!--android:layout_width="25dp"-->
+            <!--android:layout_height="25dp"-->
+            <!--android:layout_gravity="end"-->
+            <!--android:layout_marginEnd="20dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--app:srcCompat="@mipmap/ic_aboutapps"-->
+            <!--tools:ignore="ContentDescription" />-->
+
+        </FrameLayout>
+
+        <!-- About us, Feedback-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/ic_profile_name"
-                tools:ignore="ContentDescription" />
-
+            <!-- About -->
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/space_icon_totext"
-                android:layout_marginStart="@dimen/space_icon_totext"
-                android:orientation="vertical">
+                android:id="@+id/linear_about"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/square_cornerfull_purple"
+                android:elevation="3dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                tools:targetApi="lollipop">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginRight="3dp"
+                    android:focusable="false"
+                    app:srcCompat="@drawable/ic_aboutapps"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"
+                    android:focusable="false"
                     android:fontFamily="@font/ubuntu_bold"
-                    android:text="Name"
-                    android:textColor="@color/black"
-                    tools:ignore="HardcodedText"
-                    tools:targetApi="jelly_bean" />
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/black"
+                    android:text="ABOUT"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <!--Name-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="@dimen/ic_profile_size"
-                android:layout_height="@dimen/ic_profile_size"
-                android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/ic_profile_id"
-                tools:ignore="ContentDescription" />
-
+            <!-- Feedback-->
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/space_icon_totext"
-                android:layout_marginStart="@dimen/space_icon_totext"
-                android:orientation="vertical">
+                android:id="@+id/linear_feedback"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/square_cornerfull_green"
+                android:elevation="3dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                tools:targetApi="lollipop">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginRight="5dp"
+                    android:focusable="false"
+                    android:src="@drawable/wms_feedback"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"
+                    android:focusable="false"
                     android:fontFamily="@font/ubuntu_bold"
-                    android:text="ID"
-                    android:textColor="@color/black"
-                    tools:ignore="HardcodedText"
-                    tools:targetApi="jelly_bean" />
-
-                <TextView
-                    android:id="@+id/tv_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/black"
+                    android:text="Support"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
-
-        </LinearLayout>
-
-        <!--Position-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_profile_top"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="@dimen/ic_profile_size"
-                android:layout_height="@dimen/ic_profile_size"
-                android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/ic_profile_position"
-                tools:ignore="ContentDescription" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/space_icon_totext"
-                android:layout_marginStart="@dimen/space_icon_totext"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/ubuntu_bold"
-                    android:text="Position"
-                    android:textColor="@color/black"
-                    tools:ignore="HardcodedText"
-                    tools:targetApi="jelly_bean" />
-
-                <TextView
-                    android:id="@+id/tv_position"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/black"
-                    tools:ignore="HardcodedText" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!--Name-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_profile_top"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="@dimen/ic_profile_size"
-                android:layout_height="@dimen/ic_profile_size"
-                android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/ic_profile_email"
-                tools:ignore="ContentDescription" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/space_icon_totext"
-                android:layout_marginStart="@dimen/space_icon_totext"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/ubuntu_bold"
-                    android:text="Email"
-                    android:textColor="@color/black"
-                    tools:ignore="HardcodedText"
-                    tools:targetApi="jelly_bean" />
-
-                <TextView
-                    android:id="@+id/tv_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/black"
-                    tools:ignore="HardcodedText" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!--Name-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_profile_top"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="@dimen/ic_profile_size"
-                android:layout_height="@dimen/ic_profile_size"
-                android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/ic_profile_mobile"
-                tools:ignore="ContentDescription" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/space_icon_totext"
-                android:layout_marginStart="@dimen/space_icon_totext"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/ubuntu_bold"
-                    android:text="Mobile"
-                    android:textColor="@color/black"
-                    tools:ignore="HardcodedText"
-                    tools:targetApi="jelly_bean" />
-
-                <TextView
-                    android:id="@+id/tv_mobile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/black"
-                    tools:ignore="HardcodedText" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!--Name-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_profile_top"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="@dimen/ic_profile_size"
-                android:layout_height="@dimen/ic_profile_size"
-                android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/ic_profile_phone"
-                tools:ignore="ContentDescription" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/space_icon_totext"
-                android:layout_marginStart="@dimen/space_icon_totext"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/ubuntu_bold"
-                    android:text="Phone"
-                    android:textColor="@color/black"
-                    tools:ignore="HardcodedText"
-                    tools:targetApi="jelly_bean" />
-
-                <TextView
-                    android:id="@+id/tv_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/black"
-                    tools:ignore="HardcodedText" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!-- Change Password -->
-        <LinearLayout
-            android:id="@+id/linear_change_password"
-            android:layout_width="160dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/square_cornerfull_blue"
-            android:elevation="3dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            tools:targetApi="lollipop">
-
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:focusable="false"
-                app:srcCompat="@drawable/ic_profile_lock"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_marginStart="4dp"
-                android:focusable="false"
-                android:fontFamily="@font/ubuntu_bold"
-                android:text="CHANGE PASSWORD"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
         <View
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginEnd="15dp"
             android:layout_marginStart="15dp"
             android:background="@color/grey_profile" />
 
-        <!-- Logout-->
+        <!-- Data, Change Password, Logout-->
         <LinearLayout
-            android:id="@+id/linear_logout"
-            android:layout_width="140dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/square_cornerfull_red"
-            android:elevation="3dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            tools:targetApi="lollipop">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingEnd="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="15dp"
+            android:paddingStart="20dp">
 
-            <ImageView
-                android:id="@+id/icon"
-                android:layout_width="20dp"
-                android:layout_height="12dp"
-                android:focusable="false"
-                app:srcCompat="@drawable/ic_logout_door"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <!--Name-->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:layout_marginStart="3dp"
-                android:focusable="false"
-                android:fontFamily="@font/ubuntu_bold"
-                android:text="LOGOUT"
-                android:textColor="@color/white"
-                tools:ignore="HardcodedText" />
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_profile_name"
+                    tools:ignore="ContentDescription" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_icon_totext"
+                    android:layout_marginStart="@dimen/space_icon_totext"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:text="Name"
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText"
+                        tools:targetApi="jelly_bean" />
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Name-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/ic_profile_size"
+                    android:layout_height="@dimen/ic_profile_size"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_profile_id"
+                    tools:ignore="ContentDescription" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_icon_totext"
+                    android:layout_marginStart="@dimen/space_icon_totext"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:text="ID"
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText"
+                        tools:targetApi="jelly_bean" />
+
+                    <TextView
+                        android:id="@+id/tv_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Position-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_profile_top"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/ic_profile_size"
+                    android:layout_height="@dimen/ic_profile_size"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_profile_position"
+                    tools:ignore="ContentDescription" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_icon_totext"
+                    android:layout_marginStart="@dimen/space_icon_totext"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:text="Position"
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText"
+                        tools:targetApi="jelly_bean" />
+
+                    <TextView
+                        android:id="@+id/tv_position"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Name-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_profile_top"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/ic_profile_size"
+                    android:layout_height="@dimen/ic_profile_size"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_profile_email"
+                    tools:ignore="ContentDescription" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_icon_totext"
+                    android:layout_marginStart="@dimen/space_icon_totext"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:text="Email"
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText"
+                        tools:targetApi="jelly_bean" />
+
+                    <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Name-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_profile_top"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/ic_profile_size"
+                    android:layout_height="@dimen/ic_profile_size"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_profile_mobile"
+                    tools:ignore="ContentDescription" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_icon_totext"
+                    android:layout_marginStart="@dimen/space_icon_totext"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:text="Mobile"
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText"
+                        tools:targetApi="jelly_bean" />
+
+                    <TextView
+                        android:id="@+id/tv_mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Name-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_profile_top"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/ic_profile_size"
+                    android:layout_height="@dimen/ic_profile_size"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_profile_phone"
+                    tools:ignore="ContentDescription" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_icon_totext"
+                    android:layout_marginStart="@dimen/space_icon_totext"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:text="Phone"
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText"
+                        tools:targetApi="jelly_bean" />
+
+                    <TextView
+                        android:id="@+id/tv_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Change Password -->
+            <LinearLayout
+                android:id="@+id/linear_change_password"
+                android:layout_width="160dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/square_cornerfull_blue"
+                android:elevation="3dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                tools:targetApi="lollipop">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:focusable="false"
+                    app:srcCompat="@drawable/ic_profile_lock"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"
+                    android:focusable="false"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text="CHANGE PASSWORD"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/grey_profile" />
+
+            <!-- Logout-->
+            <LinearLayout
+                android:id="@+id/linear_logout"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/square_cornerfull_red"
+                android:elevation="3dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                tools:targetApi="lollipop">
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="20dp"
+                    android:layout_height="12dp"
+                    android:focusable="false"
+                    app:srcCompat="@drawable/ic_logout_door"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginStart="3dp"
+                    android:focusable="false"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text="LOGOUT"
+                    android:textColor="@color/white"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

@@ -19,11 +19,13 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CheckinActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".LoginActivity"
-            android:theme="@style/AppThemeWhite"
-            android:screenOrientation="portrait">
+        <activity
+            android:name=".CheckinV1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeWhite">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,20 +33,27 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ChooseTaskActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AttendanceRecordActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AboutActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ChangePasswordActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".FeedbackActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".PerformanceChartActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ChooseTaskActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AttendanceRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FeedbackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PerformanceChartActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".SplashFirstActivity" />
 
         <meta-data
@@ -59,6 +68,21 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <service android:name=".utilities.GPSTracker" />
+
+        <provider
+            android:name=".utilities.GenericFileProvider"
+            android:authorities="${applicationId}.com.elabram.lm.wmsmobile"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+
+        <!--<receiver-->
+            <!--android:name=".utilities.AlarmReceiver"-->
+            <!--android:exported="false" />-->
     </application>
 
 </manifest>

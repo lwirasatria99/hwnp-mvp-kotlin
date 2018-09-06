@@ -13,4 +13,12 @@
     <dimen name="size_10">10dp</dimen>
     <dimen name="size_yesno_monthly">15dp</dimen>
     <dimen name="font_modal">18sp</dimen>
+    <dimen name="elevation_fab">0dp</dimen>
+    <dimen name="translationz_fab">0dp</dimen>
+    <dimen name="corner_15">12dp</dimen>
+    <dimen name="space_checkin_place">3dp</dimen>
+    <dimen name="space_marker">5dp</dimen>
+    <dimen name="size_font_time">16sp</dimen>
+    <dimen name="space_marker_to_time">5dp</dimen>
+    <dimen name="size_time">45dp</dimen>
 </resources>

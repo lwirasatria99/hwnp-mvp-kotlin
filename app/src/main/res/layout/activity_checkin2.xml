@@ -148,6 +148,16 @@
                     <!--android:background="@mipmap/ic_refresh"-->
                     <!--tools:ignore="ContentDescription" />-->
 
+                    <TextView
+                        android:id="@+id/digitalClock"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="35sp"
+                        android:text="22:01:00"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal"/>
+
                 </RelativeLayout>
 
                 <!--<RelativeLayout-->
@@ -351,12 +361,12 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/orange"
+            app:backgroundTint="@color/orange"
             android:focusable="true"
             app:borderWidth="0dp"
-            app:elevation="6dp"
+            app:elevation="@dimen/elevation_fab"
             app:fabSize="normal"
-            app:pressedTranslationZ="12dp"
+            app:pressedTranslationZ="@dimen/translationz_fab"
             app:rippleColor="@color/colorPrimary"
             app:srcCompat="@drawable/ic_attendance_calendar_white"
             tools:targetApi="lollipop" />
@@ -371,12 +381,12 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/green_grab"
+            app:backgroundTint="@color/green_grab"
             android:focusable="true"
             app:borderWidth="0dp"
-            app:elevation="6dp"
+            app:elevation="@dimen/elevation_fab"
             app:fabSize="normal"
-            app:pressedTranslationZ="12dp"
+            app:pressedTranslationZ="@dimen/translationz_fab"
             app:rippleColor="@color/colorPrimary"
             app:srcCompat="@drawable/ic_refresh_white_24dp"
             tools:targetApi="lollipop" />
@@ -392,12 +402,12 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/white"
             android:focusable="true"
+            app:backgroundTint="@color/grey_attendace"
             app:borderWidth="0dp"
-            app:elevation="6dp"
+            app:elevation="@dimen/elevation_fab"
             app:fabSize="normal"
-            app:pressedTranslationZ="12dp"
+            app:pressedTranslationZ="@dimen/translationz_fab"
             app:rippleColor="@color/colorPrimary"
             app:srcCompat="@drawable/ic_mobile_attendance_target"
             tools:targetApi="lollipop" />
@@ -471,3 +481,4 @@
     </RelativeLayout>
 
 </LinearLayout>
+

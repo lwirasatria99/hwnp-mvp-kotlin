@@ -3,7 +3,6 @@ package com.elabram.lm.wmsmobile.adapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +25,9 @@ import butterknife.ButterKnife;
  * Created by lalu.mahendra on 16-May-18.
  */
 
-public class MonthlyAdapter extends BaseAdapter {
+public class AttendanceRecordAdapter extends BaseAdapter {
 
-    private static final String TAG = MonthlyAdapter.class.getSimpleName();
+    private static final String TAG = AttendanceRecordAdapter.class.getSimpleName();
     private Activity mActivity;
     private List<Monthly> monthlies;
     private LayoutInflater inflater;
@@ -64,7 +63,7 @@ public class MonthlyAdapter extends BaseAdapter {
 
     }
 
-    public MonthlyAdapter(Activity mActivity, List<Monthly> monthlies) {
+    public AttendanceRecordAdapter(Activity mActivity, List<Monthly> monthlies) {
         this.mActivity = mActivity;
         this.monthlies = monthlies;
     }
@@ -150,7 +149,7 @@ public class MonthlyAdapter extends BaseAdapter {
                 e.printStackTrace();
             }
             String formattedFirstClock = writeClock.format(dateClock);
-            String time_zone1 = formattedFirstClock + " "+timezone1;
+            String time_zone1 = formattedFirstClock;
             holder.first_clock.setText(time_zone1);
         } else {
             holder.first_clock.setText("-");
@@ -167,7 +166,7 @@ public class MonthlyAdapter extends BaseAdapter {
                 e.printStackTrace();
             }
             String formattedLastClock = writeClock.format(dateClock);
-            String time_zone2 = formattedLastClock + " "+timezone2;
+            String time_zone2 = formattedLastClock;
             holder.last_clock.setText(time_zone2);
         } else {
             holder.last_clock.setText("-");

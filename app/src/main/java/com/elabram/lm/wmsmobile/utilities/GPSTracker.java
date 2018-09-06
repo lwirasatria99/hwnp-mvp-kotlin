@@ -4,8 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -19,14 +19,28 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
-/**
- *
- * Created by L Wira Satria on 22/08/16.
- */
+import com.elabram.lm.wmsmobile.rest.ApiClient;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.HashMap;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
+
+import static com.elabram.lm.wmsmobile.utilities.AppInfo.token;
+
 
 public class GPSTracker extends Service implements LocationListener {
 
-    private final Context mContext;
+    private Context mContext = this;
+
     private String TAG = GPSTracker.class.getSimpleName();
 
     // flag for GPS status
@@ -37,22 +51,32 @@ public class GPSTracker extends Service implements LocationListener {
 
     boolean canGetLocation = false;
 
-    Location location; // location
-    double latitude; // latitude
-    double longitude; // longitude
+    Location location;
+    double latitude;
+    double longitude;
 
     // The minimum distance to change Updates in meters
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
 
     // The minimum time between updates in milliseconds
-    private static final long MIN_TIME_BW_UPDATES = 1000 * 1 * 1; // 1 minute
+    private static final long MIN_TIME_BW_UPDATES = 1000; // 1 second
 
     // Declaring logo_indosat Location Manager
     protected LocationManager locationManager;
+    private Disposable disposable;
+
+    private String s_gmt;
+    private String s_timezone_id;
+    private String s_lat, s_long;
 
     public GPSTracker(Context context) {
         this.mContext = context;
         getLocation();
+    }
+
+    @SuppressWarnings("unused")
+    public GPSTracker() {
+
     }
 
     @Nullable
@@ -62,9 +86,16 @@ public class GPSTracker extends Service implements LocationListener {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (disposable != null) {
+            disposable.dispose();
+        }
+    }
+
+    @Override
     public void onLocationChanged(Location location) {
-        //Toast.makeText(mContext, TAG +": onLocationChanged", Toast.LENGTH_SHORT).show();
-        //Log.e(TAG, "onLocationChanged: "+"Move" );
+
     }
 
     @Override
@@ -88,6 +119,7 @@ public class GPSTracker extends Service implements LocationListener {
             locationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
 
             // getting GPS status
+            assert locationManager != null;
             isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
             // getting network status
@@ -95,6 +127,7 @@ public class GPSTracker extends Service implements LocationListener {
 
             if (!isGPSEnabled && !isNetworkEnabled) {
                 // no network provider is enabled
+                Log.e(TAG, "getLocation: No Network & No GPS");
             } else {
 
                 this.canGetLocation = true;
@@ -115,7 +148,7 @@ public class GPSTracker extends Service implements LocationListener {
                             LocationManager.NETWORK_PROVIDER,
                             MIN_TIME_BW_UPDATES,
                             MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-                    Log.e(TAG, "Network");
+                    //Log.e(TAG, "Network");
                     if (locationManager != null) {
                         location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                         if (location != null) {
@@ -133,8 +166,7 @@ public class GPSTracker extends Service implements LocationListener {
                                 MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
                         Log.e(TAG, "GPS Enabled");
                         if (locationManager != null) {
-                            location = locationManager
-                                    .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                             if (location != null) {
                                 latitude = location.getLatitude();
                                 longitude = location.getLongitude();
@@ -149,6 +181,99 @@ public class GPSTracker extends Service implements LocationListener {
         }
 
         return location;
+    }
+
+    /**
+     *
+     * Have to check server time
+     * if >= 17.00 stop service
+     */
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+//        s_gmt = intent.getStringExtra("gmt");
+//        s_timezone_id = intent.getStringExtra("timezone_id");
+//        s_lat = intent.getStringExtra("a_lat");
+//        s_long = intent.getStringExtra("a_long");
+
+        s_lat = String.valueOf(getLocation().getLatitude());
+        s_long = String.valueOf(getLocation().getLongitude());
+
+        SharedPreferences preferences = getSharedPreferences("PREFS_TIMEZONE", 0);
+        s_timezone_id = preferences.getString("s_timezone_id", "");
+        s_gmt = preferences.getString("s_gmt", "");
+
+        // use timezone
+        rxLiveTracking();
+
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    private HashMap<String, String> getParamsLiveTracking() {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", token); // OK
+        params.put("lat", s_lat); // OK
+        params.put("long", s_long); // OK
+        params.put("timezone", s_gmt);
+        params.put("timezone_id", s_timezone_id);
+        Log.e(TAG, "getParamsLive: " + params);
+        return params;
+    }
+
+    private void rxLiveTracking() {
+        Observable<ResponseBody> call = new ApiClient().getApiService().liveTracking(getParamsLiveTracking());
+        call.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBody>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable = d;
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        if (responseBody != null) {
+                            try {
+                                String mResponse = responseBody.string();
+                                Log.e(TAG, "onNext response live from service: " + mResponse);
+                                //noinspection unused
+                                JSONObject jsonObject = new JSONObject(mResponse);
+//                                String response_code = jsonObject.getString("response_code");
+//                                switch (response_code) {
+//                                    case "401":
+//                                        //noinspection unused
+//                                        String message = jsonObject.getString("message");
+//                                        //Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
+//                                        break;
+//                                    case "200":
+//                                        JSONArray jsonArray = jsonObject.getJSONArray("data");
+//                                        for (int i = 0; i < jsonArray.length(); i++) {
+//                                            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+//                                            message_greetings = jsonObject1.getString("message");
+//                                            Log.e(TAG, "onNext message greetings: " + message_greetings);
+//                                        }
+//
+//                                        break;
+//                                }
+                            } catch (IOException | JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAG, "onError LiveTracking Cause: " + e.getCause());
+//                        if (e instanceof SocketTimeoutException) {
+//                            Toast.makeText(CheckinV1Activity.this, "Timeout / Please try again", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            Toast.makeText(CheckinV1Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
     }
 
     /**
@@ -175,6 +300,7 @@ public class GPSTracker extends Service implements LocationListener {
         return longitude;
     }
 
+    @SuppressWarnings("unused")
     public boolean canGetLocation() {
         return this.canGetLocation;
     }
@@ -182,6 +308,7 @@ public class GPSTracker extends Service implements LocationListener {
     /**
      * Function to show settings alert dialog
      * */
+    @SuppressWarnings("unused")
     public void showSettingsAlert() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
 
@@ -195,24 +322,19 @@ public class GPSTracker extends Service implements LocationListener {
         //alertDialog.setIcon(R.drawable.delete);
 
         // On pressing Settings button
-        alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                mContext.startActivity(intent);
-            }
+        alertDialog.setPositiveButton("Settings", (dialog, which) -> {
+            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            mContext.startActivity(intent);
         });
 
         // on pressing cancel button
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+        alertDialog.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 
         // Showing Alert Message
         alertDialog.show();
     }
 
+    @SuppressWarnings("unused")
     public void stopUsingGPS() {
         if (locationManager != null) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED 

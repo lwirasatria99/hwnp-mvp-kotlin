@@ -10,8 +10,8 @@ android {
         applicationId "com.elabram.lm.wmsmobile"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 6
-        versionName '1.2.3'
+        versionCode 8
+        versionName '1.2.5'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -67,4 +67,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     // mpchart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
+    // digital clock
+    //implementation 'com.github.DeweyReed:DigitalWatchView:1.0.1'
 }

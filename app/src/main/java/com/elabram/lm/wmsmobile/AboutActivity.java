@@ -3,15 +3,22 @@ package com.elabram.lm.wmsmobile;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.elabram.lm.wmsmobile.rest.ApiClient;
 import com.squareup.picasso.Picasso;
@@ -20,6 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,6 +61,7 @@ public class AboutActivity extends AppCompatActivity {
 
     private String versionName;
     private Disposable disposable;
+    private String isContractActive;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -60,6 +69,8 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         ButterKnife.bind(this);
+
+        retrofitReadContract();
 
         String wmsDescription = "" +
                 "<p>WMS Mobile is brought to you by Elabram Systems, a company providing outsourcing and recruitment solutions, covering all level of expertise in Engineering and Telecommunication industry across Asia Pacific.</p>" +
@@ -75,6 +86,92 @@ public class AboutActivity extends AppCompatActivity {
 
         iv_back.setOnClickListener(view -> finish());
 
+    }
+
+    private void retrofitReadContract() {
+        Observable<ResponseBody> call = new ApiClient().getApiService().readContract(token);
+        call.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBody>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable = d;
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        if (responseBody != null) {
+                            try {
+                                String mResponse = responseBody.string();
+                                Log.e(TAG, "onNext Contract: "+mResponse);
+                                JSONObject jsonObject = new JSONObject(mResponse);
+                                String response_code = jsonObject.getString("response_code");
+                                switch (response_code) {
+                                    case "401":
+                                        String message = jsonObject.getString("message");
+                                        Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
+                                        break;
+                                    case "200":
+                                        //contract_message = jsonObject.getString("message");
+                                        JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                        isContractActive = jsonObject1.getString("is_contract_active");
+
+                                        break;
+                                }
+                            } catch (IOException | JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAG, "onError Retrofit Contract: " + e.getCause());
+                        if (e instanceof SocketTimeoutException) {
+                            Toast.makeText(AboutActivity.this, "Timeout / Please try again", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(AboutActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        if (isContractActive.equals("false")) {
+                            Snackbar.make(rootView, "Your contract has expired", Snackbar.LENGTH_LONG).show();
+                            startDialogContract();
+                        }
+                    }
+                });
+    }
+
+    private void startDialogContract() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.dialog_contract_out, null);
+
+        TextView tvOK = view.findViewById(R.id.tvOK);
+
+        builder.setView(view);
+        AlertDialog adVersion = builder.create();
+        //noinspection ConstantConditions
+        adVersion.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        adVersion.setCancelable(false);
+
+        if (!isFinishing())
+            adVersion.show();
+
+        tvOK.setOnClickListener(view1 -> {
+            if (Build.VERSION.SDK_INT >= 21) {
+                adVersion.dismiss();
+                finishAndRemoveTask();
+            } else {
+                adVersion.dismiss();
+                if (Build.VERSION.SDK_INT >= 16) {
+                    finishAffinity();
+                } else {
+                    ActivityCompat.finishAffinity(this);
+                }
+            }
+        });
     }
 
     private void retrofitReadClient() {

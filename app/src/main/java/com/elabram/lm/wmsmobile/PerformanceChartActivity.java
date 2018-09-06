@@ -3,9 +3,12 @@ package com.elabram.lm.wmsmobile;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -38,9 +41,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,6 +77,7 @@ public class PerformanceChartActivity extends AppCompatActivity implements OnCha
 
     private Disposable disposable;
     private ArrayList<PerformanceModel> pModels = new ArrayList<>();
+    private String isContractActive;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,6 +92,7 @@ public class PerformanceChartActivity extends AppCompatActivity implements OnCha
         setCurrentYear();
 
         retrofitChart();
+        retrofitReadContract();
 
     }
 
@@ -98,8 +105,9 @@ public class PerformanceChartActivity extends AppCompatActivity implements OnCha
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (disposable != null)
+        if (disposable != null) {
             disposable.dispose();
+        }
     }
 
     private String getTextYear() {
@@ -171,17 +179,103 @@ public class PerformanceChartActivity extends AppCompatActivity implements OnCha
         return params;
     }
 
+    private void retrofitReadContract() {
+        Observable<ResponseBody> call = new ApiClient().getApiService().readContract(token);
+        call.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBody>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable = d;
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        if (responseBody != null) {
+                            try {
+                                String mResponse = responseBody.string();
+                                Log.e(TAG, "onNext Contract: "+mResponse);
+                                JSONObject jsonObject = new JSONObject(mResponse);
+                                String response_code = jsonObject.getString("response_code");
+                                switch (response_code) {
+                                    case "401":
+                                        String message = jsonObject.getString("message");
+                                        Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
+                                        break;
+                                    case "200":
+                                        //contract_message = jsonObject.getString("message");
+                                        JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                        isContractActive = jsonObject1.getString("is_contract_active");
+
+                                        break;
+                                }
+                            } catch (IOException | JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAG, "onError Retrofit Contract: " + e.getCause());
+                        if (e instanceof SocketTimeoutException) {
+                            Toast.makeText(PerformanceChartActivity.this, "Timeout / Please try again", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(PerformanceChartActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        if (isContractActive.equals("false")) {
+                            //Snackbar.make(rootView, "Your contract has expired", Snackbar.LENGTH_LONG).show();
+                            startDialogContract();
+                        }
+                    }
+                });
+    }
+
+    private void startDialogContract() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.dialog_contract_out, null);
+
+        TextView tvOK = view.findViewById(R.id.tvOK);
+
+        builder.setView(view);
+        AlertDialog adVersion = builder.create();
+        //noinspection ConstantConditions
+        adVersion.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        adVersion.setCancelable(false);
+
+        if (!isFinishing())
+            adVersion.show();
+
+        tvOK.setOnClickListener(view1 -> {
+            if (Build.VERSION.SDK_INT >= 21) {
+                adVersion.dismiss();
+                finishAndRemoveTask();
+            } else {
+                adVersion.dismiss();
+                if (Build.VERSION.SDK_INT >= 16) {
+                    finishAffinity();
+                } else {
+                    ActivityCompat.finishAffinity(this);
+                }
+            }
+        });
+    }
+
     private void setChart() {
         mChart.setOnChartValueSelectedListener(this);
         mChart.getDescription().setEnabled(false);
 
         // if more than 60 entries are displayed in the chart, no values will be
         // drawn
-        mChart.setMaxVisibleValueCount(40);
+        mChart.setMaxVisibleValueCount(31);
 
         // scaling can now only be done on x- and y-axis separately
-        mChart.setPinchZoom(false);
-        mChart.setScaleEnabled(false);
+//        mChart.setPinchZoom(false);
+//        mChart.setScaleEnabled(false);
 
         mChart.setDrawGridBackground(false);
         mChart.setDrawBarShadow(false);
@@ -190,12 +284,14 @@ public class PerformanceChartActivity extends AppCompatActivity implements OnCha
 
         mChart.getXAxis().setDrawGridLines(false);
         mChart.getAxisLeft().setDrawGridLines(false);
+        mChart.setHorizontalScrollBarEnabled(true);
+        mChart.setScaleEnabled(false);
 
         // change the position of the y-labels
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setAxisMaximum(31);
         leftAxis.setAxisMinimum(0); // this replaces setStartAtZero(true)
-        leftAxis.setLabelCount(31);
+        leftAxis.setLabelCount(5);
         mChart.getAxisRight().setEnabled(false);
 
         ArrayList<String> xAxisLabel = new ArrayList<>();
@@ -215,10 +311,11 @@ public class PerformanceChartActivity extends AppCompatActivity implements OnCha
         XAxis xLabels = mChart.getXAxis();
         xLabels.setLabelCount(11);
         xLabels.setPosition(XAxis.XAxisPosition.BOTTOM);
-        mChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(xAxisLabel));
+        xLabels.setValueFormatter(new IndexAxisValueFormatter(xAxisLabel));
+        //mChart.setViewPortOffsets(1, 0, 1,0);
 
         Legend l = mChart.getLegend();
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
@@ -227,22 +324,22 @@ public class PerformanceChartActivity extends AppCompatActivity implements OnCha
         l.setXEntrySpace(6f);
 
         // for dummy
-        //final int min = 1;
-        //final int max = 12;
+        final int min = 1;
+        final int max = 12;
 
         ArrayList<BarEntry> yVals1 = new ArrayList<>();
 
         for (int i = 0; i < 12; i++) {
             // for dummy
-            //final int random1 = new Random().nextInt((max - min) + 1) + min;
-            //final int random2 = new Random().nextInt((max - min) + 1) + min;
+            final int random1 = new Random().nextInt((max - min) + 1) + min;
+            final int random2 = new Random().nextInt((max - min) + 1) + min;
 
             int i_latetime = Integer.parseInt(pModels.get(i).getLatetime());
             int i_ontime = Integer.parseInt(pModels.get(i).getOntime());
 
             yVals1.add(new BarEntry(
                     i,
-                    new float[]{(float) i_latetime, (float) i_ontime},
+                    new float[]{i_latetime, i_ontime},
                     getResources().getDrawable(R.drawable.star)));
         }
 
@@ -257,6 +354,7 @@ public class PerformanceChartActivity extends AppCompatActivity implements OnCha
             barDataSet = new BarDataSet(yVals1, "");
             barDataSet.setDrawIcons(false);
             barDataSet.setColors(getColors());
+
             barDataSet.setStackLabels(new String[]{"Late", "On Time"});
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<>();
@@ -265,12 +363,16 @@ public class PerformanceChartActivity extends AppCompatActivity implements OnCha
             // value inside bar
             BarData barData = new BarData(dataSets);
             barData.setValueTextColor(Color.WHITE);
+            barData.setValueTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             barData.setValueFormatter(new DecimalRemover());
-            barData.setValueTextSize(11);
+            barData.setValueTextSize(9);
+            //barData.setBarWidth(1.5f);
 
             mChart.setData(barData);
         }
 
+//        mChart.setVisibleXRangeMaximum(20);
+//        mChart.moveViewToX(10);
         mChart.setFitBars(true);
         mChart.invalidate();
     }
@@ -337,8 +439,8 @@ public class PerformanceChartActivity extends AppCompatActivity implements OnCha
 
         // have as many colors as stack-values per entry
         int[] colors = new int[stacksize];
-        colors[0] = getResources().getColor(R.color.red);
-        colors[1] = getResources().getColor(R.color.green_grab);
+        colors[0] = getResources().getColor(R.color.orange);
+        colors[1] = getResources().getColor(R.color.blue);
 
         return colors;
     }
