@@ -237,7 +237,6 @@ public class AttendanceRecordActivity extends AppCompatActivity implements DateP
                     @Override
                     public void onComplete() {
                         if (isContractActive.equals("false")) {
-                            Snackbar.make(rootView, "Your contract has expired", Snackbar.LENGTH_INDEFINITE).show();
                             startDialogContract();
                         }
                     }

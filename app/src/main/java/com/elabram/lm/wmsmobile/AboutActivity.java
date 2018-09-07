@@ -137,7 +137,6 @@ public class AboutActivity extends AppCompatActivity {
                     @Override
                     public void onComplete() {
                         if (isContractActive.equals("false")) {
-                            Snackbar.make(rootView, "Your contract has expired", Snackbar.LENGTH_LONG).show();
                             startDialogContract();
                         }
                     }

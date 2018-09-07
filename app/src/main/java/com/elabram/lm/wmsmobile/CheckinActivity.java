@@ -63,6 +63,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -79,7 +80,6 @@ import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -190,7 +190,7 @@ public class CheckinActivity extends AppCompatActivity implements OnMapReadyCall
     ImageView iv_logo_client;
 
     @BindView(R.id.iv_profile)
-    CircleImageView iv_profile_main;
+    CircularImageView iv_profile_main;
 
     private AlertDialog dialogProfile;
     private AlertDialog dialogLogout;

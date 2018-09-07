@@ -39,28 +39,34 @@
             tools:ignore="ContentDescription" />
 
         <!--Circle Image -->
-        <android.support.v7.widget.CardView
-            android:id="@+id/view2"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+        <!--<android.support.v7.widget.CardView-->
+        <!--android:id="@+id/view2"-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginEnd="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:innerRadius="0dp"-->
+        <!--android:shape="rectangle"-->
+        <!--app:cardElevation="0dp"-->
+        <!--app:cardPreventCornerOverlap="false">-->
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:innerRadius="0dp"
-            android:shape="ring"
-            android:thicknessRatio="1.9"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="2dp">
+            android:layout_marginEnd="@dimen/size_10"
+            android:layout_marginRight="@dimen/size_10"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/profile_default_picture"
+            tools:ignore="ContentDescription" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_profile"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:ignore="ContentDescription" />
-
-        </android.support.v7.widget.CardView>
+        <!--</android.support.v7.widget.CardView>-->
 
     </RelativeLayout>
 

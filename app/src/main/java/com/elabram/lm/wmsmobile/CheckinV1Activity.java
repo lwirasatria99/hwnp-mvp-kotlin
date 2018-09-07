@@ -8,7 +8,6 @@ import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -22,7 +21,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
 import android.location.Location;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,12 +33,13 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.media.ExifInterface;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -51,6 +50,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.crashlytics.android.Crashlytics;
 import com.elabram.lm.wmsmobile.model.Office;
 import com.elabram.lm.wmsmobile.rest.ApiClient;
@@ -74,12 +77,14 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
@@ -94,7 +99,6 @@ import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -137,7 +141,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
      */
     protected static final int CAMERA_REQUEST = 0;
     protected static final int GALLERY_PICTURE = 1;
-    private Intent pictureActionIntent = null;
+    //private Intent pictureActionIntent = null;
     Bitmap bitmap;
 
     String selectedImagePath;
@@ -218,7 +222,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     ImageView iv_logo_client;
 
     @BindView(R.id.iv_profile)
-    CircleImageView iv_profile_main;
+    CircularImageView iv_profile_main;
 
     @BindView(R.id.linearTimePlace)
     LinearLayout linearTimePlace;
@@ -258,12 +262,16 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     private String part3_time;
     private boolean isRunningHandler;
 
-    private ImageView ivDialogProfilePicture;
+    private CircularImageView iv_profile_dialog;
+
     private String s_url_image;
     private String isContractActive;
 
+    private String sh_url_image = "";
+    private String sh_image = "";
+    private byte[] byte_image;
+
     /**
-     *
      * Stop Service in Background X
      */
     @Override
@@ -275,11 +283,9 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         ButterKnife.bind(this);
 
         getSharedUserDetail();
-        initiateProfilePicture();
         retrofitReadClient();
 
         isRunningHandler = true;
-        //retrofitRealTime();
 
         Long tsLong = System.currentTimeMillis() / 1000;
         s_timeStamp = tsLong.toString();
@@ -337,6 +343,18 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 //            Log.e(TAG, "onCreate Database Time End: "+attendanceModels.get(i).getPlace_end());
 //        }
 //        ~
+
+        SharedPreferences settings = getSharedPreferences("PREFS_PHOTO", 0);
+        sh_image = settings.getString("sh_image", "");
+        sh_url_image = settings.getString("sh_url_image", "");
+        byte[] byte_image = Base64.decode(sh_image, Base64.NO_WRAP);
+
+        if (!sh_url_image.isEmpty()) {
+            Bitmap bmp = BitmapFactory.decodeByteArray(byte_image, 0, byte_image.length);
+            iv_profile_main.setImageBitmap(bmp);
+        }
+
+        retrofitReadProfile(iv_profile_main);
     }
 
     // Greetings #1
@@ -420,7 +438,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         TextView tv_mobile = view.findViewById(R.id.tv_mobile);
         TextView tv_phone = view.findViewById(R.id.tv_phone);
 
-        ivDialogProfilePicture = view.findViewById(R.id.iv_profile);
+        iv_profile_dialog = view.findViewById(R.id.iv_profile_dialog);
         ImageView iv_change_profile = view.findViewById(R.id.ivChangePicture);
 
         LinearLayout linear_logout = view.findViewById(R.id.linear_logout);
@@ -437,13 +455,22 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
         checkingPermission();
 
-        dialogProfile.setOnCancelListener(dialogInterface -> {
-            if (s_url_image != null) {
-                retrofitReadProfile(ivDialogProfilePicture);
-            }
-        });
+        /*
+          From picassoProfile()
+         */
+        SharedPreferences settings = getSharedPreferences("PREFS_PHOTO", 0);
+        sh_image = settings.getString("sh_image", "");
+        sh_url_image = settings.getString("sh_url_image", "");
+        byte[] byte_image = Base64.decode(sh_image, Base64.NO_WRAP);
 
-        setDataProfile(tv_name, tv_id, tv_position, tv_email, tv_mobile, tv_phone, ivDialogProfilePicture);
+        if (!sh_url_image.isEmpty()) {
+            Bitmap bmp = BitmapFactory.decodeByteArray(byte_image, 0, byte_image.length);
+            iv_profile_dialog.setImageBitmap(bmp);
+        }
+
+        retrofitReadProfile(iv_profile_dialog);
+
+        setDataProfile(tv_name, tv_id, tv_position, tv_email, tv_mobile, tv_phone);
 
         linear_about.setOnClickListener(view1 -> startActivity(new Intent(this, AboutActivity.class)));
 
@@ -454,9 +481,41 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         linear_logout.setOnClickListener(view1 -> dialogLogout());
 
         iv_change_profile.setOnClickListener(view1 -> startDialogGalleryCamera());
-        ivDialogProfilePicture.setOnClickListener(view1 -> startDialogGalleryCamera());
+        iv_profile_dialog.setOnClickListener(view1 -> startDialogGalleryCamera());
 
     }
+
+//    public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
+//        int width = bm.getWidth();
+//        int height = bm.getHeight();
+//        float scaleWidth = ((float) newWidth) / width;
+//        float scaleHeight = ((float) newHeight) / height;
+//        // CREATE A MATRIX FOR THE MANIPULATION
+//        Matrix matrix = new Matrix();
+//        // RESIZE THE BIT MAP
+//        matrix.postScale(scaleWidth, scaleHeight);
+//
+//        // "RECREATE" THE NEW BITMAP
+//        Bitmap resizedBitmap = Bitmap.createBitmap(
+//                bm, 0, 0, width, height, matrix, false);
+//        bm.recycle();
+//        return resizedBitmap;
+//    }
+
+//    private Bitmap getAspectRatio(Bitmap bm) {
+//        float aspectRatio = bm.getWidth() /
+//                (float) bm.getHeight();
+//        int width = 400;
+//        int height = Math.round(width / aspectRatio);
+//
+//        Bitmap bitmap = Bitmap.createScaledBitmap(bm, width, height, false);
+//        //bm.recycle();
+//
+//        // if using heigh
+//        //int height = 480;
+//        //int width = Math.round(height * aspectRatio);
+//        return bitmap;
+//    }
 
     private void retrofitReadProfile(ImageView ivProfile) {
         Observable<ResponseBody> call = new ApiClient().getApiService().readProfile(token);
@@ -473,7 +532,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                         if (responseBody != null) {
                             try {
                                 String mResponse = responseBody.string();
-                                Log.e(TAG, "onNext Profile: "+mResponse);
+                                Log.e(TAG, "onNext Profile: " + mResponse);
                                 JSONObject jsonObject = new JSONObject(mResponse);
                                 String response_code = jsonObject.getString("response_code");
                                 switch (response_code) {
@@ -483,7 +542,16 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                                         break;
                                     case "200":
                                         JSONObject jsonObject1 = jsonObject.getJSONObject("data");
-                                         s_url_image = jsonObject1.getString("user_image");
+                                        s_url_image = jsonObject1.getString("user_image");
+                                        Log.e(TAG, "onNext Profile: " + s_url_image);
+
+                                        if (s_url_image.isEmpty()) {
+                                            ivProfile.setImageDrawable(ContextCompat.getDrawable(
+                                                    CheckinV1Activity.this, R.drawable.profile_default_picture));
+                                        } else {
+                                            glideURL(s_url_image, ivProfile);
+                                        }
+
                                         break;
                                 }
                             } catch (IOException | JSONException e) {
@@ -494,7 +562,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e(TAG, "onError Retrofit Profile: " + e.getCause());
+                        Log.e(TAG, "onError Profile: " + e.getCause());
                         if (e instanceof SocketTimeoutException) {
                             Toast.makeText(CheckinV1Activity.this, "Timeout / Please try again", Toast.LENGTH_SHORT).show();
                         } else {
@@ -504,18 +572,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
                     @Override
                     public void onComplete() {
-                        Log.e(TAG, "onComplete: URLImage "+s_url_image);
-                        if (!s_url_image.isEmpty()) {
-                            Picasso.with(CheckinV1Activity.this)
-                                    .load(s_url_image)
-                                    .resize(200, 200)
-                                    .centerInside()
-                                    .noFade()
-                                    .into(ivProfile);
-                        } else {
-                            VectorDrawableCompat vectorDrawableCompat = VectorDrawableCompat.create(getResources(), R.drawable.profile_default_picture, null);
-                            ivProfile.setImageDrawable(vectorDrawableCompat);
-                        }
+                        Log.e(TAG, "onComplete Profile: ");
                     }
                 });
     }
@@ -535,7 +592,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                         if (responseBody != null) {
                             try {
                                 String mResponse = responseBody.string();
-                                Log.e(TAG, "onNext Contract: "+mResponse);
+                                Log.e(TAG, "onNext Contract: " + mResponse);
                                 JSONObject jsonObject = new JSONObject(mResponse);
                                 String response_code = jsonObject.getString("response_code");
                                 switch (response_code) {
@@ -570,7 +627,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                     public void onComplete() {
                         dismissProgress();
                         if (isContractActive.equals("false")) {
-                            //Snackbar.make(rootView, "Your contract has expired", Snackbar.LENGTH_LONG).show();
                             startDialogContract();
                         }
                     }
@@ -624,16 +680,16 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         myAlertDialog.setMessage("How do you want to set your picture?");
 
         myAlertDialog.setPositiveButton("Gallery", (arg0, arg1) -> {
-                    Intent pictureActionIntent;
+            Intent pictureActionIntent;
 
-                    pictureActionIntent = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(
-                            pictureActionIntent,
-                            GALLERY_PICTURE);
+            pictureActionIntent = new Intent(
+                    Intent.ACTION_PICK,
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(
+                    pictureActionIntent,
+                    GALLERY_PICTURE);
 
-                });
+        });
 
         myAlertDialog.setNegativeButton("Camera",
                 (arg0, arg1) -> {
@@ -692,7 +748,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void setDataProfile(TextView tv_name, TextView tv_id, TextView tv_position,
-                                TextView tv_email, TextView tv_mobile, TextView tv_phone, ImageView iv_profile) {
+                                TextView tv_email, TextView tv_mobile, TextView tv_phone) {
 
         tv_name.setText(WordUtils.capitalize(user_fullname));
         tv_id.setText(mem_nip);
@@ -701,15 +757,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         tv_mobile.setText(mem_mobile);
         tv_phone.setText(mem_phone);
 
-        //Log.e(TAG, "setDataProfile ImageProfile: "+mem_image );
-        // Profile Picture
-//        if (mem_image.equals("https://elabram.com/hris/files/employee/") || mem_image.isEmpty()) {
-//            VectorDrawableCompat vectorDrawableCompat = VectorDrawableCompat.create(getResources(), R.drawable.profile_default_picture, null);
-//            iv_profile.setImageDrawable(vectorDrawableCompat);
-//        } else {
-
-        retrofitReadProfile(iv_profile);
-//        }
 
         // ID
         if (mem_nip.length() == 0) {
@@ -737,10 +784,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         }
     }
 
-    private void initiateProfilePicture() {
-        retrofitReadProfile(iv_profile_main);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -765,61 +808,91 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                 return;
             }
 
+            Uri fileUri;
+            String realPath = f.getAbsolutePath();
+            File file1 = new File(realPath);
+            fileUri = Uri.fromFile(file1);
+
             try {
 
                 bitmap = BitmapFactory.decodeFile(f.getAbsolutePath());
-
                 bitmap = Bitmap.createScaledBitmap(bitmap, 400, 400, true);
 
-                int rotate = 0;
-                try {
-                    ExifInterface exif = new ExifInterface(f.getAbsolutePath());
-                    int orientation = exif.getAttributeInt(
-                            ExifInterface.TAG_ORIENTATION,
-                            ExifInterface.ORIENTATION_NORMAL);
-
-                    switch (orientation) {
-                        case ExifInterface.ORIENTATION_ROTATE_270:
-                            rotate = 270;
-                            break;
-                        case ExifInterface.ORIENTATION_ROTATE_180:
-                            rotate = 180;
-                            break;
-                        case ExifInterface.ORIENTATION_ROTATE_90:
-                            rotate = 90;
-                            break;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                ExifInterface exif = new ExifInterface(f.getAbsolutePath());
+                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
                 Matrix matrix = new Matrix();
-                matrix.postRotate(rotate);
-                bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
-                        bitmap.getHeight(), matrix, true);
 
-                ivDialogProfilePicture.setImageBitmap(bitmap);
-
-                Uri fileUri;
-                String realPath = f.getAbsolutePath();
-                File file1 = new File(realPath);
-                fileUri = Uri.fromFile(file1);
-
-                if (fileUri != null) {
-                    retrofitAddPicture(fileUri);
+                if ((orientation == ExifInterface.ORIENTATION_ROTATE_180)) {
+                    matrix.postRotate(180);
+                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+                            bitmap.getHeight(), matrix, true);
+                } else if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
+                    matrix.postRotate(90);
+                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+                            bitmap.getHeight(), matrix, true);
+                } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
+                    matrix.postRotate(270);
+                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+                            bitmap.getHeight(), matrix, true);
                 }
+
+                //int rotate = 0;
+//                ExifInterface exif;
+//                if (Build.VERSION.SDK_INT > 23) {
+//                    assert input != null;
+//                    exif = new ExifInterface(input);
+//                } else {
+//                    exif = new ExifInterface(f.getAbsolutePath());
+//
+//                    int orientation = exif.getAttributeInt(
+//                            ExifInterface.TAG_ORIENTATION,
+//                            ExifInterface.ORIENTATION_NORMAL);
+//
+//                    switch (orientation) {
+//                        case ExifInterface.ORIENTATION_ROTATE_270:
+//                            rotate = 270;
+//                            break;
+//                        case ExifInterface.ORIENTATION_ROTATE_180:
+//                            rotate = 180;
+//                            break;
+//                        case ExifInterface.ORIENTATION_ROTATE_90:
+//                            rotate = 90;
+//                            break;
+//                    }
+//                }
+//                Matrix matrix = new Matrix();
+//                matrix.postRotate(rotate);
+//                bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+//                        bitmap.getHeight(), matrix, true);
+
+                // From Rara
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] imageInByte = baos.toByteArray();
+                String saveThis = Base64.encodeToString(imageInByte, Base64.NO_WRAP);
+
+                SharedPreferences preferences = getSharedPreferences("PREFS_PHOTO", 0);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("sh_image", saveThis);
+                editor.apply();
+
+                //iv_profile_dialog.setImageBitmap(bitmap);
+                //iv_profile_main.setImageBitmap(rotatedBitmap);
+
+                retrofitAddPicture(fileUri);
 
                 //storeImageTosdCard(bitmap);
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
-        // Gallery
+            // Gallery
         } else if (resultCode == RESULT_OK && requestCode == GALLERY_PICTURE) {
             if (data != null) {
 
                 Uri selectedImage = data.getData();
-                String[] filePath = { MediaStore.Images.Media.DATA };
+                String[] filePath = {MediaStore.Images.Media.DATA};
 
                 assert selectedImage != null;
                 Cursor c = getContentResolver().query(selectedImage, filePath,
@@ -833,15 +906,25 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                 c.close();
 
                 if (selectedImagePath != null) {
-                    //txt_image_path.setText(selectedImagePath);
-                    Log.e(TAG, "onActivityResult Selected ImagePath: "+selectedImagePath);
+                    Log.e(TAG, "onActivityResult Selected ImagePath: " + selectedImagePath);
                 }
 
                 bitmap = BitmapFactory.decodeFile(selectedImagePath); // load
                 // preview image
                 bitmap = Bitmap.createScaledBitmap(bitmap, 400, 400, false);
 
-                ivDialogProfilePicture.setImageBitmap(bitmap);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] imageInByte = baos.toByteArray();
+                String saveThis = Base64.encodeToString(imageInByte, Base64.NO_WRAP);
+
+                SharedPreferences preferences = getSharedPreferences("PREFS_PHOTO", 0);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("sh_image", saveThis);
+                editor.apply();
+
+                //iv_profile_dialog.setImageBitmap(bitmap);
+                //iv_profile_main.setImageBitmap(bitmap);
 
                 Uri uri = Uri.fromFile(new File(selectedImagePath));
                 retrofitAddPicture(uri);
@@ -853,16 +936,10 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
     }
 
+
     /**
      * ~
      */
-
-//    private HashMap<String, String> getParamsProfile() {
-//        HashMap<String, String> params = new HashMap<>();
-//        params.put("token", token);
-//        params.put("mem_image", );
-//        return params;
-//    }
 
     private String getDataColumn(Context context, Uri uri, String selection,
                                  String[] selectionArgs) {
@@ -966,6 +1043,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void retrofitAddPicture(Uri fileUri) {
+        showProgress();
         String filePath = getRealPathFromUri(fileUri);
         File file = new File(filePath);
 
@@ -992,17 +1070,21 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
                                 JSONObject jsonObject = new JSONObject(response);
                                 String response_code = jsonObject.getString("response_code");
+                                String message = jsonObject.getString("message");
+                                if (response_code.equals("200")) {
+                                    Toast.makeText(CheckinV1Activity.this, "Photo Successfully uploaded ", Toast.LENGTH_SHORT).show();
 
-//                                switch (response_code) {
-//                                    case "401":
-//                                        String message = jsonObject.getString("message");
-//                                        Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
-//                                        break;
-//                                    case "200":
-//                                        JSONObject jsonObject1 = jsonObject.getJSONObject("data");
-//
-//                                        break;
-//                                }
+                                    glideBitmap(iv_profile_dialog);
+                                    glideBitmap(iv_profile_main);
+
+//                                    iv_profile_dialog.setImageBitmap(scaled);
+//                                    iv_profile_main.setImageBitmap(scaled);
+
+                                    //retrofitReadProfile(iv_profile_main);
+                                    //retrofitReadProfile(iv_profile_dialog);
+                                } else {
+                                    Toast.makeText(CheckinV1Activity.this, message, Toast.LENGTH_SHORT).show();
+                                }
 
                             } catch (IOException | JSONException e) {
                                 e.printStackTrace();
@@ -1012,15 +1094,29 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
                     @Override
                     public void onError(Throwable e) {
+                        dismissProgress();
                         Toast.makeText(CheckinV1Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.e(TAG, "onError: "+e.getMessage());
+                        Log.e(TAG, "onError Add Profile: " + e.getMessage());
                     }
 
                     @Override
                     public void onComplete() {
-
+                        dismissProgress();
                     }
                 });
+    }
+
+    private void glideBitmap(ImageView ivProfile) {
+//        int nh = bitmap.getHeight() * (400 / bitmap.getWidth());
+//        Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 400, nh, true);
+
+        Glide.with(CheckinV1Activity.this)
+                .load(bitmap)
+                .apply(new RequestOptions()
+                        .centerCrop()
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                        .dontAnimate())
+                .into(ivProfile);
     }
     // ~
 
@@ -1213,6 +1309,8 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     protected void onDestroy() {
         super.onDestroy();
         Log.e(TAG, "onDestroy: ");
+
+        Glide.get(this).clearMemory();
 
         if (mFusedLocationClient != null) {
             stopLocationUpdates();
@@ -1428,7 +1526,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e(TAG, "onError: " + e.getCause());
+                        Log.e(TAG, "onError Client: " + e.getCause());
                     }
 
                     @Override
@@ -1437,6 +1535,103 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                     }
                 });
     }
+
+    private void glideURL(String s_url_image, ImageView ivProfile) {
+        Glide.with(this)
+                .load(s_url_image)
+                .apply(new RequestOptions()
+                        .fitCenter()
+                        .centerInside()
+                        .dontAnimate()
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                        .priority(Priority.HIGH))
+                .into(ivProfile);
+//                .listener(new RequestListener<Bitmap>() {
+//                    @Override
+//                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
+//
+//                        return false;
+//                    }
+//
+//                    @Override
+//                    public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+//                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                        resource.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//                        byte[] imageInByte = baos.toByteArray();
+//                        String saveThis = Base64.encodeToString(imageInByte, Base64.NO_WRAP);
+//
+//                        Log.e(TAG, "onResourceReady: " + s_url_image);
+//                        Log.e(TAG, "onResourceReady: " + sh_url_image);
+////
+//                        if (!sh_url_image.equals(s_url_image) || sh_url_image.isEmpty()) {
+//
+//                            SharedPreferences preferences = getSharedPreferences("PREFS_PHOTO", 0);
+//                            SharedPreferences.Editor editor = preferences.edit();
+//                            editor.putString("sh_url_image", s_url_image);
+//                            editor.putString("sh_image", saveThis);
+//                            editor.apply();
+//
+//                            SharedPreferences settings = getSharedPreferences("PREFS_PHOTO", 0);
+//                            sh_image = settings.getString("sh_image", "");
+//                            sh_url_image = settings.getString("sh_url_image", "");
+//                            byte_image = Base64.decode(sh_image, Base64.NO_WRAP);
+//
+//                            Bitmap bmp = BitmapFactory.decodeByteArray(byte_image, 0, byte_image.length);
+//                            ivProfile.setImageBitmap(bmp);
+//                        }
+//
+//                        return false;
+//                    }
+//                }).submit();
+    }
+
+
+//    private void picassoProfile(String s_url_image, ImageView ivProfile) {
+//        Picasso.with(this)
+//                .load(s_url_image)
+//                .noFade()
+//                .centerInside()
+//                .resize(400, 400)
+//                .into(new Target() {
+//                    @Override
+//                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+//                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//                        byte[] imageInByte = baos.toByteArray();
+//                        String saveThis = Base64.encodeToString(imageInByte, Base64.NO_WRAP);
+//
+//                        Log.e(TAG, "onBitmapLoaded: " + s_url_image);
+//                        Log.e(TAG, "onBitmapLoaded: " + sh_url_image);
+//
+//                        if (!sh_url_image.equals(s_url_image) || sh_url_image.isEmpty()) {
+//
+//                            SharedPreferences preferences = getSharedPreferences("PREFS_PHOTO", 0);
+//                            SharedPreferences.Editor editor = preferences.edit();
+//                            editor.putString("sh_url_image", s_url_image);
+//                            editor.putString("sh_image", saveThis);
+//                            editor.apply();
+//
+//                            SharedPreferences settings = getSharedPreferences("PREFS_PHOTO", 0);
+//                            sh_image = settings.getString("sh_image", "");
+//                            sh_url_image = settings.getString("sh_url_image", "");
+//                            byte_image = Base64.decode(sh_image, Base64.NO_WRAP);
+//
+//                            Bitmap bmp = BitmapFactory.decodeByteArray(byte_image, 0, byte_image.length);
+//                            ivProfile.setImageBitmap(bmp);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onBitmapFailed(Drawable errorDrawable) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+//
+//                    }
+//                });
+//    }
 
     private HashMap<String, String> getParamsGreeting() {
         HashMap<String, String> params = new HashMap<>();
@@ -1660,7 +1855,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                Log.e(TAG, "onFailure Checkin Status: "+t.getCause() );
+                Log.e(TAG, "onFailure Checkin Status: " + t.getCause());
                 Toast.makeText(CheckinV1Activity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 Crashlytics.log(user_fullname + " " + t.getCause());
             }
@@ -1811,13 +2006,13 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                 }
 
                 if (mMinute < 10) {
-                    s_mMinute = "0"+ String.valueOf(mMinute);
+                    s_mMinute = "0" + String.valueOf(mMinute);
                 } else {
                     s_mMinute = String.valueOf(mMinute);
                 }
 
                 if (mSecond < 10) {
-                    s_mSecond = "0"+ String.valueOf(mSecond);
+                    s_mSecond = "0" + String.valueOf(mSecond);
                 } else {
                     s_mSecond = String.valueOf(mSecond);
                 }
@@ -2013,7 +2208,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e(TAG, "onResume: boolean "+isRunningHandler);
+        Log.e(TAG, "onResume: boolean " + isRunningHandler);
 
         //isRunningHandler = false;
 
@@ -2029,7 +2224,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
         // Live Clock
 //        if (!isRunningHandler) {
-            retrofitRealTime();
+        retrofitRealTime();
 //            isRunningHandler = true; // Testing
 //        } else {
 //            retrofitRealTime();

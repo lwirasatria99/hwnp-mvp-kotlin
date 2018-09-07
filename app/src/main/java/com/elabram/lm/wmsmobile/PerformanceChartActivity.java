@@ -228,7 +228,6 @@ public class PerformanceChartActivity extends AppCompatActivity implements OnCha
                     @Override
                     public void onComplete() {
                         if (isContractActive.equals("false")) {
-                            //Snackbar.make(rootView, "Your contract has expired", Snackbar.LENGTH_LONG).show();
                             startDialogContract();
                         }
                     }
@@ -334,12 +333,12 @@ public class PerformanceChartActivity extends AppCompatActivity implements OnCha
             final int random1 = new Random().nextInt((max - min) + 1) + min;
             final int random2 = new Random().nextInt((max - min) + 1) + min;
 
-            int i_latetime = Integer.parseInt(pModels.get(i).getLatetime());
-            int i_ontime = Integer.parseInt(pModels.get(i).getOntime());
+//            int i_latetime = Integer.parseInt(pModels.get(i).getLatetime());
+//            int i_ontime = Integer.parseInt(pModels.get(i).getOntime());
 
             yVals1.add(new BarEntry(
                     i,
-                    new float[]{i_latetime, i_ontime},
+                    new float[]{random1, random2},
                     getResources().getDrawable(R.drawable.star)));
         }
 

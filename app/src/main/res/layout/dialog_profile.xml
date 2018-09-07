@@ -1,65 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:a="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    a:layout_width="match_parent"
+    a:layout_height="wrap_content">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/square_cornerfull_white_profile"
-        android:orientation="vertical"
-        android:theme="@style/AppThemeFont"
+    <LinearLayout
+        a:layout_width="match_parent"
+        a:layout_height="wrap_content"
+        a:background="@drawable/square_cornerfull_white_profile"
+        a:orientation="vertical"
+        a:theme="@style/AppThemeFont"
         tools:context=".MainActivity">
 
         <!-- Profile Picture-->
         <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            a:layout_width="match_parent"
+            a:layout_height="wrap_content">
 
             <!--Circle Image -->
             <android.support.v7.widget.CardView
-                android:id="@+id/view2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="15dp"
-                android:innerRadius="0dp"
+                a:id="@+id/view2"
+                a:layout_width="60dp"
+                a:layout_height="60dp"
+                a:layout_gravity="center_horizontal"
+                a:layout_marginBottom="15dp"
+                a:layout_marginTop="15dp"
+                a:innerRadius="0dp"
+                a:shape="rectangle"
                 app:cardElevation="0dp"
-                app:cardPreventCornerOverlap="false"
-                android:shape="rectangle">
+                app:cardPreventCornerOverlap="false">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/iv_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:civ_border_color="@color/black"
-                    app:civ_border_width="1dp"
-                    app:srcCompat="@drawable/profile_default_picture"
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    a:id="@+id/iv_profile_dialog"
+                    a:layout_width="match_parent"
+                    a:layout_height="match_parent"
                     tools:ignore="ContentDescription" />
 
                 <ImageView
-                    android:id="@+id/ivChangePicture"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="bottom|end"
-                    android:src="@mipmap/ic_photo_camera_orange"
+                    a:visibility="visible"
+                    a:id="@+id/ivChangePicture"
+                    a:layout_width="20dp"
+                    a:layout_height="20dp"
+                    a:layout_gravity="bottom|end"
+                    a:src="@mipmap/ic_photo_camera_orange"
                     tools:ignore="ContentDescription" />
 
             </android.support.v7.widget.CardView>
 
             <!--<ImageView-->
-            <!--android:id="@+id/fab_about"-->
-            <!--android:layout_width="25dp"-->
-            <!--android:layout_height="25dp"-->
-            <!--android:layout_gravity="end"-->
-            <!--android:layout_marginEnd="20dp"-->
-            <!--android:layout_marginRight="20dp"-->
-            <!--android:layout_marginTop="20dp"-->
+            <!--a:id="@+id/fab_about"-->
+            <!--a:layout_width="25dp"-->
+            <!--a:layout_height="25dp"-->
+            <!--a:layout_gravity="end"-->
+            <!--a:layout_marginEnd="20dp"-->
+            <!--a:layout_marginRight="20dp"-->
+            <!--a:layout_marginTop="20dp"-->
             <!--app:srcCompat="@mipmap/ic_aboutapps"-->
             <!--tools:ignore="ContentDescription" />-->
 
@@ -67,91 +63,91 @@
 
         <!-- About us, Feedback-->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            a:layout_width="match_parent"
+            a:layout_height="wrap_content"
+            a:layout_marginBottom="10dp"
+            a:gravity="center_horizontal"
+            a:orientation="horizontal">
 
             <!-- About -->
             <LinearLayout
-                android:id="@+id/linear_about"
-                android:layout_width="130dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginBottom="5dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/square_cornerfull_purple"
-                android:elevation="3dp"
-                android:gravity="center"
-                android:orientation="horizontal"
+                a:id="@+id/linear_about"
+                a:layout_width="130dp"
+                a:layout_height="30dp"
+                a:layout_gravity="center_vertical"
+                a:layout_marginBottom="5dp"
+                a:layout_marginEnd="8dp"
+                a:layout_marginLeft="3dp"
+                a:layout_marginRight="8dp"
+                a:layout_marginStart="3dp"
+                a:layout_marginTop="5dp"
+                a:background="@drawable/square_cornerfull_purple"
+                a:elevation="3dp"
+                a:gravity="center"
+                a:orientation="horizontal"
                 tools:targetApi="lollipop">
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginRight="3dp"
-                    android:focusable="false"
+                    a:layout_width="15dp"
+                    a:layout_height="15dp"
+                    a:layout_marginEnd="3dp"
+                    a:layout_marginRight="3dp"
+                    a:focusable="false"
                     app:srcCompat="@drawable/ic_aboutapps"
                     tools:ignore="ContentDescription" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginStart="4dp"
-                    android:focusable="false"
-                    android:fontFamily="@font/ubuntu_bold"
-                    android:text="ABOUT"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
+                    a:layout_width="wrap_content"
+                    a:layout_height="wrap_content"
+                    a:layout_marginLeft="4dp"
+                    a:layout_marginStart="4dp"
+                    a:focusable="false"
+                    a:fontFamily="@font/ubuntu_bold"
+                    a:text="ABOUT"
+                    a:textColor="@color/white"
+                    a:textSize="12sp"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
 
             <!-- Feedback-->
             <LinearLayout
-                android:id="@+id/linear_feedback"
-                android:layout_width="130dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginBottom="5dp"
-                android:layout_marginEnd="3dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/square_cornerfull_green"
-                android:elevation="3dp"
-                android:gravity="center"
-                android:orientation="horizontal"
+                a:id="@+id/linear_feedback"
+                a:layout_width="130dp"
+                a:layout_height="30dp"
+                a:layout_gravity="center_vertical"
+                a:layout_marginBottom="5dp"
+                a:layout_marginEnd="3dp"
+                a:layout_marginLeft="8dp"
+                a:layout_marginRight="3dp"
+                a:layout_marginStart="8dp"
+                a:layout_marginTop="5dp"
+                a:background="@drawable/square_cornerfull_green"
+                a:elevation="3dp"
+                a:gravity="center"
+                a:orientation="horizontal"
                 tools:targetApi="lollipop">
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginRight="5dp"
-                    android:focusable="false"
-                    android:src="@drawable/wms_feedback"
+                    a:layout_width="15dp"
+                    a:layout_height="15dp"
+                    a:layout_marginEnd="3dp"
+                    a:layout_marginRight="5dp"
+                    a:focusable="false"
+                    a:src="@drawable/wms_feedback"
                     tools:ignore="ContentDescription" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginStart="4dp"
-                    android:focusable="false"
-                    android:fontFamily="@font/ubuntu_bold"
-                    android:text="Support"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
+                    a:layout_width="wrap_content"
+                    a:layout_height="wrap_content"
+                    a:layout_marginLeft="4dp"
+                    a:layout_marginStart="4dp"
+                    a:focusable="false"
+                    a:fontFamily="@font/ubuntu_bold"
+                    a:text="Support"
+                    a:textAllCaps="true"
+                    a:textColor="@color/white"
+                    a:textSize="12sp"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
@@ -159,58 +155,58 @@
         </LinearLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginStart="15dp"
-            android:background="@color/grey_profile" />
+            a:layout_width="match_parent"
+            a:layout_height="1dp"
+            a:layout_marginEnd="15dp"
+            a:layout_marginStart="15dp"
+            a:background="@color/grey_profile" />
 
         <!-- Data, Change Password, Logout-->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingEnd="15dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="15dp"
-            android:paddingStart="20dp">
+            a:layout_width="match_parent"
+            a:layout_height="wrap_content"
+            a:orientation="vertical"
+            a:paddingEnd="15dp"
+            a:paddingLeft="20dp"
+            a:paddingRight="15dp"
+            a:paddingStart="20dp">
 
             <!--Name-->
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                a:layout_width="match_parent"
+                a:layout_height="wrap_content"
+                a:layout_marginTop="10dp"
+                a:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_gravity="center_vertical"
+                    a:layout_width="18dp"
+                    a:layout_height="18dp"
+                    a:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_profile_name"
                     tools:ignore="ContentDescription" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/space_icon_totext"
-                    android:layout_marginStart="@dimen/space_icon_totext"
-                    android:orientation="vertical">
+                    a:layout_width="wrap_content"
+                    a:layout_height="wrap_content"
+                    a:layout_marginLeft="@dimen/space_icon_totext"
+                    a:layout_marginStart="@dimen/space_icon_totext"
+                    a:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu_bold"
-                        android:text="Name"
-                        android:textColor="@color/black"
+                        a:layout_width="wrap_content"
+                        a:layout_height="wrap_content"
+                        a:fontFamily="@font/ubuntu_bold"
+                        a:text="Name"
+                        a:textColor="@color/black"
                         tools:ignore="HardcodedText"
                         tools:targetApi="jelly_bean" />
 
                     <TextView
-                        android:id="@+id/tv_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/black"
+                        a:id="@+id/tv_name"
+                        a:layout_width="wrap_content"
+                        a:layout_height="wrap_content"
+                        a:text=""
+                        a:textColor="@color/black"
                         tools:ignore="HardcodedText" />
 
                 </LinearLayout>
@@ -219,40 +215,40 @@
 
             <!--Name-->
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
+                a:layout_width="match_parent"
+                a:layout_height="wrap_content"
+                a:layout_marginTop="15dp"
+                a:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="@dimen/ic_profile_size"
-                    android:layout_height="@dimen/ic_profile_size"
-                    android:layout_gravity="center_vertical"
+                    a:layout_width="@dimen/ic_profile_size"
+                    a:layout_height="@dimen/ic_profile_size"
+                    a:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_profile_id"
                     tools:ignore="ContentDescription" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/space_icon_totext"
-                    android:layout_marginStart="@dimen/space_icon_totext"
-                    android:orientation="vertical">
+                    a:layout_width="wrap_content"
+                    a:layout_height="wrap_content"
+                    a:layout_marginLeft="@dimen/space_icon_totext"
+                    a:layout_marginStart="@dimen/space_icon_totext"
+                    a:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu_bold"
-                        android:text="ID"
-                        android:textColor="@color/black"
+                        a:layout_width="wrap_content"
+                        a:layout_height="wrap_content"
+                        a:fontFamily="@font/ubuntu_bold"
+                        a:text="ID"
+                        a:textColor="@color/black"
                         tools:ignore="HardcodedText"
                         tools:targetApi="jelly_bean" />
 
                     <TextView
-                        android:id="@+id/tv_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/black"
+                        a:id="@+id/tv_id"
+                        a:layout_width="wrap_content"
+                        a:layout_height="wrap_content"
+                        a:text=""
+                        a:textColor="@color/black"
                         tools:ignore="HardcodedText" />
 
                 </LinearLayout>
@@ -261,40 +257,40 @@
 
             <!--Position-->
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_profile_top"
-                android:orientation="horizontal">
+                a:layout_width="match_parent"
+                a:layout_height="wrap_content"
+                a:layout_marginTop="@dimen/size_profile_top"
+                a:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="@dimen/ic_profile_size"
-                    android:layout_height="@dimen/ic_profile_size"
-                    android:layout_gravity="center_vertical"
+                    a:layout_width="@dimen/ic_profile_size"
+                    a:layout_height="@dimen/ic_profile_size"
+                    a:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_profile_position"
                     tools:ignore="ContentDescription" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/space_icon_totext"
-                    android:layout_marginStart="@dimen/space_icon_totext"
-                    android:orientation="vertical">
+                    a:layout_width="wrap_content"
+                    a:layout_height="wrap_content"
+                    a:layout_marginLeft="@dimen/space_icon_totext"
+                    a:layout_marginStart="@dimen/space_icon_totext"
+                    a:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu_bold"
-                        android:text="Position"
-                        android:textColor="@color/black"
+                        a:layout_width="wrap_content"
+                        a:layout_height="wrap_content"
+                        a:fontFamily="@font/ubuntu_bold"
+                        a:text="Position"
+                        a:textColor="@color/black"
                         tools:ignore="HardcodedText"
                         tools:targetApi="jelly_bean" />
 
                     <TextView
-                        android:id="@+id/tv_position"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/black"
+                        a:id="@+id/tv_position"
+                        a:layout_width="wrap_content"
+                        a:layout_height="wrap_content"
+                        a:text=""
+                        a:textColor="@color/black"
                         tools:ignore="HardcodedText" />
 
                 </LinearLayout>
@@ -303,40 +299,40 @@
 
             <!--Name-->
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_profile_top"
-                android:orientation="horizontal">
+                a:layout_width="match_parent"
+                a:layout_height="wrap_content"
+                a:layout_marginTop="@dimen/size_profile_top"
+                a:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="@dimen/ic_profile_size"
-                    android:layout_height="@dimen/ic_profile_size"
-                    android:layout_gravity="center_vertical"
+                    a:layout_width="@dimen/ic_profile_size"
+                    a:layout_height="@dimen/ic_profile_size"
+                    a:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_profile_email"
                     tools:ignore="ContentDescription" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/space_icon_totext"
-                    android:layout_marginStart="@dimen/space_icon_totext"
-                    android:orientation="vertical">
+                    a:layout_width="wrap_content"
+                    a:layout_height="wrap_content"
+                    a:layout_marginLeft="@dimen/space_icon_totext"
+                    a:layout_marginStart="@dimen/space_icon_totext"
+                    a:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu_bold"
-                        android:text="Email"
-                        android:textColor="@color/black"
+                        a:layout_width="wrap_content"
+                        a:layout_height="wrap_content"
+                        a:fontFamily="@font/ubuntu_bold"
+                        a:text="Email"
+                        a:textColor="@color/black"
                         tools:ignore="HardcodedText"
                         tools:targetApi="jelly_bean" />
 
                     <TextView
-                        android:id="@+id/tv_email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/black"
+                        a:id="@+id/tv_email"
+                        a:layout_width="wrap_content"
+                        a:layout_height="wrap_content"
+                        a:text=""
+                        a:textColor="@color/black"
                         tools:ignore="HardcodedText" />
 
                 </LinearLayout>
@@ -345,40 +341,40 @@
 
             <!--Name-->
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_profile_top"
-                android:orientation="horizontal">
+                a:layout_width="match_parent"
+                a:layout_height="wrap_content"
+                a:layout_marginTop="@dimen/size_profile_top"
+                a:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="@dimen/ic_profile_size"
-                    android:layout_height="@dimen/ic_profile_size"
-                    android:layout_gravity="center_vertical"
+                    a:layout_width="@dimen/ic_profile_size"
+                    a:layout_height="@dimen/ic_profile_size"
+                    a:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_profile_mobile"
                     tools:ignore="ContentDescription" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/space_icon_totext"
-                    android:layout_marginStart="@dimen/space_icon_totext"
-                    android:orientation="vertical">
+                    a:layout_width="wrap_content"
+                    a:layout_height="wrap_content"
+                    a:layout_marginLeft="@dimen/space_icon_totext"
+                    a:layout_marginStart="@dimen/space_icon_totext"
+                    a:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu_bold"
-                        android:text="Mobile"
-                        android:textColor="@color/black"
+                        a:layout_width="wrap_content"
+                        a:layout_height="wrap_content"
+                        a:fontFamily="@font/ubuntu_bold"
+                        a:text="Mobile"
+                        a:textColor="@color/black"
                         tools:ignore="HardcodedText"
                         tools:targetApi="jelly_bean" />
 
                     <TextView
-                        android:id="@+id/tv_mobile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/black"
+                        a:id="@+id/tv_mobile"
+                        a:layout_width="wrap_content"
+                        a:layout_height="wrap_content"
+                        a:text=""
+                        a:textColor="@color/black"
                         tools:ignore="HardcodedText" />
 
                 </LinearLayout>
@@ -387,40 +383,40 @@
 
             <!--Name-->
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_profile_top"
-                android:orientation="horizontal">
+                a:layout_width="match_parent"
+                a:layout_height="wrap_content"
+                a:layout_marginTop="@dimen/size_profile_top"
+                a:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="@dimen/ic_profile_size"
-                    android:layout_height="@dimen/ic_profile_size"
-                    android:layout_gravity="center_vertical"
+                    a:layout_width="@dimen/ic_profile_size"
+                    a:layout_height="@dimen/ic_profile_size"
+                    a:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_profile_phone"
                     tools:ignore="ContentDescription" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/space_icon_totext"
-                    android:layout_marginStart="@dimen/space_icon_totext"
-                    android:orientation="vertical">
+                    a:layout_width="wrap_content"
+                    a:layout_height="wrap_content"
+                    a:layout_marginLeft="@dimen/space_icon_totext"
+                    a:layout_marginStart="@dimen/space_icon_totext"
+                    a:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu_bold"
-                        android:text="Phone"
-                        android:textColor="@color/black"
+                        a:layout_width="wrap_content"
+                        a:layout_height="wrap_content"
+                        a:fontFamily="@font/ubuntu_bold"
+                        a:text="Phone"
+                        a:textColor="@color/black"
                         tools:ignore="HardcodedText"
                         tools:targetApi="jelly_bean" />
 
                     <TextView
-                        android:id="@+id/tv_phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/black"
+                        a:id="@+id/tv_phone"
+                        a:layout_width="wrap_content"
+                        a:layout_height="wrap_content"
+                        a:text=""
+                        a:textColor="@color/black"
                         tools:ignore="HardcodedText" />
 
                 </LinearLayout>
@@ -429,77 +425,77 @@
 
             <!-- Change Password -->
             <LinearLayout
-                android:id="@+id/linear_change_password"
-                android:layout_width="160dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/square_cornerfull_blue"
-                android:elevation="3dp"
-                android:gravity="center"
-                android:orientation="horizontal"
+                a:id="@+id/linear_change_password"
+                a:layout_width="160dp"
+                a:layout_height="30dp"
+                a:layout_gravity="center_horizontal"
+                a:layout_marginTop="20dp"
+                a:background="@drawable/square_cornerfull_blue"
+                a:elevation="3dp"
+                a:gravity="center"
+                a:orientation="horizontal"
                 tools:targetApi="lollipop">
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:focusable="false"
+                    a:layout_width="15dp"
+                    a:layout_height="15dp"
+                    a:focusable="false"
                     app:srcCompat="@drawable/ic_profile_lock"
                     tools:ignore="ContentDescription" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginStart="4dp"
-                    android:focusable="false"
-                    android:fontFamily="@font/ubuntu_bold"
-                    android:text="CHANGE PASSWORD"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
+                    a:layout_width="wrap_content"
+                    a:layout_height="wrap_content"
+                    a:layout_marginLeft="4dp"
+                    a:layout_marginStart="4dp"
+                    a:focusable="false"
+                    a:fontFamily="@font/ubuntu_bold"
+                    a:text="CHANGE PASSWORD"
+                    a:textColor="@color/white"
+                    a:textSize="12sp"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/grey_profile" />
+                a:layout_width="match_parent"
+                a:layout_height="1dp"
+                a:layout_marginEnd="15dp"
+                a:layout_marginStart="15dp"
+                a:layout_marginTop="20dp"
+                a:background="@color/grey_profile" />
 
             <!-- Logout-->
             <LinearLayout
-                android:id="@+id/linear_logout"
-                android:layout_width="140dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/square_cornerfull_red"
-                android:elevation="3dp"
-                android:gravity="center"
-                android:orientation="horizontal"
+                a:id="@+id/linear_logout"
+                a:layout_width="140dp"
+                a:layout_height="30dp"
+                a:layout_gravity="center_horizontal"
+                a:layout_marginBottom="20dp"
+                a:layout_marginTop="20dp"
+                a:background="@drawable/square_cornerfull_red"
+                a:elevation="3dp"
+                a:gravity="center"
+                a:orientation="horizontal"
                 tools:targetApi="lollipop">
 
                 <ImageView
-                    android:id="@+id/icon"
-                    android:layout_width="20dp"
-                    android:layout_height="12dp"
-                    android:focusable="false"
+                    a:id="@+id/icon"
+                    a:layout_width="20dp"
+                    a:layout_height="12dp"
+                    a:focusable="false"
                     app:srcCompat="@drawable/ic_logout_door"
                     tools:ignore="ContentDescription" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginStart="3dp"
-                    android:focusable="false"
-                    android:fontFamily="@font/ubuntu_bold"
-                    android:text="LOGOUT"
-                    android:textColor="@color/white"
+                    a:layout_width="wrap_content"
+                    a:layout_height="wrap_content"
+                    a:layout_marginLeft="3dp"
+                    a:layout_marginStart="3dp"
+                    a:focusable="false"
+                    a:fontFamily="@font/ubuntu_bold"
+                    a:text="LOGOUT"
+                    a:textColor="@color/white"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
