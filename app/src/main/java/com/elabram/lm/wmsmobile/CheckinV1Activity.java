@@ -1114,7 +1114,9 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                 .load(bitmap)
                 .apply(new RequestOptions()
                         .centerCrop()
+                        .skipMemoryCache(true)
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                        .placeholder(R.drawable.profile_default_picture)
                         .dontAnimate())
                 .into(ivProfile);
     }
@@ -1540,9 +1542,10 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         Glide.with(this)
                 .load(s_url_image)
                 .apply(new RequestOptions()
-                        .fitCenter()
-                        .centerInside()
+                        .centerCrop()
                         .dontAnimate()
+                        .skipMemoryCache(true)
+                        .placeholder(R.drawable.profile_default_picture)
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                         .priority(Priority.HIGH))
                 .into(ivProfile);
