@@ -38,15 +38,13 @@ public interface ApiService {
     Call<ResponseBody> loadStatusCheckin(@Field("token") String token);
 
     @GET("https://maps.googleapis.com/maps/api/timezone/json")
-    Call<ResponseBody> cekTimeZone(@Query("location") String coordinat,
+    Call<ResponseBody> cekTimeZone(@Query("location") String coordinate,
                                    @Query("timestamp") String timestamp,
                                    @Query("key") String keyApi);
 
-//    @FormUrlEncoded
-//    @POST("attCheckin")
-//    Call<ResponseBody> checkin(@Field("token") String token,
-//                               @Field("location") String location,
-//                               @Field("timezone") String timezone);
+    @GET("https://maps.googleapis.com/maps/api/geocode/json")
+    Call<ResponseBody> cekLocationName(@Query("latlng") String coordinate,
+                                       @Query("key") String keyApi);
 
     @FormUrlEncoded
     @POST("attCheckin")
@@ -102,6 +100,16 @@ public interface ApiService {
     @Multipart
     @POST("member-change-photo")
     Observable<ResponseBody> addProfile(@Part("token") RequestBody token, @Part MultipartBody.Part file);
+
+    @Multipart
+    @POST("attCheckin")
+    Observable<ResponseBody> recordWithPhoto(@Part("token") RequestBody token,
+                                             @Part("location") RequestBody location_name,
+                                             @Part("timezone") RequestBody timezone,
+                                             @Part("timezone_id") RequestBody timezone_id,
+                                             @Part("in_area") RequestBody in_area,
+                                             @Part("remark") RequestBody remark,
+                                             @Part MultipartBody.Part file);
 
     @FormUrlEncoded
     @POST("getProfile")

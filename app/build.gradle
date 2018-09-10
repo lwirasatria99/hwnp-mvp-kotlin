@@ -79,4 +79,7 @@ dependencies {
     // digital clock
     //implementation 'com.github.DeweyReed:DigitalWatchView:1.0.1'
     implementation "com.android.support:exifinterface:$supportVersion"
+
+    // compressor
+    implementation 'id.zelory:compressor:2.1.0'
 }

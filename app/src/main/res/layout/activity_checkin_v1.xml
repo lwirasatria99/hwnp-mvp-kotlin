@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:theme="@style/AppThemeFont"
-    tools:context="com.elabram.lm.wmsmobile.CheckinActivity">
+    tools:context="com.elabram.lm.wmsmobile.CheckinV1Activity">
 
     <!-- Toolbar -->
     <RelativeLayout
@@ -242,10 +242,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:layout_marginTop="@dimen/space_marker"
                     android:layout_width="11dp"
                     android:layout_height="11dp"
                     app:srcCompat="@drawable/ic_wms_time"
@@ -266,6 +266,7 @@
                 <ImageView
                     android:layout_width="12dp"
                     android:layout_height="12dp"
+                    android:layout_marginTop="@dimen/space_marker"
                     android:layout_marginLeft="@dimen/space_marker_to_time"
                     android:layout_marginStart="@dimen/space_marker_to_time"
                     android:background="@drawable/ic_mobile_attendance_marker"
@@ -370,7 +371,6 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:visibility="gone"
             tools:ignore="HardcodedText"
             tools:targetApi="lollipop" />
 

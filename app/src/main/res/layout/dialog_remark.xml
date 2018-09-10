@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/square_cornerfull_white2"
+    android:orientation="vertical"
+    android:theme="@style/AppThemeFont"
+    tools:targetApi="lollipop">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="Attendance Remark"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/imageLogout"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="icon"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_logout"
+                tools:ignore="HardcodedText" />
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/etRemark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_round_edittext"
+            android:elevation="3dp"
+            android:gravity="start"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:paddingBottom="2dp"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:paddingTop="2dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="LabelFor" />
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:id="@+id/relative_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/square_corner_leftbottom_grey">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="@dimen/size_yesno_monthly"
+                    android:layout_marginTop="@dimen/size_yesno_monthly"
+                    android:clickable="false"
+                    android:text="Cancel"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_modal"
+                    tools:ignore="HardcodedText" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:id="@+id/relative_choose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/square_corner_rightbottom_green">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="@dimen/size_yesno_monthly"
+                    android:layout_marginTop="@dimen/size_yesno_monthly"
+                    android:clickable="false"
+                    android:text="Submit"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_modal"
+                    tools:ignore="HardcodedText" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

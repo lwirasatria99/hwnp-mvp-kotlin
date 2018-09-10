@@ -14,7 +14,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
@@ -39,10 +38,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -64,7 +63,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
@@ -99,6 +97,7 @@ import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import id.zelory.compressor.Compressor;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -134,13 +133,14 @@ import static com.elabram.lm.wmsmobile.utilities.TimeGreetings.isMorning;
 import static com.elabram.lm.wmsmobile.utilities.TimeGreetings.isOntime;
 
 public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCallback,
-        LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     /**
      * Photo
      */
     protected static final int CAMERA_REQUEST = 0;
     protected static final int GALLERY_PICTURE = 1;
+    protected static final int CAMERA_RECORD = 2;
     //private Intent pictureActionIntent = null;
     Bitmap bitmap;
 
@@ -210,7 +210,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
     private ArrayList<Office> offices;
     float[] resultApi = new float[1];
-    private String site_name;
+    private String site_name = "";
     private ProgressDialog progressDialog;
 
     // used
@@ -260,16 +260,22 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     private String part1_time;
     private String part2_time;
     private String part3_time;
-    private boolean isRunningHandler;
 
-    private CircularImageView iv_profile_dialog;
+    //private CircularImageView iv_profile_dialog;
+    private ImageView iv_profile_dialog;
 
     private String s_url_image;
     private String isContractActive;
 
-    private String sh_url_image = "";
-    private String sh_image = "";
-    private byte[] byte_image;
+//    private String sh_url_image = "";
+//    private String sh_image = "";
+//    private byte[] byte_image;
+
+    private String in_area = "";
+    private String j_formatted_address;
+    private String new_address = "";
+    private String s_remark = "";
+    private AlertDialog dialogRemark;
 
     /**
      * Stop Service in Background X
@@ -277,15 +283,15 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e(TAG, "onCreate: ");
+        //Log.e(TAG, "onCreate: ");
+
+        checkingPermission();
 
         setContentView(R.layout.activity_checkin_v1);
         ButterKnife.bind(this);
 
         getSharedUserDetail();
         retrofitReadClient();
-
-        isRunningHandler = true;
 
         Long tsLong = System.currentTimeMillis() / 1000;
         s_timeStamp = tsLong.toString();
@@ -313,14 +319,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         myLong = gpsTracker.getLongitude();
         myLatLong = new LatLng(myLat, myLong);
 
-        mLocationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                super.onLocationResult(locationResult);
-                setMarker(locationResult);
-                locationChanged(locationResult);
-            }
-        };
+        locationCall();
 
         refreshConnectionClick();
         setGreetingsFirstTime();
@@ -344,18 +343,30 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 //        }
 //        ~
 
-        SharedPreferences settings = getSharedPreferences("PREFS_PHOTO", 0);
-        sh_image = settings.getString("sh_image", "");
-        sh_url_image = settings.getString("sh_url_image", "");
-        byte[] byte_image = Base64.decode(sh_image, Base64.NO_WRAP);
+//        SharedPreferences settings = getSharedPreferences("PREFS_PHOTO", 0);
+//        sh_image = settings.getString("sh_image", "");
+//        sh_url_image = settings.getString("sh_url_image", "");
+//        byte[] byte_image = Base64.decode(sh_image, Base64.NO_WRAP);
 
-        if (!sh_url_image.isEmpty()) {
-            Bitmap bmp = BitmapFactory.decodeByteArray(byte_image, 0, byte_image.length);
-            iv_profile_main.setImageBitmap(bmp);
-        }
+//        if (!sh_url_image.isEmpty()) {
+//            Bitmap bmp = BitmapFactory.decodeByteArray(byte_image, 0, byte_image.length);
+//            glideBitmap(bmp, iv_profile_main);
+//        }
 
         retrofitReadProfile(iv_profile_main);
     }
+
+    private void locationCall() {
+        mLocationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+                setMarker(locationResult);
+                locationChanged(locationResult);
+            }
+        };
+    }
+
 
     // Greetings #1
     private void setGreetingsFirstTime() {
@@ -453,20 +464,18 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         Objects.requireNonNull(dialogProfile.getWindow()).setBackgroundDrawable(inset);
         dialogProfile.show();
 
-        checkingPermission();
-
         /*
           From picassoProfile()
          */
-        SharedPreferences settings = getSharedPreferences("PREFS_PHOTO", 0);
-        sh_image = settings.getString("sh_image", "");
-        sh_url_image = settings.getString("sh_url_image", "");
-        byte[] byte_image = Base64.decode(sh_image, Base64.NO_WRAP);
-
-        if (!sh_url_image.isEmpty()) {
-            Bitmap bmp = BitmapFactory.decodeByteArray(byte_image, 0, byte_image.length);
-            iv_profile_dialog.setImageBitmap(bmp);
-        }
+//        SharedPreferences settings = getSharedPreferences("PREFS_PHOTO", 0);
+//        sh_image = settings.getString("sh_image", "");
+//        sh_url_image = settings.getString("sh_url_image", "");
+//        byte[] byte_image = Base64.decode(sh_image, Base64.NO_WRAP);
+//
+//        if (!sh_url_image.isEmpty()) {
+//            Bitmap bmp = BitmapFactory.decodeByteArray(byte_image, 0, byte_image.length);
+//            iv_profile_dialog.setImageBitmap(bmp);
+//        }
 
         retrofitReadProfile(iv_profile_dialog);
 
@@ -483,6 +492,35 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         iv_change_profile.setOnClickListener(view1 -> startDialogGalleryCamera());
         iv_profile_dialog.setOnClickListener(view1 -> startDialogGalleryCamera());
 
+    }
+
+    private void startDialogRemark(Uri bitmapURI) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.dialog_remark, null);
+
+        EditText etRemark = view.findViewById(R.id.etRemark);
+        RelativeLayout relSubmit = view.findViewById(R.id.relative_choose);
+        RelativeLayout relCancel = view.findViewById(R.id.relative_cancel);
+
+        builder.setView(view);
+        dialogRemark = builder.create();
+        ColorDrawable back = new ColorDrawable(Color.TRANSPARENT);
+        InsetDrawable inset = new InsetDrawable(back, 20);
+        Objects.requireNonNull(dialogRemark.getWindow()).setBackgroundDrawable(inset);
+        dialogRemark.show();
+
+        relSubmit.setOnClickListener(view1 -> {
+            s_remark = etRemark.getText().toString();
+            Log.e(TAG, "startDialogRemark: " + s_remark);
+
+            if (s_remark.length() <= 0) {
+                etRemark.setError("Remark is required!");
+            } else {
+                retrofitCheckin(bitmapURI);
+            }
+        });
+
+        relCancel.setOnClickListener(view1 -> dialogRemark.cancel());
     }
 
 //    public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
@@ -790,7 +828,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         bitmap = null;
         selectedImagePath = null;
 
-        // Camera
+        // Camera Profile
         if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST) {
 
             File f = new File(Environment.getExternalStorageDirectory().toString());
@@ -808,87 +846,40 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                 return;
             }
 
-            Uri fileUri;
             String realPath = f.getAbsolutePath();
             File file1 = new File(realPath);
-            fileUri = Uri.fromFile(file1);
 
             try {
+                Bitmap compressor = new Compressor(this).compressToBitmap(file1);
 
-                bitmap = BitmapFactory.decodeFile(f.getAbsolutePath());
-                bitmap = Bitmap.createScaledBitmap(bitmap, 400, 400, true);
-
-                ExifInterface exif = new ExifInterface(f.getAbsolutePath());
+                ExifInterface exif = new ExifInterface(realPath);
                 int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
                 Matrix matrix = new Matrix();
-
                 if ((orientation == ExifInterface.ORIENTATION_ROTATE_180)) {
                     matrix.postRotate(180);
-                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
-                            bitmap.getHeight(), matrix, true);
+                    compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
+                            compressor.getHeight(), matrix, true);
                 } else if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
                     matrix.postRotate(90);
-                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
-                            bitmap.getHeight(), matrix, true);
+                    compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
+                            compressor.getHeight(), matrix, true);
                 } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
                     matrix.postRotate(270);
-                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
-                            bitmap.getHeight(), matrix, true);
+                    compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
+                            compressor.getHeight(), matrix, true);
                 }
 
-                //int rotate = 0;
-//                ExifInterface exif;
-//                if (Build.VERSION.SDK_INT > 23) {
-//                    assert input != null;
-//                    exif = new ExifInterface(input);
-//                } else {
-//                    exif = new ExifInterface(f.getAbsolutePath());
-//
-//                    int orientation = exif.getAttributeInt(
-//                            ExifInterface.TAG_ORIENTATION,
-//                            ExifInterface.ORIENTATION_NORMAL);
-//
-//                    switch (orientation) {
-//                        case ExifInterface.ORIENTATION_ROTATE_270:
-//                            rotate = 270;
-//                            break;
-//                        case ExifInterface.ORIENTATION_ROTATE_180:
-//                            rotate = 180;
-//                            break;
-//                        case ExifInterface.ORIENTATION_ROTATE_90:
-//                            rotate = 90;
-//                            break;
-//                    }
-//                }
-//                Matrix matrix = new Matrix();
-//                matrix.postRotate(rotate);
-//                bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
-//                        bitmap.getHeight(), matrix, true);
-
-                // From Rara
-
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] imageInByte = baos.toByteArray();
-                String saveThis = Base64.encodeToString(imageInByte, Base64.NO_WRAP);
-
-                SharedPreferences preferences = getSharedPreferences("PREFS_PHOTO", 0);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("sh_image", saveThis);
-                editor.apply();
-
-                //iv_profile_dialog.setImageBitmap(bitmap);
-                //iv_profile_main.setImageBitmap(rotatedBitmap);
-
-                retrofitAddPicture(fileUri);
+                Uri bitmapURI = getImageUri(this, compressor);
+                retrofitAddPicture(bitmapURI);
 
                 //storeImageTosdCard(bitmap);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            // Gallery
-        } else if (resultCode == RESULT_OK && requestCode == GALLERY_PICTURE) {
+        }
+        // Gallery Profile
+        else if (resultCode == RESULT_OK && requestCode == GALLERY_PICTURE) {
             if (data != null) {
 
                 Uri selectedImage = data.getData();
@@ -905,38 +896,108 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                 selectedImagePath = c.getString(columnIndex);
                 c.close();
 
+                File file1;
+
                 if (selectedImagePath != null) {
                     Log.e(TAG, "onActivityResult Selected ImagePath: " + selectedImagePath);
+                    file1 = new File(selectedImagePath);
+
+                    try {
+                        Bitmap compressor = new Compressor(this).compressToBitmap(file1);
+
+                        ExifInterface exif = new ExifInterface(selectedImagePath);
+                        int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+                        Matrix matrix = new Matrix();
+                        if ((orientation == ExifInterface.ORIENTATION_ROTATE_180)) {
+                            matrix.postRotate(180);
+                            compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
+                                    compressor.getHeight(), matrix, true);
+                        } else if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
+                            matrix.postRotate(90);
+                            compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
+                                    compressor.getHeight(), matrix, true);
+                        } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
+                            matrix.postRotate(270);
+                            compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
+                                    compressor.getHeight(), matrix, true);
+                        }
+
+                        Uri bitmapURI = getImageUri(this, compressor);
+                        retrofitAddPicture(bitmapURI);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-
-                bitmap = BitmapFactory.decodeFile(selectedImagePath); // load
-                // preview image
-                bitmap = Bitmap.createScaledBitmap(bitmap, 400, 400, false);
-
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] imageInByte = baos.toByteArray();
-                String saveThis = Base64.encodeToString(imageInByte, Base64.NO_WRAP);
-
-                SharedPreferences preferences = getSharedPreferences("PREFS_PHOTO", 0);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("sh_image", saveThis);
-                editor.apply();
-
-                //iv_profile_dialog.setImageBitmap(bitmap);
-                //iv_profile_main.setImageBitmap(bitmap);
-
-                Uri uri = Uri.fromFile(new File(selectedImagePath));
-                retrofitAddPicture(uri);
 
             } else {
                 Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        // Camera Record
+        else if (resultCode == RESULT_OK && requestCode == CAMERA_RECORD) {
+
+            File f = new File(Environment.getExternalStorageDirectory().toString());
+            for (File temp : f.listFiles()) {
+                if (temp.getName().equals("record.jpg")) {
+                    f = temp;
+                    break;
+                }
+            }
+
+            if (!f.exists()) {
+                Toast.makeText(getBaseContext(),
+                        "Error while capturing image", Toast.LENGTH_LONG)
+                        .show();
+                return;
+            }
+
+            String realPath = f.getAbsolutePath();
+            File file1 = new File(realPath);
+
+            try {
+                Bitmap compressor = new Compressor(this).compressToBitmap(file1);
+
+                ExifInterface exif = new ExifInterface(f.getAbsolutePath());
+                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+                Matrix matrix = new Matrix();
+                if ((orientation == ExifInterface.ORIENTATION_ROTATE_180)) {
+                    matrix.postRotate(180);
+                    compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
+                            compressor.getHeight(), matrix, true);
+                } else if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
+                    matrix.postRotate(90);
+                    compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
+                            compressor.getHeight(), matrix, true);
+                } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
+                    matrix.postRotate(270);
+                    compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
+                            compressor.getHeight(), matrix, true);
+                }
+
+                Uri bitmapURI = getImageUri(this, compressor);
+
+                if (in_area.equals("N")) {
+                    startDialogRemark(bitmapURI);
+                } else {
+                    retrofitCheckin(bitmapURI);
+                }
+
+                //storeImageTosdCard(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
     }
 
-
+    private Uri getImageUri(Context context, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
     /**
      * ~
      */
@@ -980,7 +1041,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
 
-    public String getRealPathFromUri(final Uri uri) {
+    private String getRealPathFromUri(final Uri uri) {
         // DocumentProvider
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && DocumentsContract.isDocumentUri(this, uri)) {
             // ExternalStorageProvider
@@ -1045,14 +1106,15 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     private void retrofitAddPicture(Uri fileUri) {
         showProgress();
         String filePath = getRealPathFromUri(fileUri);
+        //noinspection ConstantConditions
         File file = new File(filePath);
 
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("mem_image", file.getName(), requestFile);
 
-        RequestBody requestString = RequestBody.create(MediaType.parse("multipart/form-data"), token);
+        RequestBody requestToken = RequestBody.create(MediaType.parse("multipart/form-data"), token);
 
-        Observable<ResponseBody> call = new ApiClient().getApiService().addProfile(requestString, body);
+        Observable<ResponseBody> call = new ApiClient().getApiService().addProfile(requestToken, body);
         call.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ResponseBody>() {
@@ -1074,14 +1136,9 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                                 if (response_code.equals("200")) {
                                     Toast.makeText(CheckinV1Activity.this, "Photo Successfully uploaded ", Toast.LENGTH_SHORT).show();
 
-                                    glideBitmap(iv_profile_dialog);
-                                    glideBitmap(iv_profile_main);
+                                    glideBitmap(fileUri, iv_profile_dialog);
+                                    glideBitmap(fileUri, iv_profile_main);
 
-//                                    iv_profile_dialog.setImageBitmap(scaled);
-//                                    iv_profile_main.setImageBitmap(scaled);
-
-                                    //retrofitReadProfile(iv_profile_main);
-                                    //retrofitReadProfile(iv_profile_dialog);
                                 } else {
                                     Toast.makeText(CheckinV1Activity.this, message, Toast.LENGTH_SHORT).show();
                                 }
@@ -1106,14 +1163,11 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                 });
     }
 
-    private void glideBitmap(ImageView ivProfile) {
-//        int nh = bitmap.getHeight() * (400 / bitmap.getWidth());
-//        Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 400, nh, true);
-
+    private void glideBitmap(Uri bitmap, ImageView ivProfile) {
         Glide.with(CheckinV1Activity.this)
                 .load(bitmap)
                 .apply(new RequestOptions()
-                        .centerCrop()
+                        .circleCrop()
                         .skipMemoryCache(true)
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                         .placeholder(R.drawable.profile_default_picture)
@@ -1131,10 +1185,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
         Double latNow = locationResult.getLastLocation().getLatitude();
         Double longNow = locationResult.getLastLocation().getLongitude();
-
-//        for (Location location : locationResult.getLocations()) {
-//            Double latNow = location.getLatitude();
-//            Double longNow = location.getLongitude();
 
         /* First Camera Position */
         CameraPosition cameraPosition = new CameraPosition.Builder()
@@ -1157,7 +1207,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
             Double d_distanceToOffice = Double.parseDouble(s_distanceToOffice);
 
             if (d_distanceToOffice < 200) {
-                //Log.e(TAG, "locationChanged: Distance Marker " + s_distanceToOffice);
 
                 LatLng latLngTask = new LatLng(d_lat, d_long);
                 map.addMarker(new MarkerOptions()
@@ -1175,16 +1224,17 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                         .strokeColor(stroke_c)
                 );
                 stopLocationUpdates();
+            } else {
+                stopLocationUpdates();
             }
         }
-//        }
     }
 
     private void loadSiteAndStatus() {
         if (AppInfo.isOnline(this)) {
             rel_online.setVisibility(View.VISIBLE);
             showProgress();
-            retrofitSite();
+            retrofitReadSiteList();
             retrofitCheckinStatus();
             retrofitReadContract();
             rel_offline.setVisibility(View.GONE);
@@ -1197,27 +1247,22 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     @Override
     protected void onStop() {
         super.onStop();
-        //Log.e(TAG, "onStop: ");
-        isRunningHandler = false;
         mHandler.removeCallbacks(mUpdate);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        //Log.e(TAG, "onStart: ");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.e(TAG, "onPause: ");
 
         if (mFusedLocationClient != null) {
             stopLocationUpdates();
         }
 
-        isRunningHandler = false;
         mHandler.removeCallbacks(mUpdate);
 
         if (map != null)
@@ -1225,7 +1270,8 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void stopLocationUpdates() {
-        mFusedLocationClient.removeLocationUpdates(mLocationCallback);
+        if (mFusedLocationClient != null)
+            mFusedLocationClient.removeLocationUpdates(mLocationCallback);
     }
 
     private void requestLocationUpdates() {
@@ -1234,7 +1280,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         LocationRequest mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(1000); // two minute interval
         mLocationRequest.setFastestInterval(1000);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
@@ -1242,8 +1288,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void locationChanged(LocationResult locationResult) {
-
-        for (@SuppressWarnings("unused") Location location : locationResult.getLocations()) {
+        for (Location location : locationResult.getLocations()) {
 
             // Initialize
             Double lat = location.getLatitude();
@@ -1257,38 +1302,76 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                 isMock = !Settings.Secure.getString(getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION).equals("0");
             }
 
-            for (int k = 0; k < offices.size(); k++) {
-                Office office = offices.get(k);
-                Double d_lat = Double.valueOf(office.getOc_lat());
-                Double d_long = Double.valueOf(office.getOc_long());
-                Double d_radius = Double.valueOf(office.getOc_radius());
+            // count the office
+            if (offices.size() > 0) {
+                for (int k = 0; k < offices.size(); k++) {
+                    Office office = offices.get(k);
 
-                // Check the distance "MyLocation" to "OfficeLocation"
-                Location.distanceBetween(lat, lng, d_lat, d_long, resultApi);
+                    Double d_lat = Double.valueOf(office.getOc_lat());
+                    Double d_long = Double.valueOf(office.getOc_long());
+                    Double d_radius = Double.valueOf(office.getOc_radius());
 
-                // Convert to String & Double
-                String s_distanceToOffice = String.valueOf(resultApi[0]);
-                Double d_distanceToOffice = Double.parseDouble(s_distanceToOffice);
-                //Log.e(TAG, "locationChanged: Distance " + s_distanceToOffice);
+                    // Check the distance "MyLocation" to "OfficeLocation"
+                    Location.distanceBetween(lat, lng, d_lat, d_long, resultApi);
+                    String s_distanceToOffice = String.valueOf(resultApi[0]);
+                    Double d_distanceToOffice = Double.parseDouble(s_distanceToOffice);
+                    Log.e(TAG, "locationChanged: Distance -> " + d_distanceToOffice);
 
-                if (d_distanceToOffice < d_radius) {
-                    site_name = office.getOc_site();
-                    progressBarPosition.setVisibility(View.GONE);
-                    buttonRecord.setVisibility(View.VISIBLE);
-                    buttonOutOfRadius.setVisibility(View.GONE);
-                    if (isMock) {
-                        processTheMock();
-                    } else {
-                        processNoMock(lat, lng);
+                    // checkin in radius
+                    if (d_distanceToOffice < d_radius) {
+                        buttonOutOfRadius.setVisibility(View.GONE);
+                        progressBarPosition.setVisibility(View.GONE);
+                        buttonRecord.setVisibility(View.VISIBLE);
+
+                        // checking fake gps
+                        if (isMock) {
+                            processTheMock();
+                        } else {
+                            in_area = "Y";
+                            site_name = office.getOc_site();
+                            processNoMock(lat, lng, "In Radius", site_name);
+                        }
+                        stopLocationUpdates();
+                        break;
                     }
-                    break;
-                } else {
-                    progressBarPosition.setVisibility(View.GONE);
-                    buttonRecord.setVisibility(View.GONE);
-                    buttonOutOfRadius.setVisibility(View.VISIBLE);
+                    // checkin out radius
+                    else if (d_distanceToOffice > d_radius) {
+                        progressBarPosition.setVisibility(View.GONE);
+                        buttonOutOfRadius.setVisibility(View.GONE);
+                        buttonRecord.setVisibility(View.VISIBLE);
+
+                        if (isMock) {
+                            processTheMock();
+                        } else {
+                            retrofitGoogleGeocoding(lat, lng);
+                            in_area = "N";
+                            site_name = new_address;
+                            Log.e(TAG, "locationChanged: New Address -> " + site_name);
+                            processNoMock(lat, lng, "Out Radius", site_name);
+                        }
+                    }
+
                 }
+
+            }
+            // no office
+            else {
+                buttonOutOfRadius.setVisibility(View.GONE);
+                buttonRecord.setVisibility(View.VISIBLE);
+
+                // checking fake gps
+                if (isMock) {
+                    processTheMock();
+                } else {
+                    retrofitGoogleGeocoding(lat, lng);
+                    in_area = "Y";
+                    site_name = new_address;
+                    processNoMock(lat, lng, "No Office", site_name);
+                }
+                break;
             }
         }
+        stopLocationUpdates();
     }
 
     private String checkTimezoneGMT() {
@@ -1310,7 +1393,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.e(TAG, "onDestroy: ");
 
         Glide.get(this).clearMemory();
 
@@ -1319,7 +1401,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
             map.clear();
         }
 
-        isRunningHandler = false;
         mHandler.removeCallbacks(mUpdate);
 
         dismissAlert();
@@ -1328,59 +1409,22 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
             disposable.dispose();
         }
 
-        //timerHandler.removeCallbacks(updater);
     }
 
-    private void retrofitTimezone(double lat, double lng) {
-        String coordinate = lat + "," + lng;
-        String apiKey = getString(R.string.map_api);
-
-        Call<ResponseBody> call = new ApiClient().getApiService().cekTimeZone(coordinate, s_timeStamp, apiKey);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                if (response.body() != null) {
-                    try {
-                        //noinspection ConstantConditions
-                        String responseContent = new String(response.body().bytes());
-                        //Log.e(TAG, "onResponse Timezone: " + responseContent);
-
-                        JSONObject jsonObject = new JSONObject(responseContent);
-                        //cache_timeZone_name = jsonObject.getString("timeZoneName");
-                        timeZoneId = jsonObject.getString("timeZoneId");
-                        rawOffset = jsonObject.getString("rawOffset");
-
-                    } catch (IOException | JSONException e) {
-                        e.printStackTrace();
-                    }
-                    s_gmt = checkTimezoneGMT();
-
-                    SharedPreferences preferences = getSharedPreferences("PREFS_TIMEZONE", 0);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("s_gmt", s_gmt);
-                    editor.putString("s_timezone_id", timeZoneId);
-                    editor.apply();
-
-                } else {
-                    Log.e(TAG, "onResponse: Timezone else " + response.errorBody());
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                Log.e(TAG, "onFailure: Timezone " + t.getMessage());
-            }
-        });
-    }
-
-    private void processNoMock(Double lat, Double lng) {
+    private void processNoMock(Double lat, Double lng, String status, String new_address) {
+        Log.e(TAG, "processNoMock: " + status);
         buttonRecord.setOnClickListener(view -> {
+            // checking online
             if (isOnline(this)) {
                 s_gmt = checkTimezoneGMT();
+
+                // checkin timezone
                 if (!s_gmt.isEmpty()) {
-                    retrofitCheckin();
+                    Log.e(TAG, "processNoMock: CheckinClick -> " + new_address);
+                    // take photo & checkin
+                    takePhoto(new_address);
                 } else {
-                    retrofitTimezone(lat, lng);
+                    retrofitGoogleTimezone(lat, lng);
                     Snackbar.make(rootView, "Please try again", Snackbar.LENGTH_LONG).show();
                 }
             } else {
@@ -1389,17 +1433,33 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         });
     }
 
+    private void takePhoto(String new_name) {
+        site_name = new_name;
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File f = new File(android.os.Environment.getExternalStorageDirectory(), "record.jpg");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        Uri dirUri = FileProvider.getUriForFile(this,
+                getApplicationContext().getPackageName() + ".com.elabram.lm.wmsmobile", f);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, dirUri);
+
+        startActivityForResult(intent, CAMERA_RECORD);
+    }
+
+
+    // Fake GPS
     private void processTheMock() {
         Log.e(TAG, "locationChanged: " + "Yes Mock");
 
         Crashlytics.log(user_fullname + " " + "FAKE GPS");
-        Snackbar snackbar = Snackbar.make(rootView,
+        Snackbar.make(rootView,
                 "We detected the use of fake GPS application. As logo_indosat consequence, " +
                         "we will report this illegal action to HR to be processed accordingly.",
                 Snackbar.LENGTH_INDEFINITE
-        );
-        snackbar.show();
-        buttonRecord.setEnabled(false);
+        ).show();
+
+        buttonRecord.setVisibility(View.GONE);
+        buttonOutOfRadius.setVisibility(View.GONE);
 
         retrofitReportFakeGPS();
     }
@@ -1441,6 +1501,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         return params;
     }
 
+    // Google
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -1448,6 +1509,89 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                 .addApi(LocationServices.API)
                 .build();
         mGoogleApiClient.connect();
+    }
+
+    private void retrofitGoogleTimezone(double lat, double lng) {
+        String coordinate = lat + "," + lng;
+        String apiKey = getString(R.string.map_api);
+
+        Call<ResponseBody> call = new ApiClient().getApiService().cekTimeZone(coordinate, s_timeStamp, apiKey);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                if (response.body() != null) {
+                    try {
+                        //noinspection ConstantConditions
+                        String responseContent = new String(response.body().bytes());
+                        //Log.e(TAG, "onResponse Timezone: " + responseContent);
+
+                        JSONObject jsonObject = new JSONObject(responseContent);
+                        //cache_timeZone_name = jsonObject.getString("timeZoneName");
+                        timeZoneId = jsonObject.getString("timeZoneId");
+                        rawOffset = jsonObject.getString("rawOffset");
+
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
+                    }
+                    s_gmt = checkTimezoneGMT();
+
+                    SharedPreferences preferences = getSharedPreferences("PREFS_TIMEZONE", 0);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("s_gmt", s_gmt);
+                    editor.putString("s_timezone_id", timeZoneId);
+                    editor.apply();
+
+                } else {
+                    Log.e(TAG, "onResponse: Timezone else " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                Log.e(TAG, "onFailure: Timezone " + t.getMessage());
+            }
+        });
+    }
+
+    private void retrofitGoogleGeocoding(double lat, double lng) {
+        String coordinate = lat + "," + lng;
+        String apiKey = getString(R.string.map_api);
+
+        Call<ResponseBody> call = new ApiClient().getApiService().cekLocationName(coordinate, apiKey);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                if (response.body() != null) {
+                    try {
+                        //noinspection ConstantConditions
+                        String responseContent = new String(response.body().bytes());
+                        JSONObject jsonObject = new JSONObject(responseContent);
+                        //Log.e(TAG, "onResponse: Geocoding -> "+ jsonObject.toString());
+                        JSONArray jsonArray = jsonObject.getJSONArray("results");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            //JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                            JSONObject jsonData0 = jsonArray.getJSONObject(0);
+                            //String j_formatted_address = jsonObject1.getString("formatted_address");
+                            j_formatted_address = jsonData0.getString("formatted_address");
+                            //Log.e(TAG, "onResponse: Geocoding -> " + j_formatted_address);
+                        }
+
+                        new_address = j_formatted_address;
+
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                } else {
+                    Log.e(TAG, "onResponse: Geocoding -> " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                Log.e(TAG, "onFailure: Geocoding -> " + t.getMessage());
+            }
+        });
     }
 
     @Override
@@ -1542,52 +1686,14 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         Glide.with(this)
                 .load(s_url_image)
                 .apply(new RequestOptions()
-                        .centerCrop()
+                        .circleCrop()
                         .dontAnimate()
                         .skipMemoryCache(true)
                         .placeholder(R.drawable.profile_default_picture)
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                         .priority(Priority.HIGH))
                 .into(ivProfile);
-//                .listener(new RequestListener<Bitmap>() {
-//                    @Override
-//                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
-//
-//                        return false;
-//                    }
-//
-//                    @Override
-//                    public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
-//                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//                        resource.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//                        byte[] imageInByte = baos.toByteArray();
-//                        String saveThis = Base64.encodeToString(imageInByte, Base64.NO_WRAP);
-//
-//                        Log.e(TAG, "onResourceReady: " + s_url_image);
-//                        Log.e(TAG, "onResourceReady: " + sh_url_image);
-////
-//                        if (!sh_url_image.equals(s_url_image) || sh_url_image.isEmpty()) {
-//
-//                            SharedPreferences preferences = getSharedPreferences("PREFS_PHOTO", 0);
-//                            SharedPreferences.Editor editor = preferences.edit();
-//                            editor.putString("sh_url_image", s_url_image);
-//                            editor.putString("sh_image", saveThis);
-//                            editor.apply();
-//
-//                            SharedPreferences settings = getSharedPreferences("PREFS_PHOTO", 0);
-//                            sh_image = settings.getString("sh_image", "");
-//                            sh_url_image = settings.getString("sh_url_image", "");
-//                            byte_image = Base64.decode(sh_image, Base64.NO_WRAP);
-//
-//                            Bitmap bmp = BitmapFactory.decodeByteArray(byte_image, 0, byte_image.length);
-//                            ivProfile.setImageBitmap(bmp);
-//                        }
-//
-//                        return false;
-//                    }
-//                }).submit();
     }
-
 
 //    private void picassoProfile(String s_url_image, ImageView ivProfile) {
 //        Picasso.with(this)
@@ -2033,10 +2139,33 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         mHandler.post(mUpdate);
     }
 
-    private void retrofitCheckin() {
+    private void retrofitCheckin(Uri fileUri) {
         showProgress();
+        Log.e(TAG, "retrofitCheckin: Site name -> " + site_name);
 
-        Observable<ResponseBody> call = new ApiClient().getApiService().checkin(getParamsCheckin());
+        String filePath = getRealPathFromUri(fileUri);
+        //noinspection ConstantConditions
+        File file = new File(filePath);
+
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("images", file.getName(), requestFile);
+
+        RequestBody requestToken = RequestBody.create(MediaType.parse("multipart/form-data"), token);
+        RequestBody requestTimezone = RequestBody.create(MediaType.parse("multipart/form-data"), s_gmt);
+        RequestBody requestTimezoneId = RequestBody.create(MediaType.parse("multipart/form-data"), timeZoneId);
+        RequestBody requestLocationName = RequestBody.create(MediaType.parse("multipart/form-data"), site_name);
+        RequestBody requestInArea = RequestBody.create(MediaType.parse("multipart/form-data"), in_area);
+        RequestBody requestRemark = RequestBody.create(MediaType.parse("multipart/form-data"), s_remark);
+
+        Observable<ResponseBody> call = new ApiClient().getApiService().recordWithPhoto(
+                requestToken,
+                requestLocationName,
+                requestTimezone,
+                requestTimezoneId,
+                requestInArea,
+                requestRemark,
+                body);
+
         call.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ResponseBody>() {
@@ -2057,24 +2186,33 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                         dismissProgress();
                         Toast.makeText(CheckinV1Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         Crashlytics.log(user_fullname + " " + e.getCause());
+
+                        if (dialogRemark != null)
+                            dialogRemark.dismiss();
+
                     }
 
                     @Override
                     public void onComplete() {
                         dismissProgress();
+
+                        if (dialogRemark != null)
+                            dialogRemark.dismiss();
                     }
                 });
     }
 
-    private HashMap<String, String> getParamsCheckin() {
-        HashMap<String, String> params = new HashMap<>();
-        params.put("token", token);
-        params.put("location", site_name);
-        params.put("timezone", s_gmt);
-        params.put("timezone_id", timeZoneId);
-        Log.e(TAG, "getParamsCheckin: " + params);
-        return params;
-    }
+//    private HashMap<String, String> getParamsCheckin() {
+//        HashMap<String, String> params = new HashMap<>();
+//        params.put("token", token);
+//        params.put("location", site_name);
+//        params.put("timezone", s_gmt);
+//        params.put("timezone_id", timeZoneId);
+//        params.put("in_area", );
+//        params.put("images", );
+//        Log.e(TAG, "getParamsCheckin: " + params);
+//        return params;
+//    }
 
     private void parseJSONCheckin(ResponseBody responseBody) {
         try {
@@ -2096,7 +2234,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         }
     }
 
-    private void retrofitSite() {
+    private void retrofitReadSiteList() {
         Call<ResponseBody> call = new ApiClient().getApiService().siteList(token);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -2211,12 +2349,9 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e(TAG, "onResume: boolean " + isRunningHandler);
-
-        //isRunningHandler = false;
 
         // Timezone
-        retrofitTimezone(myLat, myLong);
+        retrofitGoogleTimezone(myLat, myLong);
 
         // Map
         if (mGoogleApiClient != null && mFusedLocationClient != null) {
@@ -2225,13 +2360,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
             buildGoogleApiClient();
         }
 
-        // Live Clock
-//        if (!isRunningHandler) {
         retrofitRealTime();
-//            isRunningHandler = true; // Testing
-//        } else {
-//            retrofitRealTime();
-//        }
     }
 
     void startLiveTracking() {
@@ -2276,9 +2405,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
     }
 
-    @Override
-    public void onLocationChanged(Location location) {
-    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -2300,7 +2426,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         map.getUiSettings().setMyLocationButtonEnabled(false);
         map.setMyLocationEnabled(true);
 
-        retrofitTimezone(myLat, myLong);
+        retrofitGoogleTimezone(myLat, myLong);
     }
 
 

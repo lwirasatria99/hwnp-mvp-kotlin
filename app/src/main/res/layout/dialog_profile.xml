@@ -31,10 +31,11 @@
                 app:cardElevation="0dp"
                 app:cardPreventCornerOverlap="false">
 
-                <com.mikhaellopez.circularimageview.CircularImageView
+                <ImageView
                     a:id="@+id/iv_profile_dialog"
                     a:layout_width="match_parent"
                     a:layout_height="match_parent"
+                    a:scaleType="centerInside"
                     tools:ignore="ContentDescription" />
 
                 <ImageView
