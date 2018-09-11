@@ -94,5 +94,44 @@
             
                     return inSampleSize;
                 }
-            
+
+                
+//                int rotate = 0;
+//                ExifInterface exif;
+//                if (Build.VERSION.SDK_INT > 23) {
+//                    assert input != null;
+//                    exif = new ExifInterface(input);
+//                } else {
+//                    exif = new ExifInterface(f.getAbsolutePath());
+//
+//                    int orientation = exif.getAttributeInt(
+//                            ExifInterface.TAG_ORIENTATION,
+//                            ExifInterface.ORIENTATION_NORMAL);
+//
+//                    switch (orientation) {
+//                        case ExifInterface.ORIENTATION_ROTATE_270:
+//                            rotate = 270;
+//                            break;
+//                        case ExifInterface.ORIENTATION_ROTATE_180:
+//                            rotate = 180;
+//                            break;
+//                        case ExifInterface.ORIENTATION_ROTATE_90:
+//                            rotate = 90;
+//                            break;
+//                    }
+//                }
+//                Matrix matrix = new Matrix();
+//                matrix.postRotate(rotate);
+//                bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+//                        bitmap.getHeight(), matrix, true);
+
+//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//                byte[] imageInByte = baos.toByteArray();
+//                String saveThis = Base64.encodeToString(imageInByte, Base64.NO_WRAP);
+//
+//                SharedPreferences preferences = getSharedPreferences("PREFS_PHOTO", 0);
+//                SharedPreferences.Editor editor = preferences.edit();
+//                editor.putString("sh_image", saveThis);
+//                editor.apply();
 

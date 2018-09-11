@@ -464,19 +464,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         Objects.requireNonNull(dialogProfile.getWindow()).setBackgroundDrawable(inset);
         dialogProfile.show();
 
-        /*
-          From picassoProfile()
-         */
-//        SharedPreferences settings = getSharedPreferences("PREFS_PHOTO", 0);
-//        sh_image = settings.getString("sh_image", "");
-//        sh_url_image = settings.getString("sh_url_image", "");
-//        byte[] byte_image = Base64.decode(sh_image, Base64.NO_WRAP);
-//
-//        if (!sh_url_image.isEmpty()) {
-//            Bitmap bmp = BitmapFactory.decodeByteArray(byte_image, 0, byte_image.length);
-//            iv_profile_dialog.setImageBitmap(bmp);
-//        }
-
         retrofitReadProfile(iv_profile_dialog);
 
         setDataProfile(tv_name, tv_id, tv_position, tv_email, tv_mobile, tv_phone);
@@ -750,8 +737,8 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.dialog_delete, null);
 
-        TextView buttonNo = view.findViewById(R.id.No);
-        TextView buttonYes = view.findViewById(R.id.Yes);
+        RelativeLayout buttonNo = view.findViewById(R.id.relative_no);
+        RelativeLayout buttonYes = view.findViewById(R.id.relative_yes);
         TextView tvMessage = view.findViewById(R.id.tvMessage);
 
         builder.setView(view);
