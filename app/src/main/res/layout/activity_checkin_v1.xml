@@ -88,7 +88,7 @@
         <RelativeLayout
             android:id="@+id/dataLayout"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:layout_marginEnd="15dp"
             android:layout_marginStart="15dp"
@@ -109,7 +109,7 @@
                 android:clickable="false"
                 android:orientation="vertical"
                 android:paddingBottom="5dp"
-                android:paddingTop="10dp">
+                android:paddingTop="5dp">
 
                 <TextView
                     android:id="@+id/tvDate"
@@ -245,9 +245,9 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_marginTop="@dimen/space_marker"
                     android:layout_width="11dp"
                     android:layout_height="11dp"
+                    android:layout_marginTop="@dimen/space_marker"
                     app:srcCompat="@drawable/ic_wms_time"
                     tools:ignore="ContentDescription" />
 
@@ -266,9 +266,9 @@
                 <ImageView
                     android:layout_width="12dp"
                     android:layout_height="12dp"
-                    android:layout_marginTop="@dimen/space_marker"
                     android:layout_marginLeft="@dimen/space_marker_to_time"
                     android:layout_marginStart="@dimen/space_marker_to_time"
+                    android:layout_marginTop="@dimen/space_marker"
                     android:background="@drawable/ic_mobile_attendance_marker"
                     tools:ignore="ContentDescription" />
 

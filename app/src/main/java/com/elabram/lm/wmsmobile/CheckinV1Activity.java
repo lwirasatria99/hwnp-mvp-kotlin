@@ -1944,8 +1944,9 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                                 String time_last = jsonObject1.getString("time_last");
                                 String location_last = jsonObject1.getString("location_last");
 
+                                // Date Checkin View
                                 @SuppressLint("SimpleDateFormat") SimpleDateFormat read = new SimpleDateFormat("dd MMMM yyyy");
-                                @SuppressLint("SimpleDateFormat") SimpleDateFormat write = new SimpleDateFormat("EEEE, dd MMMM yyyy");
+                                @SuppressLint("SimpleDateFormat") SimpleDateFormat write = new SimpleDateFormat("EEE, dd MMM yyyy");
                                 Date date;
                                 String s_dayformat = null;
                                 try {
@@ -1954,7 +1955,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
-
                                 tvDate.setText(s_dayformat);
 
                                 String replaceFirst = time_first.replace(".", ":");

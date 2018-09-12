@@ -11,19 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94cdf4f4-679f-4e3b-b755-5048fc1927c9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_remark.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_remark.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,8 +41,8 @@
       <file leaf-file-name="CheckinV1Activity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="2065" column="13" lean-forward="true" selection-start-line="2065" selection-start-column="13" selection-end-line="2065" selection-end-column="13" />
+            <state relative-caret-position="280">
+              <caret line="1962" column="0" lean-forward="true" selection-start-line="1962" selection-start-column="0" selection-end-line="1962" selection-end-column="0" />
               <folding>
                 <element signature="e#12257#12549#0" expanded="true" />
                 <element signature="e#12548#12549#0" expanded="true" />
@@ -61,11 +52,42 @@
                 <element signature="e#61116#61143#0" expanded="true" />
                 <element signature="e#63316#63343#0" expanded="true" />
                 <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-                <element signature="e#87273#87274#0" expanded="true" />
-                <element signature="e#87340#87341#0" expanded="true" />
-                <element signature="e#97344#97345#0" expanded="true" />
-                <element signature="e#97384#97385#0" expanded="true" />
+                <element signature="e#87323#87324#0" expanded="true" />
+                <element signature="e#87390#87391#0" expanded="true" />
+                <element signature="e#97394#97395#0" expanded="true" />
+                <element signature="e#97434#97435#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_checkin_v1.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="139">
+              <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+              <folding>
+                <element signature="e#4849#4863#0" expanded="true" />
+                <element signature="e#12235#13108#0" expanded="false" />
+                <element signature="e#13118#14054#0" expanded="false" />
+                <element signature="e#14124#14746#0" expanded="false" />
+                <element signature="e#14804#15157#0" expanded="false" />
+                <element signature="e#15167#15884#0" expanded="false" />
+                <element signature="e#15932#16735#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="18" lean-forward="false" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -96,6 +118,7 @@
       <find>log.e</find>
       <find>new_addre</find>
       <find>Site name</find>
+      <find>.tvDate</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -2280,12 +2303,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiClient.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_delete.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_contract_out.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_remark.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml" />
       </list>
     </option>
   </component>
@@ -2342,7 +2365,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="SearchEverywhereHistoryKey" value="dialog_re&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;GPS&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java&#10;CH&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java&#10;dialog_&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_contract_out.xml&#10;ApiCl&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.rest.ApiClient&#10;LoginA&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java&#10;CHe&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java&#10;Perfor&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.PerformanceChartActivity&#10;build&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/build.gradle&#10;dia&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;dialog&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_contract_out.xml&#10;dialo&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;activi&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml&#10;Appli&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.MyApplication&#10;dialog_pro&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_profile.xml&#10;activity_che&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml" />
+    <property name="SearchEverywhereHistoryKey" value="chec&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml&#10;dialog_re&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;GPS&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java&#10;CH&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java&#10;dialog_&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_contract_out.xml&#10;ApiCl&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.rest.ApiClient&#10;LoginA&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java&#10;CHe&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java&#10;Perfor&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.PerformanceChartActivity&#10;build&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/build.gradle&#10;dia&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;dialog&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_contract_out.xml&#10;dialo&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;activi&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml&#10;Appli&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.MyApplication&#10;dialog_pro&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_profile.xml&#10;activity_che&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml" />
     <property name="device.picker.selection" value="eca6c9a1f603" />
     <property name="settings.editor.selected.configurable" value="instant.run" />
   </component>
@@ -2552,7 +2575,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536723591553</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="- Remark on (no site) &amp; (any site)in radius optional &amp; required hint">
+      <created>1536731614100</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1536731614100</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2566,7 +2596,7 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3279483" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4418417" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4644068" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2601,7 +2631,8 @@
     <MESSAGE value="- Notif end contract improved" />
     <MESSAGE value="- Design time not fit on some device fixed" />
     <MESSAGE value="- Fixing image issue rotated in Oreo 8.0 - 8.1 Camera" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Fixing image issue rotated in Oreo 8.0 - 8.1 Camera" />
+    <MESSAGE value="- Remark on (no site) &amp; (any site)in radius optional &amp; required hint" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Remark on (no site) &amp; (any site)in radius optional &amp; required hint" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2643,10 +2674,10 @@
             <element signature="e#61116#61143#0" expanded="true" />
             <element signature="e#63316#63343#0" expanded="true" />
             <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-            <element signature="e#87273#87274#0" expanded="true" />
-            <element signature="e#87340#87341#0" expanded="true" />
-            <element signature="e#97344#97345#0" expanded="true" />
-            <element signature="e#97384#97385#0" expanded="true" />
+            <element signature="e#87323#87324#0" expanded="true" />
+            <element signature="e#87390#87391#0" expanded="true" />
+            <element signature="e#97394#97395#0" expanded="true" />
+            <element signature="e#97434#97435#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2688,10 +2719,10 @@
             <element signature="e#61116#61143#0" expanded="true" />
             <element signature="e#63316#63343#0" expanded="true" />
             <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-            <element signature="e#87273#87274#0" expanded="true" />
-            <element signature="e#87340#87341#0" expanded="true" />
-            <element signature="e#97344#97345#0" expanded="true" />
-            <element signature="e#97384#97385#0" expanded="true" />
+            <element signature="e#87323#87324#0" expanded="true" />
+            <element signature="e#87390#87391#0" expanded="true" />
+            <element signature="e#97394#97395#0" expanded="true" />
+            <element signature="e#97434#97435#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2725,10 +2756,10 @@
             <element signature="e#61116#61143#0" expanded="true" />
             <element signature="e#63316#63343#0" expanded="true" />
             <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-            <element signature="e#87273#87274#0" expanded="true" />
-            <element signature="e#87340#87341#0" expanded="true" />
-            <element signature="e#97344#97345#0" expanded="true" />
-            <element signature="e#97384#97385#0" expanded="true" />
+            <element signature="e#87323#87324#0" expanded="true" />
+            <element signature="e#87390#87391#0" expanded="true" />
+            <element signature="e#97394#97395#0" expanded="true" />
+            <element signature="e#97434#97435#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2784,10 +2815,10 @@
             <element signature="e#61116#61143#0" expanded="true" />
             <element signature="e#63316#63343#0" expanded="true" />
             <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-            <element signature="e#87273#87274#0" expanded="true" />
-            <element signature="e#87340#87341#0" expanded="true" />
-            <element signature="e#97344#97345#0" expanded="true" />
-            <element signature="e#97384#97385#0" expanded="true" />
+            <element signature="e#87323#87324#0" expanded="true" />
+            <element signature="e#87390#87391#0" expanded="true" />
+            <element signature="e#97394#97395#0" expanded="true" />
+            <element signature="e#97434#97435#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2817,39 +2848,39 @@
             <element signature="e#684#712#0" expanded="false" />
             <element signature="e#2642#2658#0" expanded="false" />
             <element signature="e#3643#3660#0" expanded="false" />
-            <element signature="e#4850#4864#0" expanded="false" />
-            <element signature="e#6794#6811#0" expanded="false" />
-            <element signature="e#7023#7040#0" expanded="false" />
-            <element signature="e#7113#7130#0" expanded="false" />
-            <element signature="e#7917#7938#0" expanded="false" />
-            <element signature="e#8172#8190#0" expanded="false" />
-            <element signature="e#8294#8322#0" expanded="false" />
-            <element signature="e#8370#8398#0" expanded="false" />
-            <element signature="e#8536#8557#0" expanded="false" />
-            <element signature="e#8647#8670#0" expanded="false" />
-            <element signature="e#8845#8874#0" expanded="false" />
-            <element signature="e#8922#8951#0" expanded="false" />
-            <element signature="e#8997#9018#0" expanded="false" />
-            <element signature="e#9395#9423#0" expanded="false" />
-            <element signature="e#9471#9499#0" expanded="false" />
-            <element signature="e#9592#9606#0" expanded="false" />
-            <element signature="e#9861#9878#0" expanded="false" />
-            <element signature="e#10280#10301#0" expanded="false" />
-            <element signature="e#10631#10649#0" expanded="false" />
-            <element signature="e#10753#10781#0" expanded="false" />
-            <element signature="e#10829#10857#0" expanded="false" />
-            <element signature="e#10995#11016#0" expanded="false" />
-            <element signature="e#11106#11129#0" expanded="false" />
-            <element signature="e#11303#11324#0" expanded="false" />
-            <element signature="e#11371#11400#0" expanded="false" />
-            <element signature="e#11448#11477#0" expanded="false" />
-            <element signature="e#11853#11881#0" expanded="false" />
-            <element signature="e#11929#11957#0" expanded="false" />
-            <element signature="e#12050#12064#0" expanded="false" />
-            <element signature="e#12840#12862#0" expanded="false" />
-            <element signature="e#12932#12957#0" expanded="false" />
-            <element signature="e#13780#13802#0" expanded="false" />
-            <element signature="e#13872#13897#0" expanded="false" />
+            <element signature="e#4849#4863#0" expanded="true" />
+            <element signature="e#6793#6810#0" expanded="false" />
+            <element signature="e#7022#7039#0" expanded="false" />
+            <element signature="e#7112#7129#0" expanded="false" />
+            <element signature="e#7916#7937#0" expanded="false" />
+            <element signature="e#8171#8189#0" expanded="false" />
+            <element signature="e#8293#8321#0" expanded="false" />
+            <element signature="e#8369#8397#0" expanded="false" />
+            <element signature="e#8535#8556#0" expanded="false" />
+            <element signature="e#8646#8669#0" expanded="false" />
+            <element signature="e#8844#8873#0" expanded="false" />
+            <element signature="e#8921#8950#0" expanded="false" />
+            <element signature="e#8996#9017#0" expanded="false" />
+            <element signature="e#9394#9422#0" expanded="false" />
+            <element signature="e#9470#9498#0" expanded="false" />
+            <element signature="e#9591#9605#0" expanded="false" />
+            <element signature="e#9860#9877#0" expanded="false" />
+            <element signature="e#10376#10397#0" expanded="false" />
+            <element signature="e#10630#10648#0" expanded="false" />
+            <element signature="e#10752#10780#0" expanded="false" />
+            <element signature="e#10828#10856#0" expanded="false" />
+            <element signature="e#10994#11015#0" expanded="false" />
+            <element signature="e#11105#11128#0" expanded="false" />
+            <element signature="e#11455#11476#0" expanded="false" />
+            <element signature="e#11303#11332#0" expanded="false" />
+            <element signature="e#11380#11409#0" expanded="false" />
+            <element signature="e#11852#11880#0" expanded="false" />
+            <element signature="e#11928#11956#0" expanded="false" />
+            <element signature="e#12049#12063#0" expanded="false" />
+            <element signature="e#12839#12861#0" expanded="false" />
+            <element signature="e#12931#12956#0" expanded="false" />
+            <element signature="e#13779#13801#0" expanded="false" />
+            <element signature="e#13871#13896#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2870,10 +2901,10 @@
             <element signature="e#61116#61143#0" expanded="true" />
             <element signature="e#63316#63343#0" expanded="true" />
             <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-            <element signature="e#87273#87274#0" expanded="true" />
-            <element signature="e#87340#87341#0" expanded="true" />
-            <element signature="e#97344#97345#0" expanded="true" />
-            <element signature="e#97384#97385#0" expanded="true" />
+            <element signature="e#87323#87324#0" expanded="true" />
+            <element signature="e#87390#87391#0" expanded="true" />
+            <element signature="e#97394#97395#0" expanded="true" />
+            <element signature="e#97434#97435#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2896,39 +2927,39 @@
             <element signature="e#684#712#0" expanded="false" />
             <element signature="e#2642#2658#0" expanded="false" />
             <element signature="e#3643#3660#0" expanded="false" />
-            <element signature="e#4850#4864#0" expanded="false" />
-            <element signature="e#6794#6811#0" expanded="false" />
-            <element signature="e#7023#7040#0" expanded="false" />
-            <element signature="e#7113#7130#0" expanded="false" />
-            <element signature="e#7917#7938#0" expanded="false" />
-            <element signature="e#8172#8190#0" expanded="false" />
-            <element signature="e#8294#8322#0" expanded="false" />
-            <element signature="e#8370#8398#0" expanded="false" />
-            <element signature="e#8536#8557#0" expanded="false" />
-            <element signature="e#8647#8670#0" expanded="false" />
-            <element signature="e#8845#8874#0" expanded="false" />
-            <element signature="e#8922#8951#0" expanded="false" />
-            <element signature="e#8997#9018#0" expanded="false" />
-            <element signature="e#9395#9423#0" expanded="false" />
-            <element signature="e#9471#9499#0" expanded="false" />
-            <element signature="e#9592#9606#0" expanded="false" />
-            <element signature="e#9861#9878#0" expanded="false" />
-            <element signature="e#10280#10301#0" expanded="false" />
-            <element signature="e#10631#10649#0" expanded="false" />
-            <element signature="e#10753#10781#0" expanded="false" />
-            <element signature="e#10829#10857#0" expanded="false" />
-            <element signature="e#10995#11016#0" expanded="false" />
-            <element signature="e#11106#11129#0" expanded="false" />
-            <element signature="e#11303#11324#0" expanded="false" />
-            <element signature="e#11371#11400#0" expanded="false" />
-            <element signature="e#11448#11477#0" expanded="false" />
-            <element signature="e#11853#11881#0" expanded="false" />
-            <element signature="e#11929#11957#0" expanded="false" />
-            <element signature="e#12050#12064#0" expanded="false" />
-            <element signature="e#12840#12862#0" expanded="false" />
-            <element signature="e#12932#12957#0" expanded="false" />
-            <element signature="e#13780#13802#0" expanded="false" />
-            <element signature="e#13872#13897#0" expanded="false" />
+            <element signature="e#4849#4863#0" expanded="true" />
+            <element signature="e#6793#6810#0" expanded="false" />
+            <element signature="e#7022#7039#0" expanded="false" />
+            <element signature="e#7112#7129#0" expanded="false" />
+            <element signature="e#7916#7937#0" expanded="false" />
+            <element signature="e#8171#8189#0" expanded="false" />
+            <element signature="e#8293#8321#0" expanded="false" />
+            <element signature="e#8369#8397#0" expanded="false" />
+            <element signature="e#8535#8556#0" expanded="false" />
+            <element signature="e#8646#8669#0" expanded="false" />
+            <element signature="e#8844#8873#0" expanded="false" />
+            <element signature="e#8921#8950#0" expanded="false" />
+            <element signature="e#8996#9017#0" expanded="false" />
+            <element signature="e#9394#9422#0" expanded="false" />
+            <element signature="e#9470#9498#0" expanded="false" />
+            <element signature="e#9591#9605#0" expanded="false" />
+            <element signature="e#9860#9877#0" expanded="false" />
+            <element signature="e#10376#10397#0" expanded="false" />
+            <element signature="e#10630#10648#0" expanded="false" />
+            <element signature="e#10752#10780#0" expanded="false" />
+            <element signature="e#10828#10856#0" expanded="false" />
+            <element signature="e#10994#11015#0" expanded="false" />
+            <element signature="e#11105#11128#0" expanded="false" />
+            <element signature="e#11455#11476#0" expanded="false" />
+            <element signature="e#11303#11332#0" expanded="false" />
+            <element signature="e#11380#11409#0" expanded="false" />
+            <element signature="e#11852#11880#0" expanded="false" />
+            <element signature="e#11928#11956#0" expanded="false" />
+            <element signature="e#12049#12063#0" expanded="false" />
+            <element signature="e#12839#12861#0" expanded="false" />
+            <element signature="e#12931#12956#0" expanded="false" />
+            <element signature="e#13779#13801#0" expanded="false" />
+            <element signature="e#13871#13896#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2949,10 +2980,10 @@
             <element signature="e#61116#61143#0" expanded="true" />
             <element signature="e#63316#63343#0" expanded="true" />
             <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-            <element signature="e#87273#87274#0" expanded="true" />
-            <element signature="e#87340#87341#0" expanded="true" />
-            <element signature="e#97344#97345#0" expanded="true" />
-            <element signature="e#97384#97385#0" expanded="true" />
+            <element signature="e#87323#87324#0" expanded="true" />
+            <element signature="e#87390#87391#0" expanded="true" />
+            <element signature="e#97394#97395#0" expanded="true" />
+            <element signature="e#97434#97435#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2965,39 +2996,39 @@
             <element signature="e#684#712#0" expanded="false" />
             <element signature="e#2642#2658#0" expanded="false" />
             <element signature="e#3643#3660#0" expanded="false" />
-            <element signature="e#4850#4864#0" expanded="false" />
-            <element signature="e#6794#6811#0" expanded="false" />
-            <element signature="e#7023#7040#0" expanded="false" />
-            <element signature="e#7113#7130#0" expanded="false" />
-            <element signature="e#7917#7938#0" expanded="false" />
-            <element signature="e#8172#8190#0" expanded="false" />
-            <element signature="e#8294#8322#0" expanded="false" />
-            <element signature="e#8370#8398#0" expanded="false" />
-            <element signature="e#8536#8557#0" expanded="false" />
-            <element signature="e#8647#8670#0" expanded="false" />
-            <element signature="e#8845#8874#0" expanded="false" />
-            <element signature="e#8922#8951#0" expanded="false" />
-            <element signature="e#8997#9018#0" expanded="false" />
-            <element signature="e#9395#9423#0" expanded="false" />
-            <element signature="e#9471#9499#0" expanded="false" />
-            <element signature="e#9592#9606#0" expanded="false" />
-            <element signature="e#9861#9878#0" expanded="false" />
-            <element signature="e#10280#10301#0" expanded="false" />
-            <element signature="e#10631#10649#0" expanded="false" />
-            <element signature="e#10753#10781#0" expanded="false" />
-            <element signature="e#10829#10857#0" expanded="false" />
-            <element signature="e#10995#11016#0" expanded="false" />
-            <element signature="e#11106#11129#0" expanded="false" />
-            <element signature="e#11303#11324#0" expanded="false" />
-            <element signature="e#11371#11400#0" expanded="false" />
-            <element signature="e#11448#11477#0" expanded="false" />
-            <element signature="e#11853#11881#0" expanded="false" />
-            <element signature="e#11929#11957#0" expanded="false" />
-            <element signature="e#12050#12064#0" expanded="false" />
-            <element signature="e#12840#12862#0" expanded="false" />
-            <element signature="e#12932#12957#0" expanded="false" />
-            <element signature="e#13780#13802#0" expanded="false" />
-            <element signature="e#13872#13897#0" expanded="false" />
+            <element signature="e#4849#4863#0" expanded="true" />
+            <element signature="e#6793#6810#0" expanded="false" />
+            <element signature="e#7022#7039#0" expanded="false" />
+            <element signature="e#7112#7129#0" expanded="false" />
+            <element signature="e#7916#7937#0" expanded="false" />
+            <element signature="e#8171#8189#0" expanded="false" />
+            <element signature="e#8293#8321#0" expanded="false" />
+            <element signature="e#8369#8397#0" expanded="false" />
+            <element signature="e#8535#8556#0" expanded="false" />
+            <element signature="e#8646#8669#0" expanded="false" />
+            <element signature="e#8844#8873#0" expanded="false" />
+            <element signature="e#8921#8950#0" expanded="false" />
+            <element signature="e#8996#9017#0" expanded="false" />
+            <element signature="e#9394#9422#0" expanded="false" />
+            <element signature="e#9470#9498#0" expanded="false" />
+            <element signature="e#9591#9605#0" expanded="false" />
+            <element signature="e#9860#9877#0" expanded="false" />
+            <element signature="e#10376#10397#0" expanded="false" />
+            <element signature="e#10630#10648#0" expanded="false" />
+            <element signature="e#10752#10780#0" expanded="false" />
+            <element signature="e#10828#10856#0" expanded="false" />
+            <element signature="e#10994#11015#0" expanded="false" />
+            <element signature="e#11105#11128#0" expanded="false" />
+            <element signature="e#11455#11476#0" expanded="false" />
+            <element signature="e#11303#11332#0" expanded="false" />
+            <element signature="e#11380#11409#0" expanded="false" />
+            <element signature="e#11852#11880#0" expanded="false" />
+            <element signature="e#11928#11956#0" expanded="false" />
+            <element signature="e#12049#12063#0" expanded="false" />
+            <element signature="e#12839#12861#0" expanded="false" />
+            <element signature="e#12931#12956#0" expanded="false" />
+            <element signature="e#13779#13801#0" expanded="false" />
+            <element signature="e#13871#13896#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3199,35 +3230,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="44" lean-forward="false" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="148" column="26" lean-forward="true" selection-start-line="148" selection-start-column="26" selection-end-line="148" selection-end-column="26" />
-          <folding>
-            <element signature="e#2586#2602#0" expanded="false" />
-            <element signature="e#3643#3660#0" expanded="false" />
-            <element signature="e#4850#4864#0" expanded="false" />
-            <element signature="e#12236#13109#0" expanded="false" />
-            <element signature="e#13119#14055#0" expanded="false" />
-            <element signature="e#14125#14747#0" expanded="false" />
-            <element signature="e#14805#15158#0" expanded="false" />
-            <element signature="e#15168#15885#0" expanded="false" />
-            <element signature="e#15933#16736#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
@@ -3258,10 +3260,37 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="18" lean-forward="false" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding>
+            <element signature="e#4849#4863#0" expanded="true" />
+            <element signature="e#12235#13108#0" expanded="false" />
+            <element signature="e#13118#14054#0" expanded="false" />
+            <element signature="e#14124#14746#0" expanded="false" />
+            <element signature="e#14804#15157#0" expanded="false" />
+            <element signature="e#15167#15884#0" expanded="false" />
+            <element signature="e#15932#16735#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="2065" column="13" lean-forward="true" selection-start-line="2065" selection-start-column="13" selection-end-line="2065" selection-end-column="13" />
+        <state relative-caret-position="280">
+          <caret line="1962" column="0" lean-forward="true" selection-start-line="1962" selection-start-column="0" selection-end-line="1962" selection-end-column="0" />
           <folding>
             <element signature="e#12257#12549#0" expanded="true" />
             <element signature="e#12548#12549#0" expanded="true" />
@@ -3271,10 +3300,10 @@
             <element signature="e#61116#61143#0" expanded="true" />
             <element signature="e#63316#63343#0" expanded="true" />
             <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-            <element signature="e#87273#87274#0" expanded="true" />
-            <element signature="e#87340#87341#0" expanded="true" />
-            <element signature="e#97344#97345#0" expanded="true" />
-            <element signature="e#97384#97385#0" expanded="true" />
+            <element signature="e#87323#87324#0" expanded="true" />
+            <element signature="e#87390#87391#0" expanded="true" />
+            <element signature="e#97394#97395#0" expanded="true" />
+            <element signature="e#97434#97435#0" expanded="true" />
           </folding>
         </state>
       </provider>
