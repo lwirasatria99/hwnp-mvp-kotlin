@@ -40,6 +40,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -278,6 +279,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     private String new_address = "";
     private String s_remark = "";
     private AlertDialog dialogRemark;
+    private String j_place_id;
 
     /**
      * Stop Service in Background X
@@ -483,7 +485,8 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
     }
 
-    private void startDialogRemark(Uri bitmapURI) {
+    @SuppressLint("ClickableViewAccessibility")
+    private void startDialogRemark(Uri bitmapURI, String status_report) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.dialog_remark, null);
 
@@ -498,11 +501,18 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         Objects.requireNonNull(dialogRemark.getWindow()).setBackgroundDrawable(inset);
         dialogRemark.show();
 
+        etRemark.setOnTouchListener((viewEt, motionEvent) -> {
+            viewEt.setFocusable(true);
+            viewEt.setFocusableInTouchMode(true);
+            return false;
+        });
+
+        etRemark.setHint(status_report);
+
         relSubmit.setOnClickListener(view1 -> {
             s_remark = etRemark.getText().toString();
-            Log.e(TAG, "startDialogRemark: " + s_remark);
 
-            if (s_remark.length() <= 0) {
+            if (s_remark.length() <= 0 && in_area.equals("N")) {
                 etRemark.setError("Remark is required!");
             } else {
                 retrofitCheckin(bitmapURI);
@@ -511,38 +521,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
         relCancel.setOnClickListener(view1 -> dialogRemark.cancel());
     }
-
-//    public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
-//        int width = bm.getWidth();
-//        int height = bm.getHeight();
-//        float scaleWidth = ((float) newWidth) / width;
-//        float scaleHeight = ((float) newHeight) / height;
-//        // CREATE A MATRIX FOR THE MANIPULATION
-//        Matrix matrix = new Matrix();
-//        // RESIZE THE BIT MAP
-//        matrix.postScale(scaleWidth, scaleHeight);
-//
-//        // "RECREATE" THE NEW BITMAP
-//        Bitmap resizedBitmap = Bitmap.createBitmap(
-//                bm, 0, 0, width, height, matrix, false);
-//        bm.recycle();
-//        return resizedBitmap;
-//    }
-
-//    private Bitmap getAspectRatio(Bitmap bm) {
-//        float aspectRatio = bm.getWidth() /
-//                (float) bm.getHeight();
-//        int width = 400;
-//        int height = Math.round(width / aspectRatio);
-//
-//        Bitmap bitmap = Bitmap.createScaledBitmap(bm, width, height, false);
-//        //bm.recycle();
-//
-//        // if using heigh
-//        //int height = 480;
-//        //int width = Math.round(height * aspectRatio);
-//        return bitmap;
-//    }
 
     private void retrofitReadProfile(ImageView ivProfile) {
         Observable<ResponseBody> call = new ApiClient().getApiService().readProfile(token);
@@ -837,7 +815,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
             String realPath = f.getAbsolutePath();
             File file1 = new File(realPath);
-            Log.e(TAG, "onActivityResult: Size Before -> "+file1.length() / 1024);
+            Log.e(TAG, "onActivityResult: Size Before -> " + file1.length() / 1024);
 
             try {
                 Bitmap compressorBitmap;
@@ -856,7 +834,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                     // File to Bitmap
                     compressorBitmap = BitmapFactory.decodeFile(compressorFile.getAbsolutePath());
                     //Log.e(TAG, "onActivityResult: Path -> "+compressorFile.getAbsolutePath());
-                    Log.e(TAG, "onActivityResult: Size After -> "+compressorFile.length() / 1024);
+                    Log.e(TAG, "onActivityResult: Size After -> " + compressorFile.length() / 1024);
                 } else {
                     compressorBitmap = new Compressor(this).compressToBitmap(file1);
 
@@ -1008,9 +986,10 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                 Uri bitmapURI = getImageUri(this, compressorBitmap);
 
                 if (in_area.equals("N")) {
-                    startDialogRemark(bitmapURI);
+                    startDialogRemark(bitmapURI, "Required");
                 } else {
-                    retrofitCheckin(bitmapURI);
+                    //retrofitCheckin(bitmapURI);
+                    startDialogRemark(bitmapURI, "Optional");
                 }
 
                 //storeImageTosdCard(bitmap);
@@ -1611,10 +1590,50 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                             JSONObject jsonData0 = jsonArray.getJSONObject(0);
                             //String j_formatted_address = jsonObject1.getString("formatted_address");
                             j_formatted_address = jsonData0.getString("formatted_address");
+                            j_place_id = jsonData0.getString("place_id");
                             //Log.e(TAG, "onResponse: Geocoding -> " + j_formatted_address);
                         }
 
+                        //Log.e(TAG, "onResponse: Place ID -> "+j_place_id);
+                        //retrofitGoogleGeocodingPlaces(j_place_id);
+
                         new_address = j_formatted_address;
+
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                } else {
+                    Log.e(TAG, "onResponse: Geocoding -> " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                Log.e(TAG, "onFailure: Geocoding -> " + t.getMessage());
+            }
+        });
+    }
+
+    private void retrofitGoogleGeocodingPlaces(String placeId) {
+        String apiKey = getString(R.string.map_api);
+
+        Call<ResponseBody> call = new ApiClient().getApiService().cekLocationNamePlaces(placeId, apiKey);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                if (response.body() != null) {
+                    try {
+                        //noinspection ConstantConditions
+                        String responseContent = new String(response.body().bytes());
+                        JSONObject jsonObject = new JSONObject(responseContent);
+                        JSONObject jsonObjectResult = jsonObject.getJSONObject("result");
+
+                        String name = jsonObjectResult.getString("name");
+                        Log.e(TAG, "onResponse: Name -> " + name);
+
+                        //new_address = name;
+
 
                     } catch (IOException | JSONException e) {
                         e.printStackTrace();
@@ -1907,7 +1926,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                     try {
                         //noinspection ConstantConditions
                         String contentResponse = new String(response.body().bytes());
-                        Log.e(TAG, "onResponse Status Checkin: " + contentResponse);
+                        //Log.e(TAG, "onResponse Status Checkin: " + contentResponse);
                         JSONObject jsonObject = new JSONObject(contentResponse);
                         String response_code = jsonObject.getString("response_code");
                         switch (response_code) {
@@ -1961,10 +1980,10 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
                                     assert dateTime1 != null;
                                     if (dateTime1.after(checkTime1)) {
-                                        Log.e(TAG, "onResponse: RED");
+                                        //Log.e(TAG, "onResponse: RED");
                                         tvStartTime.setTextColor(Color.RED);
                                     } else {
-                                        Log.e(TAG, "onResponse: BLUE");
+                                        //Log.e(TAG, "onResponse: BLUE");
                                         tvStartTime.setTextColor(getResources().getColor(R.color.blue));
                                     }
 
@@ -2020,7 +2039,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                     try {
                         //noinspection ConstantConditions
                         String contentResponse = new String(response.body().bytes());
-                        Log.e(TAG, "onResponse Status Checkin after click: " + contentResponse);
+                        //Log.e(TAG, "onResponse Status Checkin after click: " + contentResponse);
                         JSONObject jsonObject = new JSONObject(contentResponse);
                         String response_code = jsonObject.getString("response_code");
                         switch (response_code) {
@@ -2083,9 +2102,8 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                                     case "200":
                                         JSONObject jsonObject1 = jsonObject.getJSONObject("data");
                                         serverTime = jsonObject1.getString("serverTime");
-                                        //Log.e(TAG, "onNext serverTime:" + serverTime);
-                                        String time = serverTime.substring(11);
 
+                                        String time = serverTime.substring(11);
                                         String[] parts = time.split(":");
                                         part1_time = parts[0];
                                         part2_time = parts[1];

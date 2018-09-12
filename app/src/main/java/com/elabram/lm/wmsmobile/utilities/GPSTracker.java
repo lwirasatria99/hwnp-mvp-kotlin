@@ -201,7 +201,7 @@ public class GPSTracker extends Service implements LocationListener {
         SharedPreferences preferences = getSharedPreferences("PREFS_TIMEZONE", 0);
         s_timezone_id = preferences.getString("s_timezone_id", "");
         s_gmt = preferences.getString("s_gmt", "");
-        Log.e(TAG, "onStartCommand: LiveTrack GMT ->"+ s_gmt );
+        //Log.e(TAG, "onStartCommand: LiveTrack GMT ->"+ s_gmt );
 
         // use timezone
         rxLiveTracking();
@@ -216,7 +216,7 @@ public class GPSTracker extends Service implements LocationListener {
         params.put("long", s_long); // OK
         params.put("timezone", s_gmt);
         params.put("timezone_id", s_timezone_id);
-        Log.e(TAG, "getParamsLive: " + params);
+        //Log.e(TAG, "getParamsLive: " + params);
         return params;
     }
 
@@ -235,7 +235,7 @@ public class GPSTracker extends Service implements LocationListener {
                         if (responseBody != null) {
                             try {
                                 String mResponse = responseBody.string();
-                                Log.e(TAG, "onNext response live from service: " + mResponse);
+                                //Log.e(TAG, "onNext response live from service: " + mResponse);
                                 //noinspection unused
                                 JSONObject jsonObject = new JSONObject(mResponse);
 //                                String response_code = jsonObject.getString("response_code");

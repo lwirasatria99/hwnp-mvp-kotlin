@@ -46,6 +46,11 @@ public interface ApiService {
     Call<ResponseBody> cekLocationName(@Query("latlng") String coordinate,
                                        @Query("key") String keyApi);
 
+    @GET("https://maps.googleapis.com/maps/api/place/details/json")
+    Call<ResponseBody> cekLocationNamePlaces(@Query("placeid") String placeId,
+                                             @Query("key") String keyApi);
+
+
     @FormUrlEncoded
     @POST("attCheckin")
     Observable<ResponseBody> checkin(@FieldMap HashMap<String, String> paramsCheckin);

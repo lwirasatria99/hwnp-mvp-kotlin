@@ -21,6 +21,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_remark.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_remark.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,13 +50,21 @@
       <file leaf-file-name="CheckinV1Activity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-678">
-              <caret line="881" column="13" lean-forward="false" selection-start-line="881" selection-start-column="13" selection-end-line="881" selection-end-column="13" />
+            <state relative-caret-position="21">
+              <caret line="2065" column="13" lean-forward="true" selection-start-line="2065" selection-start-column="13" selection-end-line="2065" selection-end-column="13" />
               <folding>
-                <element signature="e#50468#50469#0" expanded="true" />
-                <element signature="e#50499#50500#0" expanded="true" />
-                <element signature="e#96457#96458#0" expanded="true" />
-                <element signature="e#96497#96498#0" expanded="true" />
+                <element signature="e#12257#12549#0" expanded="true" />
+                <element signature="e#12548#12549#0" expanded="true" />
+                <element signature="e#49732#49733#0" expanded="true" />
+                <element signature="e#49763#49764#0" expanded="true" />
+                <element signature="e#59108#59135#0" expanded="true" />
+                <element signature="e#61116#61143#0" expanded="true" />
+                <element signature="e#63316#63343#0" expanded="true" />
+                <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
+                <element signature="e#87273#87274#0" expanded="true" />
+                <element signature="e#87340#87341#0" expanded="true" />
+                <element signature="e#97344#97345#0" expanded="true" />
+                <element signature="e#97384#97385#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -81,6 +92,10 @@
       <find>onResume</find>
       <find>putString(&quot;</find>
       <find>putString(&quot;s_gmt</find>
+      <find>onResponse:</find>
+      <find>log.e</find>
+      <find>new_addre</find>
+      <find>Site name</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -2257,19 +2272,19 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_profile.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/square_cornerfull_white2.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/square_cornerbottom_grey2.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_remark.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_chart.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiClient.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_delete.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_contract_out.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_remark.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java" />
       </list>
     </option>
@@ -2327,8 +2342,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="SearchEverywhereHistoryKey" value="dialog_&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_contract_out.xml&#10;GPS&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.utilities.GPSTracker&#10;ApiCl&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.rest.ApiClient&#10;LoginA&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java&#10;CHe&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java&#10;Perfor&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.PerformanceChartActivity&#10;build&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/build.gradle&#10;dia&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;dialog&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_contract_out.xml&#10;dialo&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;activi&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml&#10;Appli&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.MyApplication&#10;dialog_pro&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_profile.xml&#10;activity_che&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml" />
-    <property name="device.picker.selection" value="988667364947313959" />
+    <property name="SearchEverywhereHistoryKey" value="dialog_re&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;GPS&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java&#10;CH&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java&#10;dialog_&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_contract_out.xml&#10;ApiCl&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.rest.ApiClient&#10;LoginA&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java&#10;CHe&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java&#10;Perfor&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.PerformanceChartActivity&#10;build&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/build.gradle&#10;dia&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;dialog&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_contract_out.xml&#10;dialo&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;activi&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml&#10;Appli&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.MyApplication&#10;dialog_pro&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_profile.xml&#10;activity_che&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml" />
+    <property name="device.picker.selection" value="eca6c9a1f603" />
     <property name="settings.editor.selected.configurable" value="instant.run" />
   </component>
   <component name="RecentsManager">
@@ -2530,7 +2545,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536718876543</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="- Fixing image issue rotated in Oreo 8.0 - 8.1 Camera">
+      <created>1536723591553</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1536723591553</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2578,19 +2600,32 @@
     <MESSAGE value="- Redesign Dialog Logout&#10;- Chart Improvement" />
     <MESSAGE value="- Notif end contract improved" />
     <MESSAGE value="- Design time not fit on some device fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Design time not fit on some device fixed" />
+    <MESSAGE value="- Fixing image issue rotated in Oreo 8.0 - 8.1 Camera" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fixing image issue rotated in Oreo 8.0 - 8.1 Camera" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java</url>
-          <line>1461</line>
+          <line>1440</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java</url>
+          <line>2199</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java</url>
+          <line>987</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="6" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2600,10 +2635,18 @@
         <state relative-caret-position="33210">
           <caret line="2214" column="31" lean-forward="true" selection-start-line="2214" selection-start-column="31" selection-end-line="2214" selection-end-column="31" />
           <folding>
-            <element signature="e#50468#50469#0" expanded="true" />
-            <element signature="e#50499#50500#0" expanded="true" />
-            <element signature="e#96457#96458#0" expanded="true" />
-            <element signature="e#96497#96498#0" expanded="true" />
+            <element signature="e#12257#12549#0" expanded="true" />
+            <element signature="e#12548#12549#0" expanded="true" />
+            <element signature="e#49732#49733#0" expanded="true" />
+            <element signature="e#49763#49764#0" expanded="true" />
+            <element signature="e#59108#59135#0" expanded="true" />
+            <element signature="e#61116#61143#0" expanded="true" />
+            <element signature="e#63316#63343#0" expanded="true" />
+            <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
+            <element signature="e#87273#87274#0" expanded="true" />
+            <element signature="e#87340#87341#0" expanded="true" />
+            <element signature="e#97344#97345#0" expanded="true" />
+            <element signature="e#97384#97385#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2637,10 +2680,18 @@
         <state relative-caret-position="25800">
           <caret line="2215" column="21" lean-forward="false" selection-start-line="2215" selection-start-column="21" selection-end-line="2215" selection-end-column="21" />
           <folding>
-            <element signature="e#50468#50469#0" expanded="true" />
-            <element signature="e#50499#50500#0" expanded="true" />
-            <element signature="e#96457#96458#0" expanded="true" />
-            <element signature="e#96497#96498#0" expanded="true" />
+            <element signature="e#12257#12549#0" expanded="true" />
+            <element signature="e#12548#12549#0" expanded="true" />
+            <element signature="e#49732#49733#0" expanded="true" />
+            <element signature="e#49763#49764#0" expanded="true" />
+            <element signature="e#59108#59135#0" expanded="true" />
+            <element signature="e#61116#61143#0" expanded="true" />
+            <element signature="e#63316#63343#0" expanded="true" />
+            <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
+            <element signature="e#87273#87274#0" expanded="true" />
+            <element signature="e#87340#87341#0" expanded="true" />
+            <element signature="e#97344#97345#0" expanded="true" />
+            <element signature="e#97384#97385#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2666,10 +2717,18 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#50468#50469#0" expanded="true" />
-            <element signature="e#50499#50500#0" expanded="true" />
-            <element signature="e#96457#96458#0" expanded="true" />
-            <element signature="e#96497#96498#0" expanded="true" />
+            <element signature="e#12257#12549#0" expanded="true" />
+            <element signature="e#12548#12549#0" expanded="true" />
+            <element signature="e#49732#49733#0" expanded="true" />
+            <element signature="e#49763#49764#0" expanded="true" />
+            <element signature="e#59108#59135#0" expanded="true" />
+            <element signature="e#61116#61143#0" expanded="true" />
+            <element signature="e#63316#63343#0" expanded="true" />
+            <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
+            <element signature="e#87273#87274#0" expanded="true" />
+            <element signature="e#87340#87341#0" expanded="true" />
+            <element signature="e#97344#97345#0" expanded="true" />
+            <element signature="e#97384#97385#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2717,10 +2776,18 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#50468#50469#0" expanded="true" />
-            <element signature="e#50499#50500#0" expanded="true" />
-            <element signature="e#96457#96458#0" expanded="true" />
-            <element signature="e#96497#96498#0" expanded="true" />
+            <element signature="e#12257#12549#0" expanded="true" />
+            <element signature="e#12548#12549#0" expanded="true" />
+            <element signature="e#49732#49733#0" expanded="true" />
+            <element signature="e#49763#49764#0" expanded="true" />
+            <element signature="e#59108#59135#0" expanded="true" />
+            <element signature="e#61116#61143#0" expanded="true" />
+            <element signature="e#63316#63343#0" expanded="true" />
+            <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
+            <element signature="e#87273#87274#0" expanded="true" />
+            <element signature="e#87340#87341#0" expanded="true" />
+            <element signature="e#97344#97345#0" expanded="true" />
+            <element signature="e#97384#97385#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2795,10 +2862,18 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#50468#50469#0" expanded="true" />
-            <element signature="e#50499#50500#0" expanded="true" />
-            <element signature="e#96457#96458#0" expanded="true" />
-            <element signature="e#96497#96498#0" expanded="true" />
+            <element signature="e#12257#12549#0" expanded="true" />
+            <element signature="e#12548#12549#0" expanded="true" />
+            <element signature="e#49732#49733#0" expanded="true" />
+            <element signature="e#49763#49764#0" expanded="true" />
+            <element signature="e#59108#59135#0" expanded="true" />
+            <element signature="e#61116#61143#0" expanded="true" />
+            <element signature="e#63316#63343#0" expanded="true" />
+            <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
+            <element signature="e#87273#87274#0" expanded="true" />
+            <element signature="e#87340#87341#0" expanded="true" />
+            <element signature="e#97344#97345#0" expanded="true" />
+            <element signature="e#97384#97385#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2866,10 +2941,18 @@
         <state relative-caret-position="12750">
           <caret line="850" column="44" lean-forward="true" selection-start-line="850" selection-start-column="44" selection-end-line="850" selection-end-column="44" />
           <folding>
-            <element signature="e#50468#50469#0" expanded="true" />
-            <element signature="e#50499#50500#0" expanded="true" />
-            <element signature="e#96457#96458#0" expanded="true" />
-            <element signature="e#96497#96498#0" expanded="true" />
+            <element signature="e#12257#12549#0" expanded="true" />
+            <element signature="e#12548#12549#0" expanded="true" />
+            <element signature="e#49732#49733#0" expanded="true" />
+            <element signature="e#49763#49764#0" expanded="true" />
+            <element signature="e#59108#59135#0" expanded="true" />
+            <element signature="e#61116#61143#0" expanded="true" />
+            <element signature="e#63316#63343#0" expanded="true" />
+            <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
+            <element signature="e#87273#87274#0" expanded="true" />
+            <element signature="e#87340#87341#0" expanded="true" />
+            <element signature="e#97344#97345#0" expanded="true" />
+            <element signature="e#97384#97385#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2974,13 +3057,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="110" column="80" lean-forward="false" selection-start-line="110" selection-start-column="80" selection-end-line="110" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/square_cornerfull_white_more_corner.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -3039,16 +3115,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_remark.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="73" column="8" lean-forward="true" selection-start-line="73" selection-start-column="8" selection-end-line="121" selection-end-column="23" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -3162,23 +3228,53 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="217" column="38" lean-forward="false" selection-start-line="217" selection-start-column="38" selection-end-line="217" selection-end-column="38" />
+        <state relative-caret-position="181">
+          <caret line="49" column="77" lean-forward="false" selection-start-line="49" selection-start-column="77" selection-end-line="49" selection-end-column="77" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="129" column="21" lean-forward="false" selection-start-line="129" selection-start-column="16" selection-end-line="129" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_remark.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="59" column="8" lean-forward="false" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
+          <folding>
+            <element signature="e#666#1976#0" expanded="false" />
+            <element signature="e#2915#4995#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-678">
-          <caret line="881" column="13" lean-forward="false" selection-start-line="881" selection-start-column="13" selection-end-line="881" selection-end-column="13" />
+        <state relative-caret-position="21">
+          <caret line="2065" column="13" lean-forward="true" selection-start-line="2065" selection-start-column="13" selection-end-line="2065" selection-end-column="13" />
           <folding>
-            <element signature="e#50468#50469#0" expanded="true" />
-            <element signature="e#50499#50500#0" expanded="true" />
-            <element signature="e#96457#96458#0" expanded="true" />
-            <element signature="e#96497#96498#0" expanded="true" />
+            <element signature="e#12257#12549#0" expanded="true" />
+            <element signature="e#12548#12549#0" expanded="true" />
+            <element signature="e#49732#49733#0" expanded="true" />
+            <element signature="e#49763#49764#0" expanded="true" />
+            <element signature="e#59108#59135#0" expanded="true" />
+            <element signature="e#61116#61143#0" expanded="true" />
+            <element signature="e#63316#63343#0" expanded="true" />
+            <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
+            <element signature="e#87273#87274#0" expanded="true" />
+            <element signature="e#87340#87341#0" expanded="true" />
+            <element signature="e#97344#97345#0" expanded="true" />
+            <element signature="e#97384#97385#0" expanded="true" />
           </folding>
         </state>
       </provider>
