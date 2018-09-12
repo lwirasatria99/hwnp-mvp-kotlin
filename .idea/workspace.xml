@@ -6,13 +6,24 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="CheckinS" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94cdf4f4-679f-4e3b-b755-5048fc1927c9" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/wms_icon_remark_32.png" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiClient.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiClient.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
@@ -41,53 +52,23 @@
       <file leaf-file-name="CheckinV1Activity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="1962" column="0" lean-forward="true" selection-start-line="1962" selection-start-column="0" selection-end-line="1962" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="1640" column="0" lean-forward="true" selection-start-line="1640" selection-start-column="0" selection-end-line="1640" selection-end-column="0" />
               <folding>
-                <element signature="e#12257#12549#0" expanded="true" />
-                <element signature="e#12548#12549#0" expanded="true" />
-                <element signature="e#49732#49733#0" expanded="true" />
-                <element signature="e#49763#49764#0" expanded="true" />
-                <element signature="e#59108#59135#0" expanded="true" />
-                <element signature="e#61116#61143#0" expanded="true" />
-                <element signature="e#63316#63343#0" expanded="true" />
+                <element signature="e#12537#12829#0" expanded="true" />
+                <element signature="e#12828#12829#0" expanded="true" />
+                <element signature="e#50916#50917#0" expanded="true" />
+                <element signature="e#50947#50948#0" expanded="true" />
+                <element signature="e#60292#60319#0" expanded="true" />
+                <element signature="e#62300#62327#0" expanded="true" />
+                <element signature="e#64413#64433#0" expanded="false" />
+                <element signature="e#64434#64500#0" expanded="false" />
                 <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-                <element signature="e#87323#87324#0" expanded="true" />
-                <element signature="e#87390#87391#0" expanded="true" />
-                <element signature="e#97394#97395#0" expanded="true" />
-                <element signature="e#97434#97435#0" expanded="true" />
+                <element signature="e#89488#89489#0" expanded="true" />
+                <element signature="e#89555#89556#0" expanded="true" />
+                <element signature="e#99559#99560#0" expanded="true" />
+                <element signature="e#99599#99600#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_checkin_v1.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
-              <folding>
-                <element signature="e#4849#4863#0" expanded="true" />
-                <element signature="e#12235#13108#0" expanded="false" />
-                <element signature="e#13118#14054#0" expanded="false" />
-                <element signature="e#14124#14746#0" expanded="false" />
-                <element signature="e#14804#15157#0" expanded="false" />
-                <element signature="e#15167#15884#0" expanded="false" />
-                <element signature="e#15932#16735#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="18" lean-forward="false" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -119,6 +100,10 @@
       <find>new_addre</find>
       <find>Site name</find>
       <find>.tvDate</find>
+      <find>Checkin Status</find>
+      <find>Checkin</find>
+      <find>startDialogP</find>
+      <find>setText(j_remar</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -2300,15 +2285,15 @@
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_chart.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiClient.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_delete.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_contract_out.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_remark.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiClient.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java" />
       </list>
     </option>
   </component>
@@ -2335,6 +2320,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -2351,26 +2339,31 @@
               <item name="wms-android" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="wms-android" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
               <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="SearchEverywhereHistoryKey" value="chec&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml&#10;dialog_re&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;GPS&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java&#10;CH&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java&#10;dialog_&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_contract_out.xml&#10;ApiCl&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.rest.ApiClient&#10;LoginA&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java&#10;CHe&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java&#10;Perfor&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.PerformanceChartActivity&#10;build&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/build.gradle&#10;dia&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;dialog&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_contract_out.xml&#10;dialo&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;activi&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml&#10;Appli&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.MyApplication&#10;dialog_pro&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_profile.xml&#10;activity_che&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml" />
-    <property name="device.picker.selection" value="eca6c9a1f603" />
+    <property name="SearchEverywhereHistoryKey" value="dialog_pro&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_profile.xml&#10;ApiC&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiClient.java&#10;chec&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml&#10;dialog_re&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;GPS&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java&#10;CH&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java&#10;dialog_&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_contract_out.xml&#10;ApiCl&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.rest.ApiClient&#10;LoginA&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java&#10;CHe&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java&#10;Perfor&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.PerformanceChartActivity&#10;build&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/build.gradle&#10;dia&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;dialog&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_contract_out.xml&#10;dialo&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;activi&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml&#10;Appli&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.MyApplication&#10;activity_che&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml" />
+    <property name="device.picker.selection" value="9b2ca6907d53" />
     <property name="settings.editor.selected.configurable" value="instant.run" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable-mdpi" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-mdpi" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
     </key>
@@ -2582,7 +2575,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536731614100</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Format Date Checkin">
+      <created>1536731888916</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1536731888916</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2596,7 +2596,7 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4418417" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37156704" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4644068" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2632,26 +2632,27 @@
     <MESSAGE value="- Design time not fit on some device fixed" />
     <MESSAGE value="- Fixing image issue rotated in Oreo 8.0 - 8.1 Camera" />
     <MESSAGE value="- Remark on (no site) &amp; (any site)in radius optional &amp; required hint" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Remark on (no site) &amp; (any site)in radius optional &amp; required hint" />
+    <MESSAGE value="Format Date Checkin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Format Date Checkin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java</url>
-          <line>1440</line>
+          <line>1464</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java</url>
-          <line>2199</line>
+          <line>2239</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java</url>
-          <line>987</line>
+          <line>1011</line>
           <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
@@ -2663,26 +2664,71 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#12537#12829#0" expanded="true" />
+            <element signature="e#12828#12829#0" expanded="true" />
+            <element signature="e#50916#50917#0" expanded="true" />
+            <element signature="e#50947#50948#0" expanded="true" />
+            <element signature="e#60292#60319#0" expanded="true" />
+            <element signature="e#62300#62327#0" expanded="true" />
+            <element signature="e#64413#64433#0" expanded="false" />
+            <element signature="e#64434#64500#0" expanded="false" />
+            <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
+            <element signature="e#89488#89489#0" expanded="true" />
+            <element signature="e#89555#89556#0" expanded="true" />
+            <element signature="e#99559#99560#0" expanded="true" />
+            <element signature="e#99599#99600#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5430">
+          <caret line="362" column="0" lean-forward="false" selection-start-line="362" selection-start-column="0" selection-end-line="362" selection-end-column="0" />
+          <folding>
+            <element signature="e#11614#11628#0" expanded="true" />
+            <element signature="e#16241#17114#0" expanded="false" />
+            <element signature="e#17124#18060#0" expanded="false" />
+            <element signature="e#18130#18752#0" expanded="false" />
+            <element signature="e#18810#19163#0" expanded="false" />
+            <element signature="e#19173#19890#0" expanded="false" />
+            <element signature="e#19938#20741#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="33210">
           <caret line="2214" column="31" lean-forward="true" selection-start-line="2214" selection-start-column="31" selection-end-line="2214" selection-end-column="31" />
           <folding>
-            <element signature="e#12257#12549#0" expanded="true" />
-            <element signature="e#12548#12549#0" expanded="true" />
-            <element signature="e#49732#49733#0" expanded="true" />
-            <element signature="e#49763#49764#0" expanded="true" />
-            <element signature="e#59108#59135#0" expanded="true" />
-            <element signature="e#61116#61143#0" expanded="true" />
-            <element signature="e#63316#63343#0" expanded="true" />
+            <element signature="e#12537#12829#0" expanded="true" />
+            <element signature="e#12828#12829#0" expanded="true" />
+            <element signature="e#50916#50917#0" expanded="true" />
+            <element signature="e#50947#50948#0" expanded="true" />
+            <element signature="e#60292#60319#0" expanded="true" />
+            <element signature="e#62300#62327#0" expanded="true" />
+            <element signature="e#64413#64433#0" expanded="false" />
+            <element signature="e#64434#64500#0" expanded="false" />
             <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-            <element signature="e#87323#87324#0" expanded="true" />
-            <element signature="e#87390#87391#0" expanded="true" />
-            <element signature="e#97394#97395#0" expanded="true" />
-            <element signature="e#97434#97435#0" expanded="true" />
+            <element signature="e#89488#89489#0" expanded="true" />
+            <element signature="e#89555#89556#0" expanded="true" />
+            <element signature="e#99559#99560#0" expanded="true" />
+            <element signature="e#99599#99600#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_delete.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="28" lean-forward="false" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
@@ -2694,15 +2740,11 @@
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5205">
           <caret line="396" column="32" lean-forward="true" selection-start-line="396" selection-start-column="32" selection-end-line="396" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2711,23 +2753,27 @@
         <state relative-caret-position="25800">
           <caret line="2215" column="21" lean-forward="false" selection-start-line="2215" selection-start-column="21" selection-end-line="2215" selection-end-column="21" />
           <folding>
-            <element signature="e#12257#12549#0" expanded="true" />
-            <element signature="e#12548#12549#0" expanded="true" />
-            <element signature="e#49732#49733#0" expanded="true" />
-            <element signature="e#49763#49764#0" expanded="true" />
-            <element signature="e#59108#59135#0" expanded="true" />
-            <element signature="e#61116#61143#0" expanded="true" />
-            <element signature="e#63316#63343#0" expanded="true" />
+            <element signature="e#12537#12829#0" expanded="true" />
+            <element signature="e#12828#12829#0" expanded="true" />
+            <element signature="e#50916#50917#0" expanded="true" />
+            <element signature="e#50947#50948#0" expanded="true" />
+            <element signature="e#60292#60319#0" expanded="true" />
+            <element signature="e#62300#62327#0" expanded="true" />
+            <element signature="e#64413#64433#0" expanded="false" />
+            <element signature="e#64434#64500#0" expanded="false" />
             <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-            <element signature="e#87323#87324#0" expanded="true" />
-            <element signature="e#87390#87391#0" expanded="true" />
-            <element signature="e#97394#97395#0" expanded="true" />
-            <element signature="e#97434#97435#0" expanded="true" />
+            <element signature="e#89488#89489#0" expanded="true" />
+            <element signature="e#89555#89556#0" expanded="true" />
+            <element signature="e#99559#99560#0" expanded="true" />
+            <element signature="e#99599#99600#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_delete.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="28" lean-forward="false" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
@@ -2738,9 +2784,6 @@
             <element signature="e#2405#4349#0" expanded="false" />
           </folding>
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java">
@@ -2748,23 +2791,27 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#12257#12549#0" expanded="true" />
-            <element signature="e#12548#12549#0" expanded="true" />
-            <element signature="e#49732#49733#0" expanded="true" />
-            <element signature="e#49763#49764#0" expanded="true" />
-            <element signature="e#59108#59135#0" expanded="true" />
-            <element signature="e#61116#61143#0" expanded="true" />
-            <element signature="e#63316#63343#0" expanded="true" />
+            <element signature="e#12537#12829#0" expanded="true" />
+            <element signature="e#12828#12829#0" expanded="true" />
+            <element signature="e#50916#50917#0" expanded="true" />
+            <element signature="e#50947#50948#0" expanded="true" />
+            <element signature="e#60292#60319#0" expanded="true" />
+            <element signature="e#62300#62327#0" expanded="true" />
+            <element signature="e#64413#64433#0" expanded="false" />
+            <element signature="e#64434#64500#0" expanded="false" />
             <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-            <element signature="e#87323#87324#0" expanded="true" />
-            <element signature="e#87390#87391#0" expanded="true" />
-            <element signature="e#97394#97395#0" expanded="true" />
-            <element signature="e#97434#97435#0" expanded="true" />
+            <element signature="e#89488#89489#0" expanded="true" />
+            <element signature="e#89555#89556#0" expanded="true" />
+            <element signature="e#99559#99560#0" expanded="true" />
+            <element signature="e#99599#99600#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_delete.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="28" lean-forward="false" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
@@ -2776,11 +2823,11 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_chart.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_chart.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="28" column="32" lean-forward="false" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
@@ -2790,9 +2837,6 @@
             <element signature="e#1629#2723#0" expanded="false" />
           </folding>
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/PerformanceChartActivity.java">
@@ -2807,18 +2851,19 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#12257#12549#0" expanded="true" />
-            <element signature="e#12548#12549#0" expanded="true" />
-            <element signature="e#49732#49733#0" expanded="true" />
-            <element signature="e#49763#49764#0" expanded="true" />
-            <element signature="e#59108#59135#0" expanded="true" />
-            <element signature="e#61116#61143#0" expanded="true" />
-            <element signature="e#63316#63343#0" expanded="true" />
+            <element signature="e#12537#12829#0" expanded="true" />
+            <element signature="e#12828#12829#0" expanded="true" />
+            <element signature="e#50916#50917#0" expanded="true" />
+            <element signature="e#50947#50948#0" expanded="true" />
+            <element signature="e#60292#60319#0" expanded="true" />
+            <element signature="e#62300#62327#0" expanded="true" />
+            <element signature="e#64413#64433#0" expanded="false" />
+            <element signature="e#64434#64500#0" expanded="false" />
             <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-            <element signature="e#87323#87324#0" expanded="true" />
-            <element signature="e#87390#87391#0" expanded="true" />
-            <element signature="e#97394#97395#0" expanded="true" />
-            <element signature="e#97434#97435#0" expanded="true" />
+            <element signature="e#89488#89489#0" expanded="true" />
+            <element signature="e#89555#89556#0" expanded="true" />
+            <element signature="e#99559#99560#0" expanded="true" />
+            <element signature="e#99599#99600#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2831,61 +2876,32 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_profile.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="35" column="41" lean-forward="false" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4215">
           <caret line="281" column="46" lean-forward="false" selection-start-line="281" selection-start-column="46" selection-end-line="281" selection-end-column="46" />
           <folding>
-            <element signature="e#684#712#0" expanded="false" />
-            <element signature="e#2642#2658#0" expanded="false" />
-            <element signature="e#3643#3660#0" expanded="false" />
-            <element signature="e#4849#4863#0" expanded="true" />
-            <element signature="e#6793#6810#0" expanded="false" />
-            <element signature="e#7022#7039#0" expanded="false" />
-            <element signature="e#7112#7129#0" expanded="false" />
-            <element signature="e#7916#7937#0" expanded="false" />
-            <element signature="e#8171#8189#0" expanded="false" />
-            <element signature="e#8293#8321#0" expanded="false" />
-            <element signature="e#8369#8397#0" expanded="false" />
-            <element signature="e#8535#8556#0" expanded="false" />
-            <element signature="e#8646#8669#0" expanded="false" />
-            <element signature="e#8844#8873#0" expanded="false" />
-            <element signature="e#8921#8950#0" expanded="false" />
-            <element signature="e#8996#9017#0" expanded="false" />
-            <element signature="e#9394#9422#0" expanded="false" />
-            <element signature="e#9470#9498#0" expanded="false" />
-            <element signature="e#9591#9605#0" expanded="false" />
-            <element signature="e#9860#9877#0" expanded="false" />
-            <element signature="e#10376#10397#0" expanded="false" />
-            <element signature="e#10630#10648#0" expanded="false" />
-            <element signature="e#10752#10780#0" expanded="false" />
-            <element signature="e#10828#10856#0" expanded="false" />
-            <element signature="e#10994#11015#0" expanded="false" />
-            <element signature="e#11105#11128#0" expanded="false" />
-            <element signature="e#11455#11476#0" expanded="false" />
-            <element signature="e#11303#11332#0" expanded="false" />
-            <element signature="e#11380#11409#0" expanded="false" />
-            <element signature="e#11852#11880#0" expanded="false" />
-            <element signature="e#11928#11956#0" expanded="false" />
-            <element signature="e#12049#12063#0" expanded="false" />
-            <element signature="e#12839#12861#0" expanded="false" />
-            <element signature="e#12931#12956#0" expanded="false" />
-            <element signature="e#13779#13801#0" expanded="false" />
-            <element signature="e#13871#13896#0" expanded="false" />
+            <element signature="e#11614#11628#0" expanded="true" />
+            <element signature="e#16241#17114#0" expanded="false" />
+            <element signature="e#17124#18060#0" expanded="false" />
+            <element signature="e#18130#18752#0" expanded="false" />
+            <element signature="e#18810#19163#0" expanded="false" />
+            <element signature="e#19173#19890#0" expanded="false" />
+            <element signature="e#19938#20741#0" expanded="false" />
           </folding>
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java">
@@ -2893,78 +2909,50 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#12257#12549#0" expanded="true" />
-            <element signature="e#12548#12549#0" expanded="true" />
-            <element signature="e#49732#49733#0" expanded="true" />
-            <element signature="e#49763#49764#0" expanded="true" />
-            <element signature="e#59108#59135#0" expanded="true" />
-            <element signature="e#61116#61143#0" expanded="true" />
-            <element signature="e#63316#63343#0" expanded="true" />
+            <element signature="e#12537#12829#0" expanded="true" />
+            <element signature="e#12828#12829#0" expanded="true" />
+            <element signature="e#50916#50917#0" expanded="true" />
+            <element signature="e#50947#50948#0" expanded="true" />
+            <element signature="e#60292#60319#0" expanded="true" />
+            <element signature="e#62300#62327#0" expanded="true" />
+            <element signature="e#64413#64433#0" expanded="false" />
+            <element signature="e#64434#64500#0" expanded="false" />
             <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-            <element signature="e#87323#87324#0" expanded="true" />
-            <element signature="e#87390#87391#0" expanded="true" />
-            <element signature="e#97394#97395#0" expanded="true" />
-            <element signature="e#97434#97435#0" expanded="true" />
+            <element signature="e#89488#89489#0" expanded="true" />
+            <element signature="e#89555#89556#0" expanded="true" />
+            <element signature="e#99559#99560#0" expanded="true" />
+            <element signature="e#99599#99600#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_profile.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="35" column="41" lean-forward="false" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
           <folding>
-            <element signature="e#684#712#0" expanded="false" />
-            <element signature="e#2642#2658#0" expanded="false" />
-            <element signature="e#3643#3660#0" expanded="false" />
-            <element signature="e#4849#4863#0" expanded="true" />
-            <element signature="e#6793#6810#0" expanded="false" />
-            <element signature="e#7022#7039#0" expanded="false" />
-            <element signature="e#7112#7129#0" expanded="false" />
-            <element signature="e#7916#7937#0" expanded="false" />
-            <element signature="e#8171#8189#0" expanded="false" />
-            <element signature="e#8293#8321#0" expanded="false" />
-            <element signature="e#8369#8397#0" expanded="false" />
-            <element signature="e#8535#8556#0" expanded="false" />
-            <element signature="e#8646#8669#0" expanded="false" />
-            <element signature="e#8844#8873#0" expanded="false" />
-            <element signature="e#8921#8950#0" expanded="false" />
-            <element signature="e#8996#9017#0" expanded="false" />
-            <element signature="e#9394#9422#0" expanded="false" />
-            <element signature="e#9470#9498#0" expanded="false" />
-            <element signature="e#9591#9605#0" expanded="false" />
-            <element signature="e#9860#9877#0" expanded="false" />
-            <element signature="e#10376#10397#0" expanded="false" />
-            <element signature="e#10630#10648#0" expanded="false" />
-            <element signature="e#10752#10780#0" expanded="false" />
-            <element signature="e#10828#10856#0" expanded="false" />
-            <element signature="e#10994#11015#0" expanded="false" />
-            <element signature="e#11105#11128#0" expanded="false" />
-            <element signature="e#11455#11476#0" expanded="false" />
-            <element signature="e#11303#11332#0" expanded="false" />
-            <element signature="e#11380#11409#0" expanded="false" />
-            <element signature="e#11852#11880#0" expanded="false" />
-            <element signature="e#11928#11956#0" expanded="false" />
-            <element signature="e#12049#12063#0" expanded="false" />
-            <element signature="e#12839#12861#0" expanded="false" />
-            <element signature="e#12931#12956#0" expanded="false" />
-            <element signature="e#13779#13801#0" expanded="false" />
-            <element signature="e#13871#13896#0" expanded="false" />
+            <element signature="e#11614#11628#0" expanded="true" />
+            <element signature="e#16241#17114#0" expanded="false" />
+            <element signature="e#17124#18060#0" expanded="false" />
+            <element signature="e#18130#18752#0" expanded="false" />
+            <element signature="e#18810#19163#0" expanded="false" />
+            <element signature="e#19173#19890#0" expanded="false" />
+            <element signature="e#19938#20741#0" expanded="false" />
           </folding>
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java">
@@ -2972,68 +2960,40 @@
         <state relative-caret-position="12750">
           <caret line="850" column="44" lean-forward="true" selection-start-line="850" selection-start-column="44" selection-end-line="850" selection-end-column="44" />
           <folding>
-            <element signature="e#12257#12549#0" expanded="true" />
-            <element signature="e#12548#12549#0" expanded="true" />
-            <element signature="e#49732#49733#0" expanded="true" />
-            <element signature="e#49763#49764#0" expanded="true" />
-            <element signature="e#59108#59135#0" expanded="true" />
-            <element signature="e#61116#61143#0" expanded="true" />
-            <element signature="e#63316#63343#0" expanded="true" />
+            <element signature="e#12537#12829#0" expanded="true" />
+            <element signature="e#12828#12829#0" expanded="true" />
+            <element signature="e#50916#50917#0" expanded="true" />
+            <element signature="e#50947#50948#0" expanded="true" />
+            <element signature="e#60292#60319#0" expanded="true" />
+            <element signature="e#62300#62327#0" expanded="true" />
+            <element signature="e#64413#64433#0" expanded="false" />
+            <element signature="e#64434#64500#0" expanded="false" />
             <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-            <element signature="e#87323#87324#0" expanded="true" />
-            <element signature="e#87390#87391#0" expanded="true" />
-            <element signature="e#97394#97395#0" expanded="true" />
-            <element signature="e#97434#97435#0" expanded="true" />
+            <element signature="e#89488#89489#0" expanded="true" />
+            <element signature="e#89555#89556#0" expanded="true" />
+            <element signature="e#99559#99560#0" expanded="true" />
+            <element signature="e#99599#99600#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#684#712#0" expanded="false" />
-            <element signature="e#2642#2658#0" expanded="false" />
-            <element signature="e#3643#3660#0" expanded="false" />
-            <element signature="e#4849#4863#0" expanded="true" />
-            <element signature="e#6793#6810#0" expanded="false" />
-            <element signature="e#7022#7039#0" expanded="false" />
-            <element signature="e#7112#7129#0" expanded="false" />
-            <element signature="e#7916#7937#0" expanded="false" />
-            <element signature="e#8171#8189#0" expanded="false" />
-            <element signature="e#8293#8321#0" expanded="false" />
-            <element signature="e#8369#8397#0" expanded="false" />
-            <element signature="e#8535#8556#0" expanded="false" />
-            <element signature="e#8646#8669#0" expanded="false" />
-            <element signature="e#8844#8873#0" expanded="false" />
-            <element signature="e#8921#8950#0" expanded="false" />
-            <element signature="e#8996#9017#0" expanded="false" />
-            <element signature="e#9394#9422#0" expanded="false" />
-            <element signature="e#9470#9498#0" expanded="false" />
-            <element signature="e#9591#9605#0" expanded="false" />
-            <element signature="e#9860#9877#0" expanded="false" />
-            <element signature="e#10376#10397#0" expanded="false" />
-            <element signature="e#10630#10648#0" expanded="false" />
-            <element signature="e#10752#10780#0" expanded="false" />
-            <element signature="e#10828#10856#0" expanded="false" />
-            <element signature="e#10994#11015#0" expanded="false" />
-            <element signature="e#11105#11128#0" expanded="false" />
-            <element signature="e#11455#11476#0" expanded="false" />
-            <element signature="e#11303#11332#0" expanded="false" />
-            <element signature="e#11380#11409#0" expanded="false" />
-            <element signature="e#11852#11880#0" expanded="false" />
-            <element signature="e#11928#11956#0" expanded="false" />
-            <element signature="e#12049#12063#0" expanded="false" />
-            <element signature="e#12839#12861#0" expanded="false" />
-            <element signature="e#12931#12956#0" expanded="false" />
-            <element signature="e#13779#13801#0" expanded="false" />
-            <element signature="e#13871#13896#0" expanded="false" />
+            <element signature="e#11614#11628#0" expanded="true" />
+            <element signature="e#16241#17114#0" expanded="false" />
+            <element signature="e#17124#18060#0" expanded="false" />
+            <element signature="e#18130#18752#0" expanded="false" />
+            <element signature="e#18810#19163#0" expanded="false" />
+            <element signature="e#19173#19890#0" expanded="false" />
+            <element signature="e#19938#20741#0" expanded="false" />
           </folding>
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/local.properties">
@@ -3078,16 +3038,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_profile.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/square_cornerfull_white_more_corner.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -3124,32 +3074,31 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_month_picker.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="19" lean-forward="false" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="423">
           <caret line="83" column="47" lean-forward="false" selection-start-line="83" selection-start-column="47" selection-end-line="83" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_confirm.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/PerformanceChartActivity.java">
@@ -3160,17 +3109,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_checkout.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_chart.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_chart.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
           <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
@@ -3181,27 +3133,18 @@
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="14" column="41" lean-forward="false" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="518">
           <caret line="315" column="21" lean-forward="false" selection-start-line="315" selection-start-column="21" selection-end-line="315" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_delete.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="62" column="27" lean-forward="false" selection-start-line="62" selection-start-column="27" selection-end-line="62" selection-end-column="27" />
@@ -3213,28 +3156,17 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_contract_out.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_contract_out.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="28" column="41" lean-forward="false" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
           <folding>
             <element signature="e#2362#2386#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="49" column="77" lean-forward="false" selection-start-line="49" selection-start-column="77" selection-end-line="49" selection-end-column="77" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3247,6 +3179,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_remark.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
           <caret line="59" column="8" lean-forward="false" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
@@ -3255,9 +3190,6 @@
             <element signature="e#2915#4995#0" expanded="false" />
           </folding>
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
@@ -3268,42 +3200,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
-          <folding>
-            <element signature="e#4849#4863#0" expanded="true" />
-            <element signature="e#12235#13108#0" expanded="false" />
-            <element signature="e#13118#14054#0" expanded="false" />
-            <element signature="e#14124#14746#0" expanded="false" />
-            <element signature="e#14804#15157#0" expanded="false" />
-            <element signature="e#15167#15884#0" expanded="false" />
-            <element signature="e#15932#16735#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_profile.xml">
       <provider editor-type-id="android-designer2">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="27" lean-forward="false" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="37" column="23" lean-forward="false" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="272" column="33" lean-forward="false" selection-start-line="272" selection-start-column="33" selection-end-line="272" selection-end-column="33" />
+          <folding>
+            <element signature="e#11614#11628#0" expanded="true" />
+            <element signature="e#16241#17114#0" expanded="false" />
+            <element signature="e#17124#18060#0" expanded="false" />
+            <element signature="e#18130#18752#0" expanded="false" />
+            <element signature="e#18810#19163#0" expanded="false" />
+            <element signature="e#19173#19890#0" expanded="false" />
+            <element signature="e#19938#20741#0" expanded="false" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="1962" column="0" lean-forward="true" selection-start-line="1962" selection-start-column="0" selection-end-line="1962" selection-end-column="0" />
+        <state relative-caret-position="170">
+          <caret line="1640" column="0" lean-forward="true" selection-start-line="1640" selection-start-column="0" selection-end-line="1640" selection-end-column="0" />
           <folding>
-            <element signature="e#12257#12549#0" expanded="true" />
-            <element signature="e#12548#12549#0" expanded="true" />
-            <element signature="e#49732#49733#0" expanded="true" />
-            <element signature="e#49763#49764#0" expanded="true" />
-            <element signature="e#59108#59135#0" expanded="true" />
-            <element signature="e#61116#61143#0" expanded="true" />
-            <element signature="e#63316#63343#0" expanded="true" />
+            <element signature="e#12537#12829#0" expanded="true" />
+            <element signature="e#12828#12829#0" expanded="true" />
+            <element signature="e#50916#50917#0" expanded="true" />
+            <element signature="e#50947#50948#0" expanded="true" />
+            <element signature="e#60292#60319#0" expanded="true" />
+            <element signature="e#62300#62327#0" expanded="true" />
+            <element signature="e#64413#64433#0" expanded="false" />
+            <element signature="e#64434#64500#0" expanded="false" />
             <element signature="method#retrofitRealTime#0;class#CheckinV1Activity#0" expanded="false" />
-            <element signature="e#87323#87324#0" expanded="true" />
-            <element signature="e#87390#87391#0" expanded="true" />
-            <element signature="e#97394#97395#0" expanded="true" />
-            <element signature="e#97434#97435#0" expanded="true" />
+            <element signature="e#89488#89489#0" expanded="true" />
+            <element signature="e#89555#89556#0" expanded="true" />
+            <element signature="e#99559#99560#0" expanded="true" />
+            <element signature="e#99599#99600#0" expanded="true" />
           </folding>
         </state>
       </provider>

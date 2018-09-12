@@ -22,5 +22,6 @@
     <string name="dash">-</string>
     <string name="notif_contract">Your contract has expired. You are not able to use the application. Please contact your Administrator.</string>
     <string name="dummy_date">Wed, 18 Sep 2017</string>
+    <string name="dummy_remark">Lagi ngopi</string>
 
 </resources>

@@ -186,6 +186,7 @@
                 android:text="First Record"
                 tools:ignore="HardcodedText" />
 
+            <!-- First Time & Place -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -226,6 +227,49 @@
                     android:layout_marginLeft="@dimen/space_checkin_place"
                     android:layout_marginStart="@dimen/space_checkin_place"
                     android:fontFamily="@font/ubuntu_bold"
+                    android:text="@string/dash"
+                    android:textColor="@color/blue" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="11dp"
+                    android:layout_marginTop="@dimen/space_marker"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:visibility="invisible"
+                    android:layout_width="@dimen/size_time"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_checkin_place"
+                    android:layout_marginStart="@dimen/space_checkin_place"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:gravity="center"
+                    android:text="@string/dummy_clock"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/size_font_time" />
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginLeft="@dimen/space_marker_to_time"
+                    android:layout_marginStart="@dimen/space_marker_to_time"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/wms_icon_remark_32"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tvFirstRemark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_checkin_place"
+                    android:layout_marginStart="@dimen/space_checkin_place"
                     android:text="@string/dash"
                     android:textColor="@color/black" />
 
@@ -279,6 +323,50 @@
                     android:layout_marginLeft="@dimen/space_checkin_place"
                     android:layout_marginStart="@dimen/space_checkin_place"
                     android:fontFamily="@font/ubuntu_bold"
+                    android:text="@string/dash"
+                    android:textColor="@color/blue" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="11dp"
+                    android:layout_marginTop="@dimen/space_marker"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:visibility="invisible"
+                    android:layout_width="@dimen/size_time"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_checkin_place"
+                    android:layout_marginStart="@dimen/space_checkin_place"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:gravity="center"
+                    android:text="@string/dummy_clock"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/size_font_time" />
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginLeft="@dimen/space_marker_to_time"
+                    android:layout_marginStart="@dimen/space_marker_to_time"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/wms_icon_remark_32"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tvLastRemark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_checkin_place"
+                    android:layout_marginStart="@dimen/space_checkin_place"
                     android:text="@string/dash"
                     android:textColor="@color/black" />
 

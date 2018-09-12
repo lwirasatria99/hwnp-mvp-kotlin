@@ -40,7 +40,6 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -173,6 +172,12 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     @BindView(R.id.tvLastLocation)
     TextView tvLastLocation;
 
+    @BindView(R.id.tvFirstRemark)
+    TextView tvFirstRemark;
+
+    @BindView(R.id.tvLastRemark)
+    TextView tvLastRemark;
+
     @BindView(R.id.relativeEnabled)
     RelativeLayout rel_online;
 
@@ -279,7 +284,14 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     private String new_address = "";
     private String s_remark = "";
     private AlertDialog dialogRemark;
-    private String j_place_id;
+    //private String j_place_id;
+
+    private TextView tv_name;
+    private TextView tv_id;
+    private TextView tv_position;
+    private TextView tv_email;
+    private TextView tv_mobile;
+    private TextView tv_phone;
 
     /**
      * Stop Service in Background X
@@ -446,12 +458,12 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.dialog_profile, null);
 
-        TextView tv_name = view.findViewById(R.id.tv_name);
-        TextView tv_id = view.findViewById(R.id.tv_id);
-        TextView tv_position = view.findViewById(R.id.tv_position);
-        TextView tv_email = view.findViewById(R.id.tv_email);
-        TextView tv_mobile = view.findViewById(R.id.tv_mobile);
-        TextView tv_phone = view.findViewById(R.id.tv_phone);
+        tv_name = view.findViewById(R.id.tv_name);
+        tv_id = view.findViewById(R.id.tv_id);
+        tv_position = view.findViewById(R.id.tv_position);
+        tv_email = view.findViewById(R.id.tv_email);
+        tv_mobile = view.findViewById(R.id.tv_mobile);
+        tv_phone = view.findViewById(R.id.tv_phone);
 
         iv_profile_dialog = view.findViewById(R.id.iv_profile_dialog);
         ImageView iv_change_profile = view.findViewById(R.id.ivChangePicture);
@@ -469,8 +481,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         dialogProfile.show();
 
         retrofitReadProfile(iv_profile_dialog);
-
-        setDataProfile(tv_name, tv_id, tv_position, tv_email, tv_mobile, tv_phone);
 
         linear_about.setOnClickListener(view1 -> startActivity(new Intent(this, AboutActivity.class)));
 
@@ -537,7 +547,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                         if (responseBody != null) {
                             try {
                                 String mResponse = responseBody.string();
-                                Log.e(TAG, "onNext Profile: " + mResponse);
+                                //Log.e(TAG, "onNext Profile: " + mResponse);
                                 JSONObject jsonObject = new JSONObject(mResponse);
                                 String response_code = jsonObject.getString("response_code");
                                 switch (response_code) {
@@ -547,6 +557,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                                         break;
                                     case "200":
                                         JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                        Log.e(TAG, "onNext: Data Pofile -> " + jsonObject1.toString());
                                         s_url_image = jsonObject1.getString("user_image");
                                         Log.e(TAG, "onNext Profile: " + s_url_image);
 
@@ -556,6 +567,18 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                                         } else {
                                             glideURL(s_url_image, ivProfile);
                                         }
+
+                                        String j_username = jsonObject1.getString("user_fullname");
+                                        String j_id = jsonObject1.getString("mem_nip");
+                                        String j_position = jsonObject1.getString("user_position");
+                                        String j_email = jsonObject1.getString("user_email");
+                                        String j_mobile = jsonObject1.getString("user_mobile");
+                                        String j_phone = jsonObject1.getString("user_phone");
+
+                                        setDataProfile(
+                                                j_username, j_id, j_position,
+                                                j_email, j_mobile, j_phone
+                                        );
 
                                         break;
                                 }
@@ -752,40 +775,41 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         startActivity(intent);
     }
 
-    private void setDataProfile(TextView tv_name, TextView tv_id, TextView tv_position,
-                                TextView tv_email, TextView tv_mobile, TextView tv_phone) {
+    private void setDataProfile(String s_username, String s_id, String s_position,
+                                String s_email, String s_mobile, String s_phone) {
 
-        tv_name.setText(WordUtils.capitalize(user_fullname));
-        tv_id.setText(mem_nip);
-        tv_position.setText(position);
-        tv_email.setText(user_email);
-        tv_mobile.setText(mem_mobile);
-        tv_phone.setText(mem_phone);
+        if (tv_name != null) {
+            tv_name.setText(WordUtils.capitalize(s_username));
+            tv_id.setText(s_id);
+            tv_position.setText(s_position);
+            tv_email.setText(s_email);
+            tv_mobile.setText(s_mobile);
+            tv_phone.setText(s_phone);
 
+            // ID
+            if (s_id.length() == 0) {
+                tv_id.setText("-");
+            }
 
-        // ID
-        if (mem_nip.length() == 0) {
-            tv_id.setText("-");
-        }
+            // Position
+            if (s_position.length() == 0) {
+                tv_position.setText("-");
+            }
 
-        // Position
-        if (position.length() == 0) {
-            tv_position.setText("-");
-        }
+            // Email
+            if (s_email.length() == 0) {
+                tv_email.setText("-");
+            }
 
-        // Email
-        if (user_email.length() == 0) {
-            tv_email.setText("-");
-        }
+            // Mobile
+            if (s_mobile.length() == 0) {
+                tv_mobile.setText("-");
+            }
 
-        // Mobile
-        if (mem_mobile.length() == 0) {
-            tv_mobile.setText("-");
-        }
-
-        // Telephone
-        if (mem_phone.length() == 0) {
-            tv_phone.setText("-");
+            // Telephone
+            if (s_phone.length() == 0) {
+                tv_phone.setText("-");
+            }
         }
     }
 
@@ -1590,7 +1614,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                             JSONObject jsonData0 = jsonArray.getJSONObject(0);
                             //String j_formatted_address = jsonObject1.getString("formatted_address");
                             j_formatted_address = jsonData0.getString("formatted_address");
-                            j_place_id = jsonData0.getString("place_id");
+                            //j_place_id = jsonData0.getString("place_id");
                             //Log.e(TAG, "onResponse: Geocoding -> " + j_formatted_address);
                         }
 
@@ -1615,41 +1639,42 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         });
     }
 
-    private void retrofitGoogleGeocodingPlaces(String placeId) {
-        String apiKey = getString(R.string.map_api);
-
-        Call<ResponseBody> call = new ApiClient().getApiService().cekLocationNamePlaces(placeId, apiKey);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                if (response.body() != null) {
-                    try {
-                        //noinspection ConstantConditions
-                        String responseContent = new String(response.body().bytes());
-                        JSONObject jsonObject = new JSONObject(responseContent);
-                        JSONObject jsonObjectResult = jsonObject.getJSONObject("result");
-
-                        String name = jsonObjectResult.getString("name");
-                        Log.e(TAG, "onResponse: Name -> " + name);
-
-                        //new_address = name;
-
-
-                    } catch (IOException | JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                } else {
-                    Log.e(TAG, "onResponse: Geocoding -> " + response.errorBody());
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                Log.e(TAG, "onFailure: Geocoding -> " + t.getMessage());
-            }
-        });
-    }
+//    Geocoding plus
+//    private void retrofitGoogleGeocodingPlaces(String placeId) {
+//        String apiKey = getString(R.string.map_api);
+//
+//        Call<ResponseBody> call = new ApiClient().getApiService().cekLocationNamePlaces(placeId, apiKey);
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+//                if (response.body() != null) {
+//                    try {
+//                        //noinspection ConstantConditions
+//                        String responseContent = new String(response.body().bytes());
+//                        JSONObject jsonObject = new JSONObject(responseContent);
+//                        JSONObject jsonObjectResult = jsonObject.getJSONObject("result");
+//
+//                        String name = jsonObjectResult.getString("name");
+//                        Log.e(TAG, "onResponse: Name -> " + name);
+//
+//                        //new_address = name;
+//
+//
+//                    } catch (IOException | JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                } else {
+//                    Log.e(TAG, "onResponse: Geocoding -> " + response.errorBody());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+//                Log.e(TAG, "onFailure: Geocoding -> " + t.getMessage());
+//            }
+//        });
+//    }
 
     @Override
     public void onLowMemory() {
@@ -1919,30 +1944,34 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
     private void retrofitCheckinStatus() {
         Call<ResponseBody> call = new ApiClient().getApiService().loadStatusCheckin(token);
         call.enqueue(new Callback<ResponseBody>() {
-            @SuppressLint("SimpleDateFormat")
+            @SuppressLint({"SimpleDateFormat", "SetTextI18n"})
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 if (response.body() != null) {
                     try {
                         //noinspection ConstantConditions
                         String contentResponse = new String(response.body().bytes());
-                        //Log.e(TAG, "onResponse Status Checkin: " + contentResponse);
                         JSONObject jsonObject = new JSONObject(contentResponse);
                         String response_code = jsonObject.getString("response_code");
+                        String message = jsonObject.getString("message");
+                        Log.e(TAG, "onResponse: CheckinStatus -> " + message);
                         switch (response_code) {
                             case "401":
-                                String message = jsonObject.getString("message");
-                                Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
-                                snackbar.show();
+                                Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
                                 break;
                             case "200":
                                 JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                Log.e(TAG, "onResponse: Data CheckinStatus -> " + jsonObject1.toString());
+
                                 String realtime_date = jsonObject1.getString("is_date");
                                 String time_first = jsonObject1.getString("time_first");
                                 String location_first = jsonObject1.getString("location_first");
 
                                 String time_last = jsonObject1.getString("time_last");
                                 String location_last = jsonObject1.getString("location_last");
+
+                                String j_remarkFirst = jsonObject1.getString("remark_first");
+                                String j_remarkLast = jsonObject1.getString("remark_last");
 
                                 // Date Checkin View
                                 @SuppressLint("SimpleDateFormat") SimpleDateFormat read = new SimpleDateFormat("dd MMMM yyyy");
@@ -1977,7 +2006,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                                 }
 
                                 if (!time_first.isEmpty()) {
-
                                     assert dateTime1 != null;
                                     if (dateTime1.after(checkTime1)) {
                                         //Log.e(TAG, "onResponse: RED");
@@ -1986,7 +2014,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                                         //Log.e(TAG, "onResponse: BLUE");
                                         tvStartTime.setTextColor(getResources().getColor(R.color.blue));
                                     }
-
 
                                     tvStartTime.setText(replaceFirst);
                                     linearTimePlace.setVisibility(View.VISIBLE);
@@ -2001,15 +2028,28 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                                 else
                                     tvEnd.setText("-");
 
+                                // First Location
                                 if (!location_first.isEmpty())
                                     tvFirstLocation.setText(location_first);
                                 //else
                                 //    tvFirstLocation.setText("(-)");
 
+                                // Last Location
                                 if (!location_last.isEmpty())
                                     tvLastLocation.setText(location_last);
                                 //else
                                 //    tvLastLocation.setText("(-)");
+
+                                Log.e(TAG, "onResponse: First " + j_remarkFirst);
+                                Log.e(TAG, "onResponse: Last " + j_remarkLast);
+
+                                // Remark First
+                                if (!j_remarkFirst.isEmpty())
+                                    tvFirstRemark.setText("\"" + j_remarkFirst + "\"");
+
+                                // Remark Last
+                                if (!j_remarkLast.isEmpty())
+                                    tvLastRemark.setText("\"" + j_remarkLast + "\"");
 
                                 break;
                         }
