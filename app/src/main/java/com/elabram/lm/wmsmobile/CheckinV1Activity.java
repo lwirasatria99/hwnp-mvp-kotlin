@@ -14,6 +14,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
@@ -85,6 +86,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.SocketTimeoutException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -835,28 +837,43 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
             String realPath = f.getAbsolutePath();
             File file1 = new File(realPath);
+            Log.e(TAG, "onActivityResult: Size Before -> "+file1.length() / 1024);
 
             try {
-                Bitmap compressor = new Compressor(this).compressToBitmap(file1);
+                Bitmap compressorBitmap;
 
-                ExifInterface exif = new ExifInterface(realPath);
-                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
-                Matrix matrix = new Matrix();
-                if ((orientation == ExifInterface.ORIENTATION_ROTATE_180)) {
-                    matrix.postRotate(180);
-                    compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
-                            compressor.getHeight(), matrix, true);
-                } else if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
-                    matrix.postRotate(90);
-                    compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
-                            compressor.getHeight(), matrix, true);
-                } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
-                    matrix.postRotate(270);
-                    compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
-                            compressor.getHeight(), matrix, true);
+                File compressorFile = new Compressor(this).compressToFile(file1);
+                InputStream input = getContentResolver().openInputStream(Uri.fromFile(compressorFile));
+
+                ExifInterface exif;
+
+                if (Build.VERSION.SDK_INT > 23) {
+                    assert input != null;
+                    exif = new ExifInterface(input);
+                    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+                    Log.e(TAG, "onActivityResult: Orientation 23 -> " + orientation);
+
+                    // File to Bitmap
+                    compressorBitmap = BitmapFactory.decodeFile(compressorFile.getAbsolutePath());
+                    //Log.e(TAG, "onActivityResult: Path -> "+compressorFile.getAbsolutePath());
+                    Log.e(TAG, "onActivityResult: Size After -> "+compressorFile.length() / 1024);
+                } else {
+                    compressorBitmap = new Compressor(this).compressToBitmap(file1);
+
+                    exif = new ExifInterface(realPath);
+                    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+                    Log.e(TAG, "onActivityResult: Orientation -> " + orientation);
+
+                    if ((orientation == ExifInterface.ORIENTATION_ROTATE_180)) {
+                        compressorBitmap = rotateImage(compressorBitmap, 180);
+                    } else if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
+                        compressorBitmap = rotateImage(compressorBitmap, 90);
+                    } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
+                        compressorBitmap = rotateImage(compressorBitmap, 270);
+                    }
                 }
 
-                Uri bitmapURI = getImageUri(this, compressor);
+                Uri bitmapURI = getImageUri(this, compressorBitmap);
                 retrofitAddPicture(bitmapURI);
 
                 //storeImageTosdCard(bitmap);
@@ -890,26 +907,38 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                     file1 = new File(selectedImagePath);
 
                     try {
-                        Bitmap compressor = new Compressor(this).compressToBitmap(file1);
+                        Bitmap compressorBitmap;
 
-                        ExifInterface exif = new ExifInterface(selectedImagePath);
-                        int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
-                        Matrix matrix = new Matrix();
-                        if ((orientation == ExifInterface.ORIENTATION_ROTATE_180)) {
-                            matrix.postRotate(180);
-                            compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
-                                    compressor.getHeight(), matrix, true);
-                        } else if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
-                            matrix.postRotate(90);
-                            compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
-                                    compressor.getHeight(), matrix, true);
-                        } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
-                            matrix.postRotate(270);
-                            compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
-                                    compressor.getHeight(), matrix, true);
+                        File compressorFile = new Compressor(this).compressToFile(file1);
+                        InputStream input = getContentResolver().openInputStream(Uri.fromFile(compressorFile));
+
+                        ExifInterface exif;
+
+                        if (Build.VERSION.SDK_INT > 23) {
+                            assert input != null;
+                            exif = new ExifInterface(input);
+                            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+                            Log.e(TAG, "onActivityResult: Orientation 23 -> " + orientation);
+
+                            // File to Bitmap
+                            compressorBitmap = BitmapFactory.decodeFile(compressorFile.getAbsolutePath());
+                        } else {
+                            compressorBitmap = new Compressor(this).compressToBitmap(file1);
+
+                            exif = new ExifInterface(selectedImagePath);
+                            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+                            Log.e(TAG, "onActivityResult: Orientation -> " + orientation);
+
+                            if ((orientation == ExifInterface.ORIENTATION_ROTATE_180)) {
+                                compressorBitmap = rotateImage(compressorBitmap, 180);
+                            } else if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
+                                compressorBitmap = rotateImage(compressorBitmap, 90);
+                            } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
+                                compressorBitmap = rotateImage(compressorBitmap, 270);
+                            }
                         }
 
-                        Uri bitmapURI = getImageUri(this, compressor);
+                        Uri bitmapURI = getImageUri(this, compressorBitmap);
                         retrofitAddPicture(bitmapURI);
 
                     } catch (IOException e) {
@@ -944,26 +973,39 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
             File file1 = new File(realPath);
 
             try {
-                Bitmap compressor = new Compressor(this).compressToBitmap(file1);
+                Bitmap compressorBitmap;
 
-                ExifInterface exif = new ExifInterface(realPath);
-                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
-                Matrix matrix = new Matrix();
-                if ((orientation == ExifInterface.ORIENTATION_ROTATE_180)) {
-                    matrix.postRotate(180);
-                    compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
-                            compressor.getHeight(), matrix, true);
-                } else if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
-                    matrix.postRotate(90);
-                    compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
-                            compressor.getHeight(), matrix, true);
-                } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
-                    matrix.postRotate(270);
-                    compressor = Bitmap.createBitmap(compressor, 0, 0, compressor.getWidth(),
-                            compressor.getHeight(), matrix, true);
+                File compressorFile = new Compressor(this).compressToFile(file1);
+                InputStream input = getContentResolver().openInputStream(Uri.fromFile(compressorFile));
+
+                ExifInterface exif;
+
+                if (Build.VERSION.SDK_INT > 23) {
+                    assert input != null;
+                    exif = new ExifInterface(input);
+                    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+                    Log.e(TAG, "onActivityResult: Orientation 23 -> " + orientation);
+
+                    // File to Bitmap
+                    compressorBitmap = BitmapFactory.decodeFile(compressorFile.getAbsolutePath());
+
+                } else {
+                    compressorBitmap = new Compressor(this).compressToBitmap(file1);
+
+                    exif = new ExifInterface(realPath);
+                    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+                    Log.e(TAG, "onActivityResult: Orientation -> " + orientation);
+
+                    if ((orientation == ExifInterface.ORIENTATION_ROTATE_180)) {
+                        compressorBitmap = rotateImage(compressorBitmap, 180);
+                    } else if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
+                        compressorBitmap = rotateImage(compressorBitmap, 90);
+                    } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
+                        compressorBitmap = rotateImage(compressorBitmap, 270);
+                    }
                 }
 
-                Uri bitmapURI = getImageUri(this, compressor);
+                Uri bitmapURI = getImageUri(this, compressorBitmap);
 
                 if (in_area.equals("N")) {
                     startDialogRemark(bitmapURI);
@@ -977,6 +1019,13 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
             }
         }
 
+    }
+
+    public static Bitmap rotateImage(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                matrix, true);
     }
 
     private Uri getImageUri(Context context, Bitmap inImage) {
@@ -1522,7 +1571,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                         e.printStackTrace();
                     }
                     s_gmt = checkTimezoneGMT();
-                    Log.e(TAG, "onResponse: Timezone -> "+s_gmt);
+                    Log.e(TAG, "onResponse: Timezone -> " + s_gmt);
 
                     SharedPreferences preferences = getSharedPreferences("PREFS_TIMEZONE", 0);
                     SharedPreferences.Editor editor = preferences.edit();

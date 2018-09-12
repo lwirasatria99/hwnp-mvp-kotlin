@@ -11,9 +11,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94cdf4f4-679f-4e3b-b755-5048fc1927c9" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,74 +44,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CheckinV1Activity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CheckinV1Activity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="1524" column="63" lean-forward="false" selection-start-line="1524" selection-start-column="63" selection-end-line="1524" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GPSTracker.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="217" column="38" lean-forward="false" selection-start-line="217" selection-start-column="38" selection-end-line="217" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_checkin_v1.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="163" column="46" lean-forward="false" selection-start-line="163" selection-start-column="46" selection-end-line="163" selection-end-column="46" />
+            <state relative-caret-position="-678">
+              <caret line="881" column="13" lean-forward="false" selection-start-line="881" selection-start-column="13" selection-end-line="881" selection-end-column="13" />
               <folding>
-                <element signature="e#2586#2602#0" expanded="true" />
-                <element signature="e#3643#3660#0" expanded="true" />
-                <element signature="e#4850#4864#0" expanded="true" />
-                <element signature="e#12236#13109#0" expanded="false" />
-                <element signature="e#13119#14055#0" expanded="false" />
-                <element signature="e#14125#14747#0" expanded="false" />
-                <element signature="e#14805#15158#0" expanded="false" />
-                <element signature="e#15168#15885#0" expanded="false" />
-                <element signature="e#15933#16736#0" expanded="false" />
+                <element signature="e#50468#50469#0" expanded="true" />
+                <element signature="e#50499#50500#0" expanded="true" />
+                <element signature="e#96457#96458#0" expanded="true" />
+                <element signature="e#96497#96498#0" expanded="true" />
               </folding>
             </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="44" lean-forward="false" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dialog_delete.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_delete.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="62" column="27" lean-forward="false" selection-start-line="62" selection-start-column="27" selection-end-line="62" selection-end-column="27" />
-              <folding>
-                <element signature="e#513#2368#0" expanded="false" />
-                <element signature="e#665#1877#0" expanded="false" />
-                <element signature="e#1887#2347#0" expanded="false" />
-                <element signature="e#2405#4349#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
           </provider>
         </entry>
       </file>
@@ -2316,10 +2267,10 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/rest/ApiClient.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_delete.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_contract_out.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java" />
       </list>
     </option>
   </component>
@@ -2377,7 +2328,7 @@
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="SearchEverywhereHistoryKey" value="dialog_&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_contract_out.xml&#10;GPS&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.utilities.GPSTracker&#10;ApiCl&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.rest.ApiClient&#10;LoginA&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/LoginActivity.java&#10;CHe&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java&#10;Perfor&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.PerformanceChartActivity&#10;build&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/build.gradle&#10;dia&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;dialog&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_contract_out.xml&#10;dialo&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_remark.xml&#10;activi&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml&#10;Appli&#9;PSI&#9;JAVA://com.elabram.lm.wmsmobile.MyApplication&#10;dialog_pro&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/dialog_profile.xml&#10;activity_che&#9;FILE&#9;file:///Users/elabram/Documents/AndroidProject/wms-android/app/src/main/res/layout/activity_checkin_v1.xml" />
-    <property name="device.picker.selection" value="eca6c9a1f603" />
+    <property name="device.picker.selection" value="988667364947313959" />
     <property name="settings.editor.selected.configurable" value="instant.run" />
   </component>
   <component name="RecentsManager">
@@ -2572,7 +2523,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536718433139</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="- Design time not fit on some device fixed">
+      <created>1536718876543</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1536718876543</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2586,7 +2544,7 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3279483" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3279483" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4644068" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2619,14 +2577,15 @@
     <MESSAGE value="- Api google geocoding for address no office and out of radius,&#10;- Feature Checkin Out Of Radius &amp; No Site List&#10;- Add Remark Form&#10;- Image Profile Loading Time, Resizing, Caching Image&#10;- MA Take Picture for Record" />
     <MESSAGE value="- Redesign Dialog Logout&#10;- Chart Improvement" />
     <MESSAGE value="- Notif end contract improved" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Notif end contract improved" />
+    <MESSAGE value="- Design time not fit on some device fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Design time not fit on some device fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java</url>
-          <line>1412</line>
+          <line>1461</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
@@ -2640,7 +2599,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="33210">
           <caret line="2214" column="31" lean-forward="true" selection-start-line="2214" selection-start-column="31" selection-end-line="2214" selection-end-column="31" />
-          <folding />
+          <folding>
+            <element signature="e#50468#50469#0" expanded="true" />
+            <element signature="e#50499#50500#0" expanded="true" />
+            <element signature="e#96457#96458#0" expanded="true" />
+            <element signature="e#96497#96498#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2672,7 +2636,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25800">
           <caret line="2215" column="21" lean-forward="false" selection-start-line="2215" selection-start-column="21" selection-end-line="2215" selection-end-column="21" />
-          <folding />
+          <folding>
+            <element signature="e#50468#50469#0" expanded="true" />
+            <element signature="e#50499#50500#0" expanded="true" />
+            <element signature="e#96457#96458#0" expanded="true" />
+            <element signature="e#96497#96498#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2696,7 +2665,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#50468#50469#0" expanded="true" />
+            <element signature="e#50499#50500#0" expanded="true" />
+            <element signature="e#96457#96458#0" expanded="true" />
+            <element signature="e#96497#96498#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2742,7 +2716,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#50468#50469#0" expanded="true" />
+            <element signature="e#50499#50500#0" expanded="true" />
+            <element signature="e#96457#96458#0" expanded="true" />
+            <element signature="e#96497#96498#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2770,8 +2749,8 @@
           <folding>
             <element signature="e#684#712#0" expanded="false" />
             <element signature="e#2642#2658#0" expanded="false" />
-            <element signature="e#3643#3660#0" expanded="true" />
-            <element signature="e#4850#4864#0" expanded="true" />
+            <element signature="e#3643#3660#0" expanded="false" />
+            <element signature="e#4850#4864#0" expanded="false" />
             <element signature="e#6794#6811#0" expanded="false" />
             <element signature="e#7023#7040#0" expanded="false" />
             <element signature="e#7113#7130#0" expanded="false" />
@@ -2815,7 +2794,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#50468#50469#0" expanded="true" />
+            <element signature="e#50499#50500#0" expanded="true" />
+            <element signature="e#96457#96458#0" expanded="true" />
+            <element signature="e#96497#96498#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2836,8 +2820,8 @@
           <folding>
             <element signature="e#684#712#0" expanded="false" />
             <element signature="e#2642#2658#0" expanded="false" />
-            <element signature="e#3643#3660#0" expanded="true" />
-            <element signature="e#4850#4864#0" expanded="true" />
+            <element signature="e#3643#3660#0" expanded="false" />
+            <element signature="e#4850#4864#0" expanded="false" />
             <element signature="e#6794#6811#0" expanded="false" />
             <element signature="e#7023#7040#0" expanded="false" />
             <element signature="e#7113#7130#0" expanded="false" />
@@ -2881,7 +2865,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12750">
           <caret line="850" column="44" lean-forward="true" selection-start-line="850" selection-start-column="44" selection-end-line="850" selection-end-column="44" />
-          <folding />
+          <folding>
+            <element signature="e#50468#50469#0" expanded="true" />
+            <element signature="e#50499#50500#0" expanded="true" />
+            <element signature="e#96457#96458#0" expanded="true" />
+            <element signature="e#96497#96498#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2892,8 +2881,8 @@
           <folding>
             <element signature="e#684#712#0" expanded="false" />
             <element signature="e#2642#2658#0" expanded="false" />
-            <element signature="e#3643#3660#0" expanded="true" />
-            <element signature="e#4850#4864#0" expanded="true" />
+            <element signature="e#3643#3660#0" expanded="false" />
+            <element signature="e#4850#4864#0" expanded="false" />
             <element signature="e#6794#6811#0" expanded="false" />
             <element signature="e#7023#7040#0" expanded="false" />
             <element signature="e#7113#7130#0" expanded="false" />
@@ -3131,14 +3120,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="217" column="38" lean-forward="false" selection-start-line="217" selection-start-column="38" selection-end-line="217" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_contract_out.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -3152,14 +3133,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="1524" column="63" lean-forward="false" selection-start-line="1524" selection-start-column="63" selection-end-line="1524" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -3170,12 +3143,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_checkin_v1.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="163" column="46" lean-forward="false" selection-start-line="163" selection-start-column="46" selection-end-line="163" selection-end-column="46" />
+        <state relative-caret-position="139">
+          <caret line="148" column="26" lean-forward="true" selection-start-line="148" selection-start-column="26" selection-end-line="148" selection-end-column="26" />
           <folding>
-            <element signature="e#2586#2602#0" expanded="true" />
-            <element signature="e#3643#3660#0" expanded="true" />
-            <element signature="e#4850#4864#0" expanded="true" />
+            <element signature="e#2586#2602#0" expanded="false" />
+            <element signature="e#3643#3660#0" expanded="false" />
+            <element signature="e#4850#4864#0" expanded="false" />
             <element signature="e#12236#13109#0" expanded="false" />
             <element signature="e#13119#14055#0" expanded="false" />
             <element signature="e#14125#14747#0" expanded="false" />
@@ -3187,6 +3160,27 @@
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/utilities/GPSTracker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="217" column="38" lean-forward="false" selection-start-line="217" selection-start-column="38" selection-end-line="217" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/elabram/lm/wmsmobile/CheckinV1Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-678">
+          <caret line="881" column="13" lean-forward="false" selection-start-line="881" selection-start-column="13" selection-end-line="881" selection-end-column="13" />
+          <folding>
+            <element signature="e#50468#50469#0" expanded="true" />
+            <element signature="e#50499#50500#0" expanded="true" />
+            <element signature="e#96457#96458#0" expanded="true" />
+            <element signature="e#96497#96498#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>
