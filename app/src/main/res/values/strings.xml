@@ -21,5 +21,6 @@
     <string name="dummy_clock">00:00</string>
     <string name="dash">-</string>
     <string name="notif_contract">Your contract has expired. You are not able to use the application. Please contact your Administrator.</string>
+    <string name="dummy_date">Wednesday AAAA, 18 September 2017</string>
 
 </resources>
