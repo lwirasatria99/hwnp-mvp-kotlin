@@ -946,7 +946,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
             try {
                 Bitmap compressor = new Compressor(this).compressToBitmap(file1);
 
-                ExifInterface exif = new ExifInterface(f.getAbsolutePath());
+                ExifInterface exif = new ExifInterface(realPath);
                 int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
                 Matrix matrix = new Matrix();
                 if ((orientation == ExifInterface.ORIENTATION_ROTATE_180)) {
@@ -985,6 +985,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
         String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
     }
+
     /**
      * ~
      */
@@ -1521,6 +1522,7 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                         e.printStackTrace();
                     }
                     s_gmt = checkTimezoneGMT();
+                    Log.e(TAG, "onResponse: Timezone -> "+s_gmt);
 
                     SharedPreferences preferences = getSharedPreferences("PREFS_TIMEZONE", 0);
                     SharedPreferences.Editor editor = preferences.edit();
@@ -2188,18 +2190,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                     }
                 });
     }
-
-//    private HashMap<String, String> getParamsCheckin() {
-//        HashMap<String, String> params = new HashMap<>();
-//        params.put("token", token);
-//        params.put("location", site_name);
-//        params.put("timezone", s_gmt);
-//        params.put("timezone_id", timeZoneId);
-//        params.put("in_area", );
-//        params.put("images", );
-//        Log.e(TAG, "getParamsCheckin: " + params);
-//        return params;
-//    }
 
     private void parseJSONCheckin(ResponseBody responseBody) {
         try {

@@ -84,7 +84,7 @@
         <!-- Full Map -->
         <include layout="@layout/content_map" />
 
-        <!-- Data -->
+        <!-- Container Time -->
         <RelativeLayout
             android:id="@+id/dataLayout"
             android:layout_width="match_parent"
@@ -157,7 +157,7 @@
 
         </RelativeLayout>
 
-        <!-- Data -->
+        <!-- Container Record -->
         <LinearLayout
             android:id="@+id/linearTimePlace"
             android:layout_width="match_parent"
@@ -374,6 +374,7 @@
             tools:ignore="HardcodedText"
             tools:targetApi="lollipop" />
 
+        <!-- Button Out Of Radius -->
         <Button
             android:id="@+id/buttonOutRadius"
             android:layout_width="match_parent"

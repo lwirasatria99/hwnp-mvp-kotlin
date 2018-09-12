@@ -1,23 +1,25 @@
+public void myMethod() {
+    Bitmap bitmap = BitmapFactory.decodeFile(selectedImagePath); // load
+    
+    //preview image
+    bitmap = Bitmap.createScaledBitmap(bitmap, 400, 400, false);
+    Uri bitmapURI = bitmapToUriConverter(bitmap);
 
-                    //bitmap = BitmapFactory.decodeFile(selectedImagePath); // load
-                    // preview image
-                    //bitmap = Bitmap.createScaledBitmap(bitmap, 400, 400, false);
-//Uri bitmapURI = bitmapToUriConverter(bitmap);
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+    byte[] imageInByte = baos.toByteArray();
+    String saveThis = Base64.encodeToString(imageInByte, Base64.NO_WRAP);
 
-//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//                byte[] imageInByte = baos.toByteArray();
-//                String saveThis = Base64.encodeToString(imageInByte, Base64.NO_WRAP);
-//
-//                SharedPreferences preferences = getSharedPreferences("PREFS_PHOTO", 0);
-//                SharedPreferences.Editor editor = preferences.edit();
-//                editor.putString("sh_image", saveThis);
-//                editor.apply();
+    SharedPreferences preferences = getSharedPreferences("PREFS_PHOTO", 0);
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putString("sh_image", saveThis);
+    editor.apply();
 
-                //iv_profile_dialog.setImageBitmap(bitmap);
-                //iv_profile_main.setImageBitmap(bitmap);
-                //Uri uri = Uri.fromFile(new File(selectedImagePath));
-                //retrofitAddPicture(bitmapURI);
+    iv_profile_dialog.setImageBitmap(bitmap);
+    iv_profile_main.setImageBitmap(bitmap);
+    Uri uri = Uri.fromFile(new File(selectedImagePath));
+    retrofitAddPicture(bitmapURI);
+}
 
                 public Bitmap resizeImageForImageView(Bitmap bitmap) {
                     Bitmap resizedBitmap;

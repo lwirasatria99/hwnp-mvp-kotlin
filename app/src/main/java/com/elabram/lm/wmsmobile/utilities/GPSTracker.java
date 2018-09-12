@@ -201,6 +201,7 @@ public class GPSTracker extends Service implements LocationListener {
         SharedPreferences preferences = getSharedPreferences("PREFS_TIMEZONE", 0);
         s_timezone_id = preferences.getString("s_timezone_id", "");
         s_gmt = preferences.getString("s_gmt", "");
+        Log.e(TAG, "onStartCommand: LiveTrack GMT ->"+ s_gmt );
 
         // use timezone
         rxLiveTracking();

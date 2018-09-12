@@ -9,10 +9,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     private ApiService apiService;
-//    private static final String BASE_URL = "http://elabramdev.com/wms-api-lumen/api/";
+//    private static final String BASE_URL = "http://178.128.97.164/wms-webdev/api/";
     private static final String BASE_URL = "http://178.128.97.164/wms-api-lumen/api/";
 
-    final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+    private final OkHttpClient okHttpClient = new OkHttpClient.Builder()
             .readTimeout(15, TimeUnit.SECONDS)
             .connectTimeout(15, TimeUnit.SECONDS)
             .build();

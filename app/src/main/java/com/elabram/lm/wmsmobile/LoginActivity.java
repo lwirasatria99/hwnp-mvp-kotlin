@@ -311,7 +311,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (response.body() != null) {
                         //noinspection ConstantConditions
                         String responseContent = response.body().string();
-                        Log.e(TAG, "onResponse: " + responseContent);
+                        Log.e(TAG, "onResponse: Login -> " + responseContent);
                         parseJSON(responseContent);
                     }
                 } catch (IOException e) {
@@ -340,6 +340,7 @@ public class LoginActivity extends AppCompatActivity {
     private void parseJSON(String content) {
         SharedPreferences sPreferences = getSharedPreferences(PREFS_LOGIN, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sPreferences.edit();
+
         try {
             JSONObject jsonObject = new JSONObject(content);
             String message = jsonObject.getString("message");

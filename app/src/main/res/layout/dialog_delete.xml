@@ -60,6 +60,7 @@
 
     </LinearLayout>
 
+    <!-- Container No, Yes -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -110,41 +111,5 @@
         </RelativeLayout>
 
     </LinearLayout>
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:background="@drawable/square_cornerbottom_grey"-->
-    <!--android:gravity="end"-->
-    <!--android:orientation="horizontal"-->
-    <!--android:paddingEnd="20dp"-->
-    <!--android:paddingStart="20dp">-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/No"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginEnd="60dp"-->
-    <!--android:layout_marginTop="15dp"-->
-    <!--android:fontFamily="@font/ubuntu_bold"-->
-    <!--android:text="NO"-->
-    <!--android:textColor="@color/login_blue"-->
-    <!--android:textSize="16sp"-->
-    <!--tools:ignore="HardcodedText"-->
-    <!--android:layout_marginRight="60dp" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/Yes"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginBottom="15dp"-->
-    <!--android:layout_marginTop="15dp"-->
-    <!--android:fontFamily="@font/ubuntu_bold"-->
-    <!--android:text="YES"-->
-    <!--android:textColor="@color/login_blue"-->
-    <!--android:textSize="16sp"-->
-    <!--tools:ignore="HardcodedText" />-->
-
-    <!--</LinearLayout>-->
 
 </LinearLayout>
