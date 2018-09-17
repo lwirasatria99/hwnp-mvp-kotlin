@@ -133,7 +133,7 @@ public class GPSTracker extends Service implements LocationListener {
                 this.canGetLocation = true;
                 // First get location from Network Provider
                 if (isNetworkEnabled) {
-                    
+
                     // Need Permission
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -184,7 +184,6 @@ public class GPSTracker extends Service implements LocationListener {
     }
 
     /**
-     *
      * Have to check server time
      * if >= 17.00 stop service
      */
@@ -201,7 +200,6 @@ public class GPSTracker extends Service implements LocationListener {
         SharedPreferences preferences = getSharedPreferences("PREFS_TIMEZONE", 0);
         s_timezone_id = preferences.getString("s_timezone_id", "");
         s_gmt = preferences.getString("s_gmt", "");
-        //Log.e(TAG, "onStartCommand: LiveTrack GMT ->"+ s_gmt );
 
         // use timezone
         rxLiveTracking();
@@ -216,7 +214,7 @@ public class GPSTracker extends Service implements LocationListener {
         params.put("long", s_long); // OK
         params.put("timezone", s_gmt);
         params.put("timezone_id", s_timezone_id);
-        //Log.e(TAG, "getParamsLive: " + params);
+        Log.e(TAG, "getParamsLive: " + params);
         return params;
     }
 
@@ -235,26 +233,11 @@ public class GPSTracker extends Service implements LocationListener {
                         if (responseBody != null) {
                             try {
                                 String mResponse = responseBody.string();
-                                //Log.e(TAG, "onNext response live from service: " + mResponse);
+                                //Log.e(TAG, "onNext: LiveTrack -> "+mResponse);
                                 //noinspection unused
                                 JSONObject jsonObject = new JSONObject(mResponse);
-//                                String response_code = jsonObject.getString("response_code");
-//                                switch (response_code) {
-//                                    case "401":
-//                                        //noinspection unused
-//                                        String message = jsonObject.getString("message");
-//                                        //Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
-//                                        break;
-//                                    case "200":
-//                                        JSONArray jsonArray = jsonObject.getJSONArray("data");
-//                                        for (int i = 0; i < jsonArray.length(); i++) {
-//                                            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-//                                            message_greetings = jsonObject1.getString("message");
-//                                            Log.e(TAG, "onNext message greetings: " + message_greetings);
-//                                        }
-//
-//                                        break;
-//                                }
+                                String message = jsonObject.getString("message");
+                                Log.e(TAG, "onNext: LiveTrack -> "+message);
                             } catch (IOException | JSONException e) {
                                 e.printStackTrace();
                             }
@@ -264,11 +247,6 @@ public class GPSTracker extends Service implements LocationListener {
                     @Override
                     public void onError(Throwable e) {
                         Log.e(TAG, "onError LiveTracking Cause: " + e.getCause());
-//                        if (e instanceof SocketTimeoutException) {
-//                            Toast.makeText(CheckinV1Activity.this, "Timeout / Please try again", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            Toast.makeText(CheckinV1Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                        }
                     }
 
                     @Override
@@ -291,7 +269,7 @@ public class GPSTracker extends Service implements LocationListener {
 
     /**
      * Function to get longitude
-     * */
+     */
     public double getLongitude() {
         if (location != null) {
             longitude = location.getLongitude();
@@ -308,7 +286,7 @@ public class GPSTracker extends Service implements LocationListener {
 
     /**
      * Function to show settings alert dialog
-     * */
+     */
     @SuppressWarnings("unused")
     public void showSettingsAlert() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
@@ -338,9 +316,9 @@ public class GPSTracker extends Service implements LocationListener {
     @SuppressWarnings("unused")
     public void stopUsingGPS() {
         if (locationManager != null) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED 
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                
+
                 return;
             }
             locationManager.removeUpdates(GPSTracker.this);

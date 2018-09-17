@@ -3,6 +3,7 @@ package com.elabram.lm.wmsmobile;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
+import android.app.MediaRouteButton;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -231,6 +232,12 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
     @BindView(R.id.iv_profile)
     CircularImageView iv_profile_main;
+
+    @BindView(R.id.linearRemarkFirst)
+    LinearLayout linearRemarkFirst;
+
+    @BindView(R.id.linearRemarkLast)
+    LinearLayout linearRemarkLast;
 
     @BindView(R.id.linearTimePlace)
     LinearLayout linearTimePlace;
@@ -521,7 +528,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
         relSubmit.setOnClickListener(view1 -> {
             s_remark = etRemark.getText().toString();
-
             if (s_remark.length() <= 0 && in_area.equals("N")) {
                 etRemark.setError("Remark is required!");
             } else {
@@ -1992,12 +1998,16 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
 
                                 // Time Start
                                 @SuppressLint("SimpleDateFormat") SimpleDateFormat readTime1 = new SimpleDateFormat("HH.mm");
+
+                                // Time start exception
                                 Date checkTime1 = null;
                                 try {
                                     checkTime1 = new SimpleDateFormat("HH.mm").parse("08.00");
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
+
+                                // Time start parsing
                                 Date dateTime1 = null;
                                 try {
                                     dateTime1 = readTime1.parse(time_first);
@@ -2014,7 +2024,6 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                                         //Log.e(TAG, "onResponse: BLUE");
                                         tvStartTime.setTextColor(getResources().getColor(R.color.blue));
                                     }
-
                                     tvStartTime.setText(replaceFirst);
                                     linearTimePlace.setVisibility(View.VISIBLE);
                                 } else {
@@ -2040,16 +2049,22 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
                                 //else
                                 //    tvLastLocation.setText("(-)");
 
-                                Log.e(TAG, "onResponse: First " + j_remarkFirst);
-                                Log.e(TAG, "onResponse: Last " + j_remarkLast);
 
                                 // Remark First
-                                if (!j_remarkFirst.isEmpty())
-                                    tvFirstRemark.setText("\"" + j_remarkFirst + "\"");
+                                if (!j_remarkFirst.isEmpty()) {
+                                    linearRemarkFirst.setVisibility(View.VISIBLE);
+                                    tvFirstRemark.setText(j_remarkFirst);
+                                } else {
+                                    linearRemarkFirst.setVisibility(View.GONE);
+                                }
 
                                 // Remark Last
-                                if (!j_remarkLast.isEmpty())
-                                    tvLastRemark.setText("\"" + j_remarkLast + "\"");
+                                if (!j_remarkLast.isEmpty()) {
+                                    linearRemarkLast.setVisibility(View.VISIBLE);
+                                    tvLastRemark.setText(j_remarkLast);
+                                } else {
+                                    linearRemarkLast.setVisibility(View.GONE);
+                                }
 
                                 break;
                         }
@@ -2453,7 +2468,8 @@ public class CheckinV1Activity extends AppCompatActivity implements OnMapReadyCa
              1 * 60 * 1000 = 1 minute
              60 * 60 * 1000 = 60 minute
         */
-        long intervalMinute = 60 * 60 * 1000; // 60 Minute
+        long intervalMinute = 60 * 1000;
+        //long intervalMinute = 60 * 60 * 1000; // 60 Minute
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         Intent intent = new Intent(this, GPSTracker.class);

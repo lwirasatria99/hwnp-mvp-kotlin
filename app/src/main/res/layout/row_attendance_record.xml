@@ -24,6 +24,7 @@
         android:paddingTop="10dp"
         tools:targetApi="lollipop">
 
+        <!-- Fix width day -->
         <LinearLayout
             android:layout_width="30dp"
             android:layout_height="wrap_content"
@@ -55,7 +56,7 @@
             android:layout_marginStart="3dp"
             android:background="@color/grey" />
 
-        <!-- First Record -->
+        <!-- First Record day -->
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="wrap_content"
