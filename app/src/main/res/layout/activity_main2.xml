@@ -37,7 +37,7 @@
             tools:ignore="ContentDescription" />
 
         <!--Circle Image -->
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/view2"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -57,7 +57,7 @@
                 android:layout_gravity="center"
                 tools:ignore="ContentDescription" />
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 

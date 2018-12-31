@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:theme="@style/AppThemeFont"
-    tools:context="com.elabram.lm.wmsmobile.CheckinV1Activity">
+    tools:context="com.elabram.lm.wmshwnp.checkin.CheckinV1Activity">
 
     <!-- Toolbar -->
     <RelativeLayout
@@ -378,7 +378,7 @@
         </LinearLayout>
 
         <!-- FAB attendance, refresh, location -->
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabRefresh"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -398,7 +398,7 @@
             app:srcCompat="@drawable/ic_refresh_white_24dp"
             tools:targetApi="lollipop" />
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabMyLocation"
             android:layout_width="50dp"
             android:layout_height="50dp"

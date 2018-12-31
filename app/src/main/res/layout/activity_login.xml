@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/login_blue"
     android:theme="@style/AppThemeFont"
-    tools:context=".LoginActivity">
+    tools:context=".login.LoginActivity">
 
     <!-- Logo -->
     <LinearLayout
@@ -106,7 +106,7 @@
                 android:contentDescription="icPassword"
                 tools:ignore="HardcodedText" />
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etPasswordLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
                     tools:ignore="HardcodedText"
                     tools:targetApi="lollipop" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
         </RelativeLayout>
 

@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <!-- Header -->
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
                 android:paddingTop="10dp">
 
                 <!--Circle Image -->
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     android:id="@+id/view2"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -48,7 +48,7 @@
                         app:srcCompat="@drawable/profile_default_picture"
                         tools:ignore="ContentDescription" />
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:id="@+id/tvName"
@@ -76,7 +76,7 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -84,7 +84,7 @@
 
         </FrameLayout>
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Form -->
     <RelativeLayout

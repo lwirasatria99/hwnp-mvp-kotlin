@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:theme="@style/AppThemeFont"
-    tools:context="com.elabram.lm.wmsmobile.CheckinActivity">
+    tools:context="com.elabram.lm.wmshwnp.CheckinActivity">
 
     <!-- Toolbar -->
     <RelativeLayout
@@ -39,7 +39,7 @@
             tools:ignore="ContentDescription" />
 
         <!--Circle Image -->
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/view2"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -60,7 +60,7 @@
                 android:layout_height="match_parent"
                 tools:ignore="ContentDescription" />
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 
@@ -351,7 +351,7 @@
         </LinearLayout>
 
         <!-- FAB attendance, refresh, location -->
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAttendance"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -371,7 +371,7 @@
             app:srcCompat="@drawable/ic_attendance_calendar_white"
             tools:targetApi="lollipop" />
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabRefresh"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -391,7 +391,7 @@
             app:srcCompat="@drawable/ic_refresh_white_24dp"
             tools:targetApi="lollipop" />
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabMyLocation"
             android:layout_width="50dp"
             android:layout_height="50dp"
